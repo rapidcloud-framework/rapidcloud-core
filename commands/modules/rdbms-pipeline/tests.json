@@ -1,0 +1,10 @@
+{
+  "rdbms-pipeline": {
+    "create": {
+      "enabled": false,
+      "example": "kc rdbms-pipeline create --no-prompt --rdbms-pipeline_name name",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

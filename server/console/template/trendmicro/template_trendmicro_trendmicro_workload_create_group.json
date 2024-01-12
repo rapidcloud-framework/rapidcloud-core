@@ -1,0 +1,65 @@
+{
+  "type": "Theia::Action",
+  "label": "Workload Security Groups",
+  "id": "trendmicro_workload_create_group",
+  "module": "trendmicro",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "trendmicro_workload_create_group",
+      "datasource": "trendmicro/workload/groups?test=test",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "trendmicro_description",
+        "trendmicro_policy",
+        "timestamp"
+      ],
+      "title": "Trend Micro Workload Security Groups",
+      "allowMarkdown": true,
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "trendmicro_workload_create_group",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "trendmicro",
+            "command": "workload_create_group",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Name",
+          "help": "Group Name will be automatically prefixed with environment name",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "trendmicro_description",
+          "label": "Description",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "trendmicro_policy",
+          "label": "Policy",
+          "datasource": "trendmicro/workload/policies?col=name&module_name_arg=trendmicro",
+          "help": "RapidCloud currently only supports Linux EC2 Instances"
+        }
+      ]
+    }
+  ]
+}

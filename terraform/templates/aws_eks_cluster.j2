@@ -1,0 +1,55 @@
+module "{{fqn}}" {
+  source = "{{ module_source }}"
+    env  = "{{ env }}"
+    profile = "{{ profile }}"
+    fqn = "{{ fqn }}"
+    workload = "{{ workload }}"
+    cmd_id = "{{ cmd_id }}"
+    cluster_name  = "{{ params["cluster_name"] }}"
+    subnet_ids = {
+    {%- if 'subnet_ids' in params.keys() and params["subnet_ids"] != ""  %}   
+    {% set subnet_list = params["subnet_ids"].split(',') %}
+    {% for subnet in subnet_list -%}
+    {{ subnet }} = module.{{ profile }}_aws_subnet_{{ subnet }}.id
+    {% endfor -%}
+    {% endif %}
+    }
+    cluster_log_types  = "{{ params["cluster_log_types"] }}"
+    cluster_log_retention_period  = "{{ params["cluster_log_retention_period"] }}"
+    endpoint_public_access  = "{{ params["endpoint_public_access"] }}"
+    endpoint_public_access_cidrs  = "{{ params["endpoint_public_access_cidrs"] }}"
+    eks_version  = "{{ params["eks_version"] }}"
+    {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+}
+
+data "aws_eks_cluster_auth" "{{fqn}}" {
+  name = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_cluster_info.id
+}
+
+provider "kubernetes" {
+  alias = "{{ profile }}_{{ params["cluster_name"] }}"
+  host                   = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_cluster_info.endpoint
+  cluster_ca_certificate = base64decode(module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_cluster_info.certificate_authority.0.data)
+  token                  = data.aws_eks_cluster_auth.{{fqn}}.token
+}
+
+provider "helm" {
+  alias = "{{ profile }}_{{ params["cluster_name"] }}"
+  kubernetes {
+    host                   = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_cluster_info.endpoint
+    cluster_ca_certificate = base64decode(module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_cluster_info.certificate_authority.0.data)
+    token                  = data.aws_eks_cluster_auth.{{fqn}}.token
+    }
+}
+
+output "cluster_info_{{ params["cluster_name"] }}" { value = module.{{ fqn }}.eks_cluster_info  }
+
+{% for k, v in params.items() %}
+# {{k}} -> {{ v }}
+{% endfor %}

@@ -1,0 +1,248 @@
+{
+  "az_frontdoor": {
+    "create_origingroup": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_frontdoor",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "prompt": "Enter the ID of the front door profile",
+          "required": true
+        },
+        "health_probe_protocol": {
+          "name": "health_probe_protocol",
+          "prompt": "Enter the protocol for the health probe (Http / Https)",
+          "required": true,
+          "default": "Http"
+        },
+        "health_probe_path": {
+          "name": "health_probe_path",
+          "prompt": "Enter the path for the health probe",
+          "required": true,
+          "default": "/"
+        }
+      }
+    },
+    "create_origin": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_frontdoor",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "origin_group_id": {
+          "name": "origin_group_id",
+          "prompt": "Enter the ID of the front door origin group in which the origin should exist",
+          "required": true
+        },
+        "hostname": {
+          "name": "hostname",
+          "prompt": "The IPv4 address, IPv6 address or Domain name of the Origin",
+          "required": true
+        },
+        "certificate_check_enabled": {
+          "name": "certificate_check_enabled",
+          "prompt": "Enter whether certificate name checks should be enabled for this origin",
+          "required": true,
+          "default": false
+        }
+      }
+    },
+    "create_fd_profile": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_frontdoor",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group",
+          "required": true
+        },
+        "sku_name": {
+          "name": "sku_name",
+          "prompt": "Enter the SKU name for the front door profile",
+          "required": true
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the Front Door profile, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_fd_endpoint": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_frontdoor",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "prompt": "Enter ID of the front door profile",
+          "required": true
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the Front Door endpoint, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_fd_domain": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_frontdoor",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter domain name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "profile_id": {
+          "name": "profile_id",
+          "prompt": "Enter ID of the front door profile",
+          "required": true
+        },
+        "dns_zone": {
+          "name": "dns_zone",
+          "prompt": "Enter ID of the Azure DNS to use for the domain",
+          "required": true
+        }
+      }
+    },
+    "create_fd_route": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_frontdoor",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group",
+          "required": true
+        },
+        "endpoint_id": {
+          "name": "endpoint_id",
+          "prompt": "Enter ID of the front door endpoint",
+          "required": true
+        },
+        "origin_group_id": {
+          "name": "origin_group_id",
+          "prompt": "Enter ID of the front door origin group",
+          "required": true
+        },
+        "origins": {
+          "name": "origins",
+          "prompt": "Enter the comma-separated list of the IDs of front door origins",
+          "required": true
+        },
+        "patterns_to_match": {
+          "name": "patterns_to_match",
+          "prompt": "Enter the comma-separated list of the patterns to match",
+          "required": true,
+          "default": [
+            "/*"
+          ]
+        },
+        "supported_protocols": {
+          "name": "supported_protocols",
+          "prompt": "Enter the comma-separated list of the supported protocols",
+          "required": true,
+          "default": [
+            "Http",
+            "Https"
+          ]
+        },
+        "redirect_https": {
+          "name": "redirect_https",
+          "prompt": "Enter whether the Http request should be redirected to Https",
+          "required": true,
+          "default": true
+        },
+        "enable_caching": {
+          "name": "enable_caching",
+          "prompt": "Enter whether caching should be enabled",
+          "required": true,
+          "default": false
+        },
+        "query_string_cache_behavior": {
+          "name": "query_string_cache_behavior",
+          "prompt": "Enter how the Front Door Route should cache requests that include query strings",
+          "required": true,
+          "default": "IgnoreQueryString"
+        },
+        "forwarding_protocol": {
+          "name": "forwarding_protocol",
+          "prompt": "Enter the protocol that will be use when forwarding traffic to backends (HttpOnly, HttpsOnly, MatchRequest)",
+          "required": false,
+          "default": "HttpOnly"
+        },
+        "domains": {
+          "name": "domains",
+          "prompt": "Enter the comma-separated list of the IDs of front door domains",
+          "required": false
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the Front Door route, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    }
+  }
+}

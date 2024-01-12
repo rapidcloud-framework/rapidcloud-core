@@ -1,0 +1,26 @@
+{
+  "type": "Theia::Action",
+  "label": "Generate Schemas",
+  "id": "pre-publish",
+  "module": "publishing",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "pre-publish",
+      "title": "Generate RDS/Aurora and Redshift Schemas",
+      "description": "This one-time process includes (where applicable) <br/>- (1) generating schemas for RDS/Aurora databases <br/>- (2) generating schema for Redshift",
+      "submit": "Run Pre-Publish Process",
+      "commands": [
+        {
+          "label": "Submit",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure?",
+          "command": {
+            "phase": "publishing",
+            "command": "pre-publish"
+          }
+        }
+      ]
+    }
+  ]
+}

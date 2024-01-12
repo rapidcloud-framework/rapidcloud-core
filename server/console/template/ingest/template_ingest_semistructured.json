@@ -1,0 +1,260 @@
+{
+  "type": "Theia::Action",
+  "label": "Semi-Structured (Json, CSV, etc)",
+  "id": "semistructured",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "semistructured",
+      "datasource": "data?type=dataset_semi_structured",
+      "env_param_required": true,
+      "columns": ["name","enabled","format","category","cdc_type","enable_enrich","enable_transform"],
+      "title": "Semi-structured Data",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "data",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Save",
+          "command": {
+            "phase": "ingest",
+            "command": "register-semi-structured",
+            "refresh_status": true    
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Enter Dataset Name with no spaces",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "enabled",
+          "label": "Enable this dataset"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "cdc_type",
+          "label": "CDC Type",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Delta",
+              "value": "delta"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Cumulative",
+              "value": "cumulative"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Cumulative YTD",
+              "value": "cumulative_year"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Cumulative MTD",
+              "value": "cumulative_month"
+            }          
+          ]
+        },        
+        {
+          "type": "Theia::Control::Select",
+          "id": "format",
+          "label": "File Format",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "CSV",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "csv",
+                "disableControls": [
+                  "sheet_name",
+                  "use_first_row_as_cols"
+                ],
+                "enableControls": [
+                  "separator_char",
+                  "use_quotes_around_strings"
+                ]              
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Excel (XSLX)",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "xlsx",
+                "disableControls": [
+                  "separator_char",
+                  "use_quotes_around_strings",
+                  "use_first_row_as_cols"
+                ],
+                "enableControls": [
+                  "sheet_name"
+                ]              
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "JSON",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "json",
+                "enableControls": [
+                  "use_first_row_as_cols"
+                ],
+                "disableControls": [
+                  "separator_char",
+                  "use_quotes_around_strings",
+                  "sheet_name"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "XML",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "xml",
+                "disableControls": [
+                  "separator_char",
+                  "use_quotes_around_strings",
+                  "sheet_name",
+                  "use_first_row_as_cols"
+                ]
+              }
+            }          
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "category",
+          "label": "Data Category (e.g. financials, legal, products)",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "separator_char",
+          "label": "Separator Character",
+          "help": "This applies to CSV only. Deafault: \",\"",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "use_quotes_around_strings",
+          "label": "Use Quotes Around Strings",
+          "help": "This applies to CSV only",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "No",
+              "value": "no"
+            }          
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "use_first_row_as_cols",
+          "label": "Use First Row as Columns",
+          "help": "This applies to JSON files",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Yes",
+              "value": "true"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "No",
+              "value": "false"
+            }          
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "sheet_name",
+          "label": "Excel Sheet Name",
+          "help": "Leave empty if Excel file only contains one sheet",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "enable_enrich",
+          "label": "Enable post-processing / data enrichment for this dataset?"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "enrich_name",
+          "label": "Name of Post-processing lambda function",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "env-vars",
+          "label": "Environment Variables for Post-processing Lambda",
+          "dynamic_datasource": "data?type=aws_infra&filter_name=resource_type,resource_name&filter_value=lambda_function,${enrich_name}&params=env_vars",
+          "add_value_label": "Add new environment variable for Post-processing Lambda"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "pk",
+          "cli_arg": "primary_key",
+          "label": "Primary Key (if known)",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "partitions",
+          "label": "Partitions",
+          "help": "Comma separated list of attributes to organize this dataset [default: year,month,day]",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "source_location",
+          "cli_arg": "source-location",
+          "label": "Source Location",
+          "help": "Source Location for information only",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "enable_transform",
+          "label": "Enable transformation for this dataset. RapidCloud will automatically trigger Transformation Glue job for this data set upon completion of CDC."
+        }
+      ]
+    }
+  ]
+}

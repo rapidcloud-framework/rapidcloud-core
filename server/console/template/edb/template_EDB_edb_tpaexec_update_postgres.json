@@ -1,0 +1,49 @@
+{
+  "type": "Theia::Action",
+  "label": "tpaexec update-postgres",
+  "id": "edb_tpaexec_update_postgres",
+  "module": "edb",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "edb_tpaexec_update_postgres",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=edb",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "timestamp"
+      ],
+      "title": "tpaexec update-postgres",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "edb_tpaexec_update_postgres",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "tpaexec_update_postgres",
+          "command": {
+            "phase": "edb",
+            "command": "tpaexec_update_postgres",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

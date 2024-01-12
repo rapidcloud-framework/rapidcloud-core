@@ -1,0 +1,30 @@
+resource "aws_glue_crawler" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    database_name = "{{ params['database_name'] }}"
+    name     = "{{ profile }}_{{ resource_name }}"
+    role = module.{{ profile }}_glue_base.arn
+
+    {% if params['s3_target'] is defined %}
+        {% if params['s3_target']['path'] is not string  %}
+            {% for path in params['s3_target']['path'] %}
+            s3_target {
+              path = "{{ path }}"
+            }
+            {% endfor %}
+        {% else %}
+            s3_target {
+              path = "{{ params['s3_target']['path'] }}"
+            }
+        {% endif %}
+    {% endif %}
+
+    {% if params['classifiers'] is defined %}
+    {% set comma = joiner(",") %}
+        classifiers = [{%- for c in params['classifiers'] -%}
+            {{comma()}}"{{ profile }}_{{ c }}"
+        {%- endfor -%}]
+
+        depends_on = [{%- for c in params['classifiers'] -%}
+            aws_glue_classifier.{{ profile }}_{{ c }}_glue_classifier,
+        {%- endfor -%}]
+    {% endif %}
+}

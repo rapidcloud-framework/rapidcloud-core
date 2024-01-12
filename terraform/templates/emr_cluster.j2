@@ -1,0 +1,35 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    source          = "../modules/{{ resource_type }}"
+    cluster_name   = "${replace("{{ profile }}_{{ resource_name }}", "_", "-")}"
+    core_instance_count = "{{ params['core_instance_count'] }}"
+    core_instance_size = "{{ params['core_instance_size'] }}"
+    master_instance_size = "{{ params['master_instance_size'] }}"
+    release_label = "{{ params['release_label'] }}"
+    ssh_pub_key = "{{ params['ssh_pub_key'] }}"
+    access_type = "{{ params['access_type'] | default('private') }}"
+    {% if params['access_type'] == 'public' %}
+    subnet_id = data.aws_subnet.public[tolist(data.aws_subnets.public.ids)[0]].id
+    {% else %}
+    subnet_id = data.aws_subnet.private[tolist(data.aws_subnets.private.ids)[0]].id
+    {% endif %}
+    {% if params['allowed_cidrs'] is defined %}
+    master_cidr_ingress_rules = [
+    {% for v  in params['allowed_cidrs'] %}
+    "{{ v }}",
+    {% endfor %}
+    ]
+    {% endif %}
+    vpc_id            = "{{ vpc }}"
+    region            = "{{ region }}"
+    applications    = split(",", "{{ params['applications'] }}")
+    configuration_json_file_name = "{{ params['configuration_json_file_name'] }}"
+
+    tags = {
+       "Name" = "{{ profile}}_{{ resource_name }}"
+       "env" = "{{ env }}"
+       "profile" = "{{ name }}"
+       "workload" = "{{ workload }}"
+       "client" = "{{ client }}"
+       "author" = "rapid-cloud"
+    }
+}

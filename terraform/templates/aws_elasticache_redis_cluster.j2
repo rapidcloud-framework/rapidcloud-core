@@ -1,0 +1,45 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+
+  source                    = "{{ module_source }}"
+  cluster_id                = "{{ resource_name }}"
+  {% if params['node_type']|length > 0 and params['replication_group_id']|length == 0 %}
+  node_type                 = "{{ params['node_type'] }}"
+  {% endif %}
+  {% if params['parameter_group_name']|length > 0 and params['replication_group_id']|length == 0 %}
+  parameter_group_name      = "{{ params['parameter_group_name'] }}"
+  {% endif %}
+  apply_immediately         = {{ params['apply_immediately'] }}
+  availability_zone         = "{{ params['availability_zone'] }}"
+  {% if params['engine_version']|length > 0 %}
+  engine_version            = "{{ params['engine_version'] }}"
+  {% endif %}
+  {% if params['final_snapshot_identifier']|length > 0 %}
+  final_snapshot_identifier = "{{ params['final_snapshot_identifier'] }}"
+  {% endif %}
+  {% if params['maintenance_window']|length > 0 %}
+  maintenance_window        = "{{ params['maintenance_window'] }}"
+  {% endif %}
+  {% if params['notification_topic_arn']|length > 0 %}
+  notification_topic_arn    = "{{ params['notification_topic_arn'] }}"
+  {% endif %}
+  {% if params['replication_group_id']|length > 0 %}
+  replication_group_id      = "{{ params['replication_group_id'] }}"
+  {% endif %}
+  subnet_ids                = {{ params['subnet_ids'] | replace("'","\"") }}
+  security_group_ids        = {{ params['security_group_ids'] | replace("'","\"") }}
+  {% if params['log_destination']|length > 0 %}
+  log_destination           = "{{ params['log_destination'] }}"
+  log_destination_type      = "{{ params['log_destination_type'] }}"
+  log_format                = "{{ params['log_format'] }}"
+  log_type                  = "{{ params['log_type'] }}"
+  {% endif %}
+
+  tags = {
+    "Name"      = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud-by-kinect"
+  }
+}

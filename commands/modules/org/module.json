@@ -1,0 +1,132 @@
+{
+    "org": {
+        "create": {
+            "enabled": true,
+            "help": "",
+            "template_section": "organizations",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },
+                "aws_service_access_principals": {
+                    "name": "aws_service_access_principals",
+                    "prompt": "comma-separated list of AWS service principal names for which you want to enable integration with your organization",
+                    "required": true,
+                    "default": ""
+                },
+                "enabled_policy_types": {
+                    "name": "enabled_policy_types",
+                    "prompt": "comma-separated list; any of SERVICE_CONTROL_POLICY | TAG_POLICY | BACKUP_POLICY | AISERVICES_OPT_OUT_POLICY",
+                    "required": true,
+                    "default": ""
+                }      
+            }
+        },
+        "create_ou": {
+            "enabled": true,
+            "help": "",
+            "template_section": "organizations",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },
+                "parent_name": {
+                    "name": "parent_name",
+                    "prompt": "name of parent OU or root org in RapidCloud",
+                    "required": true,
+                    "default": ""
+                },
+                "parent_type": {
+                    "name": "parent_type",
+                    "prompt": "parent type: root | ou",
+                    "required": true,
+                    "default": "root"
+                },
+                "scps": {
+                    "name": "scps",
+                    "prompt": "SCP names to attach",
+                    "required": true,
+                    "default": ""
+                }
+            }
+        },
+        "create_account": {
+            "enabled": true,
+            "help": "",
+            "template_section": "organizations",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },
+                "parent_name": {
+                    "name": "parent_name",
+                    "prompt": "name of parent OU in RapidCloud",
+                    "required": true,
+                    "default": ""
+                },
+                "email": {
+                    "name": "email",
+                    "prompt": "email associated with account",
+                    "required": true,
+                    "default": ""
+                },
+                "scps": {
+                    "name": "scps",
+                    "prompt": "SCP names to attach",
+                    "required": true,
+                    "default": ""
+                }
+            }
+        },
+        "create_scp": {
+            "enabled": true,
+            "help": "",
+            "template_section": "organizations",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },
+                "policy_text": {
+                    "name": "policy_text",
+                    "prompt": "Policy as Text",
+                    "required": true,
+                    "default": ""
+                },
+                "description": {
+                    "name": "description",
+                    "prompt": "description",
+                    "required": true,
+                    "default": ""
+                }
+            }
+        }
+    }
+}

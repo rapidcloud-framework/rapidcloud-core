@@ -1,0 +1,18 @@
+module "{{fqn}}" {
+    source                              = "{{module_source}}"
+    env                                 = "{{ env }}"
+    workload                            = "{{ workload }}"
+    cmd_id                              = "{{ cmd_id }}"
+    profile                             = "{{ profile }}"
+    name                                = "{{ resource_name }}"
+    resource_group                      = "{{ params["resource_group"] }}"
+    sku_name                            = "{{ params["sku_name"] }}"
+    
+    {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+}

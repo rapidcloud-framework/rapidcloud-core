@@ -1,0 +1,24 @@
+{
+    "logger_level": 20,
+    "logger_levels": "CRITICAL = 50, ERROR = 40, WARNING = 30, INFO = 20, DEBUG = 10",
+    "config_storage": "filesystem",
+    "config_storage_allowed": ["filesystem", "dynamodb"],
+    "utils": {
+        "version": "1-1-0"
+    },
+    "lambda_layers": {
+        "awswrangler": "awswrangler-layer-2.11.0-py3.8.zip",
+        "psycopg2": "psycopg2-layer.zip",
+        "kc_common": "kc_common.zip",
+        "kc_textract": "kc_textract.zip",
+        "okta": "lambda_layer_okta.zip"
+    },
+    "eggs": {
+        "awswrangler": "awswrangler-2.11.0-py3-none-any.whl",
+        "PyAthena": "PyAthena-1.10.1-py3.6.egg",
+        "modules": "modules.zip"
+    },
+    "textract": {
+        "textract_image_uri": "247654790127.dkr.ecr.us-east-1.amazonaws.com/file_workflow_lambda:latest"
+    }
+}

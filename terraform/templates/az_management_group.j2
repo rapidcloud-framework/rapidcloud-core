@@ -1,0 +1,7 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source                  = "{{ module_source }}"
+  management_group_name   = "{{ resource_name }}"
+  parent_management_group_id = "{{ params['parent_id'] }}"
+  policy_definition_id     = "{{ params['policy_definition_id'] }}"
+  policy_assignment_name   = "{{ params['policy_name'] }}"
+}

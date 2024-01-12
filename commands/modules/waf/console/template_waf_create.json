@@ -1,0 +1,106 @@
+{
+  "type": "Theia::Action",
+  "label": "WAF",
+  "id": "waf_create",
+  "module": "waf",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "waf_create",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=waf,create",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "Web Application Firewall",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "waf_create",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },         
+        {
+          "label": "Create",
+          "command": {
+            "phase": "waf",
+            "command": "create",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "Enter RC resource name here.",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "allow_requests_by_default",
+          "cli_id": "waf_allow_requests_by_default",
+          "label": "Allow requests by default",
+          "default": true,
+          "help": "Would you like requests to be allowed by default?"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "cf_associated",
+          "cli_id": "waf_cf_associated",
+          "label": "Will this WAF be for a Cloudfront distribution?",
+          "default": "Cloudfront associated",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Cloudfront associated",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": true,
+                "disableControls": ["waf_associated_apigw_list", "waf_associated_alb_list"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Other resources",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": false,
+                "enableControls": ["waf_associated_apigw_list", "waf_associated_alb_list"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "waf_associated_apigw_list",
+          "cli_id": "waf_associated_apigw_list",
+          "label": "API Gateways",
+          "help": "List of API Gateways to associate to this WAF to",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=api,add_lambda_integration&field=api_rest_api_name"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "waf_associated_alb_list",
+          "cli_id": "waf_associated_alb_list",
+          "label": "Application load balancers list",
+          "help": "List of Application load balancers to associate this WAF to",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=lb,create&field=name"
+        }                
+      ]
+    }
+  ]
+}

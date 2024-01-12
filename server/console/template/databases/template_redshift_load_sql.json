@@ -1,0 +1,78 @@
+{
+    "type": "Theia::Action",
+    "label": "Load SQL from file",
+    "id": "redshift_load_sql",
+    "module": "redshift",
+    "steps": [
+        {
+            "type": "Theia::Step::Form",
+            "id": "load_sql",
+            "title": "Upload Files to S3 and Load Into Redshift",
+            "description": "",
+            "submit": "Submit",
+            "commands": [],
+            "controls": [
+                {
+                    "type": "Theia::Control::Select",
+                    "id": "file_type",
+                    "label": "Select File Type to upload",
+                    "help": "",
+                    "default": "tables",
+                    "options": [
+                        {
+                            "type": "Theia::Option",
+                            "label": "Create/Modify Tables",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "tables",
+                                "enableControls": [
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Theia::Option",
+                            "label": "Create/Modify Schemas",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "schemas",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Theia::Control::Select",
+                    "id": "bucket",
+                    "label": "DB Instance",
+                    "help": "The Redshift Cluster/Serverless you wish to load SQL to",
+                    "datasource": "custom/module_redshift_buckets?extra=true&module_name_arg=redshift",
+                    "validations": [
+                        {
+                            "type": "Theia::Validation::Required",
+                            "message": "Redshift Server/Serverless is Required"
+                        }
+                    ]
+                },
+                {
+                    "type": "Theia::Control::Toggle",
+                    "id": "confirm",
+                    "default": false,
+                    "label": "SQL in the uploaded files will be executed as *root* on your target redshift DB"
+                },
+                {
+                    "label": "",
+                    "help": "",
+                    "id": "files",
+                    "type": "Theia::Control::Upload",
+                    "multiple": false,
+                    "dynamic_datasource": "formdata_from_aws?type=generate_presigned_url&dataset_type=code&file_type=${file_type}&confirm=${confirm}&bucket-suffix=${bucket}",
+                    "new_hide": true
+                }
+            ]
+        }
+    ],
+    "info": "### This file is optional\n\n\n\nUse it to provide help screen for the module. If not needed, remove this file"
+}

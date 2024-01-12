@@ -1,0 +1,129 @@
+{
+  "type": "Theia::Action",
+  "label": "RDBMS: Source Databases",
+  "id": "databases",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "environment",
+      "datasource": "data?type=source_database",
+      "env_param_required": true,
+      "columns": ["name","engine","server","schema"],
+      "title": "Source Databases",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "database",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "ingest",
+            "command": "register-source-database",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Database Name",
+          "help": "Enter database name (no space or special characters)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "engine",
+          "label": "Database Engine",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "MySQL",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "mysql",
+                "disableControls": [
+                  "db"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Oracle",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "oracle"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Postgres",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "postgres"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "server",
+          "label": "Database Server Address",
+          "help": "Enter Database Server Address (dns name or IP address)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "port",
+          "label": "Database Server Port",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "db_user",
+          "label": "Database User",
+          "help": "Database User with permissions to get schema details",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "password",
+          "label": "Password",
+          "help": "Database Password will be encrypted and never stored or transmitted in plain text",
+          "inputType": "password"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "db",
+          "label": "Database/Catalog Name",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "schema",
+          "label": "Schema Name",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "rate_of_change",
+          "label": "Database Rate of Change (GB/hr)",
+          "default": "1"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "use_dms",
+          "label": "Enable DMS (Database Migration Service)"
+        }
+      ]
+    }
+  ]
+}

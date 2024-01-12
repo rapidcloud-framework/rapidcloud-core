@@ -1,0 +1,96 @@
+{
+  "type": "Theia::Action",
+  "label": "Define Reports",
+  "id": "report_define_report",
+  "module": "report",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "report_define_report",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=report,define_report",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "Define Reports",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "report_define_report",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this Report Definition?",
+          "command": {
+            "phase": "undo-command",
+            "refresh_status": true
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Save",
+          "command": {
+            "phase": "report",
+            "command": "define_report",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "output_format",
+          "help": "",
+          "label": "Output Format",
+          "default": "csv",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "CSV",
+              "value": "csv"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "JSON",
+              "value": "json"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::CompositeGroup",
+          "id": "report_definition",
+          "label": "Document Parsing Rules",
+          "help": "",
+          "controls": [
+            {
+              "type": "Theia::Control::Input",
+              "id": "csv_col_name",
+              "help": "",
+              "inputType": "text",
+              "label": "CSV Column Name"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "sort_by",
+          "label": "Sort By",
+          "help": "Comma separated list of CSV Columns to Sort By",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

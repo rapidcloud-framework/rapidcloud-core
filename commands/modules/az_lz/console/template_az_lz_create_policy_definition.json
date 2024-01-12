@@ -1,0 +1,164 @@
+{
+    "type": "Theia::Action",
+    "label": "Policy Definitions",
+    "id": "create_policy_definition",
+    "module": "az_lz",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "create_policy_definition",
+        "datasource": "data?type=metadata&filter_name=command&filter_value=create_policy_definition",
+        "env_param_required": true,
+        "columns": [
+          "name",
+          "az_lz_policy_mode",
+          "az_lz_metadata_json",
+          "az_lz_parameters_json",
+          "az_lz_policy_json"
+        ],
+        "title": "Policy Definition",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "create_policy_definition",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create",
+            "command": {
+              "phase": "az_lz",
+              "command": "create_policy_definition",
+              "refresh_status": true
+            }
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Input",
+            "id": "name",
+            "cli_id": "name",
+            "label": "Name",
+            "help": "",
+            "inputType": "text",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Name is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_lz_policy_mode",
+            "label": "Mode",
+            "help": "",
+            "options": [
+              {
+                "type": "Theia::Option",
+                "label": "All",
+                "value": "All"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "Indexed",
+                "value": "Indexed"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Microsoft.ContainerService.Data",
+                "value": "Microsoft.ContainerService.Data"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Microsoft.CustomerLockbox.Data",
+                "value": "Microsoft.CustomerLockbox.Data"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Microsoft.DataCatalog.Data",
+                "value": "Microsoft.DataCatalog.Data"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Microsoft.KeyVault.Data",
+                "value": "Microsoft.KeyVault.Data"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Microsoft.MachineLearningServices.Data",
+                "value": "Microsoft.MachineLearningServices.Data"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Microsoft.Network.Data",
+                "value": "Microsoft.Network.Data"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Microsoft.Synapse.Data",
+                "value": "Microsoft.Synapse.Data"
+              }
+            ],
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Policy Mode is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::TextArea",
+            "id": "az_lz_metadata_json",
+            "label": "Metadata Json",
+            "help": "",
+            "inputType": "text"
+            ,
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Metadata Json is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::TextArea",
+            "id": "az_lz_parameters_json",
+            "label": "Parameters Json",
+            "help": "",
+            "inputType": "text",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Parameters Json is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::TextArea",
+            "id": "az_lz_policy_json",
+            "label": "Policy Json",
+            "help": "",
+            "inputType": "text",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Policy Json is required"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

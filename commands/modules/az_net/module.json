@@ -1,0 +1,520 @@
+{
+  "az_net": {
+    "create_nsg": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_network",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the security group.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter location of the security group.",
+          "required": false,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "security_rule": {
+          "name": "security_rule",
+          "prompt": "Enter the definition",
+          "required": false,
+          "default": "",
+          "type": "json"
+        }
+      }
+    },
+    "create_vnet": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_network",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the virtual network.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the virtual network.",
+          "required": false,
+          "default": "eastus"
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "address_space": {
+          "name": "address_space",
+          "prompt": "Enter the address prefix for the virtual network.",
+          "required": true,
+          "default": ""
+        },
+        "dns_servers": {
+          "name": "dns_servers",
+          "prompt": "Enter the comma separated dns servers list",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "create_firewall": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_network",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the azure firewall.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the azure firewall.",
+          "required": false,
+          "default": "eastus"
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "sku_name": {
+          "name": "sku_name",
+          "prompt": "Enter firewall's sku name.",
+          "required": true,
+          "default": ""
+        },
+        "sku_tier": {
+          "name": "sku_tier",
+          "prompt": "Enter firewal's sku tier.",
+          "required": true,
+          "default": ""
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Enter firewall's subnet_id",
+          "required": true,
+          "default": ""
+        },
+        "public_address_id": {
+          "name": "public_address_id",
+          "prompt": "Enter firewal's public_address_id",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_public_ip": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_network",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the public IP address.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the public IP address.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "sku_name": {
+          "name": "sku_name",
+          "prompt": "Enter the name of the SKU (Basic / Standard).",
+          "required": true,
+          "default": "Basic"
+        }
+      }
+    },
+    "create_ddos_plan": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_network",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the DDoS plan.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the DDoS plan.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_dns_zone": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_network",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the DNS Zone.",
+          "required": true,
+          "default": ""
+        },
+        "domain_name": {
+          "name": "Domain Name",
+          "prompt": "Enter the name of the Domain Name.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_private_dns_zone": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_network",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the Private DNS Zone.",
+          "required": true,
+          "default": ""
+        },
+        "domain_name": {
+          "name": "Name",
+          "prompt": "Enter the name of the Domain Name.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_route_table": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_network",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the azure route table.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the azure route table.",
+          "required": false,
+          "default": "eastus"
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_route": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_network",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the azure route.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "route_table_name": {
+          "name": "route_table_name",
+          "prompt": "Enter the name of the azure route table",
+          "required": true,
+          "default": ""
+        },
+        "address_prefix": {
+          "name": "address_prefix",
+          "prompt": "Enter the azure address prefix",
+          "required": true,
+          "default": ""
+        },
+        "next_hop_type": {
+          "name": "next_hop_type",
+          "prompt": "Enter azure hop type",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_subnet": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_network",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the azure subnet",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "address_prefix": {
+          "name": "address_prefix",
+          "prompt": "Enter the address prefix of azure subnet",
+          "required": true,
+          "default": ""
+        },
+        "vnet_name": {
+          "name": "vnet_name",
+          "prompt": "Enter virtual network name for the subnet to be associated to",
+          "required": true,
+          "default": ""
+        },
+        "service_endpoints": {
+          "name": "service_endpoints",
+          "prompt": "Enter the Service Endpoints",
+          "required": false
+        }
+      }
+    },
+    "create_network_watcher": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_network",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Network Watcher's name",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter Network Watcher's name",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_vnet_peering": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_network",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the vnet peering.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "virtual_network_name": {
+          "name": "virtual_network_name",
+          "prompt": "Enter the Virtual Network name",
+          "required": true,
+          "default": ""
+        },
+        "remote_virtual_network_id": {
+          "name": "route_table_name",
+          "prompt": "Enter the remote_virtual_network_id",
+          "required": true,
+          "default": ""
+        },
+        "allow_forwarded_traffic": {
+          "name": "allow_forwarded_traffic",
+          "prompt": "Enter allow_forwarded_traffic",
+          "type": "boolean",
+          "required": true
+        },
+        "allow_virtual_network_access": {
+          "name": "allow_virtual_network_access",
+          "prompt": "Enter allow_virtual_network_access",
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "create_net_flow_log": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_network",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the vnet peering.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location",
+          "required": false,
+          "default": ""
+        },
+        "network_watcher_name": {
+          "name": "network_watcher_name",
+          "prompt": "Enter the network_watcher_name",
+          "required": true,
+          "default": ""
+        },
+        "network_security_group_id": {
+          "name": "network_security_group_id",
+          "prompt": "Enter network_security_group_id",
+          "required": true,
+          "default": ""
+        },
+        "storage_account_id": {
+          "name": "storage_account_id",
+          "prompt": "Enter storage_account_id",
+          "required": true,
+          "default": ""
+        },
+        "enabled": {
+          "name": "enabled",
+          "prompt": "true or false",
+          "type": "boolean",
+          "required": true
+        },
+        "retention_days": {
+          "name": "retention_days",
+          "prompt": "Enter retention_days number",
+          "required": true,
+          "default": ""
+        },
+        "workspace_id": {
+          "name": "workspace_id",
+          "prompt": "Enter workspace_id",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  }
+}

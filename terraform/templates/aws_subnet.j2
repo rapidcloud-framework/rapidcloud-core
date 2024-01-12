@@ -1,0 +1,32 @@
+module "{{ fqn }}" {
+  source = "{{ module_source }}"
+
+  env  = "{{ env }}"
+  profile = "{{ profile }}"
+  fqn = "{{ fqn }}"
+  workload = "{{ workload }}"
+  cmd_id = "{{ cmd_id }}"
+  name = "{{ params["name"] }}"
+
+  vpc_id = module.{{profile }}_aws_vpc_{{ params["vpc_module_id"] }}.id 
+  cidr = "{{ params["cidr"] }}"
+  az = "{{ params["az"] }}"
+ {% if 'associate_route_table' in params.keys() and params["associate_route_table"] != ""  %}   
+  create_route_table = "false"
+  associate_route_table = module.{{ profile}}_aws_subnet_{{ params["associate_route_table"] }}.route_table_id
+ {% else %}
+  create_route_table = "{{ params["create_route_table"] }}"
+  associate_route_table = ""
+ {% endif %}
+  
+  {% if params['tags'] is defined %}
+  tags = {
+  {% for k, v in  params['tags'].items() -%}
+      "{{ k }}" = "{{ v }}"
+  {% endfor %}
+  }
+  {% endif %}
+}
+{% for k, v in params.items() %}
+# {{k}} -> {{ v }}
+{% endfor %}

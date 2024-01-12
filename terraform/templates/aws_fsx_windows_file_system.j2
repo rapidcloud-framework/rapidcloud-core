@@ -1,0 +1,26 @@
+locals {
+  {{ resource_name }}_azs = [for subnet in data.aws_subnet.private : subnet.availability_zone]
+}
+
+module "{{ profile }}_{{ resource_name }}_fsx" {
+  source                            = "../modules/aws_fsx_windows_file_system"
+  ad_service_name                   = "{{ params['ad_service_name'] }}"
+  ad_admin_password                 = "{{ params['ad_admin_password'] }}"
+  storage_capacity                  = "{{ params['storage_capacity'] }}"
+  throughput_capacity               = "{{ params['throughput_capacity'] }}"
+  deployment_type                   = "MULTI_AZ_1"
+  ad_size                           = "Small"
+  subnets_availability_zone         = local.{{ resource_name }}_azs 
+  preferred_subnet_id               = element(tolist(data.aws_subnets.private.ids), 0)
+  ad_type                           = "MicrosoftAD"
+  subnet_ids                        = data.aws_subnets.private.ids
+  vpc_id                            = data.aws_vpc.vpc.id
+  tags = {
+    Name        = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}

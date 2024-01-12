@@ -1,0 +1,51 @@
+
+data "aws_subnets" "private" {
+  filter {
+    name   = "vpc-id"
+    values = ["{{ vpc }}"]
+  }
+
+  tags = {
+    Tier = "private"
+  }
+}
+
+data "aws_subnet" "private" {
+  for_each = toset(data.aws_subnets.private.ids)
+  id       = each.value
+}
+
+data "aws_subnets" "public" {
+  filter {
+    name   = "vpc-id"
+    values = ["{{ vpc }}"]
+  }
+
+  tags = {
+    Tier = "public"
+  }
+}
+
+data "aws_subnet" "public" {
+  for_each = toset(data.aws_subnets.public.ids)
+  id       = each.value
+}
+
+data "aws_vpc" "vpc" {
+    id = "{{ vpc }}"
+}
+
+# data "azs" {
+# #   value = [for subnet in data.aws_subnet.private : subnet.availability_zone]
+# # }
+
+# output "ids" {
+#   value = tolist(data.aws_subnets.private.ids)[0]
+# }
+
+output "azfull" {
+    value = data.aws_subnet.private
+}
+# output "az_1" {
+#     value =  data.aws_subnet.private[tolist(data.aws_subnets.private.ids)[0]].availability_zone
+# }

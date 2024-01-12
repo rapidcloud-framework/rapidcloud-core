@@ -1,0 +1,48 @@
+module "{{fqn}}" {
+    source = "{{ module_source }}"
+    env  = "{{ env }}"
+    profile = "{{ profile }}"
+    fqn = "{{ fqn }}"
+    workload = "{{ workload }}"
+    cmd_id = "{{ cmd_id }}"
+    node_group_name  = "{{ params["node_group_name"] }}"
+    cluster_name                   = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_cluster_info.id
+    instance_types  = "{{ params["instance_types"] }}"
+    eks_version  = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_cluster_info.version
+    capacity_type = "{{ params["capacity_type"] }}"
+    desired_size = "{{ params["desired_size"] }}"
+    min_size = "{{ params["min_size"] }}"
+    max_size = "{{ params["max_size"] }}"
+    volume_type  = "{{ params["volume_type"] }}"
+    subnet_ids = {
+    {%- if 'subnet_ids' in params.keys() and params["subnet_ids"] != ""  %}   
+    {% set subnet_list = params["subnet_ids"].split(',') %}
+    {% for subnet in subnet_list -%}
+    {{ subnet }} = module.{{ profile }}_aws_subnet_{{ subnet }}.id
+    {% endfor -%}
+    {% endif %}
+    }
+    force_update_version = "{{ params["force_update_version"] }}"
+    {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+    {% if params['labels'] is defined %}
+    labels = {
+    {% for k, v in  params['labels'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+    depends_on = [
+      module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }} 
+    ]
+}
+
+
+{% for k, v in params.items() %}
+# {{k}} -> {{ v }}
+{% endfor %}

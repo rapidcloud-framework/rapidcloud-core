@@ -1,0 +1,49 @@
+{
+  "type": "Theia::Action",
+  "label": "EC2 Backend",
+  "id": "ec2_plus",
+  "module": "ec2_plus",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "ec2_plus",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=ec2_plus",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "timestamp"
+      ],
+      "title": "EC2 Backend",
+      "description": "EC2 Backend with supporting services (auto-scaling, load balancing, file storage, etc)",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "ec2_plus",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "ec2_plus",
+            "command": "create",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "Name characters)",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

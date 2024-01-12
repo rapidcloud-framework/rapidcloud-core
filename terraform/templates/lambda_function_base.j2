@@ -1,0 +1,21 @@
+module "{{ name }}_lambda" {
+  source = "../modules/lambda_function_base"
+  region    = "{{ region }}"
+  account   = "{{ account }}"
+  prefix = "{{ name }}"
+  vpc_id     = "{{ vpc }}"
+  cidr_ingress_rules = {
+    "allow icmp" = "-1,-1,icmp,0.0.0.0/0"
+  }
+  cidr_egress_rules = {
+    "allow all" = "0,0,-1,0.0.0.0/0"
+  }
+  tags = {
+      "env" = "{{ env }}"
+      "profile" = "{{ name }}"
+      "workload" = "{{ workload }}"
+      "client" = "{{ client }}"
+      "author" = "rapid-cloud"
+  }
+}
+

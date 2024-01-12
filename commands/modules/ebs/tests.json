@@ -1,0 +1,10 @@
+{
+  "ebs": {
+    "create": {
+      "enabled": false,
+      "example": "kc ebs create --no-prompt --ebs_name name --ebs_volume_size volume_size --ebs_availability_zone availability_zone",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

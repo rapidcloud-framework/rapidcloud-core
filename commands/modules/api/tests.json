@@ -1,0 +1,10 @@
+{
+  "api": {
+    "create": {
+      "enabled": false,
+      "example": "kc api create --no-prompt --api_name name",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

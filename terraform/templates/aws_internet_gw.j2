@@ -1,0 +1,40 @@
+module "{{fqn}}" {
+  source = "{{ module_source }}"
+
+  env  = "{{ env }}"
+  profile = "{{ profile }}"
+  fqn = "{{ fqn }}"
+  workload = "{{ workload }}"
+  cmd_id = "{{ cmd_id }}"
+  name = "{{ params["name"] }}"
+  vpc_id = module.{{ profile }}_aws_vpc_{{ params["vpc_module_id"] }}.id 
+
+  route_tables = {
+  {%- if 'route_tables' in params.keys() and params["route_tables"] != ""  %}   
+  {% set route_table_list = params["route_tables"].split(',') %}
+  {% for route_table in route_table_list %}
+  {{ route_table }} = module.{{ profile }}_aws_subnet_{{ route_table }}.route_table_id
+  {% endfor %}
+  {% endif %}
+  }
+
+  depends_on = [
+  {%- if 'route_tables' in params.keys() and params["route_tables"] != ""  %}   
+  {% set route_table_list = params["route_tables"].split(',') %}
+  {% for route_table in route_table_list %}
+  module.{{ profile }}_aws_subnet_{{ route_table }}.route_table_id,
+  {% endfor %}
+  {% endif %}
+  ]
+  
+  {% if params['tags'] is defined %}
+  tags = {
+  {% for k, v in  params['tags'].items() -%}
+      "{{ k }}" = "{{ v }}"
+  {% endfor %}
+  }
+  {% endif %}
+}
+{% for k, v in params.items() %}
+# {{k}} -> {{ v }}
+{% endfor %}

@@ -1,0 +1,95 @@
+{
+    "general": {
+        "dms_ongoing_replication_max_rate_of_change": 10,
+        "dataset_size_small_max_gb": 1,
+        "dataset_size_medium_max_gb": 5,
+        "dataset_size_large_max_gb": 50,
+        "athena_varchar_max_length": 600,
+        "lambda_notes": "file and memory sizes in MB",
+        "lambda_file_size_small": 262144,
+        "lambda_memory_size_small": 128,
+        "lambda_file_size_medium": 2097152,
+        "lambda_memory_size_medium": 512,
+        "lambda_file_size_large": 10485760,
+        "lambda_memory_size_large": 1024,
+        "lambda_file_size_xlarge": 26214400,
+        "lambda_memory_size_xlarge": 2048,
+        "redshift_varchar_max_length": 600,
+        "mysql_varchar_max_length": 600,
+        "postgresql_varchar_max_length": 600
+    },
+    "api_gateway": {},
+    "aurora_mysql_instance": {
+        "aurora_mysql_allocated_storage": 100,
+        "aurora_mysql_engine_version": "8.0.mysql_aurora.3.02.0",
+        "aurora_mysql_instance_class": "db.t3.medium",
+        "aurora_mysql_param_group_family": "aurora-mysql8.0"
+    },
+    "aurora_postgresql_instance": {
+        "aurora_postgres_allocated_storage": 100,
+        "aurora_postgres_engine_version": "14.3",
+        "aurora_postgres_instance_class": "db.t3.medium",
+        "aurora_postgres_param_group_family": "aurora-postgresql14"
+    },
+    "cloudwatch_event_rule": {},
+    "dms_event_subscription": {},
+    "dms_replication_instance": {
+        "dms_allocated_storage": 100,
+        "dms_engine_version": "3.4.7",
+        "dms_preferred_maintenance_window": "mon:07:02-mon:07:32",
+        "dms_replication_instance_class": "dms.t2.small",
+        "dms_multi_az": "true"
+    },
+    "dms_replication_task": {},
+    "dms_s3_target_endpoint": {},
+    "dms_source_endpoint": {},
+    "emr_cluster": {
+        "emr_core_instance_count": 1,
+        "emr_core_instance_size": "m4.large",
+        "emr_master_instance_size": "m4.large",
+        "emr_release_label": "emr-6.5.0"
+    },
+    "glue_catalog_database": {},
+    "glue_classifier": {},
+    "glue_connection": {},
+    "glue_crawler": {},
+    "glue_job": {
+        "glue_job_pythonshell_max_capacity": "1.0"
+    },
+    "glue_trigger": {},
+    "kinesis_firehose_s3_delivery_stream": {
+        "kinesis_firehose_s3_delivery_stream_buffer_interval": 60
+    },
+    "kinesis_stream": {
+        "kinesis_stream_retention_period": 48,
+        "kinesis_stream_shard_count": 1
+    },
+    "kms_key": {},
+    "lambda_event_source_mapping": {},
+    "lambda_function": {
+        "lambda_runtime": "python3.8"
+    },
+    "lambda_layer": {},
+    "msk_cluster": {},
+    "rds_mysql_instance": {
+        "rds_mysql_allocated_storage": 100,
+        "rds_mysql_engine_version": "8.0.28",
+        "rds_mysql_instance_class": "db.t2.micro",
+        "rds_mysql_param_group_family": "mysql8.0"
+    },
+    "rds_postgresql_instance": {
+        "rds_postgres_allocated_storage": 100,
+        "rds_postgres_engine_version": "14.3",
+        "rds_postgres_instance_class": "db.t3.medium",
+        "rds_postgres_param_group_family": "postgres14"
+    },
+    "redshift_cluster": {
+        "redshift_node_count": 1,
+        "redshift_node_type": "dc2.large"
+    },
+    "s3_bucket": {},
+    "s3_bucket_notification": {},
+    "s3_bucket_object": {},
+    "sns_topic": {},
+    "sns_topic_subscription": {}
+}

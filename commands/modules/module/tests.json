@@ -1,0 +1,46 @@
+{
+  "module": {
+    "create": {
+      "enabled": false,
+      "example": "kc module create --no-prompt --module_name name --module_action action",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "add_command": {
+      "enabled": false,
+      "example": "kc module add_command --no-prompt --module_module_name module_name --module_command_name command_name",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "show": {
+      "enabled": false,
+      "example": "kc module show --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "activate": {
+      "enabled": false,
+      "example": "kc module activate --no-prompt --module_name name --module_commands commands",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "deactivate": {
+      "enabled": false,
+      "example": "kc module deactivate --no-prompt --module_name name --module_commands commands",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "export": {
+      "enabled": false,
+      "example": "kc module export --no-prompt --module_name name",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "install": {
+      "enabled": false,
+      "example": "kc module install --no-prompt --module_name name --module_zipfile_path zipfile_path",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

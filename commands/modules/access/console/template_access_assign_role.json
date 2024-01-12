@@ -1,0 +1,76 @@
+
+{
+  "type": "Theia::Action",
+  "label": "Users",
+  "id": "users",
+  "module": "access",
+  "env_not_required": true,
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "users",
+      "datasource": "account_users",
+      "columns": ["access_email","access_role","ux_context","status","timestamp"],
+      "title": "Users",
+      "hide_add": true
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "users",
+      "title": "Assign Role",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Submit",
+          "command": {
+            "phase": "access",
+            "command": "assign_role"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "access_email",
+          "label": "User",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "access_role",
+          "label": "Role",
+          "help": "",
+          "datasource": "role_names_for_select?extra=true",
+          "env_not_required": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "access_ux_context",
+          "label": "User Experience Context",
+          "help": "",
+          "default": "admin",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Admin (all features within currently assigned role)",
+              "value": "admin"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Engineer (non-admin features)",
+              "value": "engineer"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "User (non-engineer features)",
+              "value": "user"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

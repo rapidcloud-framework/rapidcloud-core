@@ -1,0 +1,660 @@
+{
+ "version": "1.5.0",
+ "cellSize": 21,
+ "rows": 30,
+ "columns": 35,
+ "icons": [
+  {
+   "id": 2,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "name": "vpc_shared",
+   "text": "EXAMPLE VPC",
+   "x": 7,
+   "y": 4,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 4,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "name": "vpc_security",
+   "text": "SECURITY VPC",
+   "x": 23,
+   "y": 19,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 3,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "name": "vpc_hybrid",
+   "text": "HYBRID VPC",
+   "x": 13,
+   "y": 19,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 7,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "name": "",
+   "text": "EGRESS VPC",
+   "x": 23,
+   "y": 25,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 6,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "name": "",
+   "text": "INGRESS VPC",
+   "x": 13,
+   "y": 25,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 5,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "name": "",
+   "text": "WORKLOAD VPC",
+   "x": 3,
+   "y": 25,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 8,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "NETWORK ACCOUNT",
+   "x": 3,
+   "y": 22,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 21,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
+   "name": "",
+   "text": "PRIVATE SUBNET (EPT)",
+   "x": 12,
+   "y": 6,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 22,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
+   "name": "",
+   "text": "PRIVATE SUBNET (EPT)",
+   "x": 19,
+   "y": 6,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 23,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
+   "name": "",
+   "text": "PRIVATE SUBNET (ADNP)",
+   "x": 12,
+   "y": 8,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 24,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
+   "name": "",
+   "text": "PRIVATE SUBNET (ADNP)",
+   "x": 19,
+   "y": 8,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 25,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
+   "name": "",
+   "text": "PRIVATE SUBNET (TGW)",
+   "x": 12,
+   "y": 10,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 26,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
+   "name": "",
+   "text": "PRIVATE SUBNET (TGW)",
+   "x": 19,
+   "y": 10,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 27,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Cloud-alt_light-bg@4x.png",
+   "name": "AWS",
+   "text": "",
+   "x": 0,
+   "y": 1,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 28,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Networking-and-Content-Delivery_light-bg@4x.png",
+   "name": "",
+   "text": "AZ-1",
+   "x": 9,
+   "y": 3,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 29,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Networking-and-Content-Delivery_light-bg@4x.png",
+   "name": "",
+   "text": "AZ-2",
+   "x": 16,
+   "y": 3,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 30,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-public_light-bg@4x.png",
+   "name": "",
+   "text": "PUBLIC SUBNET",
+   "x": 12,
+   "y": 13,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 31,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-public_light-bg@4x.png",
+   "name": "",
+   "text": "PUBLIC SUBNET",
+   "x": 19,
+   "y": 13,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 32,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_Internet-Gateway_light-bg@4x.png",
+   "name": "",
+   "text": "INTERNET GWY",
+   "x": 13,
+   "y": 16,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 33,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_NAT-Gateway_light-bg@4x.png",
+   "name": "",
+   "text": "NAT GWY",
+   "x": 17,
+   "y": 16,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 34,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_Endpoints_light-bg@4x.png",
+   "name": "",
+   "text": "VPC ENDPOINTS",
+   "x": 24,
+   "y": 6,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 35,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "name": "",
+   "text": "SHARED SERVICES VPC",
+   "x": 3,
+   "y": 19,
+   "active": null,
+   "display": null
+  }
+ ],
+ "links": [
+  {
+   "from": 2,
+   "to": 2,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 7,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 16,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 7,
+     "y": 16,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 7,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 3,
+   "to": 3,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 13,
+     "y": 19,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 19,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 19,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 4,
+   "to": 4,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 23,
+     "y": 19,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 19,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 23,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 23,
+     "y": 19,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 8,
+   "to": 8,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 3,
+     "y": 22,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 22,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 24,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 3,
+     "y": 24,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 3,
+     "y": 22,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 5,
+   "to": 5,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 3,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 11,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 11,
+     "y": 27,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 3,
+     "y": 27,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 3,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 6,
+   "to": 6,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 13,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 27,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 27,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 7,
+   "to": 7,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 23,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 27,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 23,
+     "y": 27,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 23,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 27,
+   "to": 27,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 0,
+     "y": 1,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 33,
+     "y": 1,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 33,
+     "y": 28,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 0,
+     "y": 28,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 0,
+     "y": 1,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 28,
+   "to": 28,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 9,
+     "y": 3,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 15,
+     "y": 3,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 15,
+     "y": 15,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 9,
+     "y": 15,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 9,
+     "y": 3,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 29,
+   "to": 29,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 16,
+     "y": 3,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 22,
+     "y": 3,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 22,
+     "y": 15,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 16,
+     "y": 15,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 16,
+     "y": 3,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 35,
+   "to": 35,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 3,
+     "y": 19,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 11,
+     "y": 19,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 11,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 3,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 3,
+     "y": 19,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  }
+ ],
+ "grid": false
+}

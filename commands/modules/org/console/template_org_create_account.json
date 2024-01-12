@@ -1,0 +1,67 @@
+{
+    "type": "Theia::Action",
+    "label": "AWS Accounts",
+    "id": "org_create_account",
+    "module": "org",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "org_create_account",
+        "datasource": "data?type=metadata&filter_name=command&filter_value=create_account",
+        "env_param_required": true,
+        "columns": ["name", "org_parent_name", "org_email", "org_scps", "timestamp"],
+        "title": "AWS Accounts",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "org_create_account",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create",
+            "command": {
+              "phase": "org",
+              "command": "create_account",
+              "refresh_status": true
+            }
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Input",
+            "id": "name",
+            "cli_id": "name",
+            "label": "Name",
+            "help": "",
+            "inputType": "text"
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "org_parent_name",
+            "label": "Parent OU Name",
+            "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=org,create_ou&field=name"
+          },
+          {
+            "type": "Theia::Control::Input",
+            "id": "org_email",
+            "label": "Email",
+            "help": "",
+            "inputType": "text"
+          },
+          {
+            "type": "Theia::Control::MultiSelect",
+            "id": "org_scps",
+            "label": "SCPs To Attach",
+            "help": "AWS allows a maximum of 5 SCPs to be attached",
+            "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=org,create_scp&field=name"
+          }
+        ]
+      }
+    ]
+  }
+  

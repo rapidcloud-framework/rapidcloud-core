@@ -1,0 +1,96 @@
+{
+    "type": "Theia::Action",
+    "label": "Management Groups",
+    "id": "create_management_group",
+    "module": "az_lz",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "create_management_group",
+        "datasource": "data?type=metadata&filter_name=command&filter_value=create_management_group",
+        "env_param_required": true,
+        "columns": [
+          "name",
+          "az_lz_parent_id",
+          "az_lz_policy_name",
+          "az_lz_policy_definition_id"
+        ],
+        "title": "Management Groups",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "create_management_group",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create",
+            "command": {
+              "phase": "az_lz",
+              "command": "create_management_group",
+              "refresh_status": true
+            }
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Input",
+            "id": "name",
+            "cli_id": "name",
+            "label": "Name",
+            "help": "",
+            "inputType": "text",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Name is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_lz_parent_id",
+            "label": "Parent Id",
+            "help": "",
+            "datasource": "custom/management_groups?module_name_arg=az_lz",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Parent Group is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Input",
+            "id": "az_lz_policy_name",
+            "label": "Policy Assignment Name",
+            "help": "",
+            "inputType": "text",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Policy Name is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_lz_policy_definition_id",
+            "label": "Policy Definition",
+            "help": "",
+            "datasource": "custom/policies?module_name_arg=az_lz&policy_type=builtin",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Policy Definition Id is required"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

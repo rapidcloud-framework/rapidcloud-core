@@ -1,0 +1,28 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source            = "../modules/aws_lb/{{ resource_type }}"
+  load_balancer_arn = module.{{ profile }}_{{ params['load_balancer_name'] }}_aws_lb.arn
+  protocol          = "{{ params['protocol'] }}"
+  port              = {{ params['port'] }}
+  target_group_arn  = module.{{ profile }}_{{ params['target_group_name'] }}_aws_lb_target_group.arn
+  
+  {% if params['protocol'].lower() == 'tls' and params['alpn_policy'] is not none %}
+  alpn_policy = "{{ params['alpn_policy'] }}"
+  {% endif %}
+
+  {% if params['protocol'].lower() in ['tls', 'https'] %}
+  ssl_policy = "{{ params['ssl_policy'] }}"
+  {% endif %}
+
+  {% if params['protocol'].lower() == 'https' %}
+  certificate_arn = "{{ params['certificate_arn'] }}"
+  {% endif %}
+
+  tags = {
+    Name        = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}

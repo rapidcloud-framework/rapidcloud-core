@@ -1,0 +1,94 @@
+{
+  "type": "Theia::Action",
+  "label": "AWS Auth",
+  "id": "eks_manage_aws_auth",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "eks_manage_aws_auth",
+      "datasource": "custom/module_eks_aws_auth?extra=true&module_name_arg=eks",
+      "env_param_required": true,
+      "columns": ["eks_cluster_name","eks_map_roles_values", "eks_map_users_values", "timestamp"],
+      "title": "AWS Auth",
+      "description": "Manage the AWS EKS Auth Config Map",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "eks_manage_aws_auth",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command",
+            "refresh_status": true
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "eks",
+            "command": "manage_aws_auth",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_cluster_name",
+          "label": "Cluster Name",
+          "help": "Select the Cluster name you wish to attach this Node Group to",
+          "datasource": "custom/module_eks_clusters?extra=true&module_name_arg=eks",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ],
+          "disableControls": [
+            "eks_fargate_profiles",
+            "eks_node_groups"
+          ]
+        },
+        {
+          "type": "Theia::Control::TextArea",
+          "id": "eks_map_roles_values",
+          "label": "Map Roles",
+          "help": "Map Roles",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::TextArea",
+          "id": "eks_map_users_values",
+          "label": "Map Users",
+          "help": "Map Users",
+          "inputType": "text"
+        },
+         {
+          "type": "Theia::Control::Input",
+          "id": "eks_fargate_profiles",
+          "label": "Fargate Profile (Read Only)",
+          "help": "A list of Fargate Profiles attached to this cluster, will be added to aws_auth map",
+          "inputType": "text",
+          "readonly": "true" 
+         },
+         {
+          "type": "Theia::Control::Input",
+          "id": "eks_node_groups",
+          "label": "Node Groups (Read Only)",
+          "help": "A list of Node Groups attached to this cluster, will be added to aws_auth map",
+          "inputType": "text",
+          "readonly": "true"
+        }
+      ]
+    }
+  ]
+}

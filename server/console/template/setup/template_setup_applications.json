@@ -1,0 +1,36 @@
+{
+  "type": "Theia::Action",
+  "label": "Activation Details",
+  "id": "applications",
+  "module": "access",
+  "env_not_required": true,
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "applications",
+      "title": "Account Details",
+      "description": "",
+      "datasource": "apps?extra=true",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Submit",
+          "command": {
+            "phase": "setup",
+            "command": "add_applications"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "email",
+          "label": "Email",
+          "help": "Email address",
+          "inputType": "text",
+          "readonly": true
+        }
+      ]
+    }
+  ]
+}

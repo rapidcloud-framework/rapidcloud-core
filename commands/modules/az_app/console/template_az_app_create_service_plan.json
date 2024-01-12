@@ -1,0 +1,412 @@
+{
+  "type": "Theia::Action",
+  "label": "App Service Plan",
+  "id": "create_service_plan",
+  "module": "az_app",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_service_plan",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_service_plan",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_app_location",
+        "az_app_resource_group"
+      ],
+      "title": "App Service Plan",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_service_plan",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "az_app",
+            "command": "create_service_plan",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_os_type",
+          "label": "OS Type",
+          "default": "",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Windows",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "Windows"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Linux",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "Linux"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Windows Container",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "WindowsContainer"
+              }
+            }
+          ],
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A OS Type is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_sku_name",
+          "label": "Pricing Tier (SKU)",
+          "default": "",
+          "help": "",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A SKU is required"
+            }
+          ],
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "B1",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "B1"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "B2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "B2"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "B3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "B3"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "D1",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "D1"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "F1",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "F1"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "I1",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "I1"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "I2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "I2"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "I3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "I3"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "I1v2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "I1v2"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "I2v2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "I2v2"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "I3v2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "I3v2"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "I4v2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "I4v2"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "I5v2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "I5v2"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "I6v2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "I6v2"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "P1v2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "P1v2"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "P2v2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "P2v2"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "P3v2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "P3v2"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "P0v3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "P0v3"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "P1v3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "P1v3"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "P2v3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "P2v3"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "P3v3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "P3v3"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "P1mv3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "P1mv3"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "P2mv3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "P2mv3"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "P3mv3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "P3mv3"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "P4mv3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "P4mv3"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "P5mv3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "P5mv3"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "S1",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "S1"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "S2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "S2"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "S3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "S3"
+              }
+            },            {
+              "type": "Theia::Option",
+              "label": "SHARED",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "SHARED"
+              }
+            },{
+              "type": "Theia::Option",
+              "label": "EP1",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "EP1"
+              }
+            },{
+              "type": "Theia::Option",
+              "label": "EP2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "EP2"
+              }
+            },{
+              "type": "Theia::Option",
+              "label": "EP3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "EP3"
+              }
+            },{
+              "type": "Theia::Option",
+              "label": "WS1",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "WS1"
+              }
+            },{
+              "type": "Theia::Option",
+              "label": "WS2",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "WS2"
+              }
+            },{
+              "type": "Theia::Option",
+              "label": "WS3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "WS3"
+              }
+            },{
+              "type": "Theia::Option",
+              "label": "Y1",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "Y1"
+              }
+            }
+            
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_app_service_environment_id",
+          "label": "Service Environment",
+          "help": "",
+          "inputType": "text",
+          "datasource": "custom/app_service_envs?module_name_arg=az_app"
+        }
+      ]
+    }
+  ]
+}

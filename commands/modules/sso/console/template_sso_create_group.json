@@ -1,0 +1,69 @@
+{
+  "type": "Theia::Action",
+  "label": "SSO Groups",
+  "id": "sso_create_group",
+  "module": "sso",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "sso_create_group",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=sso,create_group",
+      "env_param_required": true,
+      "columns": ["name", "sso_description", "timestamp"],
+      "title": "SSO Groups",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "sso_create_group",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "sso",
+            "command": "create_group",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "sso_description",
+          "label": "Description",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "sso_members",
+          "label": "Members",
+          "help": "",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=sso,create_user&field=name"
+        }
+      ]
+    }
+  ]
+}

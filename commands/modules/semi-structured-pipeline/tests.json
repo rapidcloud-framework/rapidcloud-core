@@ -1,0 +1,10 @@
+{
+  "semi-structured-pipeline": {
+    "create": {
+      "enabled": false,
+      "example": "kc semi-structured-pipeline create --no-prompt --semi-structured-pipeline_name name --semi-structured-pipeline_notes notes",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

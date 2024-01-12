@@ -1,0 +1,45 @@
+{
+    "cloudfront": {
+        "create": {
+            "enabled": true,
+            "help": "",
+            "template_section": "networking",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "Name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },
+                "bucket_name": {
+                    "name": "bucket_name", 
+                    "prompt": "The value of ID for the origin that you want CloudFront to route requests to when a request matches the path pattern either for a cache behavior or for the default cache behavior. (S3 Support only)", 
+                    "required": true,
+                    "default": ""
+                },           
+                "bucket_regional_domain_name": {
+                    "name": "bucket_regional_domain_name", 
+                    "prompt": "The DNS domain name of either the S3 bucket, or web site of your custom origin.", 
+                    "required": true,
+                    "default": ""
+                },          
+                "origin_id": {
+                    "name": "origin_id", 
+                    "prompt": "A unique identifier for the origin", 
+                    "required": true,
+                    "default": ""
+                },           
+                "waf_name": {
+                    "name": "waf_name", 
+                    "prompt": "Will this cf distro be associated to a waf? Add Waf name as defined in RC", 
+                    "required": false,
+                    "default": ""
+                }           
+            }
+        }
+    }
+}

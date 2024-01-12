@@ -1,0 +1,12 @@
+{
+    "datalake": {
+        "create": {
+            "enabled": true,
+            "help": "Create datalake foundation",
+            "template_section": "ingest",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": false
+        }
+    }
+}

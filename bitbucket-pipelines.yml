@@ -1,0 +1,111 @@
+#Default pipeline
+definitions:
+pipelines:
+  default:
+    - parallel:
+        steps:
+          #- step:
+          #
+          #    clone:
+          #      enabled: true
+          #    oidc: true
+          #    script:
+          #      - export DOCKER_BUILDKIT=1
+          #      - docker build -t rapidcloud:0.0.1 .
+          #      - docker image ls
+          #      - docker inspect rapidcloud:0.0.1
+          #      #use the pipe to push the image to AWS ECR
+          #      - pipe: atlassian/aws-ecr-push-image:2.2.0
+          #        variables:
+          #          AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+          #          AWS_OIDC_ROLE_ARN: $AWS_BB_PUSH_ROLE
+          #          IMAGE_NAME: rapidcloud
+          #          TAGS: '0.0.1'
+          #    services:
+          #      - docker
+          - step:
+              name: Build rc py 3.10
+              caches:
+                - pip   
+              image:
+                name: amazonlinux:2023.2.20231113.0
+              clone:
+                depth: 2              
+              script:
+                - echo "build rc py 3.10"
+                - yum search ssl
+                - python3 --version
+                - yum -y groupinstall "Development Tools"
+                - yum -y install gcc annobin-plugin-gcc gcc-plugin-devel libgcc libgccjit-devel python3-devel libffi-devel zlib zlib-static zlib-devel tar gzip openssl-devel openssl git python3-libs python3-devel
+                - yum -y install tk-devel libjpeg-turbo-devel libpng-devel
+                - curl https://www.python.org/ftp/python/3.10.2/Python-3.10.2.tgz --output Python-3.10.13.tgz
+                - ls -la
+                - tar zxvf Python-3.10.13.tgz
+                - cd Python-3.10.2/
+                - ./configure --enable-optimizations --prefix=/usr/local --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
+                - make
+                - make altinstall
+                - cd ..
+                - ldconfig -v
+                - cat /etc/ld.so.conf
+                - echo "include /usr/local/lib" >> /etc/ld.so.conf
+                - echo "include /opt/python3.10/lib" >>/etc/ld.so.conf
+                - cat /etc/ld.so.conf
+                - ldconfig
+                - ldconfig -v
+                - python3.10 --version
+                - python3.10 -m ensurepip --default-pip
+                - python3.10 -m pip install --upgrade pip setuptools wheel
+                - python3.10 -m pip install -r requirements.txt --cache-dir ~/.cache/pip
+                - python3.10 build.py --action build --os amazon-linux --skip_disabled_templates --build_stage all --no-prompt --pipeline --debug
+                - cd kc-rapid-cloud/
+                - ./kc --version
+              artifacts:
+                  - kc-rapid-cloud/**
+          - step:
+              name: "[placeholder] build rc w py 3.11"
+              #caches:
+              #  - pip   
+              image:
+                name: amazonlinux:2023.2.20231113.0
+              clone:
+                depth: 2              
+              script:
+                 - echo "build with py 3.11"
+              #  - yum -y groupinstall "Development Tools"
+              #  - yum -y install gcc annobin-plugin-gcc gcc-plugin-devel libgcc libgccjit-devel python3-devel libffi-devel tar openssl-devel openssl python3.11-pip-wheel python3.11 python3.11-debug python3.11-devel python3.11-idle python3.11-libs python3.11-pip python3.11-setuptools python3.11-test python3.11-tkinter python3.11-wheel python3.11-wheel-wheel python3-protobuf.noarch
+              #  - python3.11 -m ensurepip --default-pip
+              #  - python3.11 -m pip install --upgrade pip setuptools wheel
+              #  - python3.11 -m pip install -r requirements.txt --cache-dir ~/.cache/pip
+              #  - python3.11 build.py --action build --os amazon-linux --skip_disabled_templates --build_stage all --no-prompt --pipeline --debug
+              #  - ./kc-rapid-cloud/kc --version
+              #artifacts:
+              #  - kc-rapid-cloud/**                               
+    - step:
+        clone:
+          enabled: false    
+        image:
+          name: amazonlinux:2023.2.20231113.0 #atlassian/default-image:4
+        script:
+          - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          - yum -y install unzip
+          - unzip awscliv2.zip
+          - ./aws/install
+          - aws --version
+          - ls -la
+          - cd kc-rapid-cloud 
+          - ls -la
+          - ./kc --version         
+          - ./kc help
+          - ./kc activate --email jomartinez@kinect-consulting.com --no-prompt 
+          - ./kc init list-env         
+    - step:
+        image:
+          name: 247654790127.dkr.ecr.us-east-1.amazonaws.com/rapidcloud:0.0.1
+          aws:
+            oidc-role: $AWS_BB_PULL_ROLE
+        oidc: true
+        script:
+          - >-
+              ls -la
+              

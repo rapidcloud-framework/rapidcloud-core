@@ -1,0 +1,15 @@
+module "{{fqn}}" {
+    source                              = "{{module_source}}"
+    env                                 = "{{ env }}"
+    workload                            = "{{ workload }}"
+    cmd_id                              = "{{ cmd_id }}"
+    profile                             = "{{ profile }}"
+    name                                = "{{ resource_name }}"
+    origin_group_id                     = module.{{ profile }}_frontdoor_origingroup_{{ params["origin_group_id"] }}.id
+    hostname                            = "{{ params["hostname"] }}"
+    certificate_check_enabled           = {{ params["certificate_check_enabled"] }}
+    
+    depends_on = [
+      module.{{ profile }}_frontdoor_origingroup_{{ params["origin_group_id"] }}
+    ]
+}

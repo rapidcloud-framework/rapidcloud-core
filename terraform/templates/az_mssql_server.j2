@@ -1,0 +1,16 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source              = "{{ module_source }}"
+  name                = "{{ resource_name }}"
+  location            = "{{ params['location'] }}"
+  resource_group      = "{{params['resource_group']}}"
+  dns_alias            = "{{ params['dns_alias'] }}"
+  subnet_id            = "{{ params['subnet_id'] }}"
+  start_ip_address     = "{{ params['start_ip_address'] }}"
+  end_ip_address       = "{{ params['end_ip_address'] }}"
+  administrator_login = "{{ params['administrator_login'] }}"
+  administrator_login_password = "{{ params['administrator_login_password'] }}"
+  ad_admin = "{{ params['ad_admin'] }}"
+  object_id = "{{ params['object_id'] }}"
+  primary_user_assigned_identity_id = "{{ params['user_identity'] }}"
+  tde_enabled_create = "{{ params['tde_enabled_create'] }}"
+}

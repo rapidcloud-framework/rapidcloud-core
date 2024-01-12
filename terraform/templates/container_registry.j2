@@ -1,0 +1,34 @@
+module "{{ fqn }}" {
+    source = "{{ module_source }}"
+    profile = "{{ profile }}"
+    env = "{{ env }}"
+    workload = "{{ workload }}"
+    cmd_id = "{{ cmd_id }}"
+    name = "{{ resource_name }}"
+    location = "{{ params["location"] }}"
+    resource_group = "{{ params["resource_group"] }}"
+    sku = "{{ params["sku"] }}"
+    enable_public_access = {{ params["enable_public_access"] }}
+    enable_encryption = {{ params["enable_encryption"] }}
+    {% if params['enable_encryption'] == "true" %}
+    encryption_key_id = "{{ params["encryption_key_id"] }}"
+    encryption_client_id = "{{ params["encryption_client_id"] }}"
+    {% endif %}
+    {% if params['identity_ids'] is not none and params['identity_ids']|length > 0%}
+    identity_ids = {{ params["identity_ids"]|tojson }}
+    {% endif %}
+    {% if params['identity_type'] %}
+    identity_type = "{{ params["identity_type"] }}"
+    {% endif %}
+    enable_admin = {{ params["enable_admin"] }}
+    {% if params['geolocations'] is not none and params['geolocations']|length > 0%}
+    geolocations = {{ params["geolocations"]|tojson }}
+    {% endif %}
+    {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+}

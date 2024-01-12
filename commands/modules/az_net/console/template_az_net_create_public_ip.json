@@ -1,0 +1,103 @@
+{
+  "type": "Theia::Action",
+  "label": "Public IP address",
+  "id": "create_public_ip",
+  "module": "az_net",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_public_ip",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_public_ip",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_net_location",
+        "az_net_resource_group_name"
+      ],
+      "title": "Public IP addresses",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_public_ip",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_net",
+            "command": "create_public_ip",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_resource_group_name",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_sku_name",
+          "label": "SKU",
+          "help": "The SKU name for the Public IP",
+          "inputType": "text",
+          "default": "Basic",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Basic",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Basic"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Standard",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Standard"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

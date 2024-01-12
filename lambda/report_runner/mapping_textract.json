@@ -1,0 +1,71 @@
+{
+    "Billing/Invoice Date": [
+        "statement date",
+        "billing date",
+        "date - transaction detail",
+        "Invoice date",
+        "DATE",
+        "DATE:",
+        "Billing Date:",
+        "INVOICE Crist Fuel"
+    ],
+    "Vendor Name": [
+        "vendor found in pay to",
+        "vendor",
+        "make payment to",
+        "vendor - upper left",
+        "SOLD TO:",
+        "SOLD TO",
+        "Customer Name:",
+        "Customer Name"
+    ],
+    "Location": [
+        "service address",
+        "sold to",
+        "receiving address",
+        "bill to city state",
+        "Service Address:"
+    ],
+    "Item Description": [
+        "description",
+        "description",
+        "hazardous material description",
+        "description -found on pg 2",
+        "style"
+    ],
+    "Meter #": [
+        "Meter reading info",
+        "Meter serial #",
+        "Number:",
+        "[ NUMBER",
+        "Number"
+    ],
+    "Quantity": [
+        "usage",
+        "actual usage",
+        "Gal or Pounds",
+        "found in description",
+        "qty",
+        "Actual Usage in CCF:",
+        "Electricity kWh",
+        "kWh"
+    ],
+    "Type": [
+        "kWH - found in usage",
+        "CCF - found in usage",
+        "for this vendor always gal.",
+        "found in description",
+        "for this vendor always gal"
+    ],
+    "Billing Period": [
+        "read dates from - to",
+        "date of service from - to"
+    ],
+    "Details for": [
+        "Electricity",
+        "Natural Gas",
+        "Diesel",
+        "Gasoline",
+        "Propane"
+    ]
+}

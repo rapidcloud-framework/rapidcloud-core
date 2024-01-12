@@ -1,0 +1,72 @@
+{
+  "type": "Theia::Action",
+  "label": "Azure Front Door Endpoint",
+  "id": "az_frontdoor_create_fd_endpoint",
+  "module": "az_frontdoor",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_frontdoor_create_fd_endpoint",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_fd_endpoint",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "Front Door Endpoint",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_frontdoor_create_fd_endpoint",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create Endpoint",
+          "command": {
+            "phase": "az_frontdoor",
+            "command": "create_fd_endpoint",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Endpoint Name",
+          "help": "The Front Door Endpoint Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_profile_id",
+          "label": "Profile",
+          "help": "",
+          "datasource": "formdata_from_azure_infra?type=create_fd_profile",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Profile is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "az_frontdoor_tags",
+          "label": "Tags",
+          "help": "Tags you wish to apply to the frontdoor endpoint",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=az_frontdoor,${name}&result=params,az_frontdoor_tags",
+          "add_value_label": "Tags for your resource"
+        }
+      ]
+    }
+  ]
+}

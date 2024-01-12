@@ -1,0 +1,46 @@
+{
+  "type": "Theia::Action",
+  "label": "This is RapidCloud menu option label for the module",
+  "id": "env_list",
+  "module": "env",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "env_list",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=env",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "This is RapidCloud module main page title",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "env_list",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "list",
+          "command": {
+            "phase": "env",
+            "command": "list",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "type": "Theia::Action",
+  "label": "Terraform Modules",
+  "id": "tf_modules",
+  "module": "tf",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "tf_modules",
+      "datasource": "tf_modules?test=test",
+      "env_param_required": true,
+      "columns": ["filename"],
+      "title": "Terraform Modules",
+      "description": "",
+      "hide_add": true
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "tf_modules",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "filename",
+          "label": "File Location",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Code",
+          "label": "",
+          "id": "contents",
+          "language": "hcl"
+        } 
+      ]
+    }
+  ]
+}

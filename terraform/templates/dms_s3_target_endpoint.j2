@@ -1,0 +1,16 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source                      = "../modules/{{ resource_type }}"
+  extra_connection_attributes = "bucketFolder={{ params['s3_bucket_folder'] }};bucketName={{ profile | replace("_", "-") }}-{{ params['s3_bucket_name_suffix'] | replace("_", "-") }};{{ params['extra_connection_attributes'] }}"
+  s3_bucket_name              = module.{{ profile }}_{{ params['s3_bucket_name_suffix'] }}_s3_bucket.bucket_name
+  s3_bucket_arn               = module.{{ profile }}_{{ params['s3_bucket_name_suffix'] }}_s3_bucket.bucket_arn
+  s3_bucket_folder            = "{{ params['s3_bucket_folder'] }}"
+  endpoint_id                 = "${replace("{{ profile }}_{{ resource_name }}", "_", "-")}"
+  tags = {
+  "Name" = "${replace("{{ profile }}_{{ resource_name }}", "_", "-")}"
+      "env" = "{{ env }}"
+      "profile" = "{{ name }}"
+      "workload" = "{{ workload }}"
+      "client" = "{{ client }}"
+      "author" = "rapid-cloud"
+  }
+}

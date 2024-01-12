@@ -1,0 +1,12 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source        = "{{ module_source }}"
+  name          = "{{ resource_name }}"
+  resource_group = "{{ params['resource_group'] }}"
+  location       = "{{ params['location'] }}"
+  network_watcher_name = "{{params['network_watcher_name']}}"
+  network_security_group_id = "{{params['network_security_group_id']}}"
+  storage_account_id = "{{params['storage_account_id']}}"
+  enabled = "{{params['enabled']}}"
+  retention_days = "{{params['retention_days']}}"
+  workspace_id = "{{params['workspace_id']}}"
+}

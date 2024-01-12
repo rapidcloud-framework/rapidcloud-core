@@ -1,0 +1,66 @@
+{% if params['kms_key_name']|length > 0 %}
+data "aws_kms_key" "by_alias" {
+  key_id = "{{ params['kms_key_name'] }}"
+}
+{% endif %}
+
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source                     = "{{ module_source }}"
+  replication_group_id       = "{{ resource_name }}"
+  description = "{{ params['description'] }}"
+  {% if params['node_type']|length > 0 %}
+  node_type                  = "{{ params['node_type'] }}"
+  {% endif %}
+  {% if params['kms_key_name']|length > 0 %}
+  kms_key_id = data.aws_kms_key.by_alias.arn
+  {% endif %}
+  at_rest_encryption_enabled = {{ params['at_rest_encryption_enabled'] }}
+  automatic_failover_enabled = {{ params['automatic_failover_enabled'] }}
+  multi_az_enabled           = {{ params['multi_az_enabled'] }}
+  transit_encryption_enabled = {{ params['transit_encryption_enabled'] }}
+  {% if params['user_group_name']|length > 0 %}
+  user_group_id              = module.{{ profile }}_{{ params['user_group_name'] }}_aws_elasticache_user_group.id
+  {% endif %}
+  {% if params['num_cache_clusters']|length > 0 %}
+  num_cache_clusters         = "{{ params['num_cache_clusters'] }}"
+  {% endif %}
+  {% if params['num_node_groups']|length > 0 %}
+  num_node_groups            = "{{ params['num_node_groups'] }}"
+  {% endif %}
+  {% if params['replicas_per_node_group']|length > 0 %}
+  replicas_per_node_group    = "{{ params['replicas_per_node_group'] }}"
+  {% endif %}
+  {% if params['parameter_group_name']|length > 0 %}
+  parameter_group_name       = "{{ params['parameter_group_name'] }}"
+  {% endif %}
+  apply_immediately          = {{ params['apply_immediately'] }}
+  {% if params['engine_version']|length > 0 %}
+  engine_version             = "{{ params['engine_version'] }}"
+  {% endif %}
+  {% if params['final_snapshot_identifier']|length > 0 %}
+  final_snapshot_identifier  = "{{ params['final_snapshot_identifier'] }}"
+  {% endif %}
+  {% if params['maintenance_window']|length > 0 %}
+  maintenance_window         = "{{ params['maintenance_window'] }}"
+  {% endif %}
+  {% if params['notification_topic_arn']|length > 0 %}
+  notification_topic_arn     = "{{ params['notification_topic_arn'] }}"
+  {% endif %}
+  subnet_ids                 = {{ params['subnet_ids'] | replace("'","\"") }}
+  security_group_ids         = {{ params['security_group_ids'] | replace("'","\"") }}
+  {% if params['log_destination']|length > 0 %}
+  log_destination            = "{{ params['log_destination'] }}"
+  log_destination_type       = "{{ params['log_destination_type'] }}"
+  log_format                 = "{{ params['log_format'] }}"
+  log_type                   = "{{ params['log_type'] }}"
+  {% endif %}
+
+  tags = {
+    "Name"      = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud-by-kinect"
+  }
+}

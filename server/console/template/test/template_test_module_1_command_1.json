@@ -1,0 +1,58 @@
+{
+  "type": "Theia::Action",
+  "label": "This is RapidCloud menu option label for the module",
+  "id": "module_1_command_1",
+  "module": "module_1",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "module_1_command_1",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=module_1",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "timestamp"
+      ],
+      "title": "This is RapidCloud module main page title",
+      "description": "Some description here",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "module_1_command_1",
+      "title": "Form Title",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "command_1",
+          "command": {
+            "phase": "module_1",
+            "command": "command_1",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

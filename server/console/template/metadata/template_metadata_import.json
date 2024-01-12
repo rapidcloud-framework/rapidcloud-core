@@ -1,0 +1,36 @@
+{
+  "type": "Theia::Action",
+  "label": "Import",
+  "id": "import",
+  "module": "metadata",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "import",
+      "title": "Import Environment",
+      "description": "Import environment metadata from current environment's latest snapshot",
+      "submit": "Submit",
+      "env_param_required": false,
+      "commands": [
+        {
+          "label": "Import",
+          "require_confirmation": true,
+          "confirmation_message": "Target environment metadata will be replaced. This is irreversible. Are you sure you want to import latest snapshot from current environment into selected target environemt?",
+          "command": {
+            "phase": "metadata",
+            "command": "import"    
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Select",
+          "id": "target_env",
+          "label": "Select Target Environment",
+          "help": "Snapshot will be applied to target environment. Target environment metadata will be replaced.",
+          "datasource": "formdata?type=profile&field=name"
+        }
+      ]
+    }
+  ]
+}

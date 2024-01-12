@@ -1,0 +1,341 @@
+{
+  "*_kafka_stream_consumer": {
+    "name": "*_kafka_stream_consumer",
+    "text": "Managed Kafka",
+    "name_": ".*_kafka_stream_consumer"
+  },
+  "*_kinesis_stream_consumer": {
+    "name": "*_kinesis_stream_consumer",
+    "text": "Kinesis Streams",
+    "name_": ".*_kinesis_stream_consumer"
+  },
+  "account": {
+    "name": "account",
+    "text": "Accounts",
+    "name_": "account"
+  },
+  "alb": {
+    "name": "aws_lb",
+    "text": "ALB",
+    "name_": "alb",
+    "new_name": ""
+  },
+  "angularapp": {
+    "name": "angularapp",
+    "text": "Web App",
+    "name_": "angularapp"
+  },
+  "api_gateway": {
+    "name": "api_gateway",
+    "text": "API Gwy",
+    "name_": "api_gateway"
+  },
+  "asg": {
+    "name": "aws_autoscaling_group",
+    "text": "ASG",
+    "name_": "asg",
+    "new_name": ""
+  },
+  "athena": {
+    "name": "athena",
+    "text": "Athena",
+    "name_": "athena"
+  },
+  "aurora_*": {
+    "name": "aurora_*",
+    "text": "Aurora",
+    "name_": "aurora_.*"
+  },
+  "aws_instance::*": {
+    "name": "aws_instance",
+    "text": "EC2",
+    "name_": "aws_instance::.*",
+    "new_name": ""
+  },
+  "cert_mgr": {
+    "name": "cert_mgr",
+    "text": "Cert Mgr",
+    "name_": "cert_mgr"
+  },
+  "cloudfront": {
+    "name": "aws_cloudfront_distribution",
+    "text": "Cloudfront",
+    "name_": "cloudfront",
+    "new_name": ""
+  },
+  "cloudwatch_event_rule::*": {
+    "name": "cloudwatch_event_rule::*",
+    "text": "Schedule",
+    "name_": "cloudwatch_event_rule::.*"
+  },
+  "cloudwatch_event_rule::full": {
+    "name": "cloudwatch_event_rule::ingest::*",
+    "text": "Schedule",
+    "name_": "cloudwatch_event_rule::full",
+    "new_name": ""
+  },
+  "dms_replication_instance::*": {
+    "name": "dms_replication_instance",
+    "text": "DMS",
+    "name_": "dms_replication_instance::.*",
+    "new_name": ""
+  },
+  "dynamodb": {
+    "name": "dynamodb",
+    "text": "DynamoDB",
+    "name_": "dynamodb"
+  },
+  "ebs": {
+    "name": "aws_ebs_volume",
+    "text": "EBS",
+    "name_": "ebs",
+    "new_name": ""
+  },
+  "ecr": {
+    "name": "aws_ecr_repository",
+    "text": "ECR",
+    "name_": "ecr",
+    "new_name": ""
+  },
+  "ecs": {
+    "name": "aws_ecs",
+    "text": "ECS",
+    "name_": "ecs",
+    "new_name": ""
+  },
+  "efs": {
+    "name": "aws_efs_file_system",
+    "text": "EFS",
+    "name_": "efs",
+    "new_name": ""
+  },
+  "eks": {
+    "name": "eks",
+    "text": "EKS",
+    "name_": "eks"
+  },
+  "emr_cluster::*": {
+    "name": "emr_cluster",
+    "text": "EMR",
+    "name_": "emr_cluster::.*",
+    "new_name": ""
+  },
+  "endpoints": {
+    "name": "endpoints",
+    "text": "Endpoints",
+    "name_": "endpoints"
+  },
+  "files": {
+    "name": "files",
+    "text": "Files",
+    "name_": "files"
+  },
+  "fsx": {
+    "name": "aws_fsx_windows_file_system",
+    "text": "FSx",
+    "name_": "fsx",
+    "new_name": ""
+  },
+  "glue_catalog_database::*": {
+    "name": "glue_catalog_database",
+    "text": "GLue Catalog",
+    "name_": "glue_catalog_database::.*",
+    "new_name": ""
+  },
+  "glue_crawler::*": {
+    "name": "glue_crawler",
+    "text": "Glue Crawlers",
+    "name_": "glue_crawler::.*",
+    "new_name": ""
+  },
+  "glue_egg_file": {
+    "name": "glue_egg_file",
+    "text": "Glue Egg",
+    "name_": "glue_egg_file"
+  },
+  "glue_job": {
+    "name": "glue_job",
+    "text": "Custom Glue Job",
+    "name_": "glue_job"
+  },
+  "glue_job::publish_*": {
+    "name": "glue_job::rds::*",
+    "text": "Glue Job",
+    "name_": "glue_job::publish_.*"
+  },
+  "glue_job::streaming_*": {
+    "name": "glue_job::ingest::*_stream_consumer",
+    "text": "Glue Streaming",
+    "name_": "glue_job::streaming_.*"
+  },
+  "glue_job::transform_*": {
+    "name": "glue_job::transform::*",
+    "text": "Glue Job",
+    "name_": "glue_job::transform_.*"
+  },
+  "inetgwy": {
+    "name": "inetgwy",
+    "text": "Internet Gwy",
+    "name_": "inetgwy"
+  },
+  "kinesis_*": {
+    "name": "kinesis_*",
+    "text": "Kinesis Client",
+    "name_": "kinesis_.*"
+  },
+  "kinesis_firehose_s3_delivery_stream::*": {
+    "name": "kinesis_firehose_s3_delivery_stream",
+    "text": "Kinesis Firehose",
+    "name_": "kinesis_firehose_s3_delivery_stream::.*"
+  },
+  "kinesis_stream::*": {
+    "name": "kinesis_stream",
+    "text": "Kinesis Streams",
+    "name_": "kinesis_stream::.*"
+  },
+  "kms_key": {
+    "name": "kms_key",
+    "text": "KMS",
+    "name_": "kms_key"
+  },
+  "lambda_function::*": {
+    "name": "lambda_function::*",
+    "text": "Lambda",
+    "name_": "lambda_function::.*"
+  },
+  "lambda_function::*_dms_task": {
+    "name": "lambda_function::ingest::*_dms_task",
+    "text": "Lambda",
+    "name_": "lambda_function::.*_dms_task"
+  },
+  "lambda_function::cdc_*": {
+    "name": "lambda_function::ingest::*",
+    "text": "Lambda",
+    "name_": "lambda_function::cdc_.*"
+  },
+  "lambda_function::handle_s3_event_raw": {
+    "name": "lambda_function::rds::handle_s3_event_raw",
+    "text": "Lambda",
+    "name_": "lambda_function::handle_s3_event_raw"
+  },
+  "lambda_function::run_publishing": {
+    "name": "lambda_function::rds::run_publishing",
+    "text": "Lambda",
+    "name_": "lambda_function::run_publishing"
+  },
+  "lambda_layer": {
+    "name": "lambda_layer",
+    "text": "Lambda Layers",
+    "name_": "lambda_layer"
+  },
+  "mobileapp": {
+    "name": "mobileapp",
+    "text": "Mobile App",
+    "name_": "mobileapp"
+  },
+  "natgwy": {
+    "name": "natgwy",
+    "text": "NAT Gwy",
+    "name_": "natgwy"
+  },
+  "opensearch": {
+    "name": "opensearch",
+    "text": "OpenSearch",
+    "name_": "opensearch"
+  },
+  "org": {
+    "name": "org",
+    "text": "Org",
+    "name_": "org"
+  },
+  "org_unit": {
+    "name": "org_unit",
+    "text": "Org Units",
+    "name_": "org_unit"
+  },
+  "quarantine": {
+    "name": "s3_bucket::*::quarantine",
+    "text": "S3 (quarantine)",
+    "name_": "quarantine"
+  },
+  "quicksight": {
+    "name": "quicksight",
+    "text": "SPICE/QuickSight",
+    "name_": "quicksight"
+  },
+  "rdbms": {
+    "name": "rdbms",
+    "text": "RDBMS",
+    "name_": "rdbms"
+  },
+  "rds_*": {
+    "name": "rds*::rds::*",
+    "text": "RDS",
+    "name_": "rds_.*"
+  },
+  "redshift_cluster::*": {
+    "name": "redshift_cluster",
+    "text": "Redshift",
+    "name_": "redshift_cluster::.*"
+  },
+  "route53": {
+    "name": "aws_route53_record",
+    "text": "Route53",
+    "name_": "route53"
+  },
+  "s3_bucket::analysis": {
+    "name": "s3_bucket::*::analysis",
+    "text": "S3 (analysis)",
+    "name_": "s3_bucket::analysis"
+  },
+  "s3_bucket::ingestion": {
+    "name": "s3_bucket::*::ingestion",
+    "text": "S3 (ingestion)",
+    "name_": "s3_bucket::ingestion"
+  },
+  "s3_bucket::raw": {
+    "name": "s3_bucket::*::raw",
+    "text": "S3 (organized)",
+    "name_": "s3_bucket::raw"
+  },
+  "s3_custom": {
+    "name": "s3_bucket",
+    "text": "S3 (custom)",
+    "name_": "s3_custom"
+  },
+  "s3_web": {
+    "name": "s3_bucket::*::web",
+    "text": "S3 (web)",
+    "name_": "s3_web"
+  },
+  "scan": {
+    "name": "s3_bucket::*::scan",
+    "text": "S3 (scan)",
+    "name_": "scan"
+  },
+  "secrets": {
+    "name": "secrets",
+    "text": "Secrets Manager",
+    "name_": "secrets"
+  },
+  "step_function": {
+    "name": "step_function",
+    "text": "Step Func",
+    "name_": "step_function"
+  },
+  "trend_lambda": {
+    "name": "lambda_function::trendmicro::*",
+    "text": "Post Scan Lambda",
+    "name_": "trend_lambda"
+  },
+  "vpc": {
+    "name": "vpc",
+    "text": "VPC",
+    "name_": "vpc"
+  },
+  "waf": {
+    "name": "waf",
+    "text": "WAF",
+    "name_": "waf"
+  }
+}

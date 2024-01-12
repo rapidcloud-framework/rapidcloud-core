@@ -1,0 +1,97 @@
+{
+  "type": "Theia::Action",
+  "label": "Routes",
+  "id": "net_create_route",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "net_create_route",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=net,create_route",
+      "env_param_required": true,
+      "columns": ["name", "net_destination_cidr", "net_route_tables", "net_transit_gateway_id", "net_vpc_peering_connection_id", "timestamp"],
+      "title": "Create Routes",
+      "description": "Establish Additional Routes",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "net_create_route",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command",
+            "refresh_status": true
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "net",
+            "command": "create_route",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "net_destination_cidr_block",
+          "label": "Destination CIDR",
+          "help": "The CIDR you want to establish a route to",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Destination CIDR is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "net_route_tables",
+          "label": "Route Tables",
+          "help": "The Route Tables that will be updated to provide access using this route",
+          "inputType": "text",
+          "datasource": "custom/module_net_route_tables?extra=true&module_name_arg=net"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "net_transit_gateway_id",
+          "label": "Transit Gateway ID",
+          "help": "The Transit Gateway ID",
+          "inputType": "text",
+          "datasource": "custom/module_net_tgw?extra=true&module_name_arg=net"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "net_vpc_peering_connection_id",
+          "label": "VPC Peer ID",
+          "help": "The VPC Peer ID",
+          "inputType": "text",
+          "datasource": "custom/module_net_vpc_peers?extra=true&module_name_arg=net"
+        }
+      ]
+    }
+  ]
+}

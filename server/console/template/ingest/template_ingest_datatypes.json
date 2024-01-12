@@ -1,0 +1,17 @@
+{
+  "type": "Theia::Action",
+  "label": "RDBMS: Data Type Mappings",
+  "id": "datatypes",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "datatypes",
+      "datasource": "data?type=data_type_translation",
+      "columns": ["engine_from","engine_to","cast_from","cast_to"],
+      "readonly": true,
+      "title": "Data Type Mappings",
+      "description": "Following mappings will be used to ensure proper data type conversions between two database engines when ingesting relational data."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source        = "{{ module_source }}"
+  solution_name   = "{{ resource_name }}"
+  location   = "{{ params['location'] }}"
+  workspace_resource_id   = "{{ params['workspace_id'] }}"
+  workspace_name    = "{{ params['workspace_name'] }}"
+  resource_group_name = "{{ params['rg_name'] }}"
+  {% if params['publisher'] is defined and params['product'] is defined %}
+  publisher = "{{ params['publisher'] }}"
+  product = "{{ params['product'] }}"
+  {% endif %}
+}

@@ -1,0 +1,308 @@
+{
+  "type": "Theia::Action",
+  "label": "LB Target Groups",
+  "id": "lb_create_target_group",
+  "module": "lb",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "lb_create_target_group",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_target_group",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "lb_port",
+        "lb_protocol",
+        "lb_target_type",
+        "lb_vpc_id",
+        "lb_load_balancer_type",
+        "lb_load_balancing_algorithm_type",
+        "lb_preserve_client_ip",
+        "lb_ip_address_type",
+        "lb_protocol_version",
+        "lb_targets",
+        "timestamp"
+      ],
+      "title": "LB Target Groups",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "lb_create_target_group",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "lb",
+            "command": "create_target_group",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "lb_port",
+          "cli_id": "port",
+          "label": "Port",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "lb_protocol",
+          "cli_id": "protocol",
+          "label": "Protocol",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "HTTP",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "HTTP",
+                "enableControls": [
+                  "lb_protocol_version"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "HTTPS",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "HTTPS",
+                "enableControls": [
+                  "lb_protocol_version"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "TLS",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "TLS",
+                "disableControls": [
+                  "lb_protocol_version"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "TCP",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "TCP",
+                "disableControls": [
+                  "lb_protocol_version"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "TCP_UDP",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "TCP_UDP",
+                "disableControls": [
+                  "lb_protocol_version"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "GENEVE",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "GENEVE",
+                "disableControls": [
+                  "lb_protocol_version"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "lb_target_type",
+          "cli_id": "target_type",
+          "label": "Target Type",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Instance",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "instance",
+                "disableControls": [
+                  "lb_ip_address_type",
+                  "lb_ip_targets"
+                ],
+                "enableControls": [
+                  "lb_ec2_targets"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "IP",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "ip",
+                "enableControls": [
+                  "lb_ip_address_type",
+                  "lb_ip_targets"
+                ],
+                "disableControls": [
+                  "lb_ec2_targets"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "lb_vpc_id",
+          "cli_id": "vpc_id",
+          "label": "VPC ID",
+          "help": "",
+          "datasource": "formdata_from_aws?type=vpcs&module_name_arg=lb"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "lb_load_balancer_type",
+          "cli_id": "load_balancer_type",
+          "label": "LB Type",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "ALB",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "alb",
+                "disableControls": [
+                  "lb_preserve_client_ip"
+                ],
+                "enableControls": [
+                  "lb_load_balancing_algorithm_type"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "NLB",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "nlb",
+                "disableControls": [
+                  "lb_load_balancing_algorithm_type"
+                ],
+                "enableControls": [
+                  "lb_preserve_client_ip"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "lb_load_balancing_algorithm_type",
+          "cli_id": "load_balancing_algorithm_type",
+          "label": "LB Algorithm Type",
+          "help": "ALB Only",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Round Robin",
+              "value": "round_robin"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Least Outstanding Requests",
+              "value": "least_outstanding_requests"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "lb_preserve_client_ip",
+          "cli_id": "preserve_client_ip",
+          "label": "Preserve Client IP?",
+          "help": "NLB Only"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "lb_ip_address_type",
+          "cli_id": "ip_address_type",
+          "label": "IP Address Type",
+          "help": "Target Type IP Only",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "IPV4",
+              "value": "ipv4"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "IPV6",
+              "value": "ipv6"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "lb_protocol_version",
+          "cli_id": "protocol_version",
+          "label": "Protocol Version",
+          "help": "Protocol HTTP/HTTPS Only",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "HTTP/1.1",
+              "value": "HTTP1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "HTTP/2",
+              "value": "HTTP2"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "gRPC",
+              "value": "GRPC"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "lb_ip_targets",
+          "cli_id": "ip_targets",
+          "label": "IP Targets",
+          "help": "Comma-separated list of IPs",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "lb_ec2_targets",
+          "cli_id": "ec2_targets",
+          "label": "EC2 Targets",
+          "help": "",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=ec2,create&field=name&module_name_arg=lb"
+        }
+      ]
+    }
+  ]
+}

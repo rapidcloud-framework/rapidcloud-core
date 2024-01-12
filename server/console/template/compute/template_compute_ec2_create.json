@@ -1,0 +1,146 @@
+{
+  "type": "Theia::Action",
+  "label": "Managed EC2 Instances",
+  "id": "ec2",
+  "module": "ec2",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "ec2",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=ec2",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "ec2_instance_type",
+        "ec2_ami_id",
+        "ec2_availability_zone",
+        "ec2_volume_size",
+        "timestamp"
+      ],
+      "title": "Managed EC2 Instances",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "ec2",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "ec2",
+            "command": "create",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "Name (characters)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ec2_instance_type",
+          "cli_id": "instance_type",
+          "label": "Instance Type",
+          "help": "EC2 Instance Type",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "ec2_ami_id_selected",
+          "label": "AMI",
+          "help": "",
+          "datasource": "formdata_from_aws?type=amis&module_name_arg=ec2"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ec2_ami_id",
+          "cli_id": "ami_id",
+          "label": "Provide AMI ID here if you do not see it in the list above. This value takes precedence.",
+          "help": "",
+          "default": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "ec2_key_name",
+          "cli_id": "key_name",
+          "label": "Key pair name",
+          "help": "Key pair name",
+          "datasource": "formdata_from_aws?type=key_pairs&module_name_arg=ec2"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "ec2_vpc_id",
+          "cli_id": "vpc_id",
+          "label": "VPC ID",
+          "help": "The ID of the VPC in which the instance is running",
+          "datasource": "formdata_from_aws?type=vpcs&module_name_arg=ec2"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "ec2_availability_zone",
+          "label": "Availability Zone",
+          "help": "AWS availability zone to deploy instance to",
+          "datasource": "formdata_from_aws?type=availability_zones&module_name_arg=ec2"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "ec2_subnet_id",
+          "label": "Subnet Id to place this EC2",
+          "help": "",
+          "datasource": "formdata_from_aws?type=subnets&module_name_arg=ec2"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "ec2_vpc_security_group_ids",
+          "label": "Security Group Ids",
+          "help": "Select one or more",
+          "datasource": "formdata_from_aws?type=vpc_security_groups&module_name_arg=ec2"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "ec2_role_name",
+          "label": "Existing Role to create an Instance Profile",
+          "help": "",
+          "datasource": "formdata_from_aws?type=roles&module_name_arg=ec2"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ec2_volume_size",
+          "cli_id": "volume_size",
+          "label": "Volume Size",
+          "help": "Volume size for instance in GB",
+          "inputType": "text",
+          "default": "8"
+        },
+        {
+          "type": "Theia::Control::TextArea",
+          "id": "ec2_user_data",
+          "label": "User Data",
+          "help": "User Data",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

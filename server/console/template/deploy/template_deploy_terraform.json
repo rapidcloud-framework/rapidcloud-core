@@ -1,0 +1,54 @@
+{
+  "type": "Theia::Action",
+  "label": "Terraform Actions",
+  "id": "tf",
+  "module": "tf",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "tf",
+      "title": "Terraform Actions",
+      "allowMarkdown": true,
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "init",
+          "command": {
+            "phase": "tf",
+            "command": "init"
+          }
+        },
+        {
+          "label": "plan",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to run terraform planfor this environment? This may take a few minutes. You can view the log in the terminal window.",
+          "command": {
+            "phase": "tf",
+            "command": "plan"
+          }
+        },
+        {
+          "label": "apply",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to deploy infrastucture changes to your environment? This may take a while. You can view the log in the terminal window.",
+          "command": {
+            "phase": "tf",
+            "command": "apply",
+            "refresh_status": true
+          }
+        },
+        {
+          "label": "destroy",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to destroy all infrastucture components for current environment? This may take a while. You can view the log in the terminal window.",
+          "command": {
+            "phase": "tf",
+            "command": "destroy",
+            "refresh_status": true
+          }
+        }
+      ]
+    }
+  ]
+}

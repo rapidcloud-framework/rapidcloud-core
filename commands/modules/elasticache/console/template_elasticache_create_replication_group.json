@@ -1,0 +1,239 @@
+{
+  "type": "Theia::Action",
+  "label": "Replication Groups",
+  "id": "elasticache_create_replication_group",
+  "module": "elasticache",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "elasticache_create_replication_group",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=elasticache,create_replication_group",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "Replication Groups",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "elasticache_create_replication_group",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "elasticache",
+            "command": "create_replication_group",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_description",
+          "label": "Description",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_node_type",
+          "label": "Node Type",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_parameter_group_name",
+          "label": "Parameter Group Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "elasticache_apply_immediately",
+          "label": "Apply Immediately",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_engine_version",
+          "label": "Engine Version",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_kms_key_name",
+          "label": "KMS Key Name",
+          "help": "leave blank to use default key",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "elasticache_at_rest_encryption_enabled",
+          "label": "Enable At Rest Encryption?",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "elasticache_transit_encryption_enabled",
+          "label": "Enable In Transit Encryption?",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "elasticache_automatic_failover_enabled",
+          "label": "Enable Automatic Failover?",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "elasticache_multi_az_enabled",
+          "label": "Enable Multi AZ?",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "elasticache_user_group_name",
+          "label": "User Group",
+          "help": "",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=elasticache,create_user_group&field=name"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_num_cache_clusters",
+          "label": "Number of Cache Clusters",
+          "inputType": "text",
+          "help": "Redis Cluster Mode Disabled"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_num_node_groups",
+          "label": "Number of Node Groups",
+          "inputType": "text",
+          "help": "Redis Cluster Mode Enabled"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_replicas_per_node_group",
+          "label": "Replicas per Node Group",
+          "inputType": "text",
+          "help": "Redis Cluster Mode Enabled"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_final_snapshot_identifier",
+          "label": "Final Snapshot Identifier",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_maintenance_window",
+          "label": "Maintenance Window",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_notification_topic_arn",
+          "label": "SNS Topic ARN",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "elasticache_security_group_ids",
+          "label": "Security Groups",
+          "datasource": "formdata_from_aws?type=vpc_security_groups"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "elasticache_subnet_ids",
+          "label": "Subnets",
+          "datasource": "formdata_from_aws?type=subnets"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_log_destination",
+          "label": "Log Destination",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "elasticache_log_destination_type",
+          "label": "Log Destination Type",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "cloudwatch-logs",
+              "value": "cloudwatch-logs"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "kinesis-firehose",
+              "value": "kinesis-firehose"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "elasticache_log_format",
+          "label": "Log Format",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "json",
+              "value": "json"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "text",
+              "value": "text"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "elasticache_log_type",
+          "label": "Log Type",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "slow-log",
+              "value": "slow-log"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "engine-log",
+              "value": "engine-log"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

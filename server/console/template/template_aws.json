@@ -1,0 +1,336 @@
+{
+  "type": "Theia::Template",
+  "title": "RapidCloud for AWS - Automation and Acceleration Framework",
+  "footer": {
+    "type": "Theia::Footer",
+    "columns": [
+      {
+        "class": "text-muted text-start",
+        "content": "Copyright © {copyright}."
+      },
+      {
+        "class": "text-muted text-start",
+        "content": "<a href='https://rapid-cloud.io/documentation/' target='_blank'>Documentation</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://kinect-rapid-cloud.s3.amazonaws.com/docs/RapidCloud-Terms-of-Service.html' target='_blank'>Terms of Service</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://rapid-cloud.io/contact-us/' target='_blank'>Contact Us</a>"
+      },
+      {
+        "class": "text-muted text-end",
+        "content": "v{version}"
+      }
+    ]
+  },  
+  "sections": [
+    {
+      "type": "Theia::Section",
+      "label": "Home",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/house-solid.svg",
+      "route": "home",
+      "id": "home",
+      "static": true,
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Settings",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/list-check-solid.svg",
+      "route": "setup",
+      "id": "setup",
+      "enabled": true,
+      "actions": [
+        "activate",
+        "access_create_role",
+        "access_assign_role",
+        "aws_environments",
+        "subscribe",
+        "inprogress"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Architecture",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/sitemap-solid.svg",
+      "route": "modeling",
+      "id": "modeling",
+      "enabled": true,
+      "actions": [
+        "aws_current_state",
+        "aws_solution_wizard",
+        "aws_lz_wizard",
+        "aws_net_wizard"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Environment",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/sliders-solid.svg",
+      "route": "metadata",
+      "id": "metadata",
+      "enabled": true,
+      "actions": [
+        "infra_resources",
+        "clean",
+        "export",  
+        "import",      
+        "properties" 
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Custom Modules",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/code-solid.svg",
+      "route": "modules",
+      "id": "modules",
+      "enabled": false,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Organizations",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/people-roof-solid.svg",
+      "route": "organizations",
+      "id": "organizations",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "VPC",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/network-wired-solid.svg",
+      "route": "vpc",
+      "id": "VPC",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Data Ingestion",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/file-import-solid.svg",
+      "route": "ingest",
+      "id": "ingest",
+      "enabled": true,
+      "actions": [
+        "databases",
+        "datasets",
+        "schedules",
+        "events",
+        "datatypes",
+        "semistructured",
+        "formats",
+        "enable_semi_structured",
+        "unstructured",
+        "upload_files",
+        "streams",
+        "start"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Document Processing",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/file-invoice-solid.svg",
+      "route": "document_processing",
+      "id": "document_processing",
+      "enabled": true,
+      "actions": [
+        "ingest::documents",
+        "ingest::upload_files",
+        "logs::textract_log"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Data Catalog",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/table-solid.svg",
+      "route": "catalog",
+      "id": "catalog",
+      "enabled": true,
+      "actions": [
+        "run-crawlers",
+        "change_data_type"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Analytics",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/magnifying-glass-chart-solid.svg",
+      "route": "transform",
+      "id": "transform",
+      "enabled": true,
+      "actions": [
+        "transformations",
+        "analytics",
+        "gluejob"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Reports",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/chart-pie-solid.svg",
+      "route": "report",
+      "id": "report",
+      "enabled": true,
+      "actions": [
+        "report_log"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Databases",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/database-solid.svg",
+      "route": "databases",
+      "id": "databases",
+      "enabled": true,
+      "actions": [
+        "generate-schemas"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "ElastiCache",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/server-solid.svg",
+      "route": "Elasticache",
+      "id": "Elasticache",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Security & Compliance",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/shield-halved-solid.svg",
+      "route": "compliance",
+      "id": "compliance",
+      "enabled": true,
+      "actions": [
+        "rules"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Trend Micro Cloud One",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/trademark-solid.svg",
+      "route": "trendmicro",
+      "id": "trendmicro",
+      "enabled": true,
+      "actions": [
+        "features"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Compute",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/microchip-solid.svg",
+      "route": "compute",
+      "id": "compute",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Containers",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/box-solid.svg",
+      "route": "containers",
+      "id": "containers",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "EKS",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/boxes-stacked-solid.svg",
+      "route": "eks",
+      "id": "EKS",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Content Delivery",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/road-solid.svg",
+      "route": "networking",
+      "id": "networking",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Search",
+      "short_name": "SEA",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/magnifying-glass-solid.svg",
+      "route": "search",
+      "id": "search",
+      "enabled": true,
+      "actions": [
+        "opensearch_create"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Storage",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/folder-closed-solid.svg",
+      "route": "storage",
+      "id": "storage",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Deploy",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/circle-play-regular.svg",
+      "route": "deploy",
+      "id": "deploy",
+      "enabled": true,
+      "actions": [
+        "terraform",
+        "tf_modules"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Pause & Resume",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/clock-regular.svg",
+      "route": "workload",
+      "id": "workload",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Logging",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/clock-rotate-left-solid.svg",
+      "route": "logs",
+      "id": "logs",
+      "enabled": true,
+      "actions": [
+        "cdc_tracker",
+        "cdc_log",
+        "textract_log",
+        "transform_log",
+        "publish_log"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "SaaS Management",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/network-wired-solid.svg",
+      "route": "saas",
+      "id": "saas",
+      "enabled": true,
+      "actions": [
+        "saas_list_tenants_dev",
+        "saas_exec_dev",
+        "saas_list_tenants_prod",
+        "saas_exec_prod"
+      ]
+    }
+  ]
+}

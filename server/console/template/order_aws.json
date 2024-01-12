@@ -1,0 +1,282 @@
+{
+  "home": {},
+  "wizard": {
+    "modeling": 10
+  },
+  "architecture": {
+    "current_state": 1000,
+    "wizard": 1000,
+    "lzwizard": 1000
+  },
+  "setup": {
+    "activate": 10,
+    "access_create_role": 12,
+    "access_assign_role": 15,
+    "environments": 20,
+    "properties": 30,
+    "access": 1000,
+    "aws_environments": 1000,
+    "subscribe": 1000,
+    "inprogress": 1000
+  },
+  "quickstart": {
+    "ec2_plus": 10,
+    "semi-structured-pipeline": 20,
+    "rdbms-pipeline": 30
+  },
+  "ingest": {
+    "datalake": 10,
+    "databases": 20,
+    "datasets": 30,
+    "schedules": 40,
+    "events": 45,
+    "datatypes": 50,
+    "semistructured": 60,
+    "semi-structured-pipeline": 65,
+    "formats": 70,
+    "enable_semi_structured": 80,
+    "unstructured": 90,
+    "upload_files": 100,
+    "streams": 110,
+    "start": 1000,
+    "datasync": 1000,
+    "datasync_create_task": 1000,
+    "datasync_create": 1000
+  },
+  "catalog": {
+    "run-crawlers": 10,
+    "change_data_type": 20
+  },
+  "transform": {
+    "transformations": 10,
+    "analytics": 20,
+    "gluejob": 30
+  },
+  "databases": {
+    "redshift_create": 30,
+    "redshift_add_table": 40,
+    "rds_create": 50,
+    "rds_add_table": 60,
+    "generate-schemas": 70
+  },
+  "publish": {
+    "rds_add_table": 10,
+    "redshift_add_table": 20,
+    "generate-schemas": 30
+  },
+  "compliance": {
+    "acm": 10,
+    "waf": 100,
+    "waf_create": 100,
+    "rules": 1000
+  },
+  "compute": {
+    "lambda": 10,
+    "ec2_create": 30,
+    "ec2_plus": 35,
+    "ec2_list_unmanaged": 40,
+    "ec2_list_launch_templates": 50,
+    "asg": 60,
+    "cloudfront": 1000
+  },
+  "containers": {
+    "ecr": 10,
+    "ecs": 1000
+  },
+  "networking": {
+    "route53": 10,
+    "cloudfront": 20,
+    "lb": 30,
+    "api_create": 1000,
+    "api_add_lambda_integration": 1000,
+    "api_remove_lambda_integration": 1000,
+    "lb_create": 1000,
+    "lb_add_listener": 1000,
+    "lb_create_target_group": 1000,
+    "route53_add_record": 1000,
+    "route53_create_hosted_zone": 1000
+  },
+  "storage": {
+    "s3_create_bucket": 5,
+    "fsx": 10,
+    "efs": 20,
+    "ebs": 1000,
+    "s3": 1000,
+    "efs_create": 1000,
+    "efs_create_mount_target": 1000
+  },
+  "integration": {
+    "api": 1000
+  },
+  "deploy": {
+    "terraform": 20,
+    "tf_modules": 25,
+    "start": 50,
+    "export": 60,
+    "import": 70,
+    "tf_init": 1000,
+    "tf_plan": 1000,
+    "tf_apply": 1000,
+    "tf_destroy": 1000
+  },
+  "logs": {
+    "cloudtrail_create_trail": 1,
+    "history": 5,
+    "cdc_log": 10,
+    "cdc_tracker": 20,
+    "textract_log": 25,
+    "transform_log": 30,
+    "publish_log": 40
+  },
+  "metadata": {
+    "module_show": 10,
+    "infra_resources": 20,
+    "properties": 1000,
+    "clean": 30,
+    "export": 1000,
+    "import": 1000
+  },
+  "trendmicro": {
+    "features": 10,
+    "trendmicro_setup": 20,
+    "trendmicro_filestorage_create_stack": 30,
+    "trendmicro_workload_create_group": 40,
+    "trendmicro_application_create_group": 50,
+    "trendmicro_conformity_enable": 1000,
+    "trendmicro_conformity_create_group": 1000
+  },
+  "custom": {
+    "custom1_create": 1000
+  },
+  "workload": {
+    "workload_enable_pause": 10,
+    "workload_schedule": 20,
+    "workload_status": 25,
+    "workload_pause": 30,
+    "workload_resume": 40
+  },
+  "vpc": {},
+  "examples": {
+    "examples": 1000,
+    "main": 1000
+  },
+  "lzwizard": {
+    "modeling": 1000
+  },
+  "modeling": {
+    "lzwizard": 1000,
+    "netwizard": 1000,
+    "wizard": 1000,
+    "current_state": 1000,
+    "aws_current_state": 1000,
+    "aws_wizard": 1000,
+    "aws_lzwizard": 1000,
+    "aws_solution_wizard": 1000,
+    "aws_lz_wizard": 1000,
+    "aws_net_wizard": 1000
+  },
+  "organizations": {
+    "org_create": 1000,
+    "org_create_ou": 1000,
+    "org_create_account": 1000,
+    "org_create_scp": 1000,
+    "sso_create_permission_set": 1000,
+    "sso_create_account_assignment": 1000,
+    "sso_create_user": 1000,
+    "sso_create_group": 1000
+  },
+  "Networking": {
+    "net_create_vpc": 1000,
+    "net_create_subnet": 1000,
+    "net_create_igw": 1000,
+    "net_create_natgw": 1000,
+    "net_create_routes": 1000,
+    "net_create_nacls": 1000,
+    "net_create_endpoint": 1000,
+    "net_create_default_sg": 1000,
+    "net_create_natgw_route": 1000,
+    "net_create_igw_route": 1000,
+    "net_create_vpc_peering_route": 1000,
+    "net_create_vpc_endpoint_route": 1000,
+    "net_create_route": 1000
+  },
+  "dashboard": {},
+  "modules": {
+    "module_create": 1000,
+    "module_add_command": 1000,
+    "module_create_template": 1000
+  },
+  "test": {
+    "module_1_command_1": 1000,
+    "module_1_command_2": 1000,
+    "module_1_command_3": 1000,
+    "module_1_command_4": 1000,
+    "dashboard": 1000
+  },
+  "search": {
+    "opensearch_create": 1000,
+    "opensearch": 1000
+  },
+  "VPC": {
+    "net_create_vpc": 1000,
+    "net_create_subnet": 1000,
+    "net_create_igw": 1000,
+    "net_create_natgw": 1000,
+    "net_create_route": 1000,
+    "net_create_endpoint": 1000
+  },
+  "EDB": {
+    "edb_tpaexec_configure": 1000,
+    "edb_tpaexec_provision": 1000,
+    "edb_tpaexec_deploy": 1000,
+    "edb_tpaexec_test": 1000,
+    "edb_tpaexec_setup": 1000,
+    "edb_tpaexec_update_postgres": 1000,
+    "edb_tpaexec_switchover": 1000,
+    "edb_tpaexec_pool_disable_server": 1000,
+    "edb_tpaexec_pool_enable_server": 1000,
+    "edb_tpaexec_rehydrate": 1000
+  },
+  "code": {
+    "generated_code": 1000,
+    "tf_modules": 1000
+  },
+  "Elasticache": {
+    "elasticache_create_redis_cluster": 1000,
+    "elasticache_create_memcached_cluster": 1000,
+    "elasticache_create_replication_group": 1000,
+    "elasticache_create_user": 1000,
+    "elasticache_create_user_group": 1000
+  },
+  "EKS": {
+    "eks_create_cluster": 1000,
+    "eks_create_node_group": 1000,
+    "eks_create_fargate_profile": 1000,
+    "eks_manage_addons": 1000,
+    "eks_manage_extras": 1000,
+    "eks_manage_aws_auth": 1000,
+    "eks_create_eks_cluster": 1000
+  },
+  "document_processing": {
+    "ingest::unstructured": 1000,
+    "ingest::upload_files": 1000,
+    "logs::textract_log": 1000,
+    "ingest::documents": 1000
+  },
+  "report": {
+    "report_define_report": 10,
+    "report_set_document_report_mapping": 20,
+    "report_run": 100,
+    "report_log": 1000
+  },
+  "saas": {
+    "saas_list_tenants": 1000,
+    "saas_exec": 1000,
+    "list_tenants": 1000,
+    "exec": 1000,
+    "saas_exec_dev": 1000,
+    "saas_exec_prod": 1000,
+    "saas_list_tenants_dev": 1000,
+    "saas_list_tenants_prod": 1000
+  }
+}

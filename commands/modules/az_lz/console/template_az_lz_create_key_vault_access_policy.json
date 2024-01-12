@@ -1,0 +1,234 @@
+{
+    "type": "Theia::Action",
+    "label": "Key Vault Access Policy",
+    "id": "create_key_vault_access_policy",
+    "module": "az_lz",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "create_key_vault_access_policy",
+        "datasource": "data?type=metadata&filter_name=command&filter_value=create_key_vault_access_policy",
+        "env_param_required": true,
+        "columns": [
+          "name",
+          "az_lz_secret_permissions_list",
+          "az_lz_key_permissions_list"
+        ],
+        "title": "Key Vault Access Policy",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "create_key_vault_access_policy",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create",
+            "command": {
+              "phase": "az_lz",
+              "command": "create_key_vault_access_policy",
+              "refresh_status": true
+            }
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Select",
+            "id": "name",
+            "label": "Key Vault Name",
+            "help": "",
+            "datasource": "custom/key_vaults?extra=true&module_name_arg=az_lz",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Key Vault is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_lz_principal",
+            "label": "Principal",
+            "help": "",
+            "datasource": "custom/users?extra=true&module_name_arg=az_lz",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Principal is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::MultiSelect",
+            "id": "az_lz_secret_permissions_list",
+            "label": "Secret Permission List",
+            "help": "",
+            "options": [
+              {
+                "type": "Theia::Option",
+                "label": "Backup",
+                "value": "Backup"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "Delete",
+                "value": "Delete"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Get",
+                "value": "Get"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "List",
+                "value": "List"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Purge",
+                "value": "Purge"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Recover",
+                "value": "Recover"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Restore",
+                "value": "Restore"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Set",
+                "value": "Set"
+              }
+            ],
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Secret Permission List is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::MultiSelect",
+            "id": "az_lz_key_permissions_list",
+            "label": "Key Permission List",
+            "help": "",
+            "options": [
+              {
+                "type": "Theia::Option",
+                "label": "Backup",
+                "value": "Backup"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "Create",
+                "value": "Create"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Decrypt",
+                "value": "Decrypt"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Delete",
+                "value": "Delete"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Encrypt",
+                "value": "Encrypt"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Get",
+                "value": "Get"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "Import",
+                "value": "Import"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "List",
+                "value": "List"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "Purge",
+                "value": "Purge"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "List",
+                "value": "List"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "Recover",
+                "value": "Recover"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "Sign",
+                "value": "Sign"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "UnwrapKey",
+                "value": "UnwrapKey"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "Update",
+                "value": "Update"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "Verify",
+                "value": "Verify"
+              }
+              ,
+              {
+                "type": "Theia::Option",
+                "label": "WrapKey",
+                "value": "WrapKey"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "Restore",
+                "value": "Restore"
+              }
+            ],
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Key Permission List is required"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

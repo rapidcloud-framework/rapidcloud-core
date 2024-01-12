@@ -1,0 +1,49 @@
+{
+  "type": "Theia::Action",
+  "label": "tpaexec provision",
+  "id": "edb_tpaexec_provision",
+  "module": "edb",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "edb_tpaexec_provision",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=edb",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "timestamp"
+      ],
+      "title": "tpaexec provision",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "edb_tpaexec_provision",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "tpaexec_provision",
+          "command": {
+            "phase": "edb",
+            "command": "tpaexec_provision",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

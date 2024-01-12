@@ -1,0 +1,96 @@
+{
+  "type": "Theia::Action",
+  "label": "Data transfer task",
+  "id": "datasync_create_task",
+  "module": "datasync",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "datasync_task_create",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=datasync,create_task",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "Datasync task",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "datasync_task_create",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },         
+        {
+          "label": "Create",
+          "command": {
+            "phase": "datasync",
+            "command": "create_task",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "RC Name",
+          "help": "Enter RC Name with no spaces",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ds_task_name",
+          "cli_id": "ds_task_name",
+          "label": "Datasync task name",
+          "help": "Enter task name with no spaces",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "dst_datasync_name",
+          "cli_id": "dst_datasync_name",
+          "label": "Datasync agent and location",
+          "help": "Select agent and assigned locations",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=datasync,create&field=name"
+
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "dst_exclude_value",
+          "cli_id": "dst_exclude_value",
+          "label": "Exclude Pattern",
+          "help": "Datasync exclude simple pattern. E.g. /folder1|/folder2 or * to exclude all",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "dst_include_value",
+          "cli_id": "dst_include_value",
+          "label": "Include Pattern",
+          "help": "Datasync include simple pattern. E.g. /folder1|/folder2",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "dst_schedule_expression",
+          "cli_id": "dst_schedule_expression",
+          "label": "Schedule expression",
+          "help": "Specifies the schedule you want your task to use for repeated executions.",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

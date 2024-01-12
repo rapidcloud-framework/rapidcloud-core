@@ -1,0 +1,54 @@
+{
+  "type": "Theia::Action",
+  "label": "Unmanaged EC2 Instances",
+  "id": "ec2_list",
+  "module": "ec2",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "ec2_list",
+      "datasource": "resources/ec2?p=dummy",
+      "env_param_required": true,
+      "columns": ["ec2_instance_id","ec2_instance_type","ec2_instance_name","ec2_launch_time","ec2_enable_trend"],
+      "title": "Unmanaged EC2 Instances",
+      "description": "This list only includes instances not managed by RapidCloud",
+      "submit": "Continue",
+      "hide_add": true
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "ec2_list",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Enable Trend Cloud One Workload Security",
+          "command": {
+            "phase": "ec2",
+            "command": "enable_trend",
+            "refresh_status": false                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "ec2_instance_name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ec2_instance_id",
+          "label": "Instance ID",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        }      
+      ]
+    }
+  ]
+}

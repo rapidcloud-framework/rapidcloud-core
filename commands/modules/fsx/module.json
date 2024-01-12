@@ -1,0 +1,45 @@
+{
+    "fsx": {
+        "create": {
+            "enabled": true,
+            "help": "Create File System for Windows File Server",
+            "template_section": "storage",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "Name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },
+                "ad_service_name": {
+                    "name": "ad_service_name", 
+                    "prompt": "Directory FQN", 
+                    "required": true,
+                    "default": "corp.example.com"
+                },
+                "ad_admin_password": {
+                    "name": "ad_admin_password", 
+                    "prompt": "Admin Password", 
+                    "required": true,
+                    "default": ""
+                },
+                "storage_capacity": {
+                    "name": "storage_capacity", 
+                    "prompt": "Storage capacity (GiB), minimum of 32 and maximum of 65536", 
+                    "required": true,
+                    "default": 32
+                },
+                "throughput_capacity": {
+                    "name": "throughput_capacity", 
+                    "prompt": "Throughput (MB/s) of the file system in power of 2 increments, minimum of 8 and maximum of 2048", 
+                    "required": true,
+                    "default": 8
+                }
+            }
+        }
+    }
+}

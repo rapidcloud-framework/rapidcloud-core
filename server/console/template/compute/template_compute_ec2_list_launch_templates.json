@@ -1,0 +1,61 @@
+{
+  "type": "Theia::Action",
+  "label": "EC2 Launch Templates",
+  "id": "ec2_list_launch_templates",
+  "module": "ec2",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "ec2_list_launch_templates",
+      "datasource": "resources/ec2_launch_templates?p=dummy",
+      "env_param_required": true,
+      "columns": [
+        "ec2_launch_template_name",
+        "ec2_launch_template_id",
+        "default_version",
+        "latest_version",
+        "create_time"
+      ],
+      "title": "EC2 Launch Templates",
+      "description": "This list only includes existing Launch Templates",
+      "submit": "Continue",
+      "hide_add": true
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "ec2_list_launch_templates",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Submit",
+          "command": {
+            "phase": "ec2",
+            "command": "enable_trend",
+            "target": "launch_template"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "ec2_launch_template_name",
+          "label": "EC2 Launch Template Name",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ec2_launch_template_id",
+          "label": "EC2 Launch Template ID",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "type": "Theia::Action",
+  "label": "Datalake",
+  "id": "datalake",
+  "module": "datalake",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "datalake",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=datalake",
+      "env_param_required": true,
+      "title": "Datalake",
+      "description": "If you see `Datalake Name` below, then you already have a datalake. There can only be one Datalake per environment. Your datalake consists of `S3 buckets`, `roles`, `policies`, `S3 event notifications` and `lambda functions` for safely storing data and managing various data pipelines. Datalake will be automatically created when you configure any data pipeline or analytics jobs.",
+      "allowMarkdown": true,
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "datalake",
+            "command": "create",
+            "refresh_status": true
+          },
+          "editable_hide": true
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Name",
+          "help": "",
+          "readonly": true
+        }
+      ]
+    }
+  ]
+}

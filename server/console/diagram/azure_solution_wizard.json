@@ -1,0 +1,140 @@
+[
+    {
+        "id": 100,
+        "text": "Quickstarts",
+        "ids": [72],
+        "children": [
+            {
+                "id": 1010,
+                "text": "IaaS App Deployment (VMs)",
+                "ids": [72,89,75,79,107,81,86,90]
+            },
+            {
+                "id": 1010,
+                "text": "PaaS App Deployment",
+                "ids": [72,89,80,78,107,90,81,86]
+            },
+            {
+                "id": 1010,
+                "text": "Serverless Architecture",
+                "ids": [72,111,114,117,115,116,112,113]
+            },
+            {
+                "id": 1010,
+                "text": "Container Deployment",
+                "ids": [72,89,106,86,107,108,90]
+            },
+            {
+                "id": 1010,
+                "text": "Static Website",
+                "ids": [72,109,110]
+            }
+
+        ]
+    },
+    {
+        "id": 100,
+        "text": "Databases & Storage",
+        "ids": [72],
+        "children": [
+            {
+                "id": 1010,
+                "text": "SQL Server",
+                "ids": [72,107]
+            },
+            {
+                "id": 1010,
+                "text": "Cosmos DB",
+                "ids": [72,105]
+            },
+            {
+                "id": 1010,
+                "text": "Storage Account",
+                "ids": [72,79]
+            },
+            {
+                "id": 1010,
+                "text": "Redis Cache",
+                "ids": [72,104]
+            }
+        ]
+    },
+    {
+        "id": 100,
+        "text": "Data & Analytics",
+        "ids": [72],
+        "children": [
+            {
+                "id": 1010,
+                "text": "Real-time data processing",
+                "ids": [72,119,101,70,120,77,73,118]
+            },
+            {
+                "id": 1010,
+                "text": "Data Lake",
+                "ids": [72,119,101,70]
+            },
+            {
+                "id": 1010,
+                "text": "Data Ingestion",
+                "ids": [72,121,70]
+            },
+            {
+                "id": 1010,
+                "text": "MLOps Solution",
+                "ids": [72,125,106,86,108,79,81,124,125,90]
+            }
+        ]
+    },
+    {
+        "id": 100,
+        "text": "Serverless",
+        "ids": [72],
+        "children": [
+            {
+                "id": 1010,
+                "text": "Functions",
+                "ids": [72,91]
+            },
+            {
+                "id": 1010,
+                "text": "Azure Logic Apps (Workflows)",
+                "ids": [72,113]
+            }
+        ]
+    },
+    {
+        "id": 100,
+        "text": "Storage",
+        "ids": [72],
+        "children": [
+            {
+                "id": 1010,
+                "text": "Azure Storage",
+                "ids": [72,79]
+            },
+            {
+                "id": 1010,
+                "text": "Azure Files",
+                "ids": [72,122]
+            }
+        ]
+    },
+    {
+        "id": 100,
+        "text": "Remote Access",
+        "ids": [72],
+        "children": [
+            {
+                "id": 1010,
+                "text": "Azure Bastion",
+                "ids": [72,124]
+            },
+            {
+                "id": 1010,
+                "text": "Azure Virtual Desktop",
+                "ids": [72,123]
+            }
+        ]
+    }
+]

@@ -1,0 +1,5 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source                        = "../modules/aws_organizations/{{ resource_type }}"
+  aws_service_access_principals = {{ params['aws_service_access_principals'] | replace("'","\"") }}
+  enabled_policy_types          = {{ params['enabled_policy_types'] | replace("'","\"") }}
+}

@@ -1,0 +1,5365 @@
+{
+  "help": {
+    "": {
+      "text": "Show RapidCloud CLI Help",
+      "cmd": "kc help <module>"
+    }
+  },
+  "console": {
+    "": {
+      "text": "Start RapidCloud Console Application",
+      "cmd": "kc console"
+    }
+  },
+  "activate": {
+    "": {
+      "text": "Activate RapidCloud",
+      "cmd": "kc activate --email 'Email Address' --aws_profile 'AWS Profile Name' --phone 'Phone Number'"
+    }
+  },
+  "account": {
+    "": {
+      "text": "Show my RapidCloud activation and subscription information",
+      "cmd": "kc account"
+    }
+  },
+  "metadata": {
+    "show": {
+      "text": "Show environment metadata",
+      "cmd": "kc metadata show --type 'DynamoDB Table Name' --cols 'Comma separated list of column names or ALL' --filter_name 'Column Name to filter on' --filter_value 'Column value to filter'"
+    },
+    "remove": {
+      "text": "Remove environment metadata",
+      "cmd": "kc metadata remove"
+    },
+    "export": {
+      "text": "Export (take a snapshot of) environment metadata",
+      "cmd": "kc metadata export"
+    },
+    "import": {
+      "text": "Import into another environment (e.g. dev to qa)",
+      "cmd": "kc metadata import --target_env 'Name of target environment'"
+    }
+  },
+  "status": {
+    "": {
+      "text": "Show deployment status for current environment",
+      "cmd": "kc status"
+    }
+  },
+  "init": {
+    "create-env": {
+      "text": "Initialize new environment",
+      "cmd": "kc init create-env"
+    },
+    "set-property": {
+      "text": "Change default property value",
+      "cmd": "kc init set-property --name 'Property Name' --value 'Property Value'"
+    },
+    "reset-properties": {
+      "text": "Reset environment properties",
+      "cmd": "kc init reset-properties"
+    },
+    "show-env": {
+      "text": "Show current environment information",
+      "cmd": "kc init show-env"
+    },
+    "set-env": {
+      "text": "Change current environment",
+      "cmd": "kc init set-env --env 'Environment Name'"
+    },
+    "list-env": {
+      "text": "List all environments",
+      "cmd": "kc init list-env"
+    },
+    "add-ip-addr": {
+      "text": "Add authorized IP address for SSH access to EMR",
+      "cmd": "kc init add-ip-addr --ip-addr 'IP Address'"
+    }
+  },
+  "tf": {
+    "init": {
+      "text": "Generate Terraform modules",
+      "cmd": "kc tf init"
+    },
+    "plan": {
+      "text": "Generate deployment plan",
+      "cmd": "kc tf plan"
+    },
+    "apply": {
+      "text": "Deploy infrastructure",
+      "cmd": "kc tf apply"
+    },
+    "destroy": {
+      "text": "Destroy infrastructure",
+      "cmd": "kc tf destroy"
+    }
+  },
+  "ingest": {
+    "register-source-database": {
+      "text": "Register source database (RDBMS only)",
+      "cmd": "kc ingest register-source-database"
+    },
+    "add-dataset": {
+      "text": "Add all tables from source database to the ingestion pipeline",
+      "cmd": "kc ingest add-dataset --source-database 'Source Database Name' --source-schema 'Source Schema Name' --include-tables 'all or comma separated list of tables'"
+    },
+    "add-dataset-partitions": {
+      "text": "Add partitions to dataset",
+      "cmd": "kc ingest add-dataset-partitions --dataset-name 'Dataset Name' --partitions 'Comma separated list of columns to partition by'"
+    },
+    "schedule": {
+      "text": "Schedule daily ingestion via DMS",
+      "cmd": "kc ingest schedule --phase [full|inserts|updates] --schedule 'cron expression' --enabled [true|false]"
+    },
+    "register-unstructured": {
+      "text": "Register unstructured data source (documents, media, etc)",
+      "cmd": "kc ingest register-unstructured"
+    },
+    "register-semi-structured": {
+      "text": "Register semi-structured data source (csv, json, xml)",
+      "cmd": "kc ingest register-semi-structured"
+    },
+    "enable-semi-structured": {
+      "text": "Enable semi-structured files pipeline",
+      "cmd": "kc ingest enable-semi-structured"
+    },
+    "add-event": {
+      "text": "Add event streaming for specific dataset",
+      "cmd": "kc ingest add-event --dataset-name 'Dataset Name'"
+    },
+    "register-stream": {
+      "text": "Add real-time stream processing",
+      "cmd": "kc ingest register-stream --name 'Stream Name' --type [kinesis|kafka] --consumer [lambda_function|glue_streaming]  --memory_size 'Memory Size in MB for Lambda Function' --event_source 'Event Source ARN'"
+    },
+    "add-format": {
+      "text": "Add formatting",
+      "cmd": "kc ingest add-format --pipeline-phase <value> --dataset-name <value> --attr-name <value> --type <value> --from-format <value> --to-format <value>"
+    },
+    "start": {
+      "text": "Start Data Ingestion Pipeline (deploy auto-generated code, update DMS tasks, Glue catalogs, etc)",
+      "cmd": "kc ingest start"
+    }
+  },
+  "transform": {
+    "create": {
+      "text": "Add Transformation Glue Job for existing Datasets",
+      "cmd": "kc transform create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "base_datasets": {
+          "name": "Base Datasets",
+          "prompt": "Base datasets for this transformation (comma separated)",
+          "required": false,
+          "default": ""
+        },
+        "job_type": {
+          "name": "Glue Job Type",
+          "prompt": "Glue Job Type (pythonshell|glueetl)",
+          "required": true,
+          "default": "pythonshell"
+        },
+        "refresh_spice": {
+          "name": "Refresh QuickSight SPICE",
+          "prompt": "Refresh QuickSight SPICE with Results of this Transform (yes|no)",
+          "required": true,
+          "default": "no"
+        }
+      }
+    }
+  },
+  "analytics": {
+    "add-service": {
+      "text": "Add real-time analytics (`emr` or `glue` spark streaming)",
+      "cmd": "kc analytics add-service --name <value>  --runtime [emr|glue]"
+    }
+  },
+  "publishing": {
+    "pre-publish": {
+      "text": "Generate RDS/Aurora and/or Redshift DDL",
+      "cmd": "kc publishing pre-publish"
+    }
+  },
+  "api": {
+    "create": {
+      "text": "",
+      "cmd": "kc api create",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "disable_execute_api_endpoint": {
+          "name": "disable_execute_api_endpoint",
+          "prompt": "Disable the default API Gateway endpoint? (Y / N)",
+          "required": true,
+          "default": "N"
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "prompt": "Endpoint Type (EDGE|REGIONAL|PRIVATE)",
+          "required": true,
+          "default": "EDGE"
+        }
+      }
+    },
+    "add_lambda_integration": {
+      "text": "",
+      "cmd": "kc api add_lambda_integration",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Name of resource",
+          "required": true,
+          "default": ""
+        },
+        "parent_resource_name": {
+          "name": "parent_resource_name",
+          "prompt": "Parent resource name",
+          "required": true,
+          "default": "root"
+        },
+        "http_method": {
+          "name": "http_method",
+          "prompt": "HTTP method for integration",
+          "required": true,
+          "default": "GET"
+        },
+        "lambda_name": {
+          "name": "lambda_name",
+          "prompt": "URI of the lambda to use for this integration",
+          "required": true,
+          "default": ""
+        },
+        "rest_api_name": {
+          "name": "rest_api_name",
+          "prompt": "REST API to attach this integration",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "remove_lambda_integration": {
+      "text": "",
+      "cmd": "kc api remove_lambda_integration",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Name of resource",
+          "required": true,
+          "default": ""
+        },
+        "parent_resource_name": {
+          "name": "parent_resource_name",
+          "prompt": "Parent resource name",
+          "required": true,
+          "default": "root"
+        },
+        "http_method": {
+          "name": "http_method",
+          "prompt": "HTTP method of the integration to remove",
+          "required": true,
+          "default": "GET"
+        },
+        "rest_api_name": {
+          "name": "rest_api_name",
+          "prompt": "REST API of the integration to remove",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "secure": {
+    "add-rule": {
+      "text": "Add PII rules",
+      "cmd": "kc secure add-rule --phase [ingestion|analysis|publishing] --dataset-name <value> --attr-name <value> --action [deidentify|omit|mask|encrypt] --type [ssn|fullname|firstname|lastname|dob|id|float|int|string]"
+    }
+  },
+  "lb": {
+    "create": {
+      "text": "Create Application Load Balancer",
+      "cmd": "kc lb create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "is_internal": {
+          "name": "is_internal",
+          "prompt": "Internal LB (yes | no)",
+          "required": true,
+          "default": "yes"
+        },
+        "type": {
+          "name": "type",
+          "prompt": "Load Balancer (application | network)",
+          "required": true,
+          "default": "application"
+        },
+        "subnets": {
+          "name": "subnets",
+          "prompt": "A comma-separated list of subnet IDs to attach to the LB",
+          "required": true,
+          "default": ""
+        },
+        "security_group_ids": {
+          "name": "security_group_ids",
+          "prompt": "Security group IDs to attach to the LB",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "ecr": {
+    "create": {
+      "text": "Create Elastic Container Registry",
+      "cmd": "kc ecr create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "image_tag_mutability": {
+          "name": "image_tag_mutability",
+          "prompt": "Image Mutability (MUTABLE | IMMUTABLE)",
+          "required": true,
+          "default": "MUTABLE"
+        },
+        "scan_on_push": {
+          "name": "scan_on_push",
+          "prompt": "Scan images after being pushed to repository (yes|no)",
+          "required": true,
+          "default": "no"
+        },
+        "encryption_type": {
+          "name": "encryption_type",
+          "prompt": "Encryption Type (AES256 | KMS)",
+          "required": true,
+          "default": "AES256"
+        },
+        "kms_key": {
+          "name": "kms_key",
+          "prompt": "KMS Key ARN. Defaults to AWS managed key",
+          "required": false,
+          "default": ""
+        }
+      }
+    }
+  },
+  "datalake": {
+    "create": {
+      "text": "Create datalake foundation",
+      "cmd": "kc datalake create"
+    }
+  },
+  "fsx": {
+    "create": {
+      "text": "Create File System for Windows File Server",
+      "cmd": "kc fsx create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "ad_service_name": {
+          "name": "ad_service_name",
+          "prompt": "Directory FQN",
+          "required": true,
+          "default": "corp.example.com"
+        },
+        "ad_admin_password": {
+          "name": "ad_admin_password",
+          "prompt": "Admin Password",
+          "required": true,
+          "default": ""
+        },
+        "storage_capacity": {
+          "name": "storage_capacity",
+          "prompt": "Storage capacity (GiB), minimum of 32 and maximum of 65536",
+          "required": true,
+          "default": 32
+        },
+        "throughput_capacity": {
+          "name": "throughput_capacity",
+          "prompt": "Throughput (MB/s) of the file system in power of 2 increments, minimum of 8 and maximum of 2048",
+          "required": true,
+          "default": 8
+        }
+      }
+    }
+  },
+  "ebs": {},
+  "ec2_plus": {
+    "create": {
+      "text": "Quickstart for EC2 backend and supporting services",
+      "cmd": "kc ec2_plus create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "asg": {
+    "create": {
+      "text": "Create Auto-Scaling Group",
+      "cmd": "kc asg create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "launch_template_name": {
+          "name": "launch_template_name",
+          "prompt": "Launch Template Name",
+          "required": true,
+          "default": ""
+        },
+        "instance_type": {
+          "name": "instance_type",
+          "prompt": "EC2 Instance Type",
+          "required": true,
+          "default": "t2.micro"
+        },
+        "ami_id": {
+          "name": "ami_id",
+          "prompt": "AMI ID",
+          "required": true,
+          "default": "ami-0022f774911c1d690"
+        },
+        "launch_template_version": {
+          "name": "launch_template_version",
+          "prompt": "Launch Template Version",
+          "required": true,
+          "default": "$Latest"
+        },
+        "placement_group_name": {
+          "name": "placement_group_name",
+          "prompt": "Placement Group Name",
+          "required": true,
+          "default": ""
+        },
+        "placement_group_strategy": {
+          "name": "placement_group_strategy",
+          "prompt": "Placement Group Strategy (cluster | partition | spread)",
+          "required": true,
+          "default": "cluster"
+        },
+        "vpc_zone_identifier": {
+          "name": "vpc_zone_identifier",
+          "prompt": "A comma-separated list of subnet IDs for the group",
+          "required": true,
+          "default": ""
+        },
+        "desired_capacity": {
+          "name": "desired_capacity",
+          "prompt": "The number of Amazon EC2 instances that should be running in the group",
+          "required": true,
+          "default": 1
+        },
+        "max_size": {
+          "name": "max_size",
+          "prompt": "The maximum size of the Auto Scaling Group",
+          "required": true,
+          "default": 2
+        },
+        "min_size": {
+          "name": "min_size",
+          "prompt": "The minimum size of the Auto Scaling Group",
+          "required": true,
+          "default": 1
+        }
+      }
+    }
+  },
+  "rds": {
+    "create": {
+      "text": "Create RDS or Aurora Database",
+      "cmd": "kc rds create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "type": {
+          "name": "type",
+          "prompt": "Target Database Type (rds|aurora)",
+          "required": true,
+          "default": "rds"
+        },
+        "engine": {
+          "name": "engine",
+          "prompt": "Target Database Engine (mysql|postgres)",
+          "required": true,
+          "default": "postgres"
+        },
+        "multi_az": {
+          "name": "multi_az",
+          "prompt": "Create Target Database in two Availability Zones",
+          "required": true,
+          "default": "false"
+        },
+        "database_name": {
+          "name": "database_name",
+          "prompt": "Target Database Schema Name",
+          "required": true,
+          "default": "main"
+        }
+      }
+    },
+    "add_table": {
+      "text": "Add RDS or Aurora Table to an existing database",
+      "cmd": "kc rds add_table",
+      "args": {
+        "name": {
+          "name": "Database Table Name",
+          "prompt": "Enter Name with no spaces or special characters",
+          "required": true,
+          "default": ""
+        },
+        "db_name": {
+          "name": "Database Name",
+          "prompt": "Enter Existing Database Name",
+          "required": true,
+          "default": ""
+        },
+        "primary_key": {
+          "name": "Primary Key",
+          "prompt": "Enter Table Primary Key",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "efs": {
+    "create": {
+      "text": "Create Elastic File Service",
+      "cmd": "kc efs create",
+      "args": {
+        "fs_name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "encrypted": {
+          "name": "encrypted",
+          "prompt": "Encrypted (true|false)",
+          "required": true,
+          "default": "true"
+        },
+        "enable_backups": {
+          "name": "enable_backups",
+          "prompt": "Enable Backups ? (true|fale)",
+          "required": false,
+          "default": "true"
+        },
+        "performance_mode": {
+          "name": "performance_mode",
+          "prompt": "The file system performance mode. Valid values: generalPurpose or maxIO",
+          "required": false,
+          "default": "generalPurpose"
+        },
+        "throughput_mode": {
+          "name": "throughput_mode",
+          "prompt": "Throughput mode for the file system. Valid values: bursting, provisioned, or elastic.",
+          "required": false,
+          "default": "bursting"
+        },
+        "provisioned_throughput_in_mibps": {
+          "name": "provisioned_throughput_in_mibps",
+          "prompt": "The throughput, measured in MiB/s, that you want to provision for the file system. Only applicable with throughput_mode set to provisioned.",
+          "required": false,
+          "default": "0"
+        },
+        "transition_to_ia": {
+          "name": "transition_to_ia",
+          "prompt": "Set policy to files to the IA storage class. Valid values: AFTER_1_DAY, AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS, AFTER_60_DAYS, or AFTER_90_DAYS",
+          "required": false,
+          "default": ""
+        },
+        "transition_to_primary": {
+          "name": "transition_to_primary",
+          "prompt": "Set policy to transition a file from IA storage to primary storage. Valid values: AFTER_1_ACCESS.",
+          "required": false,
+          "default": ""
+        },
+        "vpc_id": {
+          "name": "vpc_id",
+          "prompt": "The VPC you'd like to create this Mount Target in.",
+          "required": true,
+          "default": ""
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Enter a comma seperated list of RapidCloud Subnet names ( 1 per Availability Zone)",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "ec2": {
+    "create": {
+      "text": "Create EC2 Instance",
+      "cmd": "kc ec2 create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "instance_type": {
+          "name": "instance_type",
+          "prompt": "EC2 Instance Type",
+          "required": true,
+          "default": "t2.micro"
+        },
+        "ami_id": {
+          "name": "ami_id",
+          "prompt": "AMI ID",
+          "required": true,
+          "default": ""
+        },
+        "key_name": {
+          "name": "key_name",
+          "prompt": "Key pair name. Must exist in AWS before creation.",
+          "required": false,
+          "default": ""
+        },
+        "vpc_id": {
+          "name": "vpc_id",
+          "prompt": "The ID of the VPC in which the instance is running.",
+          "required": true,
+          "default": "dynamic-config::vpc"
+        },
+        "availability_zone": {
+          "name": "availability_zone",
+          "prompt": "Availability Zone. Must match your Subnet's az if provided.",
+          "required": true,
+          "default": "us-east-1a"
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Subnet Id to place this ec2. Must be in the same VPC as your security group.",
+          "required": false,
+          "default": ""
+        },
+        "vpc_security_group_ids": {
+          "name": "vpc_security_group_ids",
+          "prompt": "Security groups ids to place this instance on. Must be in the same VPC as your security group.",
+          "required": false,
+          "default": ""
+        },
+        "role_name": {
+          "name": "role_name",
+          "prompt": "Existing role to create an instance profile.",
+          "required": false,
+          "default": ""
+        },
+        "volume_size": {
+          "name": "volume_size",
+          "prompt": "Volume Size",
+          "required": false,
+          "default": 0
+        },
+        "user_data": {
+          "name": "user_data",
+          "prompt": "User Data (run this automatically when starting the instance)",
+          "required": false,
+          "default": ""
+        },
+        "enable_trend": {
+          "name": "enable_trend",
+          "prompt": "Enable Trend Micro Cloud One Workload Security [yes|no]",
+          "required": false,
+          "default": "no"
+        },
+        "trend_workload_group": {
+          "name": "trend_workload_group",
+          "prompt": "For Trend Micro Workload Security Customers, enter Workload Group Name",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "list_unmanaged": {
+      "text": "",
+      "cmd": "kc ec2 list_unmanaged"
+    },
+    "enable_trend": {
+      "text": "Enable Trend Micro Workload Security for EC2 Instance",
+      "cmd": "kc ec2 enable_trend",
+      "args": {
+        "target": {
+          "name": "target",
+          "prompt": "EC2 Instance or Launch Template [ec2|launch_template]",
+          "required": true,
+          "default": "ec2"
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "prompt": "Existing EC2 Instance ID",
+          "required": false,
+          "default": ""
+        },
+        "launch_template_id": {
+          "name": "launch_template_id",
+          "prompt": "Existing Launch Template ID",
+          "required": false,
+          "default": ""
+        },
+        "enable_trend": {
+          "name": "enable_trend",
+          "prompt": "Enable [yes|no]",
+          "required": true,
+          "default": "yes"
+        },
+        "trend_workload_group": {
+          "name": "trend_workload_group",
+          "prompt": "Trend Micro Workload Group Name (leave blank for default Computers Group",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "list_launch_templates": {
+      "text": "",
+      "cmd": "kc ec2 list_launch_templates"
+    }
+  },
+  "undo-command": {
+    "": {
+      "text": "Undo command (remove metadata created by command)",
+      "cmd": "kc undo-command --id <value>"
+    }
+  },
+  "module": {
+    "create": {
+      "text": "Create code skeleton for a new RapidCloud module",
+      "cmd": "kc module create",
+      "args": {
+        "name": {
+          "name": "Module Name",
+          "prompt": "Enter Module Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "action": {
+          "name": "action",
+          "prompt": "Enter Command Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "cloud": {
+          "name": "cloud",
+          "prompt": "Cloud? (aws|azure|gcp)",
+          "required": true,
+          "default": "aws"
+        },
+        "repo_dir": {
+          "name": "repo_dir",
+          "prompt": "Enter Module repo directory, or `.` for default location",
+          "required": true,
+          "default": "."
+        }
+      }
+    },
+    "add_command": {
+      "text": "Add command to the existing module",
+      "cmd": "kc module add_command",
+      "args": {
+        "module_name": {
+          "name": "Module Name",
+          "prompt": "Enter existing Module Name",
+          "required": true,
+          "default": ""
+        },
+        "command_name": {
+          "name": "Command Name",
+          "prompt": "Enter NEW Command Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "cloud": {
+          "name": "cloud",
+          "prompt": "Cloud? (aws|azure|gcp)",
+          "required": true,
+          "default": "aws"
+        }
+      }
+    },
+    "show": {
+      "text": "Show all modules",
+      "cmd": "kc module show"
+    },
+    "activate": {
+      "text": "Activate module",
+      "cmd": "kc module activate",
+      "args": {
+        "name": {
+          "name": "Module Name",
+          "prompt": "Enter Module Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "commands": {
+          "name": "Module Commands",
+          "prompt": "ALL or comma separated list of module commands to activate",
+          "required": true,
+          "default": "ALL"
+        }
+      }
+    },
+    "deactivate": {
+      "text": "Deactivate module",
+      "cmd": "kc module deactivate",
+      "args": {
+        "name": {
+          "name": "Module Name",
+          "prompt": "Enter Module Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "commands": {
+          "name": "Module Commands",
+          "prompt": "ALL or comma separated list of module commands to activate",
+          "required": true,
+          "default": "ALL"
+        }
+      }
+    },
+    "export": {
+      "text": "",
+      "cmd": "kc module export",
+      "args": {
+        "name": {
+          "name": "Module Name",
+          "prompt": "Enter Module Name with no spaces",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "install": {
+      "text": "",
+      "cmd": "kc module install",
+      "args": {
+        "name": {
+          "name": "Module Name",
+          "prompt": "Enter Module Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "zipfile_path": {
+          "name": "zipfile_path",
+          "prompt": "Module Zip File Path",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "redshift": {
+    "create": {
+      "text": "Create Redshift Cluster",
+      "cmd": "kc redshift create",
+      "args": {
+        "name": {
+          "name": "Redshift Cluster Name",
+          "prompt": "Enter Name with no spaces, hyphens or special characters",
+          "required": true,
+          "default": "main"
+        },
+        "vpc_id": {
+          "name": "vpc_id",
+          "prompt": "Enter the name of the VPC the Redshift cluster is deployed to",
+          "required": true
+        },
+        "node_count": {
+          "name": "node_count",
+          "prompt": "Redshift node count",
+          "required": false,
+          "default": "1"
+        },
+        "node_type": {
+          "name": "node_type",
+          "prompt": "Redshift node type",
+          "required": false,
+          "default": "dc2.large"
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Provide one or more RapidCloud subnet name to deploy the Redshift cluster in",
+          "required": true,
+          "default": ""
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        },
+        "paramaters": {
+          "name": "paramaters",
+          "prompt": "Provide a json string with paramters you wish to apply to Redshift Serverless, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_serverless": {
+      "text": "Create a Redshift Serverless Cluster",
+      "cmd": "kc redshift create_serverless",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces, hyphens or special characters, this name will be used for both namespace and workgroup",
+          "required": true,
+          "default": ""
+        },
+        "vpc_id": {
+          "name": "vpc_id",
+          "prompt": "Enter the name of a Rapidcloud VPC the Redshift serverless is deployed to",
+          "required": true
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Provide 3 or more RapidCloud subnet name the Redshift serverless is deployed to (3 Subnets in different AZ's are required",
+          "required": true,
+          "default": ""
+        },
+        "base_capacity": {
+          "name": "Base Capacity",
+          "prompt": "The base workgroup in Redshift Processing Units (default 32)",
+          "required": true,
+          "default": "32"
+        },
+        "set_usage_limit": {
+          "name": "Set Usage Limit",
+          "prompt": "Toggle on to apply a max usage limit to Redshift serverless",
+          "required": false,
+          "default": "false"
+        },
+        "max_capacity": {
+          "name": "Max Capacity",
+          "prompt": "The Max (upper usage limit) capacity of the workgroup in Redshift Processing Units (Ignored if Set usage limit is false)",
+          "required": false,
+          "default": "512"
+        },
+        "usage_period": {
+          "name": "Usage Period",
+          "prompt": "The period to apply the Usage Limit to [daily/weekly/*monthly]",
+          "required": false,
+          "default": "monthly"
+        },
+        "usage_type": {
+          "name": "Usage Type",
+          "prompt": "The type of Amazon Redshift Serverless usage to create a usage limit for [serverless-compute/cross-region-datasharing]",
+          "required": false,
+          "default": "serverless-compute"
+        },
+        "breach_action": {
+          "name": "Breach Action",
+          "prompt": "The action that Redshift Serverless takes when the limit is reached [emit-metric/deactivate/*log]",
+          "required": false,
+          "default": "log"
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "add_table": {
+      "text": "Add table to an existing Redshift cluster",
+      "cmd": "kc redshift add_table",
+      "args": {
+        "name": {
+          "name": "Redshift Table Name",
+          "prompt": "Enter Name with no spaces or special characters",
+          "required": true,
+          "default": ""
+        },
+        "db_name": {
+          "name": "Redshift Cluster Name",
+          "prompt": "Enter Existing Redshift Cluster Name",
+          "required": true,
+          "default": ""
+        },
+        "primary_key": {
+          "name": "Primary Key",
+          "prompt": "Enter Table Primary Key",
+          "required": true,
+          "default": ""
+        },
+        "sort_key": {
+          "name": "Sort Key",
+          "prompt": "Enter Comma separated sort keys",
+          "required": false,
+          "default": ""
+        },
+        "dist_key": {
+          "name": "Distribution Key",
+          "prompt": "Enter Distribution Key",
+          "required": false,
+          "default": ""
+        },
+        "dist_style": {
+          "name": "Data Distribution Style",
+          "prompt": "Enter data distribution style { AUTO | EVEN | KEY | ALL }",
+          "required": false,
+          "default": "AUTO"
+        }
+      }
+    },
+    "generate-schema": {
+      "text": "",
+      "cmd": "kc redshift generate-schema"
+    },
+    "load_sql": {
+      "text": "",
+      "cmd": "kc redshift load_sql"
+    }
+  },
+  "lambda": {
+    "create": {
+      "text": "Create Lambda Function",
+      "cmd": "kc lambda create",
+      "args": {
+        "name": {
+          "name": "Lambda Function Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "memory_size": {
+          "name": "Memory Size",
+          "prompt": "Enter Memory Size in MB",
+          "required": true,
+          "default": "128"
+        },
+        "timeout": {
+          "name": "Timeout",
+          "prompt": "Enter Timeout in seconds",
+          "required": true,
+          "default": "60"
+        },
+        "schedule": {
+          "name": "Schedule",
+          "prompt": "Enter a cron expression",
+          "required": false,
+          "default": ""
+        },
+        "env_vars": {
+          "name": "Environment Variables",
+          "prompt": "Enter environment variables as Json string or skip it here and modify in the console",
+          "required": false,
+          "default": ""
+        },
+        "include_layers": {
+          "name": "RapidCloud supported Lambda Layers",
+          "prompt": "Comma separated list of RapidCloud supported Lambda Layers [kc_common,awswrangler,psycopg2]",
+          "required": false,
+          "default": "kc_common"
+        },
+        "enable_trend": {
+          "name": "enable_trend",
+          "prompt": "Enable Trend Micro Cloud One Application Security [yes|no]",
+          "required": false,
+          "default": "no",
+          "type": "boolean"
+        },
+        "trend_app_security_group": {
+          "name": "trend_app_security_group",
+          "prompt": "For Trend Micro Application Security Customers, enter Group Name",
+          "required": false,
+          "default": ""
+        },
+        "image_uri": {
+          "name": "image_uri",
+          "prompt": "ECR Image URI",
+          "required": false,
+          "default": ""
+        }
+      }
+    }
+  },
+  "semi-structured-pipeline": {
+    "create": {
+      "text": "Quickstart for Semi-Structured Files to Redshift Pipeline, with transformation",
+      "cmd": "kc semi-structured-pipeline create",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Data Pipeline Name",
+          "required": true,
+          "default": ""
+        },
+        "notes": {
+          "name": "notes",
+          "prompt": "Notes",
+          "required": false,
+          "default": ""
+        }
+      }
+    }
+  },
+  "publish": {},
+  "rdbms-pipeline": {},
+  "MODULE_NAME_PLACEHOLDER": {},
+  "automation": {},
+  "igor1": {},
+  "trendmicro": {
+    "setup": {
+      "text": "",
+      "cmd": "kc trendmicro setup",
+      "args": {
+        "api_id": {
+          "name": "api_id",
+          "prompt": "Trend Micro Cloud One API ID",
+          "required": true,
+          "default": ""
+        },
+        "api_key": {
+          "name": "api_key",
+          "type": "secret",
+          "ignore_env_prefix": true,
+          "prompt": "Trend Micro Cloud One API Key (saved in Secretes Manager)",
+          "required": true,
+          "default": ""
+        },
+        "use_for_all_environments": {
+          "name": "use_for_all_environments",
+          "prompt": "Use this API Key/Secret for all my RapidCloud Environments [yes|no]",
+          "required": true,
+          "default": "yes"
+        },
+        "conformity_region": {
+          "name": "conformity_region",
+          "prompt": "Trendmicro Region",
+          "required": true,
+          "default": "us-1"
+        },
+        "enable_filestorage_security": {
+          "name": "enable_filestorage_security",
+          "prompt": "Enable File Storage Security [yes|no]",
+          "required": true,
+          "default": "yes"
+        },
+        "enable_workload_security": {
+          "name": "enable_workload_security",
+          "prompt": "Enable Workload Security for EC2 [yes|no]",
+          "required": true,
+          "default": "yes"
+        },
+        "enable_application_security": {
+          "name": "enable_application_security",
+          "prompt": "Enable Application Security for Lambda [yes|no]",
+          "required": true,
+          "default": "yes"
+        }
+      }
+    },
+    "filestorage_create_stack": {
+      "text": "",
+      "cmd": "kc trendmicro filestorage_create_stack",
+      "args": {
+        "stack_type": {
+          "name": "stack_type",
+          "prompt": "Trend Micro Cloud One File Storage Security Stack Type [all-in-one|scanner|storage]",
+          "required": true,
+          "default": "storage"
+        },
+        "bucket": {
+          "name": "bucket",
+          "prompt": "Bucket Name (leave blank for Scanner Stack)",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "filestorage_list_stacks": {
+      "text": "",
+      "cmd": "kc trendmicro filestorage_list_stacks"
+    },
+    "filestorage_delete_stack": {
+      "text": "",
+      "cmd": "kc trendmicro filestorage_delete_stack",
+      "args": {
+        "fqn": {
+          "name": "fqn",
+          "prompt": "RapidCloud Stack FQN (fully-qualified-name)",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "application_create_group": {
+      "text": "",
+      "cmd": "kc trendmicro application_create_group",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Group Name will be prefixed with Environment Name (e.g. if you enter `GROUP1`, it will be saved as `{ENV}_GROUP1`",
+          "required": true,
+          "default": ""
+        },
+        "credential_stuffing": {
+          "name": "credential_stuffing",
+          "prompt": "Credential Stuffing Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "file_access": {
+          "name": "file_access",
+          "prompt": "Illegal File Access Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "ip_protection": {
+          "name": "ip_protection",
+          "prompt": "IP Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "malicious_file_upload": {
+          "name": "malicious_file_upload",
+          "prompt": "Malicious File Upload Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "malicious_payload": {
+          "name": "malicious_payload",
+          "prompt": "Malicious Payload Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "rce": {
+          "name": "rce",
+          "prompt": "Remote Command Execution Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "redirect": {
+          "name": "redirect",
+          "prompt": "Redirect Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "sqli": {
+          "name": "sqli",
+          "prompt": "SQL Injection Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        }
+      }
+    },
+    "workload_create_group": {
+      "text": "",
+      "cmd": "kc trendmicro workload_create_group",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Workload Group Name will be prefixed with Environment Name (e.g. if you enter `GROUP1`, it will be saved as `{ENV}_GROUP1`",
+          "required": true,
+          "default": ""
+        },
+        "description": {
+          "name": "name",
+          "prompt": "Workload Group Description",
+          "required": false,
+          "default": ""
+        },
+        "policy": {
+          "name": "policy",
+          "prompt": "Workload Security Policy (RapidCloud currently only supports Linux EC2 Instances)",
+          "required": true,
+          "default": "2"
+        }
+      }
+    },
+    "workload_generate_deployment_script": {
+      "text": "",
+      "cmd": "kc trendmicro workload_generate_deployment_script",
+      "args": {
+        "platform": {
+          "name": "platform",
+          "prompt": "Workload Agent Deployment Script Platform [linux|windows]",
+          "required": true,
+          "default": "linux"
+        },
+        "workload_policy": {
+          "name": "workload_policy",
+          "prompt": "Workload Agent Security Policy ID [Enter 2 for linux]",
+          "required": true,
+          "default": "2"
+        },
+        "workload_group": {
+          "name": "workload_group",
+          "prompt": "Workload Computer Group Name (existing group, leave empty for default group)",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "workload_group_sync": {
+      "text": "",
+      "cmd": "kc trendmicro workload_group_sync"
+    },
+    "conformity_enable": {
+      "text": "",
+      "cmd": "kc trendmicro conformity_enable",
+      "args": {
+        "account_name": {
+          "name": "account_name",
+          "prompt": "Account Name",
+          "required": true,
+          "default": ""
+        },
+        "conformity_environment": {
+          "name": "conformity_environment",
+          "prompt": "Trendmicro Account Environment",
+          "required": true,
+          "default": ""
+        },
+        "conformity_tags": {
+          "name": "conformity_tags",
+          "prompt": "Comma-separated List of Tags to Add",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "conformity_create_group": {
+      "text": "",
+      "cmd": "kc trendmicro conformity_create_group",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Group Name",
+          "required": true,
+          "default": ""
+        },
+        "conformity_tags": {
+          "name": "conformity_tags",
+          "prompt": "Tags",
+          "required": true,
+          "default": "Comma-separated List of Tags to Include in Group"
+        }
+      }
+    }
+  },
+  "s3": {
+    "create_bucket": {
+      "text": "",
+      "cmd": "kc s3 create_bucket",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Bucket Name. It will be automatically prefixed with your environment name.",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "cloudfront": {
+    "create": {
+      "text": "",
+      "cmd": "kc cloudfront create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "bucket_name": {
+          "name": "bucket_name",
+          "prompt": "The value of ID for the origin that you want CloudFront to route requests to when a request matches the path pattern either for a cache behavior or for the default cache behavior. (S3 Support only)",
+          "required": true,
+          "default": ""
+        },
+        "bucket_regional_domain_name": {
+          "name": "bucket_regional_domain_name",
+          "prompt": "The DNS domain name of either the S3 bucket, or web site of your custom origin.",
+          "required": true,
+          "default": ""
+        },
+        "origin_id": {
+          "name": "origin_id",
+          "prompt": "A unique identifier for the origin",
+          "required": true,
+          "default": ""
+        },
+        "waf_name": {
+          "name": "waf_name",
+          "prompt": "Will this cf distro be associated to a waf? Add Waf name as defined in RC",
+          "required": false,
+          "default": ""
+        }
+      }
+    }
+  },
+  "custom101": {
+    "create": {
+      "text": "",
+      "cmd": "kc custom101 create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "acm": {
+    "create": {
+      "text": "",
+      "cmd": "kc acm create",
+      "args": {
+        "cert_domain_name": {
+          "name": "cert_domain_name",
+          "prompt": "Domain name for which the certificate should be issued.",
+          "required": true,
+          "default": ""
+        },
+        "cert_validation_method": {
+          "name": "cert_validation_method",
+          "prompt": "Which method to use for validation. DNS or EMAIL are valid.",
+          "required": true,
+          "default": ""
+        },
+        "r53_zone_name": {
+          "name": "r53_zone_name",
+          "prompt": "Route53 Zone id",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "route53": {
+    "add_record": {
+      "text": "",
+      "cmd": "kc route53 add_record",
+      "args": {
+        "record_name": {
+          "name": "record_name",
+          "prompt": "The name of the record.",
+          "required": true,
+          "default": ""
+        },
+        "record_type": {
+          "name": "record_type",
+          "prompt": "The record type. Valid values are: A, alias, NS, CNAME and TXT.",
+          "required": true,
+          "default": ""
+        },
+        "zone_id": {
+          "name": "zone_id",
+          "prompt": "Hosted zone ID for a Route 53 hosted zone.",
+          "required": true,
+          "default": ""
+        },
+        "ttl": {
+          "name": "ttl",
+          "prompt": "The TTL of the record. (Default is 300)",
+          "required": false,
+          "default": "300"
+        },
+        "record_list": {
+          "name": "record_list",
+          "prompt": "A string list of records.",
+          "required": true,
+          "default": ""
+        },
+        "alias_name": {
+          "name": "alias_name",
+          "prompt": "DNS name of the record to point to",
+          "required": false,
+          "default": ""
+        },
+        "alias_zone_id": {
+          "name": "alias_zone_id",
+          "prompt": "The zone id of where this record is hosted.",
+          "required": false,
+          "default": ""
+        },
+        "evaluate_target_health": {
+          "name": "evaluate_target_health",
+          "prompt": "Evaluate targets health",
+          "required": false,
+          "default": false
+        }
+      }
+    },
+    "create_hosted_zone": {
+      "text": "",
+      "cmd": "kc route53 create_hosted_zone",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Name/domain of the hosted zone",
+          "required": true,
+          "default": ""
+        },
+        "zone_comment": {
+          "name": "zone_comment",
+          "prompt": "Short comment that help you identify this zone.",
+          "required": false,
+          "default": ""
+        },
+        "zone_force_destroy": {
+          "name": "zone_force_destroy",
+          "prompt": "Whether to destroy all records (possibly managed outside of Terraform) in the zone when destroying the zone.",
+          "required": false,
+          "default": "true"
+        },
+        "add_delegation_set": {
+          "name": "add_delegation_set",
+          "prompt": "For public zones only. Set to true if you want to create a delegation set for this hosted zone.",
+          "required": false,
+          "default": "false"
+        },
+        "zone_delegation_set_id": {
+          "name": "zone_delegation_set_id",
+          "prompt": "For public zones only. The ID of the reusable delegation set whose NS records you want to assign to the hosted zone.",
+          "required": false,
+          "default": ""
+        },
+        "private_zone": {
+          "name": "private_zone",
+          "prompt": "Create this as a private hosted zone.",
+          "required": true,
+          "default": "false"
+        },
+        "zone_vpc_id": {
+          "name": "zone_vpc_id",
+          "prompt": "For private zones only. ID of the VPC to associate. Used in private zones only",
+          "required": false,
+          "default": ""
+        },
+        "zone_vpc_region": {
+          "name": "zone_vpc_region",
+          "prompt": "For private zones only. Region of the VPC to associate. Defaults to AWS provider region. Used in private zones only",
+          "required": false,
+          "default": ""
+        }
+      }
+    }
+  },
+  "ecs": {
+    "create": {
+      "text": "",
+      "cmd": "kc ecs create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "image_url": {
+          "name": "image_url",
+          "prompt": "Image URL",
+          "required": true,
+          "default": ""
+        },
+        "image_tag": {
+          "name": "image_tag",
+          "prompt": "Image Tag",
+          "required": true,
+          "default": "latest"
+        },
+        "task_cpu_units": {
+          "name": "task_cpu_units",
+          "prompt": "CPU Units Available at the Task Level",
+          "required": true,
+          "default": 1024
+        },
+        "task_memory": {
+          "name": "task_memory",
+          "prompt": "Memory (MiB) Available at the Task Level",
+          "required": true,
+          "default": 2048
+        },
+        "container_cpu_units": {
+          "name": "container_cpu_units",
+          "prompt": "CPU Units Available at the Container Level",
+          "required": true,
+          "default": 512
+        },
+        "container_memory": {
+          "name": "container_memory",
+          "prompt": "Memory (MiB) Available at the Container Level",
+          "required": true,
+          "default": 256
+        },
+        "open_ports": {
+          "name": "open_ports",
+          "prompt": "Comma-Separated List of Ports to Make Available",
+          "required": true,
+          "default": "80, 443"
+        },
+        "desired_count": {
+          "name": "desired_count",
+          "prompt": "Number of Task Instances Desired",
+          "required": true,
+          "default": 1
+        },
+        "task_role_arn": {
+          "name": "task_role_arn",
+          "prompt": "ARN of IAM Role to Attach to Task. If Left Blank, RapidCloud Will Create an Empty Role",
+          "required": false,
+          "default": ""
+        },
+        "assign_public_ip": {
+          "name": "assign_public_ip",
+          "prompt": "Assign a Public IP Address to the ENI (yes | no)",
+          "required": true,
+          "default": "no"
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Comma-Separated List of Subnets to Associate",
+          "required": true,
+          "default": ""
+        },
+        "security_groups": {
+          "name": "security_groups",
+          "prompt": "Comma-Separated List of Security Groups to Associate",
+          "required": false,
+          "default": ""
+        },
+        "environment_variables": {
+          "name": "environment_variables",
+          "prompt": "Comma-Separated List of Key/Value Pairs (foo=bar, env=test)",
+          "required": false,
+          "default": ""
+        }
+      }
+    }
+  },
+  "env": {},
+  "workload": {
+    "enable_pause": {
+      "text": "",
+      "cmd": "kc workload enable_pause",
+      "args": {
+        "module_aws_instance": {
+          "name": "module_aws_instance",
+          "prompt": "Enable Stop/Start EC2 Instances (aws_instance) [true|false]",
+          "required": true,
+          "default": false,
+          "type": "boolean"
+        },
+        "module_aws_autoscaling_group": {
+          "name": "module_aws_autoscaling_group",
+          "prompt": "Enable Downsize/Upsize Auto Scaling Groups (aws_autoscaling_group) [true|false]",
+          "required": true,
+          "default": false,
+          "type": "boolean"
+        },
+        "module_aws_ecs_cluster": {
+          "name": "module_aws_ecs_cluster",
+          "prompt": "Enable Downsize/Upsize ECS Fargate Cluster (aws_ecs_cluster) [true|false]",
+          "required": true,
+          "default": false,
+          "type": "boolean"
+        },
+        "module_aws_db_instance": {
+          "name": "module_aws_db_instance",
+          "prompt": "Enable Start/Stop RDS Instances (aws_db_instance) [true|false]",
+          "required": true,
+          "default": false,
+          "type": "boolean"
+        },
+        "module_aws_rds_cluster": {
+          "name": "module_aws_rds_cluster",
+          "prompt": "Enable Start/Stop Aurora Clusters, including read replica (aws_rds_cluster) [true|false]",
+          "required": true,
+          "default": false,
+          "type": "boolean"
+        },
+        "module_aws_redshift_cluster": {
+          "name": "module_aws_redshift_cluster",
+          "prompt": "Enable Pause/Resume Redshift Clusters (aws_redshift_cluster) [true|false]",
+          "required": true,
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "pause": {
+      "text": "",
+      "cmd": "kc workload pause",
+      "args": {
+        "resource_type": {
+          "name": "resource_type",
+          "prompt": "Resource Types to Pause (comma separated)",
+          "required": true,
+          "default": "all"
+        }
+      }
+    },
+    "resume": {
+      "text": "",
+      "cmd": "kc workload resume",
+      "args": {
+        "resource_type": {
+          "name": "resource_type",
+          "prompt": "Resource Types to Resume (comma separated)",
+          "required": true,
+          "default": "all"
+        }
+      }
+    },
+    "schedule": {
+      "text": "",
+      "cmd": "kc workload schedule",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Schedule Name (up to 12 characters, no spaces)",
+          "required": true,
+          "default": ""
+        },
+        "schedule_description": {
+          "name": "schedule_description",
+          "prompt": "Schedule Description",
+          "required": true,
+          "default": ""
+        },
+        "resource_type": {
+          "name": "resource_type",
+          "prompt": "Resource Types to Pause (comma separated)",
+          "required": true,
+          "default": "all"
+        },
+        "scheduled_pause": {
+          "name": "scheduled_pause",
+          "prompt": "Cron expression to pause",
+          "required": false,
+          "default": ""
+        },
+        "scheduled_resume": {
+          "name": "scheduled_resume",
+          "prompt": "Cron expression to resume",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "status": {
+      "text": "",
+      "cmd": "kc workload status"
+    }
+  },
+  "org": {
+    "create": {
+      "text": "",
+      "cmd": "kc org create",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "aws_service_access_principals": {
+          "name": "aws_service_access_principals",
+          "prompt": "comma-separated list of AWS service principal names for which you want to enable integration with your organization",
+          "required": true,
+          "default": ""
+        },
+        "enabled_policy_types": {
+          "name": "enabled_policy_types",
+          "prompt": "comma-separated list; any of SERVICE_CONTROL_POLICY | TAG_POLICY | BACKUP_POLICY | AISERVICES_OPT_OUT_POLICY",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_ou": {
+      "text": "",
+      "cmd": "kc org create_ou",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "parent_name": {
+          "name": "parent_name",
+          "prompt": "name of parent OU or root org in RapidCloud",
+          "required": true,
+          "default": ""
+        },
+        "parent_type": {
+          "name": "parent_type",
+          "prompt": "parent type: root | ou",
+          "required": true,
+          "default": "root"
+        },
+        "scps": {
+          "name": "scps",
+          "prompt": "SCP names to attach",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_account": {
+      "text": "",
+      "cmd": "kc org create_account",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "parent_name": {
+          "name": "parent_name",
+          "prompt": "name of parent OU in RapidCloud",
+          "required": true,
+          "default": ""
+        },
+        "email": {
+          "name": "email",
+          "prompt": "email associated with account",
+          "required": true,
+          "default": ""
+        },
+        "scps": {
+          "name": "scps",
+          "prompt": "SCP names to attach",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_scp": {
+      "text": "",
+      "cmd": "kc org create_scp",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "policy_text": {
+          "name": "policy_text",
+          "prompt": "Policy as Text",
+          "required": true,
+          "default": ""
+        },
+        "description": {
+          "name": "description",
+          "prompt": "description",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "qa": {},
+  "admin": {
+    "list_accounts": {
+      "text": "List all RapidCloud accounts",
+      "cmd": "kc admin list_accounts"
+    },
+    "list_activations": {
+      "text": "List all user activations for specified account",
+      "cmd": "kc admin list_activations",
+      "args": {
+        "domain": {
+          "name": "domain",
+          "prompt": "Enter Account Domain",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "confirm_activation": {
+      "text": "Confirm activation manually",
+      "cmd": "kc admin confirm_activation",
+      "args": {
+        "email": {
+          "name": "email",
+          "prompt": "Email",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "az_test1": {},
+  "az_test": {},
+  "test": {},
+  "test1": {},
+  "net": {
+    "create_vpc": {
+      "text": "",
+      "cmd": "kc net create_vpc",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter A VPC Name with no spaces.",
+          "required": true,
+          "default": ""
+        },
+        "cidr": {
+          "name": "cidr",
+          "prompt": "Enter A CIDR for the VPC.",
+          "required": true,
+          "default": ""
+        },
+        "enable_dns_support": {
+          "name": "enable_dns_support",
+          "prompt": "Enable DNS support? [true/false]:",
+          "required": true,
+          "default": "false"
+        },
+        "enable_dns_hostnames": {
+          "name": "enable_dns_hostnames",
+          "prompt": "Enable DNS hostnames support? [true/false]:",
+          "required": true,
+          "default": "false"
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the VPC, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_subnet": {
+      "text": "",
+      "cmd": "kc net create_subnet",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter a name for this Subnet.",
+          "required": true,
+          "default": ""
+        },
+        "vpc_module_id": {
+          "name": "vpc_module_id",
+          "prompt": "Enter the RapidCloud VPC Name to create the Subnet in a non existing/new vpc.",
+          "required": true,
+          "default": ""
+        },
+        "az": {
+          "name": "az",
+          "prompt": "Provide the Availability Zone to create this Subnet in",
+          "required": true,
+          "default": ""
+        },
+        "cidr": {
+          "name": "cidr",
+          "prompt": "Provide a network CIDR for this Subnet.",
+          "required": true,
+          "default": ""
+        },
+        "create_route_table": {
+          "name": "create_route_table",
+          "prompt": "Create a route table and associate with this Subnet? [true/false]:",
+          "required": false,
+          "default": "true"
+        },
+        "associate_route_table": {
+          "name": "associate_route_table",
+          "prompt": "Enter the RapidCloud Route Table Name to associate this Subnet with. (If you answered false above).",
+          "required": false,
+          "default": ""
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the VPC, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_igw": {
+      "text": "",
+      "cmd": "kc net create_igw",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter a name for this Gateway\n",
+          "required": false,
+          "default": ""
+        },
+        "vpc_module_id": {
+          "name": "vpc_module_id",
+          "prompt": "Enter the RapidCloud VPC Name (from metadata) to create this Gateway in.",
+          "required": true,
+          "default": ""
+        },
+        "route_tables": {
+          "name": "route_tables",
+          "prompt": "Enter a comma seperated list of RapidCloud Route Table names (from metadata) to which to add an internet route via this Gateway.",
+          "required": true,
+          "default": ""
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the Gateway, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_natgw": {
+      "text": "",
+      "cmd": "kc net create_natgw",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter a name for this gateways\n",
+          "required": false,
+          "default": ""
+        },
+        "subnet_module_id": {
+          "name": "subnet_module_id",
+          "prompt": "Enter a module name of the subnet you wish to create the NAT Gateway in",
+          "required": true,
+          "default": ""
+        },
+        "route_tables": {
+          "name": "route_tables",
+          "prompt": "Enter a comma seperated list of RapidCloud Route Table names (from metadata) to which to add an internet route via this Gateway.",
+          "required": true,
+          "default": ""
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the NAT Gateway, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_route": {
+      "text": "",
+      "cmd": "kc net create_route",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter a name for this route entry\n",
+          "required": false,
+          "default": ""
+        },
+        "route_tables": {
+          "name": "route_tables",
+          "prompt": "Enter a comma seperated list of RapidCloud Route Table names (from metadata) to which to add an internet route via this Gateway.",
+          "required": true,
+          "default": ""
+        },
+        "destination_cidr_block": {
+          "name": "destination_cidr_block",
+          "prompt": "Enter the destination CIDR block to route.\n",
+          "required": true,
+          "default": ""
+        },
+        "transit_gateway_id": {
+          "name": "transit_gateway_id",
+          "prompt": "Enter the transit gateway id route to.\n",
+          "required": true,
+          "default": ""
+        },
+        "vpc_peering_connection_id": {
+          "name": "vpc_peering_connection_id",
+          "prompt": "Enter the vpc peering connection id to route to.\n",
+          "required": true,
+          "default": ""
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the Route Table, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_endpoint": {
+      "text": "",
+      "cmd": "kc net create_endpoint",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter a name for this endpoint entry\n",
+          "required": false,
+          "default": ""
+        },
+        "service": {
+          "name": "service",
+          "prompt": "Enter the AWS service, currently we support [s3,dynamodb,autoscaling,ec2,ecr_api,ecr_dkr,sqs,sns].\n",
+          "required": true,
+          "default": ""
+        },
+        "vpc_id": {
+          "name": "vpc_id",
+          "prompt": "Enter the RapidCloud VPC Name (from metadata) to create the endpoint in",
+          "required": true,
+          "default": ""
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Enter a comma seperated list of 1 RapidCloud Subnet names per Availability Zone to create the endpoint service in (for autoscaling,ec2,ecr_api,ecr_dkr,sqs,sns only)",
+          "required": false,
+          "default": ""
+        },
+        "route_tables": {
+          "name": "route_tables",
+          "prompt": "Enter a comma seperated list of RapidCloud Route Table names (from metadata) to which to add a route to this endpoint (for s3 & dynamodb only)",
+          "required": false,
+          "default": ""
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the Endpoint, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    }
+  },
+  "edb_demo": {
+    "create_ec2": {
+      "text": "",
+      "cmd": "kc edb_demo create_ec2",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "edb": {
+    "tpaexec_configure": {
+      "text": "",
+      "cmd": "kc edb tpaexec_configure",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Cluster Name (no spaces)",
+          "required": true,
+          "default": ""
+        },
+        "architecture": {
+          "name": "architecture",
+          "prompt": "Architecture (M1, BDR-Always-ON, PGD-Always-ON)",
+          "required": true,
+          "default": "M1"
+        },
+        "platform": {
+          "name": "platform",
+          "prompt": "Platform",
+          "required": true,
+          "default": "aws"
+        }
+      }
+    },
+    "tpaexec_provision": {
+      "text": "",
+      "cmd": "kc edb tpaexec_provision",
+      "args": {
+        "token": {
+          "name": "name",
+          "prompt": "Cluster Name",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "tpaexec_deploy": {
+      "text": "",
+      "cmd": "kc edb tpaexec_deploy"
+    },
+    "tpaexec_test": {
+      "text": "",
+      "cmd": "kc edb tpaexec_test"
+    },
+    "tpaexec_setup": {
+      "text": "",
+      "cmd": "kc edb tpaexec_setup",
+      "args": {
+        "token": {
+          "name": "token",
+          "prompt": "TPA Token",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "tpaexec_update_postgres": {
+      "text": "",
+      "cmd": "kc edb tpaexec_update_postgres"
+    },
+    "tpaexec_switchover": {
+      "text": "",
+      "cmd": "kc edb tpaexec_switchover"
+    },
+    "tpaexec_pool_disable_server": {
+      "text": "",
+      "cmd": "kc edb tpaexec_pool_disable_server"
+    },
+    "tpaexec_pool_enable_server": {
+      "text": "",
+      "cmd": "kc edb tpaexec_pool_enable_server"
+    },
+    "tpaexec_rehydrate": {
+      "text": "",
+      "cmd": "kc edb tpaexec_rehydrate"
+    }
+  },
+  "datasync": {
+    "create": {
+      "text": "",
+      "cmd": "kc datasync create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter RC resource name here.",
+          "required": true,
+          "default": ""
+        },
+        "agent_name": {
+          "name": "agent_name",
+          "prompt": "Name to be assigned to the Datasync agent",
+          "required": true,
+          "default": ""
+        },
+        "ip_address": {
+          "name": "ip_address",
+          "prompt": "IP where the datasync agent service is running. DataSync Agent must be accessible on port 80 from where Terraform is running.",
+          "required": true,
+          "default": ""
+        },
+        "nfs_location_name": {
+          "name": "nfs_location_name",
+          "prompt": "Specify a name for this nfs location",
+          "required": true,
+          "default": ""
+        },
+        "server_hostname": {
+          "name": "server_hostname",
+          "prompt": "(Source) The IP address or DNS name of the NFS server.",
+          "required": true,
+          "default": ""
+        },
+        "nfs_subdirectory": {
+          "name": "nfs_subdirectory",
+          "prompt": "(Source) Subdirectory within the NFS server to perform actions as source. Should be exported by the NFS server.",
+          "required": true,
+          "default": ""
+        },
+        "s3_bucket_name": {
+          "name": "s3_bucket_name",
+          "prompt": "(Destination) S3 Bucket name for the destination.",
+          "required": true,
+          "default": ""
+        },
+        "s3_object_prefix": {
+          "name": "s3_object_prefix",
+          "prompt": "(Destination) Prefix to perform actions within the S3 bucket.",
+          "required": true,
+          "default": ""
+        },
+        "bucket_access_role_name": {
+          "name": "bucket_access_role_name",
+          "prompt": "IAM Role name used to connect to the S3 Bucket.",
+          "required": true,
+          "default": ""
+        },
+        "endpoint_vpc_id": {
+          "name": "endpoint_vpc_id",
+          "prompt": "The ID of the VPC in which the vpc endpoint will be used.",
+          "required": true,
+          "default": ""
+        },
+        "endpoint_security_group_ids": {
+          "name": "endpoint_security_group_ids",
+          "prompt": "The ID of one or more security groups to associate with the network interface for the vpc endpoint.",
+          "required": true,
+          "default": ""
+        },
+        "endpoint_subnet_ids": {
+          "name": "endpoint_subnet_ids",
+          "prompt": "The ID of one or more subnets in which to create a network interface for the vpc endpoint.",
+          "required": true,
+          "default": ""
+        },
+        "agent_security_groups_ids": {
+          "name": "agent_security_groups_ids",
+          "prompt": "The Id of the security group used to assing to your datasync agent.",
+          "required": true,
+          "default": ""
+        },
+        "agent_subnet_ids": {
+          "name": "agent_subnet_ids",
+          "prompt": "The subnet id in which DataSync will create elastic network interface for the data transfer task.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_task": {
+      "text": "",
+      "cmd": "kc datasync create_task",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter RC Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "dst_datasync_name": {
+          "name": "dst_datasync_name",
+          "prompt": "Datasync task agent and locations",
+          "required": true,
+          "default": ""
+        },
+        "ds_task_name": {
+          "name": "ds_task_name",
+          "prompt": "Enter task name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "dst_exclude_value": {
+          "name": "dst_exclude_value",
+          "prompt": "Datasync exclude simple pattern. E.g. /folder1|/folder2",
+          "required": true,
+          "default": ""
+        },
+        "dst_include_value": {
+          "name": "dst_include_value",
+          "prompt": "Datasync include simple pattern. E.g. /folder1|/folder2",
+          "required": true,
+          "default": ""
+        },
+        "dst_schedule_expression": {
+          "name": "dst_schedule_expression",
+          "prompt": "Specifies the schedule you want your task to use for repeated executions.",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "access": {
+    "create_role": {
+      "text": "",
+      "cmd": "kc access create_role",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Role Name (no spaces or special characters)",
+          "required": true,
+          "default": ""
+        },
+        "description": {
+          "name": "description",
+          "prompt": "Role Description",
+          "required": false,
+          "default": ""
+        },
+        "all": {
+          "name": "all",
+          "prompt": "Access level to All RapidCloud Features (granbular|read-only|read-write)",
+          "required": true,
+          "default": "granular"
+        }
+      }
+    }
+  },
+  "opensearch": {
+    "create": {
+      "text": "Create an OpenSearch cluster",
+      "cmd": "kc opensearch create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "instance_type": {
+          "name": "instance_type",
+          "prompt": "Set the instance type (r5.large.search, etc.)",
+          "required": true,
+          "default": "r5.large.search"
+        },
+        "autotune": {
+          "name": "autotune",
+          "prompt": "Enable auto-tune [ENABLED|DISABLED]",
+          "required": false,
+          "default": "ENABLED"
+        },
+        "high_availability": {
+          "name": "high_availability",
+          "prompt": "Enable high-availability [yes|no]",
+          "required": false,
+          "default": "yes",
+          "type": "boolean"
+        },
+        "nodes": {
+          "name": "nodes",
+          "prompt": "Total number of nodes (if high-availability is disabled, must be a multiple of 2)",
+          "required": false,
+          "default": 2
+        },
+        "ebs_storage_size": {
+          "name": "ebs_storage_size",
+          "prompt": "Storage capacity (GiB) per node, minimum of 10 and maximum of 2048",
+          "required": false,
+          "default": 10
+        },
+        "ultra_warm": {
+          "name": "ultra_warm",
+          "prompt": "Enable UltraWarm [yes|no]",
+          "required": false,
+          "default": "no",
+          "type": "boolean"
+        },
+        "ultra_warm_instance_type": {
+          "name": "ultra_warm_instance_type",
+          "prompt": "Enter Ultrawarm instance type [medium|large]",
+          "required": false,
+          "default": "ultrawarm1.large.search"
+        },
+        "ultra_warm_data_nodes": {
+          "name": "ultra_warm_data_nodes",
+          "prompt": "Enter number of UltraWarm warm data nodes, minimum of 2 and maximum of 150",
+          "required": false,
+          "default": 2
+        },
+        "ultra_warm_cold_storage": {
+          "name": "ultra_warm_cold_storage",
+          "prompt": "Enable UltraWarm cold storage [yes|no]",
+          "required": false,
+          "default": "no",
+          "type": "boolean"
+        },
+        "storage_capacity": {
+          "name": "storage_capacity",
+          "prompt": "Storage capacity (GiB), minimum of 32 and maximum of 65536",
+          "required": true,
+          "default": 32
+        },
+        "iops": {
+          "name": "iops",
+          "prompt": "Total provisioned IOPs (MiB/s), minimum of 3000 and maximum of 16000",
+          "required": false,
+          "default": 3000
+        },
+        "throughput": {
+          "name": "throughput",
+          "prompt": "Total provisioned throughput (MiB/s), minimum of 8 and maximum of 2048; Throughput to IOPS ratio should not exceded 1:4",
+          "required": false,
+          "default": 125
+        },
+        "dedicated_master_nodes_enabled": {
+          "name": "dedicated_master_nodes_enabled",
+          "prompt": "Enable the use of dedicated master nodes [yes|no]",
+          "required": false,
+          "default": "no",
+          "type": "boolean"
+        },
+        "dedicated_master_nodes": {
+          "name": "dedicated_master_nodes",
+          "prompt": "Enter number of dedicated master nodes (3 or 5)",
+          "required": false,
+          "default": 3
+        },
+        "dedicated_master_node_type": {
+          "name": "dedicated_master_node_type",
+          "prompt": "Enter dedicated master node instance type [medium|large]",
+          "required": false,
+          "default": "r5.large.search"
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "A comma-separated list of subnet IDs for the group",
+          "required": false,
+          "default": ""
+        },
+        "security_group_ids": {
+          "name": "security_group_ids",
+          "prompt": "Comma-Separated list of security groups to associate",
+          "required": false,
+          "default": ""
+        }
+      }
+    }
+  },
+  "cosmosdb": {
+    "create_table": {
+      "text": "",
+      "cmd": "kc cosmosdb create_table",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "capacity": {
+          "name": "Table Capacity",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "sso": {
+    "create_permission_set": {
+      "text": "",
+      "cmd": "kc sso create_permission_set",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "description": {
+          "name": "description",
+          "prompt": "description",
+          "required": true,
+          "default": ""
+        },
+        "relay_state": {
+          "name": "relay_state",
+          "prompt": "relay state url",
+          "required": true,
+          "default": ""
+        },
+        "session_duration": {
+          "name": "session_duration",
+          "prompt": "session duration in ISO-8601 standard",
+          "required": true,
+          "default": ""
+        },
+        "aws_managed_policy_arns": {
+          "name": "aws_managed_policy_arns",
+          "prompt": "comma-separated list of AWS managed policy arns",
+          "required": true,
+          "default": ""
+        },
+        "inline_policy": {
+          "name": "inline_policy",
+          "prompt": "json for a custom policy",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_account_assignment": {
+      "text": "",
+      "cmd": "kc sso create_account_assignment",
+      "args": {
+        "permission_set_name": {
+          "name": "permission_set_name",
+          "prompt": "name of permission set",
+          "required": true,
+          "default": ""
+        },
+        "principal_type": {
+          "name": "principal_type",
+          "prompt": "principal type (USER|GROUP)",
+          "required": true,
+          "default": ""
+        },
+        "account_name": {
+          "name": "account_name",
+          "prompt": "account name",
+          "required": true,
+          "default": ""
+        },
+        "principal_ids": {
+          "name": "principal_ids",
+          "prompt": "comma-separated list of principal IDs if principals are not managed by RapidCloud",
+          "required": true,
+          "default": ""
+        },
+        "principal_users": {
+          "name": "principal_users",
+          "prompt": "comma-separated list of usernames if users are managed by RapidCloud",
+          "required": true,
+          "default": ""
+        },
+        "principal_groups": {
+          "name": "principal_groups",
+          "prompt": "comma-separated list of groups if groups are managed by RapidCloud",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_user": {
+      "text": "",
+      "cmd": "kc sso create_user",
+      "args": {
+        "user_name": {
+          "name": "user_name",
+          "prompt": "unique username",
+          "required": true,
+          "default": ""
+        },
+        "display_name": {
+          "name": "display_name",
+          "prompt": "display name",
+          "required": true,
+          "default": ""
+        },
+        "first_name": {
+          "name": "first_name",
+          "prompt": "first name",
+          "required": true,
+          "default": ""
+        },
+        "last_name": {
+          "name": "last_name",
+          "prompt": "last name",
+          "required": true,
+          "default": ""
+        },
+        "email": {
+          "name": "email",
+          "prompt": "email",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_group": {
+      "text": "",
+      "cmd": "kc sso create_group",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "description": {
+          "name": "description",
+          "prompt": "description",
+          "required": true,
+          "default": ""
+        },
+        "members": {
+          "name": "members",
+          "prompt": "comma-separated list of unique usernames",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "waf": {
+    "create": {
+      "text": "",
+      "cmd": "kc waf create",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "allow_requests_by_default": {
+          "name": "allow_requests_by_default",
+          "prompt": "Would you like requests to be allowed by default? Yes/No",
+          "required": true,
+          "default": ""
+        },
+        "cf_associated": {
+          "name": "cf_associated",
+          "prompt": "Will this WAF will be associated to a Cloudfront Distribution? Yes/No",
+          "required": true,
+          "default": ""
+        },
+        "associated_apigw_list": {
+          "name": "associated_apigw_list",
+          "prompt": "Enter a comma separated list of arns to associate this waf to. (Leave empty when associating waf to a Cf distro)",
+          "required": false,
+          "default": ""
+        },
+        "associated_alb_list": {
+          "name": "associated_alb_list",
+          "prompt": "Enter a comma separated list of arns to associate this waf to. (Leave empty when associating waf to a Cf distro)",
+          "required": false,
+          "default": ""
+        }
+      }
+    }
+  },
+  "module_1": {
+    "command_1": {
+      "text": "",
+      "cmd": "kc module_1 command_1",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": "ABC"
+        },
+        "status": {
+          "name": "status",
+          "prompt": "Enter status with no spaces",
+          "required": true,
+          "default": "Active"
+        }
+      }
+    },
+    "command_2": {
+      "text": "",
+      "cmd": "kc module_1 command_2",
+      "args": {}
+    },
+    "command_3": {
+      "text": "",
+      "cmd": "kc module_1 command_3"
+    },
+    "command_4": {
+      "text": "",
+      "cmd": "kc module_1 command_4"
+    }
+  },
+  "cloudtrail": {
+    "create_trail": {
+      "text": "",
+      "cmd": "kc cloudtrail create_trail",
+      "args": {
+        "trail_name": {
+          "name": "trail_name",
+          "prompt": "Trail Name",
+          "required": true,
+          "default": ""
+        },
+        "s3_bucket_name": {
+          "name": "s3_bucket_name",
+          "prompt": "S3 Bucket Name",
+          "required": true,
+          "default": ""
+        },
+        "kms_key_id": {
+          "name": "kms_key_id",
+          "prompt": "KMS Key ARN",
+          "required": false,
+          "default": ""
+        },
+        "include_global_service_events": {
+          "name": "include_global_service_events",
+          "prompt": "Include global service envents?",
+          "required": false,
+          "default": "yes"
+        },
+        "enable_log_file_validation": {
+          "name": "enable_log_file_validation",
+          "prompt": "Enable log file validation?",
+          "required": false,
+          "default": "no"
+        },
+        "is_organization_trail": {
+          "name": "is_organization_trail",
+          "prompt": "Is organization trail?",
+          "required": false,
+          "default": "no"
+        },
+        "is_multi_region_trail": {
+          "name": "is_multi_region_trail",
+          "prompt": "Is multi region trail?",
+          "required": false,
+          "default": "no"
+        }
+      }
+    }
+  },
+  "eks": {
+    "create_cluster": {
+      "text": "Create an EKS cluster",
+      "cmd": "kc eks create_cluster",
+      "args": {
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Enter a cluster name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "eks_version": {
+          "name": "eks_version",
+          "prompt": "Enter an eks cluster version",
+          "required": false,
+          "default": "1.25"
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Provide at least two RapidCloud subnet names, seperated by comma in different availabilty zones to deploy the control plane api endpoint to",
+          "required": true,
+          "default": ""
+        },
+        "endpoint_public_access": {
+          "name": "endpoint_public_access",
+          "prompt": "Set this to true to all public access to your eks api (THIS IS NOT RECOMENDED!)",
+          "required": false,
+          "default": "false"
+        },
+        "endpoint_public_access_cidrs": {
+          "name": "endpoint_public_access_cidr",
+          "prompt": "Provide a comma seperated list in CIDR format of IP addresses with access to your public endpoint",
+          "required": false,
+          "default": ""
+        },
+        "cluster_log_types": {
+          "name": "cluster_log_types",
+          "prompt": "Provide comma seperated list of cluster log types you wish to export to cloudwatch",
+          "required": false,
+          "default": "api,audit,authenticator,controllerManager,scheduler"
+        },
+        "cluster_log_retention_period": {
+          "name": "cluster_log_retention_period",
+          "prompt": "Cluster logs retention period in days",
+          "required": false,
+          "default": "7"
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the EKS Cluster, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_node_group": {
+      "text": "Create an EKS Node Group",
+      "cmd": "kc eks create_node_group",
+      "args": {
+        "node_group_name": {
+          "name": "node_group_name",
+          "prompt": "Enter a Node Group name with no spaces, the cluster name you provided will be used as a prefix to all Node Group resource names",
+          "required": true,
+          "default": ""
+        },
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Provide the Cluster name you wish to attach this Node Group to",
+          "required": true,
+          "default": ""
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Provide at least two RapidCloud subnet names, seperated by comma in different availabilty zones to deploy cluster nodes to",
+          "required": true,
+          "default": ""
+        },
+        "instance_types": {
+          "name": "instance_types",
+          "prompt": "Provide a set of EC2 instance types seperate by comma to be used by this Node Group",
+          "required": false,
+          "default": "t3.medium,t3a.medium"
+        },
+        "desired_size": {
+          "name": "desired_size",
+          "prompt": "Desired amount of instances to run in this Node Group",
+          "required": false,
+          "default": "2"
+        },
+        "max_size": {
+          "name": "max_size",
+          "prompt": "Maximum amount of instances to run in this Node Group",
+          "required": false,
+          "default": "5"
+        },
+        "min_size": {
+          "name": "min_size",
+          "prompt": "Minimum amount of instances to run in this Node Group",
+          "required": false,
+          "default": "0"
+        },
+        "capacity_type": {
+          "name": "capacity_type",
+          "prompt": "Choose the instance capacity type [SPOT|ON_DEMAND]",
+          "required": false,
+          "default": "ON_DEMAND"
+        },
+        "volume_size": {
+          "name": "volume_size",
+          "prompt": "Provide an EBS volume size, if provided an EBS volume will attach to the Node Group instances",
+          "required": false,
+          "default": "10"
+        },
+        "volume_type": {
+          "name": "volume_type",
+          "prompt": "Provide an EBS volume type",
+          "required": false,
+          "default": "gp3"
+        },
+        "force_update_version": {
+          "name": "force_update_version",
+          "prompt": "Set to true to Force version update if existing pods are unable to be drained due to a pod disruption budget issue",
+          "required": false,
+          "default": "false"
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the EKS Node Group, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        },
+        "labels": {
+          "name": "labels",
+          "prompt": "Provide a json string with labels you wish to apply to the EKS Cluster, for example \"{'label1':'value1','label2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_fargate_profile": {
+      "text": "Create an EKS cluster fargate profile",
+      "cmd": "kc eks create_fargate_profile",
+      "args": {
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Enter the EKS cluster name to attach this profile to",
+          "required": true,
+          "default": ""
+        },
+        "profile_name": {
+          "name": "profile_name",
+          "prompt": "Enter a Fargate profile name",
+          "required": true,
+          "default": ""
+        },
+        "namespace_1": {
+          "name": "namespace_1",
+          "prompt": "Enter a kubernetes namespace to use with this profile (1 of 5)",
+          "required": true,
+          "default": ""
+        },
+        "namespace_1_labels": {
+          "name": "namespace_1_labels",
+          "prompt": "Provide a json string with labels for this namespace, for example \"{'app':'app1','version':'v1'}\"",
+          "required": false,
+          "default": {}
+        },
+        "namespace_2": {
+          "name": "namespace_2",
+          "prompt": "Enter a kubernetes namespace to use with this profile (2 of 5)",
+          "required": false,
+          "default": ""
+        },
+        "namespace_2_labels": {
+          "name": "namespace_2_labels",
+          "prompt": "Provide a json string with labels for this namespace, for example \"{'app':'app2','version':'v2'}\"",
+          "required": false,
+          "default": {}
+        },
+        "namespace_3": {
+          "name": "namespace_3",
+          "prompt": "Enter a kubernetes namespace to use with this profile (3 of 5)",
+          "required": false,
+          "default": ""
+        },
+        "namespace_3_labels": {
+          "name": "namespace_3_labels",
+          "prompt": "Provide a json string with labels for this namespace, for example \"{'app':'app3','version':'v3'}\"",
+          "required": false,
+          "default": {}
+        },
+        "namespace_4": {
+          "name": "namespace_4",
+          "prompt": "Enter a kubernetes namespace to use with this profile (4 of 5)",
+          "required": false,
+          "default": ""
+        },
+        "namespace_4_labels": {
+          "name": "namespace_4_labels",
+          "prompt": "Provide a json string with labels for this namespace, for example \"{'app':'app4','version':'v4'}\"",
+          "required": false,
+          "default": {}
+        },
+        "namespace_5": {
+          "name": "namespace_5",
+          "prompt": "Enter a kubernetes namespace to use with this profile (5 of 5), if you plan on using CORE DNS addon, leave this empty!",
+          "required": false,
+          "default": ""
+        },
+        "namespace_5_labels": {
+          "name": "namespace_5_labels",
+          "prompt": "Provide a json string with labels for this namespace, for example \"{'app':'app5','version':'v5'}\"",
+          "required": false,
+          "default": {}
+        },
+        "eks_version": {
+          "name": "eks_version",
+          "prompt": "Enter an eks cluster version",
+          "required": false,
+          "default": "1.25"
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Provide at least two RapidCloud subnet names, seperated by comma in different availabilty zones to deploy the fargate profile to",
+          "required": true,
+          "default": ""
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the EKS Cluster, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "manage_addons": {
+      "text": "Create an EKS cluster",
+      "cmd": "kc eks manage_addons",
+      "args": {
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Enter a cluster name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "compute_type": {
+          "name": "compute_type",
+          "prompt": "Specify the compute type of your cluster nodes [ec2|fargate]",
+          "required": true,
+          "default": ""
+        },
+        "eks_version": {
+          "name": "eks_version",
+          "prompt": "Enter an eks cluster version",
+          "required": false,
+          "default": "1.25"
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "For fargate coredns, provide at least two RapidCloud subnet names, seperated by comma in different availabilty zones to create a profile in",
+          "required": false,
+          "default": ""
+        },
+        "enable_aws_coredns": {
+          "name": "enable_aws_coredns",
+          "prompt": "Enable COREDNS addon",
+          "required": false,
+          "default": "false"
+        },
+        "aws_coredns_version": {
+          "name": "aws_coredns_version",
+          "prompt": "COREDNS addon version",
+          "required": false,
+          "default": "latest"
+        },
+        "aws_coredns_replica_count": {
+          "name": "aws_coredns_replica_count",
+          "prompt": "COREDNS pods replica count",
+          "required": false,
+          "default": "2"
+        },
+        "enable_aws_kube_proxy": {
+          "name": "enable_aws_kube_proxy",
+          "prompt": "Enable KUBE PROXY addon (ec2 only)",
+          "required": false,
+          "default": "false"
+        },
+        "aws_kube_proxy_version": {
+          "name": "aws_kube_proxy_version",
+          "prompt": "KUBE PROXY addon version (ec2 only)",
+          "required": false,
+          "default": "latest"
+        },
+        "enable_aws_vpc_cni": {
+          "name": "enable_aws_vpc_cni",
+          "prompt": "Enable VPC CNI addon (ec2 only)",
+          "required": false,
+          "default": "false"
+        },
+        "aws_vpc_cni_version": {
+          "name": "aws_vpc_cni_version",
+          "prompt": "VPC CNI addon version (ec2 only)",
+          "required": false,
+          "default": "latest"
+        },
+        "enable_aws_ebs_csi": {
+          "name": "enable_aws_ebs_csi",
+          "prompt": "Enable EBS CSI addon (ec2 only)",
+          "required": false,
+          "default": "false"
+        },
+        "aws_ebs_csi_version": {
+          "name": "aws_ebs_csi_version",
+          "prompt": "EBS CSI addon version (ec2 only)",
+          "required": false,
+          "default": "latest"
+        }
+      }
+    },
+    "manage_extras": {
+      "text": "Manage extra packages and tools for EKS",
+      "cmd": "kc eks manage_extras",
+      "args": {
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Enter a cluster name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "vpc_id": {
+          "name": "vpc_id",
+          "prompt": "Enter the name of the VPC the cluster is deployed to",
+          "required": false,
+          "default": ""
+        },
+        "install_efs_csi": {
+          "name": "install_efs_csi",
+          "prompt": "Install the EFS CSI integration (true|false)?",
+          "required": false,
+          "default": "false"
+        },
+        "fs_name": {
+          "name": "fs_name",
+          "prompt": "The RapidCloud name of the EFS file system to enable the EFS CSI driver for, if you selected to install EFS CSI integration",
+          "required": false,
+          "default": ""
+        },
+        "install_metrics_server": {
+          "name": "install_metrics_server",
+          "prompt": "Install the latest Metrics Server helm chart  (true|false)?",
+          "required": false,
+          "default": "false"
+        },
+        "install_cluster_autoscaler": {
+          "name": "install_cluster_autoscaler",
+          "prompt": "Install the latest Cluster Autoscaler helm chart (true|false)?",
+          "required": false,
+          "default": "false"
+        },
+        "install_ingress_alb": {
+          "name": "install_ingress_alb",
+          "prompt": "Install the latest ALB Ingress Controller helm chart (true|false)?",
+          "required": false,
+          "default": "false"
+        },
+        "install_fluentbit_cloudwatch": {
+          "name": "install_fluentbit_cloudwatc",
+          "prompt": "Forward container logs to Cloudwatch via Fluent-bit (true|false)?",
+          "required": false,
+          "default": "false"
+        },
+        "fluentbit_log_retention_in_days": {
+          "name": "eks_fluentbit_log_retention_in_days",
+          "prompt": "How logn to keep container logs to Cloudwatch (in days)",
+          "required": false,
+          "default": "7"
+        }
+      }
+    },
+    "manage_aws_auth": {
+      "text": "Manage aws_auth config map",
+      "cmd": "kc eks manage_aws_auth",
+      "args": {
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Enter a cluster name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "map_users": {
+          "name": "map_users",
+          "prompt": "Provide path to a file containing a YAML list of users with the following fields: \"arn\",\"username\",\"groups\".\nFor example:\n\n\n- userarn: \"arn:aws:iam:<acct>:user/user1\n  username:\"user.name\"\n  groups:\n    - \"some:group\"\n    - \"some:other-group\"\n\n",
+          "required": true,
+          "default": ""
+        },
+        "map_roles": {
+          "name": "map_roles",
+          "prompt": "Provide path to a file containing a YAML list of roles with the following fields: \"rolearn\",\"username\",\"groups\".\nFor example:\n\n\n- rolearn: \"arn:aws:iam:<acct>:role/role1\n  username:\"user.name\"\n  groups:\n    - \"some:group\"\n    - \"some:other-group\"\n\n",
+          "required": true,
+          "default": ""
+        },
+        "map_users_values": {
+          "name": "map_users_values",
+          "prompt": "This value is auto populated in CLI mode and should be ignored, press ENTER to continue",
+          "required": false,
+          "default": ""
+        },
+        "map_roles_values": {
+          "name": "map_roles_values",
+          "prompt": "This value is auto populated in CLI mode and should be ignored, press ENTER to continue",
+          "required": false,
+          "default": ""
+        },
+        "node_groups": {
+          "name": "node_groups",
+          "prompt": "This value is auto populated and should be ignored, press ENTER to continue",
+          "required": false,
+          "default": ""
+        },
+        "fargate_profiles": {
+          "name": "fargate_profiles",
+          "prompt": "This value is auto populated and should be ignored, press ENTER to continue",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "create_eks_cluster": {
+      "text": "Meta command to create eks cluster and Node Group",
+      "cmd": "kc eks create_eks_cluster",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "remove_fargate_profile": {
+      "text": "",
+      "cmd": "kc eks remove_fargate_profile"
+    },
+    "remove_node_group": {
+      "text": "",
+      "cmd": "kc eks remove_node_group"
+    },
+    "remove_eks_cluster": {
+      "text": "",
+      "cmd": "kc eks remove_eks_cluster"
+    }
+  },
+  "elasticache": {
+    "create_redis_cluster": {
+      "text": "",
+      "cmd": "kc elasticache create_redis_cluster",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "node_type": {
+          "name": "node_type",
+          "prompt": "Node Type",
+          "required": true,
+          "default": ""
+        },
+        "parameter_group_name": {
+          "name": "parameter_group_name",
+          "prompt": "Parameter Group Name",
+          "required": true,
+          "default": ""
+        },
+        "apply_immediately": {
+          "name": "apply_immediately",
+          "prompt": "Apply Immediately",
+          "required": true,
+          "default": "no"
+        },
+        "availability_zone": {
+          "name": "availability_zone",
+          "prompt": "Availability Zone",
+          "required": true,
+          "default": ""
+        },
+        "engine_version": {
+          "name": "engine_version",
+          "prompt": "Engine Version",
+          "required": true,
+          "default": ""
+        },
+        "final_snapshot_identifier": {
+          "name": "final_snapshot_identifier",
+          "prompt": "Final Snapshot Identifier",
+          "required": true,
+          "default": ""
+        },
+        "maintenance_window": {
+          "name": "maintenance_window",
+          "prompt": "Maintenance Window",
+          "required": true,
+          "default": ""
+        },
+        "notification_topic_arn": {
+          "name": "notification_topic_arn",
+          "prompt": "Notification Topic ARN",
+          "required": true,
+          "default": ""
+        },
+        "replication_group_id": {
+          "name": "replication_group_id",
+          "prompt": "Replication Group ID",
+          "required": true,
+          "default": ""
+        },
+        "security_group_ids": {
+          "name": "security_group_ids",
+          "prompt": "Comma-separated List of SG IDs",
+          "required": true,
+          "default": ""
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Comma-separated List of Subnet IDs",
+          "required": true,
+          "default": ""
+        },
+        "log_destination": {
+          "name": "log_destination",
+          "prompt": "Log Destination",
+          "required": true,
+          "default": ""
+        },
+        "log_destination_type": {
+          "name": "log_destination_type",
+          "prompt": "Log Destination Type",
+          "required": true,
+          "default": ""
+        },
+        "log_format": {
+          "name": "log_format",
+          "prompt": "Log Format",
+          "required": true,
+          "default": ""
+        },
+        "log_type": {
+          "name": "log_type",
+          "prompt": "Log Type",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_memcached_cluster": {
+      "text": "",
+      "cmd": "kc elasticache create_memcached_cluster",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "node_type": {
+          "name": "node_type",
+          "prompt": "Node Type",
+          "required": true,
+          "default": ""
+        },
+        "num_cache_nodes": {
+          "name": "num_cache_nodes",
+          "prompt": "Number of Cache Nodes",
+          "required": true,
+          "default": ""
+        },
+        "parameter_group_name": {
+          "name": "parameter_group_name",
+          "prompt": "Parameter Group Name",
+          "required": true,
+          "default": ""
+        },
+        "apply_immediately": {
+          "name": "apply_immediately",
+          "prompt": "Apply Immediately",
+          "required": true,
+          "default": "no"
+        },
+        "preferred_availability_zones": {
+          "name": "preferred_availability_zones",
+          "prompt": "Availability Zones",
+          "required": true,
+          "default": ""
+        },
+        "engine_version": {
+          "name": "engine_version",
+          "prompt": "Engine Version",
+          "required": true,
+          "default": ""
+        },
+        "maintenance_window": {
+          "name": "maintenance_window",
+          "prompt": "Maintenance Window",
+          "required": true,
+          "default": ""
+        },
+        "notification_topic_arn": {
+          "name": "notification_topic_arn",
+          "prompt": "Notification Topic ARN",
+          "required": true,
+          "default": ""
+        },
+        "security_group_ids": {
+          "name": "security_group_ids",
+          "prompt": "Comma-separated List of SG IDs",
+          "required": true,
+          "default": ""
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Comma-separated List of Subnet IDs",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_replication_group": {
+      "text": "",
+      "cmd": "kc elasticache create_replication_group",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "description": {
+          "name": "description",
+          "prompt": "Description",
+          "required": true,
+          "default": ""
+        },
+        "node_type": {
+          "name": "node_type",
+          "prompt": "Node Type",
+          "required": true,
+          "default": ""
+        },
+        "parameter_group_name": {
+          "name": "parameter_group_name",
+          "prompt": "Parameter Group Name",
+          "required": true,
+          "default": ""
+        },
+        "apply_immediately": {
+          "name": "apply_immediately",
+          "prompt": "Apply Immediately",
+          "required": true,
+          "default": "no"
+        },
+        "engine_version": {
+          "name": "engine_version",
+          "prompt": "Engine Version",
+          "required": true,
+          "default": ""
+        },
+        "kms_key_name": {
+          "name": "kms_key_name",
+          "prompt": "KMS Key Name",
+          "required": true,
+          "default": ""
+        },
+        "at_rest_encryption_enabled": {
+          "name": "at_rest_encryption_enabled",
+          "prompt": "At Rest Encryption Enabled",
+          "required": true,
+          "default": ""
+        },
+        "transit_encryption_enabled": {
+          "name": "transit_encryption_enabled",
+          "prompt": "Transit Encryption Enabled",
+          "required": true,
+          "default": ""
+        },
+        "automatic_failover_enabled": {
+          "name": "automatic_failover_enabled",
+          "prompt": "Automatic Failover Enabled",
+          "required": true,
+          "default": ""
+        },
+        "multi_az_enabled": {
+          "name": "multi_az_enabled",
+          "prompt": "Multi AZ Enabled",
+          "required": true,
+          "default": ""
+        },
+        "user_group_name": {
+          "name": "user_group_name",
+          "prompt": "User Group Name",
+          "required": true,
+          "default": ""
+        },
+        "num_cache_clusters": {
+          "name": "num_cache_clusters",
+          "prompt": "Number of Cache Clusters (Redis Cluster Mode Disabled)",
+          "required": true,
+          "default": ""
+        },
+        "num_node_groups": {
+          "name": "num_node_groups",
+          "prompt": "Number of Node Groups (Redis Cluster Mode Enabled)",
+          "required": true,
+          "default": ""
+        },
+        "replicas_per_node_group": {
+          "name": "replicas_per_node_group",
+          "prompt": "Replicas per Node Group (Redis Cluster Mode Enabled)",
+          "required": true,
+          "default": ""
+        },
+        "final_snapshot_identifier": {
+          "name": "final_snapshot_identifier",
+          "prompt": "Final Snapshot Identifier",
+          "required": true,
+          "default": ""
+        },
+        "maintenance_window": {
+          "name": "maintenance_window",
+          "prompt": "Maintenance Window",
+          "required": true,
+          "default": ""
+        },
+        "notification_topic_arn": {
+          "name": "notification_topic_arn",
+          "prompt": "Notification Topic ARN",
+          "required": true,
+          "default": ""
+        },
+        "security_group_ids": {
+          "name": "security_group_ids",
+          "prompt": "Comma-separated List of SG IDs",
+          "required": true,
+          "default": ""
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Comma-separated List of Subnet IDs",
+          "required": true,
+          "default": ""
+        },
+        "log_destination": {
+          "name": "log_destination",
+          "prompt": "Log Destination",
+          "required": true,
+          "default": ""
+        },
+        "log_destination_type": {
+          "name": "log_destination_type",
+          "prompt": "Log Destination Type",
+          "required": true,
+          "default": ""
+        },
+        "log_format": {
+          "name": "log_format",
+          "prompt": "Log Format",
+          "required": true,
+          "default": ""
+        },
+        "log_type": {
+          "name": "log_type",
+          "prompt": "Log Type",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_user": {
+      "text": "",
+      "cmd": "kc elasticache create_user",
+      "args": {
+        "user_id": {
+          "name": "user_id",
+          "prompt": "User ID",
+          "required": true,
+          "default": ""
+        },
+        "user_name": {
+          "name": "user_name",
+          "prompt": "User Name",
+          "required": true,
+          "default": ""
+        },
+        "access_string": {
+          "name": "access_string",
+          "prompt": "Access String",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_user_group": {
+      "text": "",
+      "cmd": "kc elasticache create_user_group",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Group Name",
+          "required": true,
+          "default": ""
+        },
+        "users": {
+          "name": "users",
+          "prompt": "Comma-separated list of user IDs",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "report": {},
+  "saas": {
+    "exec": {
+      "text": "",
+      "cmd": "kc saas exec",
+      "args": {
+        "email": {
+          "name": "email",
+          "prompt": "Email",
+          "required": false,
+          "default": ""
+        },
+        "cmd": {
+          "name": "cmd",
+          "prompt": "Command",
+          "required": false,
+          "default": ""
+        }
+      }
+    }
+  },
+  "az_container": {
+    "create_aks": {
+      "text": "",
+      "cmd": "kc az_container create_aks",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter name of the resource group",
+          "required": true
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location",
+          "required": true,
+          "default": "eastus"
+        },
+        "aks_version": {
+          "name": "aks_version",
+          "prompt": "Enter AKS version",
+          "required": true,
+          "default": "1.26"
+        },
+        "private_cluster_enabled": {
+          "name": "private_cluster_enabled",
+          "prompt": "Enable private cluster?",
+          "required": true,
+          "default": true
+        },
+        "api_server_vnet_integrated_enabled": {
+          "name": "api_server_vnet_integrated_enabled",
+          "prompt": "Enable VNET integration for the cluster",
+          "required": true,
+          "default": false,
+          "enableControls": [
+            "api_server_subnet_id"
+          ]
+        },
+        "api_server_subnet_id": {
+          "name": "api_server_subnet_id",
+          "prompt": "Enter the ID of the Subnet where the API server endpoint is delegated to (Required when VNET integration is enabled)",
+          "required": false
+        },
+        "authorized_ip_ranges": {
+          "name": "authorized_ip_ranges",
+          "prompt": "Enter the CIDR format of IP addresses that can have access to your public endpoint (Required when private cluster is disabled)",
+          "required": false
+        },
+        "desired_size": {
+          "name": "desired_size",
+          "prompt": "Enter the desired size for the node pool",
+          "required": true,
+          "default": 3
+        },
+        "max_size": {
+          "name": "max_size",
+          "prompt": "Enter the max size for the node pool",
+          "required": true,
+          "default": 5
+        },
+        "min_size": {
+          "name": "min_size",
+          "prompt": "Enter the min size for the node pool",
+          "required": true,
+          "default": 1
+        },
+        "vm_size": {
+          "name": "vm_size",
+          "prompt": "Enter the VM instance size for the node pool",
+          "required": true,
+          "default": "Standard_DS2_v2"
+        },
+        "node_pool_zones": {
+          "name": "node_pool_zones",
+          "prompt": "Enter the availability zones for the node pool (Ex: 1,2,3)",
+          "required": true,
+          "default": "1,2"
+        },
+        "azure_cni_enabled": {
+          "name": "azure_cni_enabled",
+          "prompt": "Enable Azure CNI for advanced networking? (True/False)",
+          "required": true,
+          "default": true
+        },
+        "network_policy": {
+          "name": "network_policy",
+          "prompt": "Enter the network policy (ex: calico or azure)",
+          "required": true,
+          "default": "azure"
+        },
+        "vnet_subnet_id": {
+          "name": "vnet_subnet_id",
+          "prompt": "Enter the ID of the subnet to deploy the cluster nodes (Required when Azure CNI is enabled)",
+          "required": false
+        },
+        "service_cidr": {
+          "name": "service_cidr",
+          "prompt": "A CIDR notation IP range from which to assign service cluster IPs. It must not overlap with any Subnet IP ranges. For example: 10.0.0.0/16.",
+          "required": true
+        },
+        "dns_service_ip": {
+          "name": "dns_service_ip",
+          "prompt": "Enter the DNS service IP",
+          "required": true
+        },
+        "pod_cidr": {
+          "name": "pod_cidr",
+          "prompt": "Enter the CIDR to use for pod IP addresses. Only applicable if Azure CNI is disabled.",
+          "required": false
+        },
+        "auto_upgrade": {
+          "name": "auto_upgrade",
+          "prompt": "Do you want to auto upgrade the cluster?",
+          "required": true,
+          "default": true
+        },
+        "aad_enabled": {
+          "name": "aad_enabled",
+          "prompt": "Enable Azure AD Integration.",
+          "required": true,
+          "default": true
+        },
+        "azure_rbac_enabled": {
+          "name": "azure_rbac_enabled",
+          "prompt": "Enable Azure RBAC for authorization",
+          "required": true,
+          "default": true
+        },
+        "rbac_aad_admin_group_object_ids": {
+          "name": "rbac_aad_admin_group_object_ids",
+          "prompt": "Enter the group IDs that should be the admin on the cluster (Required when Azure RBAC is enabled)",
+          "required": false
+        },
+        "blob_driver_enabled": {
+          "name": "blob_driver_enabled",
+          "prompt": "Enable Blob Driver on the cluster?",
+          "required": true,
+          "default": true
+        },
+        "disk_driver_enabled": {
+          "name": "disk_driver_enabled",
+          "prompt": "Enable Disk Driver on the cluster?",
+          "required": true,
+          "default": true
+        },
+        "file_driver_enabled": {
+          "name": "file_driver_enabled",
+          "prompt": "Enable File Driver on the cluster?",
+          "required": true,
+          "default": true
+        },
+        "log_analytics_workspace_id": {
+          "name": "log_analytics_workspace_id",
+          "prompt": "Enter the Log Analytics workspace ID to use for the cluster",
+          "required": true
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the AKS Cluster, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_node_pool": {
+      "text": "",
+      "cmd": "kc az_container create_node_pool",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Enter the name of the AKS Cluster",
+          "required": true
+        },
+        "aks_version": {
+          "name": "aks_version",
+          "prompt": "Enter AKS version",
+          "required": true,
+          "default": "1.26"
+        },
+        "node_count": {
+          "name": "node_count",
+          "prompt": "Enter the desired number of nodes in the node pool",
+          "required": true,
+          "default": 3
+        },
+        "max_size": {
+          "name": "max_size",
+          "prompt": "Enter the maximum number of nodes in the node pool",
+          "required": true,
+          "default": 5
+        },
+        "min_size": {
+          "name": "min_size",
+          "prompt": "Enter the minimum number of nodes in the node pool",
+          "required": true,
+          "default": 1
+        },
+        "instance_size": {
+          "name": "instance_size",
+          "prompt": "Enter the size of nodes in the node pool",
+          "required": true,
+          "default": "Standard_D2_v2"
+        },
+        "os_sku": {
+          "name": "os_sku",
+          "prompt": "Enter the SKU of the nodes in the node pool",
+          "required": true,
+          "default": "Ubuntu"
+        },
+        "os_type": {
+          "name": "os_type",
+          "prompt": "Enter the type of the nodes in the node pool - Windows or Linux",
+          "required": true,
+          "default": "Linux"
+        },
+        "node_pool_mode": {
+          "name": "node_pool_mode",
+          "prompt": "Enter the mode of the node pool - System or User",
+          "required": true,
+          "default": "User"
+        },
+        "use_spot_instance": {
+          "name": "use_spot_instance",
+          "prompt": "Do you want to use spot instances for this node pool?",
+          "required": true,
+          "default": true
+        },
+        "eviction_policy": {
+          "name": "eviction_policy",
+          "prompt": "Enter the eviction policy for the nodes in the node pool - Delete or Deallocate",
+          "required": true,
+          "default": "Delete"
+        },
+        "zones": {
+          "name": "zones",
+          "prompt": "Enter the availability zones for the nodes in the node pool (Ex: 1,2,3)",
+          "required": true,
+          "default": "1,2"
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Enter the subnet ID where the node pool should exist",
+          "required": false
+        },
+        "capacity_reservation_group_id": {
+          "name": "capacity_reservation_group_id",
+          "prompt": "Enter the ID of the Capacity Reservation Group where this Node Pool should exist",
+          "required": false
+        },
+        "node_labels": {
+          "name": "node_labels",
+          "prompt": "Provide a json string with labels you wish to apply to the AKS Cluster, for example \"{'label1':'value1','label2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        },
+        "node_taints": {
+          "name": "node_taints",
+          "prompt": "Provide a comma separated list of Kubernetes taints which should be applied to nodes in the agent pool (e.g \"key=value:NoSchedule\")",
+          "required": false
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the AKS Cluster, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_app_environment": {
+      "text": "",
+      "cmd": "kc az_container create_app_environment",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter Name with no spaces",
+          "required": true
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location",
+          "required": true
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the resource group",
+          "required": true
+        },
+        "infrastructure_subnet_id": {
+          "name": "infrastructure_subnet_id",
+          "prompt": "Enter the ID of the subnet to use for the container apps control plane",
+          "required": false
+        },
+        "log_analytics_workspace_id": {
+          "name": "log_analytics_workspace_id",
+          "prompt": "Enter the ID of the log analytics workspace",
+          "required": true
+        },
+        "internal_load_balancer_enabled": {
+          "name": "internal_load_balancer_enabled",
+          "prompt": "Should the container environment operate in internal load balancing mode",
+          "required": false,
+          "default": false
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the container environment, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_app_environment_cert": {
+      "text": "",
+      "cmd": "kc az_container create_app_environment_cert",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true
+        },
+        "container_app_environment_id": {
+          "name": "container_app_environment_id",
+          "prompt": "Enter ID of the Container App Environment",
+          "required": true
+        },
+        "certificate_blob_base64": {
+          "name": "certificate_blob_base64",
+          "prompt": "Enter the Certificate Private Key as a base64 encoded PFX or PEM",
+          "required": true
+        },
+        "certificate_password": {
+          "name": "certificate_password",
+          "prompt": "Enter the password for the Certificate",
+          "required": true
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the container environment certificate, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_app": {
+      "text": "",
+      "cmd": "kc az_container create_app",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "container_app_environment_id": {
+          "name": "container_app_environment_id",
+          "prompt": "Enter ID of the Container App Environment",
+          "required": true
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the resource group",
+          "required": true
+        },
+        "revision_mode": {
+          "name": "revision_mode",
+          "prompt": "Enter the revision mode",
+          "required": false,
+          "default": "Single"
+        },
+        "container_name": {
+          "name": "container_name",
+          "prompt": "Enter the name of the container",
+          "required": true
+        },
+        "container_image": {
+          "name": "container_image",
+          "prompt": "Enter the image of the container (Ex: \"mcr.microsoft.com/azuredocs/containerapps-helloworld:latest\")",
+          "required": true
+        },
+        "container_cpu": {
+          "name": "container_cpu",
+          "prompt": "Enter the CPU for the container (Ex: 0.25)",
+          "required": false,
+          "default": 0.25
+        },
+        "container_memory": {
+          "name": "container_memory",
+          "prompt": "Enter the memory for the container (Ex: \"0.5Gi\")",
+          "required": false,
+          "default": "0.5Gi"
+        },
+        "container_args": {
+          "name": "container_args",
+          "prompt": "Enter the args for the container",
+          "required": false
+        },
+        "container_probe_path": {
+          "name": "container_probe_path",
+          "prompt": "Enter the path for the liveliness probe of the container",
+          "required": false,
+          "default": "/"
+        },
+        "container_probe_port": {
+          "name": "container_probe_port",
+          "prompt": "Enter the port for the liveliness probe of the container",
+          "required": false,
+          "default": 80
+        },
+        "max_replicas": {
+          "name": "max_replicas",
+          "prompt": "Enter the maximum number of replicas for the container",
+          "required": false,
+          "default": 3
+        },
+        "min_replicas": {
+          "name": "min_replicas",
+          "prompt": "Enter the minimum number of replicas for the container",
+          "required": false,
+          "default": 1
+        },
+        "identity_type": {
+          "name": "identity_type",
+          "prompt": "Enter the type of managed identity used for authentication",
+          "required": false,
+          "default": "SystemAssigned"
+        },
+        "identity_ids": {
+          "name": "identity_ids",
+          "prompt": "Enter the user assigned managed identity IDs used for authentication",
+          "required": false
+        },
+        "ingress_target_port": {
+          "name": "ingress_target_port",
+          "prompt": "Enter the target port on the container used for ingress traffic",
+          "required": false,
+          "default": 80
+        },
+        "ingress_transport": {
+          "name": "ingress_transport",
+          "prompt": "Enter the transport method used for ingress",
+          "required": false,
+          "default": "auto"
+        },
+        "ingress_allow_insecure_connections": {
+          "name": "ingress_allow_insecure_connections",
+          "prompt": "Enable insecure connections to the container app?",
+          "required": false,
+          "default": true
+        },
+        "registry_server": {
+          "name": "registry_server",
+          "prompt": "Enter the hostname of the container registry",
+          "required": true
+        },
+        "registry_managed_identity": {
+          "name": "registry_managed_identity",
+          "prompt": "Enter the resource ID of the user assigned managed identity to use when pulling from the container registry",
+          "required": false
+        },
+        "registry_password": {
+          "name": "registry_password",
+          "prompt": "Enter the name of the Secret Reference containing the password value for the user on the container registry",
+          "required": false
+        },
+        "registry_username": {
+          "name": "registry_username",
+          "prompt": "Enter the username to use for the container registry",
+          "required": false
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the container environment, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    }
+  },
+  "az_db": {
+    "create_sql_server": {
+      "text": "",
+      "cmd": "kc az_db create_sql_server",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the MSSQL Server.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the MSSQL Server.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "dns_alias": {
+          "name": "dns_alias",
+          "prompt": "Enter the dns_alias name.",
+          "required": true,
+          "default": ""
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Enter the subnet_id.",
+          "required": true,
+          "default": ""
+        },
+        "start_ip_address": {
+          "name": "start_ip_address",
+          "prompt": "Enter the start_ip_address.",
+          "required": true,
+          "default": ""
+        },
+        "end_ip_address": {
+          "name": "end_ip_address",
+          "prompt": "Enter the end_ip_address.",
+          "required": true,
+          "default": ""
+        },
+        "administrator_login": {
+          "name": "administrator_login",
+          "prompt": "Enter the administrator_login.",
+          "required": false,
+          "default": ""
+        },
+        "administrator_login_password": {
+          "name": "administrator_login_password",
+          "prompt": "Enter the administrator_login_password.",
+          "required": false,
+          "default": ""
+        },
+        "ad_admin": {
+          "name": "ad_admin",
+          "prompt": "Enter the AD Admin username.",
+          "required": false,
+          "default": ""
+        },
+        "object_id": {
+          "name": "object_id",
+          "prompt": "Enter the Object Id",
+          "required": false,
+          "default": ""
+        },
+        "user_identity": {
+          "name": "user_identity",
+          "prompt": "Enter the User Identity",
+          "required": false,
+          "default": ""
+        },
+        "tde_key": {
+          "name": "tde_key",
+          "prompt": "Enter the TDE Key",
+          "required": false,
+          "default": ""
+        },
+        "tde_enabled_create": {
+          "name": "tde_enabled_create",
+          "prompt": "true or false",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "create_sql_db": {
+      "text": "",
+      "cmd": "kc az_db create_sql_db",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the MSSQL Database.",
+          "required": true,
+          "default": ""
+        },
+        "server_id": {
+          "name": "server_id",
+          "prompt": "Enter the location of the MSSQL Server.",
+          "required": true,
+          "default": ""
+        },
+        "max_size_gb": {
+          "name": "max_size_gb",
+          "prompt": "Enter the Size",
+          "required": true,
+          "default": ""
+        },
+        "start_ip_address": {
+          "name": "start_ip_address",
+          "prompt": "Enter the start_ip_address.",
+          "required": true,
+          "default": ""
+        },
+        "end_ip_address": {
+          "name": "end_ip_address",
+          "prompt": "Enter the end_ip_address.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_cosmosdb_nosql": {
+      "text": "",
+      "cmd": "kc az_db create_cosmosdb_nosql",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the MSSQL Database.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the MSSQL Server.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "total_throughput_limit": {
+          "name": "total_throughput_limit",
+          "prompt": "Enter the Total Throughput Limit.",
+          "required": true,
+          "default": ""
+        },
+        "enable_free_tier": {
+          "name": "enable_free_tier",
+          "prompt": "Enter Enable Free Tier.",
+          "required": true,
+          "default": ""
+        },
+        "geo_location": {
+          "name": "geo_location",
+          "prompt": "Enter Enable Geolocation",
+          "required": true,
+          "default": ""
+        },
+        "enable_multiple_write_locations": {
+          "name": "enable_multiple_write_locations",
+          "prompt": "Enter Enable Multiple Write Locations",
+          "required": true,
+          "default": ""
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Enter the subnet_id.",
+          "required": true,
+          "default": ""
+        },
+        "enable_serverless": {
+          "name": "enable_serverless",
+          "prompt": "Enable Serverless",
+          "type": "boolean",
+          "required": false,
+          "default": ""
+        },
+        "key_vault_key_id": {
+          "name": "key_vault_key_id",
+          "prompt": "Enable Key id",
+          "required": false,
+          "default": ""
+        },
+        "backup_type": {
+          "name": "backup_type",
+          "prompt": "Enter Backup Type",
+          "required": false,
+          "default": ""
+        },
+        "storage_redundancy": {
+          "name": "storage_redundancy",
+          "prompt": "Enter Storage Redundancy",
+          "required": false,
+          "default": ""
+        },
+        "interval_in_minutes": {
+          "name": "interval_in_minutes",
+          "prompt": "Enter interval in minutes",
+          "required": false,
+          "default": ""
+        },
+        "retention_in_hours": {
+          "name": "retention_in_hours",
+          "prompt": "Enter retention in hours",
+          "required": false,
+          "default": ""
+        },
+        "ip_range_filter": {
+          "name": "ip_range_filter",
+          "prompt": "Enter allowed Ips",
+          "required": false,
+          "default": ""
+        },
+        "identity_type": {
+          "name": "identity_type",
+          "prompt": "Enter the type of managed identity used for authentication",
+          "required": false,
+          "default": ""
+        },
+        "identity_ids": {
+          "name": "identity_ids",
+          "prompt": "Enter the user assigned managed identity IDs used for authentication",
+          "required": false
+        },
+        "database_name": {
+          "name": "database_name",
+          "prompt": "Enter the Database Name",
+          "required": false,
+          "default": ""
+        },
+        "containers": {
+          "name": "containers",
+          "prompt": "Enter the container definition",
+          "required": false,
+          "default": "",
+          "type": "json"
+        }
+      }
+    }
+  },
+  "az_lb": {
+    "create_lb": {
+      "text": "",
+      "cmd": "kc az_lb create_lb",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter location of the security group.",
+          "required": false,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "public_address_id": {
+          "name": "public_address_id",
+          "prompt": "Enter firewal's public_address_id",
+          "required": true,
+          "default": ""
+        },
+        "sku": {
+          "name": "sku",
+          "prompt": "Enter sku",
+          "required": false,
+          "default": ""
+        },
+        "sku_tier": {
+          "name": "sku_tier",
+          "prompt": "Enter sku tier",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "create_lb_rule": {
+      "text": "",
+      "cmd": "kc az_lb create_lb_rule",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "load_balancer": {
+          "name": "load_balancer",
+          "prompt": "Enter the load balancer name and resource group ex: lb_name|rg_name",
+          "required": true,
+          "default": ""
+        },
+        "protocol": {
+          "name": "protocol",
+          "prompt": "Enter protocol",
+          "required": true,
+          "default": ""
+        },
+        "frontend_port": {
+          "name": "frontend_port",
+          "prompt": "Enter frontend port",
+          "required": true,
+          "default": ""
+        },
+        "backend_port": {
+          "name": "backend_port",
+          "prompt": "Enter backend port",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "az_lz": {
+    "create_management_group": {
+      "text": "",
+      "cmd": "kc az_lz create_management_group",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Management Group Name.",
+          "required": true,
+          "default": ""
+        },
+        "parent_id": {
+          "name": "parent_id",
+          "prompt": "Enter Parent Management Group Id",
+          "required": true,
+          "default": ""
+        },
+        "policy_name": {
+          "name": "policy_name",
+          "prompt": "Enter the policy name",
+          "required": true,
+          "default": ""
+        },
+        "policy_definition_id": {
+          "name": "policy_definition_id",
+          "prompt": "Comma-separated list of Policy Definition IDs to apply to the management group",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_policy_definition": {
+      "text": "",
+      "cmd": "kc az_lz create_policy_definition",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Policy Definition Name.",
+          "required": true,
+          "default": ""
+        },
+        "policy_mode": {
+          "name": "policy_mode",
+          "prompt": "Enter the policy mode",
+          "required": true,
+          "default": ""
+        },
+        "metadata_json": {
+          "name": "metadata_json",
+          "prompt": "Enter the metadata json contents",
+          "required": true,
+          "default": ""
+        },
+        "parameters_json": {
+          "name": "parameters_json",
+          "prompt": "Enter the parameters json contents",
+          "required": true,
+          "default": ""
+        },
+        "policy_json": {
+          "name": "policy_json",
+          "prompt": "Enter the policy json contents",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_policy_initiate_defintion": {
+      "text": "",
+      "cmd": "kc az_lz create_policy_initiate_defintion",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the policy initiative definition.",
+          "required": true,
+          "default": ""
+        },
+        "parameters_json": {
+          "name": "parameters_json",
+          "prompt": "Enter the parameters json file",
+          "required": true,
+          "default": ""
+        },
+        "metadata_json": {
+          "name": "metadata_json",
+          "prompt": "Enter the metadata json file",
+          "required": true,
+          "default": ""
+        },
+        "policy_definition_id": {
+          "name": "policy_definition_id",
+          "prompt": "Enter the policy definition Id",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_role_assignment_subscription": {
+      "text": "",
+      "cmd": "kc az_lz create_role_assignment_subscription",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the role.",
+          "required": true,
+          "default": ""
+        },
+        "permissions_actions": {
+          "name": "permissions_actions",
+          "prompt": "Enter the comma-separated actions for permissions",
+          "required": true,
+          "default": ""
+        },
+        "permissions_noactions": {
+          "name": "permissions_noactions",
+          "prompt": "Enter the comma-separated actions to exclude from the permissions list",
+          "required": false,
+          "default": ""
+        },
+        "data_actions": {
+          "name": "data_actions",
+          "prompt": "Enter the comma-separated actions for data",
+          "required": true,
+          "default": ""
+        },
+        "data_noactions": {
+          "name": "data_noactions",
+          "prompt": "Enter the comma-separated actions to exclude from the data list",
+          "required": false,
+          "default": ""
+        },
+        "assignable_scopes": {
+          "name": "assignable_scopes",
+          "prompt": "Enter the comma-separated assignable scopes",
+          "required": true,
+          "default": ""
+        },
+        "principal": {
+          "name": "principal",
+          "prompt": "Enter the principal id",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_resource_group": {
+      "text": "",
+      "cmd": "kc az_lz create_resource_group",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter resource group name.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter resource group location.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_loganalytics": {
+      "text": "",
+      "cmd": "kc az_lz create_loganalytics",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of log analytics workspace.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the name of log analytics workspace.",
+          "required": true,
+          "default": ""
+        },
+        "rg_name": {
+          "name": "rg_name",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_key_vault": {
+      "text": "",
+      "cmd": "kc az_lz create_key_vault",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the key vault.",
+          "required": true,
+          "default": ""
+        },
+        "rg_name": {
+          "name": "rg_name",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "sku_name": {
+          "name": "sku_name",
+          "prompt": "Enter the SKU for the key vault.",
+          "required": false,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter location for the key vault.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_key_vault_access_policy": {
+      "text": "",
+      "cmd": "kc az_lz create_key_vault_access_policy",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter the name of the key vault.",
+          "required": true,
+          "default": ""
+        },
+        "key_permissions_list": {
+          "name": "key_permissions_list",
+          "prompt": "Comma-seaparated list of key permissions.",
+          "required": false,
+          "default": ""
+        },
+        "secret_permissions_list": {
+          "name": "secret_permissions_list",
+          "prompt": "Comma-seaparated list of secret permissions.",
+          "required": false,
+          "default": ""
+        },
+        "principal": {
+          "name": "principal",
+          "prompt": "Principal Id.",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "create_log_analytics_workspace": {
+      "text": "",
+      "cmd": "kc az_lz create_log_analytics_workspace",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of log analytics workspace.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the name of log analytics workspace.",
+          "required": true,
+          "default": ""
+        },
+        "rg_name": {
+          "name": "rg_name",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "sku": {
+          "name": "sku",
+          "prompt": "Enter the log SKU",
+          "required": true,
+          "default": ""
+        },
+        "retention_in_days": {
+          "name": "retention_in_days",
+          "prompt": "Enter the retention in days",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "az_net": {
+    "create_nsg": {
+      "text": "",
+      "cmd": "kc az_net create_nsg",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the security group.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter location of the security group.",
+          "required": false,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "security_rule": {
+          "name": "security_rule",
+          "prompt": "Enter the definition",
+          "required": false,
+          "default": "",
+          "type": "json"
+        }
+      }
+    },
+    "create_vnet": {
+      "text": "",
+      "cmd": "kc az_net create_vnet",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the virtual network.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the virtual network.",
+          "required": false,
+          "default": "eastus"
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "address_space": {
+          "name": "address_space",
+          "prompt": "Enter the address prefix for the virtual network.",
+          "required": true,
+          "default": ""
+        },
+        "dns_servers": {
+          "name": "dns_servers",
+          "prompt": "Enter the comma separated dns servers list",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "create_firewall": {
+      "text": "",
+      "cmd": "kc az_net create_firewall",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the azure firewall.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the azure firewall.",
+          "required": false,
+          "default": "eastus"
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "sku_name": {
+          "name": "sku_name",
+          "prompt": "Enter firewall's sku name.",
+          "required": true,
+          "default": ""
+        },
+        "sku_tier": {
+          "name": "sku_tier",
+          "prompt": "Enter firewal's sku tier.",
+          "required": true,
+          "default": ""
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Enter firewall's subnet_id",
+          "required": true,
+          "default": ""
+        },
+        "public_address_id": {
+          "name": "public_address_id",
+          "prompt": "Enter firewal's public_address_id",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_public_ip": {
+      "text": "",
+      "cmd": "kc az_net create_public_ip",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the public IP address.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the public IP address.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_ddos_plan": {
+      "text": "",
+      "cmd": "kc az_net create_ddos_plan",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the DDoS plan.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the DDoS plan.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_dns_zone": {
+      "text": "",
+      "cmd": "kc az_net create_dns_zone",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the DNS Zone.",
+          "required": true,
+          "default": ""
+        },
+        "domain_name": {
+          "name": "Domain Name",
+          "prompt": "Enter the name of the Domain Name.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_private_dns_zone": {
+      "text": "",
+      "cmd": "kc az_net create_private_dns_zone",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the Private DNS Zone.",
+          "required": true,
+          "default": ""
+        },
+        "domain_name": {
+          "name": "Name",
+          "prompt": "Enter the name of the Domain Name.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_route_table": {
+      "text": "",
+      "cmd": "kc az_net create_route_table",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the azure route table.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the azure route table.",
+          "required": false,
+          "default": "eastus"
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_route": {
+      "text": "",
+      "cmd": "kc az_net create_route",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the azure route.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "route_table_name": {
+          "name": "route_table_name",
+          "prompt": "Enter the name of the azure route table",
+          "required": true,
+          "default": ""
+        },
+        "address_prefix": {
+          "name": "address_prefix",
+          "prompt": "Enter the azure address prefix",
+          "required": true,
+          "default": ""
+        },
+        "next_hop_type": {
+          "name": "next_hop_type",
+          "prompt": "Enter azure hop type",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_subnet": {
+      "text": "",
+      "cmd": "kc az_net create_subnet",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the azure subnet",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "address_prefix": {
+          "name": "address_prefix",
+          "prompt": "Enter the address prefix of azure subnet",
+          "required": true,
+          "default": ""
+        },
+        "vnet_name": {
+          "name": "vnet_name",
+          "prompt": "Enter virtual network name for the subnet to be associated to",
+          "required": true,
+          "default": ""
+        },
+        "service_endpoints": {
+          "name": "service_endpoints",
+          "prompt": "Enter the Service Endpoints",
+          "required": false
+        }
+      }
+    },
+    "create_network_watcher": {
+      "text": "",
+      "cmd": "kc az_net create_network_watcher",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Network Watcher's name",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter Network Watcher's name",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_vnet_peering": {
+      "text": "",
+      "cmd": "kc az_net create_vnet_peering",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the vnet peering.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "virtual_network_name": {
+          "name": "virtual_network_name",
+          "prompt": "Enter the Virtual Network name",
+          "required": true,
+          "default": ""
+        },
+        "remote_virtual_network_id": {
+          "name": "route_table_name",
+          "prompt": "Enter the remote_virtual_network_id",
+          "required": true,
+          "default": ""
+        },
+        "allow_forwarded_traffic": {
+          "name": "allow_forwarded_traffic",
+          "prompt": "Enter allow_forwarded_traffic",
+          "type": "boolean",
+          "required": true
+        },
+        "allow_virtual_network_access": {
+          "name": "allow_virtual_network_access",
+          "prompt": "Enter allow_virtual_network_access",
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "create_net_flow_log": {
+      "text": "",
+      "cmd": "kc az_net create_net_flow_log",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the vnet peering.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location",
+          "required": false,
+          "default": ""
+        },
+        "network_watcher_name": {
+          "name": "network_watcher_name",
+          "prompt": "Enter the network_watcher_name",
+          "required": true,
+          "default": ""
+        },
+        "network_security_group_id": {
+          "name": "network_security_group_id",
+          "prompt": "Enter network_security_group_id",
+          "required": true,
+          "default": ""
+        },
+        "storage_account_id": {
+          "name": "storage_account_id",
+          "prompt": "Enter storage_account_id",
+          "required": true,
+          "default": ""
+        },
+        "enabled": {
+          "name": "enabled",
+          "prompt": "true or false",
+          "type": "boolean",
+          "required": true
+        },
+        "retention_days": {
+          "name": "retention_days",
+          "prompt": "Enter retention_days number",
+          "required": true,
+          "default": ""
+        },
+        "workspace_id": {
+          "name": "workspace_id",
+          "prompt": "Enter workspace_id",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  },
+  "az_storage": {
+    "create_storage_account": {
+      "text": "",
+      "cmd": "kc az_storage create_storage_account",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "prompt": "Enter name of the resource group",
+          "required": true
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location",
+          "required": true,
+          "default": "eastus"
+        },
+        "access_tier": {
+          "name": "access_tier",
+          "prompt": "Specify the access tier (Standard or Premium)",
+          "required": true,
+          "default": "Standard"
+        },
+        "account_replication_type": {
+          "name": "account_replication_type",
+          "prompt": "Specify the replication type - (LRS, GRS, RAGRS, ZRS, GZRS, RAGRS)",
+          "required": true,
+          "default": "LRS"
+        },
+        "ip_addresses": {
+          "name": "ip_addresses",
+          "prompt": "Comma-separated list of public IPs in CIDR format to allow access. The CIDR prefix must be less than or equal to 30",
+          "required": false
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Comma-separated list of subnet resource IDs to allow access",
+          "required": false
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the storage account, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": {}
+        }
+      }
+    },
+    "create_blob_container": {
+      "text": "",
+      "cmd": "kc az_storage create_blob_container",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "storage_account_name": {
+          "name": "storage_account_name",
+          "prompt": "Enter name of the storage account",
+          "required": true
+        },
+        "container_access_type": {
+          "name": "container_access_type",
+          "prompt": "Enter the access level configured for the container (blob, container or private)",
+          "required": false,
+          "default": "private"
+        }
+      }
+    },
+    "create_file_share": {
+      "text": "",
+      "cmd": "kc az_storage create_file_share",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "storage_account_name": {
+          "name": "storage_account_name",
+          "prompt": "Enter name of the storage account",
+          "required": true
+        },
+        "quota": {
+          "name": "quota",
+          "prompt": "Enter the maximum size of the share, in gigabytes",
+          "required": false,
+          "default": 1
+        }
+      }
+    },
+    "create_redis_cache": {
+      "text": "",
+      "cmd": "kc az_storage create_redis_cache",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "prompt": "Enter name of the resource group",
+          "required": true
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location",
+          "required": true,
+          "default": "eastus"
+        },
+        "capacity": {
+          "name": "capacity",
+          "prompt": "Enter the size of redis cache to deploy",
+          "required": true
+        },
+        "family": {
+          "name": "family",
+          "prompt": "Enter the SKU family (C or P)",
+          "required": true,
+          "default": "C"
+        },
+        "sku_name": {
+          "name": "sku_name",
+          "prompt": "Enter the SKU of Redis to use (Basic, Standard and Premium)",
+          "required": true,
+          "default": "Standard"
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Enter the ID of the Subnet within which the Redis Cache should be deployed (Only available with Premium SKU)",
+          "required": true
+        },
+        "identity_type": {
+          "name": "identity_type",
+          "prompt": "Enter the type of Managed Service Identity that should be configured on this Redis Cluster (SystemAssigned, UserAssigned)",
+          "required": true,
+          "default": "SystemAssigned"
+        },
+        "managed_ids": {
+          "name": "managed_ids",
+          "prompt": "Enter the comma-separated list of User Assigned Managed Identity IDs to be assigned to this Redis Cluster",
+          "required": true
+        },
+        "zones": {
+          "name": "zones",
+          "prompt": "Enter the list of Availability Zones in which this Redis Cache should be located (1, 2, 3)",
+          "required": true
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the redis cache, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": {}
+        }
+      }
+    }
+  }
+}

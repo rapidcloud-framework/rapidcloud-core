@@ -1,0 +1,14 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source                       = "../modules/aws_api_gateway/{{ resource_type }}"
+  name                         = "{{ profile }}_{{ params['name'] }}"
+  disable_execute_api_endpoint = {{ params['disable_execute_api_endpoint'] }}
+  endpoint_type                = "{{ params['endpoint_type'] }}"
+  tags = {
+    Name        = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}

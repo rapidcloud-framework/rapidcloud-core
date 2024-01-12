@@ -1,0 +1,79 @@
+{
+  "rds": {
+    "create": {
+      "enabled": true,
+      "help": "Create RDS or Aurora Database",
+      "template_section": "databases",
+      "template_enabled": true,
+      "create_aws_infra": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "type": {
+          "name": "type",
+          "prompt": "Target Database Type (rds|aurora)",
+          "required": true,
+          "default": "rds"
+        },
+        "engine": {
+          "name": "engine",
+          "prompt": "Target Database Engine (mysql|postgres)",
+          "required": true,
+          "default": "postgres"
+        },
+        "multi_az": {
+          "name": "multi_az",
+          "prompt": "Create Target Database in two Availability Zones",
+          "required": true,
+          "default": "false"
+        },
+        "database_name": {
+          "name": "database_name",
+          "prompt": "Target Database Schema Name",
+          "required": true,
+          "default": "main"
+        }
+      }
+    },
+    "add_table": {
+      "enabled": true,
+      "help": "Add RDS or Aurora Table to an existing database",
+      "template_section": "databases",
+      "template_enabled": true,
+      "create_aws_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Database Table Name",
+          "prompt": "Enter Name with no spaces or special characters",
+          "required": true,
+          "default": ""
+        },
+        "db_name": {
+          "name": "Database Name",
+          "prompt": "Enter Existing Database Name",
+          "required": true,
+          "default": ""
+        },
+        "primary_key": {
+          "name": "Primary Key",
+          "prompt": "Enter Table Primary Key",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "generate-schema": {
+      "enabled": false,
+      "help": "",
+      "template_section": "",
+      "template_enabled": false
+    }
+  }
+}

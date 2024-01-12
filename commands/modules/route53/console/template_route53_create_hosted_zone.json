@@ -1,0 +1,139 @@
+{
+  "type": "Theia::Action",
+  "label": "Route 53 Hosted zones",
+  "id": "route53_create_hosted_zone",
+  "module": "route53",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "route53",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=route53,create_hosted_zone",
+      "env_param_required": true,
+      "columns": [
+        "route53_name",
+        "timestamp",
+        "route53_zone_comment",
+        "route53_zone_delegation_set_id",
+        "route53_zone_vpc_id"
+      ],
+      "title": "Route 53 hosted zones",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "route53",
+      "title": "Create hosted zone",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "route53",
+            "command": "create_hosted_zone",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "route53_name",
+          "cli_id": "route53_name",
+          "label": "Hosted zone domain",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "route53_zone_comment",
+          "cli_id": "route53_zone_comment",
+          "label": "Zone comment",
+          "help": "A comment to help you identify the zones purpose.",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "route53_private_zone",
+          "cli_id": "route53_private_zone",
+          "label": "Hosted zone type",
+          "default": true,
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Private",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": true,
+                "enableControls": ["route53_zone_vpc_id"],
+                "disableControls": ["route53_add_delegation_set","route53_zone_delegation_set_id"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Public",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": false,
+                "disableControls": ["route53_zone_vpc_id"],
+                "enableControls": ["route53_add_delegation_set","route53_zone_delegation_set_id"]
+              }
+            }
+          ]
+        },        
+        {
+          "type": "Theia::Control::Select",
+          "id": "route53_add_delegation_set",
+          "cli_id": "route53_add_delegation_set",
+          "label": "Add delegation set (Public zones only)",
+          "help": "Explicitly add a reusable delegation set to this zone.",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "true",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": true,
+                "enableControls": ["route53_zone_delegation_set_id"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "false",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": false,
+                "disableControls": ["route53_zone_delegation_set_id"]
+              }
+            }
+          ]
+        },    
+        {
+          "type": "Theia::Control::Input",
+          "id": "route53_zone_delegation_set_id",
+          "cli_id": "route53_zone_delegation_set_id",
+          "label": "Delegation set id (Public zones only)",
+          "datasource": "",
+          "help": "Add the id of an existing delegation set id"
+        },            
+        {
+          "type": "Theia::Control::Select",
+          "id": "route53_zone_vpc_id",
+          "cli_id": "route53_zone_vpc_id",
+          "label": "VPC Id to associate this zone to (Private zones only)",
+          "datasource": "custom/module_net_vpcs?extra=true&module_name_arg=net",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "route53_zone_force_destroy",
+          "cli_id": "route53_zone_force_destroy",
+          "label": "Force destroy records",
+          "help": "Whether to destroy all records (possibly managed outside of Terraform) in the zone when destroying the zone."
+        }        
+      ]
+    }
+  ]
+}

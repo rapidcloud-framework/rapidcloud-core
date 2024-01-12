@@ -1,0 +1,43 @@
+{
+  "type": "Theia::Action",
+  "label": "Python Code",
+  "id": "generated_code",
+  "module": "code",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "generated_code",
+      "datasource": "generated_code?test=test",
+      "env_param_required": true,
+      "columns": ["filename"],
+      "title": "Generated Code and Templates",
+      "description": "",
+      "hide_add": true
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "generated_code",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "filename",
+          "label": "File Location",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Code",
+          "label": "",
+          "id": "contents",
+          "language": "python"
+        } 
+      ]
+    }
+  ]
+}

@@ -1,0 +1,340 @@
+{
+  "az_lz": {
+    "create_management_group": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_landingzone",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Management Group Name.",
+          "required": true,
+          "default": ""
+        },
+        "parent_id": {
+          "name": "parent_id",
+          "prompt": "Enter Parent Management Group Id",
+          "required": true,
+          "default": ""
+        },
+        "policy_name": {
+          "name": "policy_name",
+          "prompt": "Enter the policy name",
+          "required": true,
+          "default": ""
+        },
+        "policy_definition_id": {
+          "name": "policy_definition_id",
+          "prompt": "Comma-separated list of Policy Definition IDs to apply to the management group",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_policy_definition": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_landingzone",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Policy Definition Name.",
+          "required": true,
+          "default": ""
+        },
+        "policy_mode": {
+          "name": "policy_mode",
+          "prompt": "Enter the policy mode",
+          "required": true,
+          "default": ""
+        },
+        "metadata_json": {
+          "name": "metadata_json",
+          "prompt": "Enter the metadata json contents",
+          "required": true,
+          "default": ""
+        },
+        "parameters_json": {
+          "name": "parameters_json",
+          "prompt": "Enter the parameters json contents",
+          "required": true,
+          "default": ""
+        },
+        "policy_json": {
+          "name": "policy_json",
+          "prompt": "Enter the policy json contents",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_policy_initiate_defintion": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_landingzone",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the policy initiative definition.",
+          "required": true,
+          "default": ""
+        },
+        "parameters_json": {
+          "name": "parameters_json",
+          "prompt": "Enter the parameters json file",
+          "required": true,
+          "default": ""
+        },
+        "metadata_json": {
+          "name": "metadata_json",
+          "prompt": "Enter the metadata json file",
+          "required": true,
+          "default": ""
+        },
+        "policy_definition_id": {
+          "name": "policy_definition_id",
+          "prompt": "Enter the policy definition Id",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_role_assignment_subscription": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_landingzone",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the role.",
+          "required": true,
+          "default": ""
+        },
+        "permissions_actions": {
+          "name": "permissions_actions",
+          "prompt": "Enter the comma-separated actions for permissions",
+          "required": true,
+          "default": ""
+        },
+        "permissions_noactions": {
+          "name": "permissions_noactions",
+          "prompt": "Enter the comma-separated actions to exclude from the permissions list",
+          "required": false,
+          "default": ""
+        },
+        "data_actions": {
+          "name": "data_actions",
+          "prompt": "Enter the comma-separated actions for data",
+          "required": true,
+          "default": ""
+        },
+        "data_noactions": {
+          "name": "data_noactions",
+          "prompt": "Enter the comma-separated actions to exclude from the data list",
+          "required": false,
+          "default": ""
+        },
+        "assignable_scopes": {
+          "name": "assignable_scopes",
+          "prompt": "Enter the comma-separated assignable scopes",
+          "required": true,
+          "default": ""
+        },
+        "principal": {
+          "name": "principal",
+          "prompt": "Enter the principal id",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_resource_group": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_landingzone",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter resource group name.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter resource group location.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_loganalytics": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_landingzone",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of log analytics workspace.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the name of log analytics workspace.",
+          "required": true,
+          "default": ""
+        },
+        "rg_name": {
+          "name": "rg_name",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_key_vault": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_landingzone",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the key vault.",
+          "required": true,
+          "default": ""
+        },
+        "rg_name": {
+          "name": "rg_name",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "sku_name": {
+          "name": "sku_name",
+          "prompt": "Enter the SKU for the key vault.",
+          "required": false,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter location for the key vault.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_key_vault_access_policy": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_landingzone",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter the name of the key vault.",
+          "required": true,
+          "default": ""
+        },
+        "key_permissions_list": {
+          "name": "key_permissions_list",
+          "prompt": "Comma-seaparated list of key permissions.",
+          "required": false,
+          "default": ""
+        },
+        "secret_permissions_list": {
+          "name": "secret_permissions_list",
+          "prompt": "Comma-seaparated list of secret permissions.",
+          "required": false,
+          "default": ""
+        },
+        "principal": {
+          "name": "principal",
+          "prompt": "Principal Id.",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "create_log_analytics_workspace": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_landingzone",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of log analytics workspace.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the name of log analytics workspace.",
+          "required": true,
+          "default": ""
+        },
+        "rg_name": {
+          "name": "rg_name",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "sku": {
+          "name": "sku",
+          "prompt": "Enter the log SKU",
+          "required": true,
+          "default": ""
+        },
+        "retention_in_days": {
+          "name": "retention_in_days",
+          "prompt": "Enter the retention in days",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  }
+}

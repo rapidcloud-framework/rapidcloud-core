@@ -1,0 +1,13 @@
+module "{{ profile }}_{{ resource_name }}_ebs_volume" {
+  source            = "../modules/aws_ebs_volume"
+  disk_size         = "{{ params['volume_size']}}"
+  availability_zone = "{{ params['availability_zone']}}"
+  tags = {
+    "Name"      = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}

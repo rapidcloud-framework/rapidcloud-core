@@ -1,0 +1,59 @@
+{
+  "cloudtrail": {
+    "create_trail": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "logs",
+      "template_enabled": true,
+      "timestamp": "2023-06-20 16:25:30.646950",
+      "cmd_id": "20230316152522227733",
+      "metadata_table": "metadata",
+      "id": "trail_name",
+      "args": {
+        "trail_name": {
+          "name": "trail_name",
+          "prompt": "Trail Name",
+          "required": true,
+          "default": ""
+        },
+        "s3_bucket_name": {
+          "name": "s3_bucket_name",
+          "prompt": "S3 Bucket Name",
+          "required": true,
+          "default": ""
+        },
+        "kms_key_id": {
+          "name": "kms_key_id",
+          "prompt": "KMS Key ARN",
+          "required": false,
+          "default": ""
+        },
+        "include_global_service_events": {
+          "name": "include_global_service_events",
+          "prompt": "Include global service envents?",
+          "required": false,
+          "default": "yes"
+        },
+        "enable_log_file_validation": {
+          "name": "enable_log_file_validation",
+          "prompt": "Enable log file validation?",
+          "required": false,
+          "default": "no"
+        },
+        "is_organization_trail": {
+          "name": "is_organization_trail",
+          "prompt": "Is organization trail?",
+          "required": false,
+          "default": "no"
+        },
+        "is_multi_region_trail": {
+          "name": "is_multi_region_trail",
+          "prompt": "Is multi region trail?",
+          "required": false,
+          "default": "no"
+        }
+      }
+    }
+  }
+}

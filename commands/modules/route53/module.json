@@ -1,0 +1,122 @@
+{
+  "route53": {
+    "add_record": {
+      "help": "",
+      "template_section": "networking",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "record_name",
+      "args": {
+        "record_name": {
+          "name": "record_name",
+          "prompt": "The name of the record.",
+          "required": true,
+          "default": ""
+        },
+        "record_type": {
+          "name": "record_type",
+          "prompt": "The record type. Valid values are: A, alias, NS, CNAME and TXT.",
+          "required": true,
+          "default": ""
+        },
+        "zone_id": {
+          "name": "zone_id",
+          "prompt": "Hosted zone ID for a Route 53 hosted zone.",
+          "required": true,
+          "default": ""
+        },
+        "ttl": {
+          "name": "ttl",
+          "prompt": "The TTL of the record. (Default is 300)",
+          "required": false,
+          "default": "300"
+        },
+        "record_list": {
+          "name": "record_list",
+          "prompt": "A string list of records.",
+          "required": true,
+          "default": ""
+        },
+        "alias_name": {
+          "name": "alias_name",
+          "prompt": "DNS name of the record to point to",
+          "required": false,
+          "default": ""
+        },
+        "alias_zone_id": {
+          "name": "alias_zone_id",
+          "prompt": "The zone id of where this record is hosted.",
+          "required": false,
+          "default": ""
+        },
+        "evaluate_target_health": {
+          "name": "evaluate_target_health",
+          "prompt": "Evaluate targets health",
+          "required": false,
+          "default": false
+        }
+      },
+      "enabled": true
+    },
+    "create_hosted_zone": {
+      "help": "",
+      "template_section": "networking",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Name/domain of the hosted zone",
+          "required": true,
+          "default": ""
+        },
+        "zone_comment": {
+          "name": "zone_comment",
+          "prompt": "Short comment that help you identify this zone.",
+          "required": false,
+          "default": ""
+        },
+        "zone_force_destroy": {
+          "name": "zone_force_destroy",
+          "prompt": "Whether to destroy all records (possibly managed outside of Terraform) in the zone when destroying the zone.",
+          "required": false,
+          "default": "true"
+        },
+        "add_delegation_set": {
+          "name": "add_delegation_set",
+          "prompt": "For public zones only. Set to true if you want to create a delegation set for this hosted zone.",
+          "required": false,
+          "default": "false"
+        },
+        "zone_delegation_set_id": {
+          "name": "zone_delegation_set_id",
+          "prompt": "For public zones only. The ID of the reusable delegation set whose NS records you want to assign to the hosted zone.",
+          "required": false,
+          "default": ""
+        },
+        "private_zone": {
+          "name": "private_zone",
+          "prompt": "Create this as a private hosted zone.",
+          "required": true,
+          "default": "false"
+        },
+        "zone_vpc_id": {
+          "name": "zone_vpc_id",
+          "prompt": "For private zones only. ID of the VPC to associate. Used in private zones only",
+          "required": false,
+          "default": ""
+        },
+        "zone_vpc_region": {
+          "name": "zone_vpc_region",
+          "prompt": "For private zones only. Region of the VPC to associate. Defaults to AWS provider region. Used in private zones only",
+          "required": false,
+          "default": ""
+        }
+      },
+      "enabled": true
+    }
+  }
+}

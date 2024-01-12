@@ -1,0 +1,61 @@
+module "{{fqn}}" {
+  # module source 
+  source = "{{ module_source }}"
+  # rc tags
+  env  = "{{ env }}"
+  region  = "{{ region }}"
+  profile = "{{ profile }}"
+  fqn = "{{ fqn }}"
+  workload = "{{ workload }}"
+  cmd_id = "{{ cmd_id }}"
+  name = "{{ params["name"] }}"
+  # module vars
+  service = "{{ params["service"] }}"
+  vpc_id = module.{{ profile }}_aws_vpc_{{ params["vpc_id"] }}.id 
+  cidr_block = module.{{ profile }}_aws_vpc_{{ params["vpc_id"] }}.cidr_block
+
+  subnets = {
+  {%- if 'subnet_ids' in params.keys() and params["subnet_ids"] != ""  %}   
+  {% set subnet_list = params["subnet_ids"].split(',') %}
+  {% for subnet in subnet_list -%}
+  {{ subnet }} = module.{{ profile }}_aws_subnet_{{ subnet }}.id
+  {% endfor -%}
+  {% endif %}
+  }
+
+  route_tables = {
+  {%- if 'route_tables' in params.keys() and params["route_tables"] != ""  -%}   
+  {% set route_table_list = params["route_tables"].split(',') -%}
+  {% for route_table in route_table_list -%}
+  {{ route_table }} = module.{{ profile }}_aws_subnet_{{ route_table }}.route_table_id
+  {% endfor -%}
+  {% endif %}
+  }
+
+  depends_on = [
+  {%- if 'route_tables' in params.keys() and params["route_tables"] != ""  -%}   
+  {% set route_table_list = params["route_tables"].split(',') -%}
+  {% for route_table in route_table_list -%}
+  module.{{ profile }}_aws_subnet_{{ route_table }}.route_table_id,
+  {% endfor -%}
+  {% endif %}
+  {%- if 'subnet_ids' in params.keys() and params["subnet_ids"] != ""  %}   
+  {% set subnet_list = params["subnet_ids"].split(',') %}
+  {% for subnet in subnet_list -%}
+  module.{{ profile }}_aws_subnet_{{ subnet }}.id,
+  {% endfor -%}
+  {% endif %}
+  ]
+
+  {% if params['tags'] is defined %}
+  tags = {
+  {% for k, v in  params['tags'].items() -%}
+      "{{ k }}" = "{{ v }}"
+  {% endfor -%}
+  }
+  {% endif %}
+}
+
+{% for k, v in params.items() %}
+# {{k}} -> {{ v }}
+{% endfor %}

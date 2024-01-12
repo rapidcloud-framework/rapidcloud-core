@@ -1,0 +1,114 @@
+{
+  "type": "Theia::Action",
+  "label": "Documents & Binary Files",
+  "id": "unstructured",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "unstructured",
+      "datasource": "data?type=dataset_unstructured",
+      "env_param_required": true,
+      "columns": ["name","type","category","enable_transform"],
+      "title": "Documents & Binary Files",
+      "description": "Configure ingestion of binary files (e.g. invoices, documents, audio, video, images, etc)",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "data",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "ingest",
+            "command": "register-unstructured"    
+          }
+        },
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Enter Dataset Name with no spaces",
+          "help": "e.g. invoices, resumes, scanned_hr_forms, security_videos",
+          "inputType": "text",
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "type",
+          "label": "File Type (optional)",
+          "help": "e.g. document, image, video, audio",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "category",
+          "label": "Data Category (optional)",
+          "help": "e.g. financials, legal, products",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "size",
+          "label": "Approximate Total Initial Size in GiB (optional)",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "count",
+          "label": "Approximate number of initial files (optional)",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "rate_of_change",
+          "label": "Rate of Change in GiB/hr (optional)",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "source_location",
+          "label": "Location in the filesystem (optional)",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "enable_transform",
+          "label": "Enable custom transformations for this dataset via Glue Job?"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "enable_textract",
+          "label": "Enable AWS Textract for this data?"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "textract_fields",
+          "key_label": "Field Name",
+          "value_label": "Minimum Confidence Score",
+          "label": "Fields to be retrieved from the documents by Amazon Textract. Add field name  as it appears on the document and corresponding confidence score threshold.",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,command,name&filter_value=ingest,register-unstructured,${name}&result=textract_fields",
+          "add_value_label": "Add Field"
+        }
+      ]
+    }
+  ]
+}

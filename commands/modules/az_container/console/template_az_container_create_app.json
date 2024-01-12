@@ -1,0 +1,476 @@
+{
+  "type": "Theia::Action",
+  "label": "Container App",
+  "id": "az_container_create_app",
+  "module": "az_container",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_container_create_app",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_app",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "Container App",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_container_create_app",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create App",
+          "command": {
+            "phase": "az_container",
+            "command": "create_app",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Container App Name",
+          "help": "The Container App Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_container_app_environment_id",
+          "label": "Container App Environment",
+          "help": "",
+          "inputType": "text",
+          "datasource": "custom/container_app_envs?module_name_arg=az_container",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Container App Environment is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_revision_mode",
+          "label": "Revision Mode",
+          "help": "Revisions operational mode for container app",
+          "default": "Single",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Single",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Single",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "Multiple",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Multiple",
+                "disableControls": [""]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_container_name",
+          "label": "Container Name",
+          "help": "The Container Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_container_image",
+          "label": "Container Image",
+          "help": "The Container Image",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Image is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_container_cpu",
+          "label": "Container CPU",
+          "help": "The Container CPU",
+          "default": "0.25",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "0.25",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "0.25"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "0.5",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "0.5"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "0.75",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "0.75"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "1.0",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "1.0"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "1.25",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "1.25"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "1.5",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "1.5"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "1.75",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "1.75"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "2.0",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "2.0"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_container_memory",
+          "label": "Container Memory",
+          "help": "The Container Memory",
+          "default": "0.5Gi",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "0.5Gi",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "0.5Gi"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "1.0Gi",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "1.0Gi"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "1.5Gi",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "1.5Gi"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "2.0Gi",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "2.0Gi"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "2.5Gi",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "2.5Gi"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "3.0Gi",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "3.0Gi"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "3.5Gi",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "3.5Gi"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "4.0Gi",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "4.0Gi"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_container_args",
+          "label": "Container Arguments",
+          "help": "Optional list of arguments to pass to the container",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_container_probe_path",
+          "label": "Container Probe Path",
+          "help": "The URI for the liveliness probe",
+          "inputType": "text",
+          "default": "/"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_container_probe_port",
+          "label": "Container Probe Port",
+          "help": "The port number on which on connect",
+          "inputType": "text",
+          "default": "80"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_max_replicas",
+          "label": "Maximum number of replicas",
+          "help": "The maximum number of replicas for this container",
+          "inputType": "text",
+          "default": "3"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_container_identity_type",
+          "label": "Managed Identity Type",
+          "help": "The type of managed identity to assign",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "SystemAssigned",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "SystemAssigned",
+                "disableControls": ["az_container_identity_ids"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "UserAssigned",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "UserAssigned",
+                "enableControls": ["az_container_identity_ids"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_container_identity_ids",
+          "label": "User-Assigned Managed Identities",
+          "help": "A list of one or more User Assigned Managed identities to assign",
+          "datasource": "formdata_from_azure?type=managedidentities"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_ingress_transport",
+          "label": "Transport Method for Ingress",
+          "help": "The transport method for the ingress",
+          "default": "auto",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "auto",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "auto",
+                "disableControls": [""]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "http",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "http",
+                "disableControls": [""]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "http2",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "http2",
+                "disableControls": [""]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_container_ingress_allow_insecure_connections",
+          "label": "Allow Insecure Connections?",
+          "help": "Allows insecure traffic to your container app",
+          "inputType": "text",
+          "default": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_ingress_target_port",
+          "label": "Target port for ingress",
+          "help": "The target port on the container for the Ingress traffic",
+          "inputType": "text",
+          "default": "80"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_registry_identity_type",
+          "label": "Identity Type for Registry",
+          "help": "Identity type used to authenticate with registry.",
+          "default": "none",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "None (Public)",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "none",
+                "disableControls": [
+                  "az_container_registry_managed_identity",
+                  "az_container_registry_username",
+                  "az_container_registry_password"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Managed Identity (ACR)",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "identity",
+                "disableControls": [
+                  "az_container_registry_username",
+                  "az_container_registry_password"
+                ],
+                "enableControls": [
+                  "az_container_registry_managed_identity"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Username / Password (Docker)",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "creds",
+                "enableControls": [
+                  "az_container_registry_username",
+                  "az_container_registry_password"
+                ],
+                "disableControls": [
+                  "az_container_registry_managed_identity"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_registry_managed_identity",
+          "label": "Managed Identitity to use",
+          "help": "Enter the resource ID of the user assigned managed identity to use when pulling from the container registry",
+          "datasource": "formdata_from_azure?type=managedidentities"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_registry_username",
+          "label": "Registry Username",
+          "help": "The username for the container registry",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_registry_password",
+          "label": "Registry Password",
+          "help": "The password for the container registry",
+          "inputType": "password"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "az_container_tags",
+          "label": "Tags",
+          "help": "Tags you wish to apply to the container app",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=az_container,${name}&result=params,az_container_tags",
+          "add_value_label": "Tags for your resource"
+        }
+      ]
+    }
+  ]
+}

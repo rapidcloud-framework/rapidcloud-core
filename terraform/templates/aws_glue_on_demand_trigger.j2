@@ -1,0 +1,21 @@
+resource "aws_glue_trigger" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  name = "{{ profile }}_{{ resource_name }}_{{ resource_type }}"
+  type = "ON_DEMAND"
+
+
+  actions {
+    job_name = "params['job_name']"
+
+    arguments = {
+    {% if params['actions']['arguments'] is defined %}
+    {% for c,v in params['actions']['arguments'].items() %}
+        {{ c }} = "{{ v }}"
+    {% endfor %}
+    {% endif %}
+    }
+  }
+  lifecycle {
+    ignore_changes = [enabled]
+  }
+}
+

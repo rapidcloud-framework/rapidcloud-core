@@ -1,0 +1,175 @@
+{
+  "type": "Theia::Action",
+  "label": "VPC Endpoint",
+  "id": "net_create_endpoint",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "net_create_endpoint",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=net,create_endpoint",
+      "env_param_required": true,
+      "columns": ["name","timestamp","net_service", "net_vpc_id", "net_subnet_ids", "net_route_tables"],
+      "title": "VPC Endpoints",
+      "description": "Establish VPC endpoints, services, and corresponding routing paths",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "net_create_endpoint",
+      "title": "Create Endpoint",
+      "description": "Create Endpoint",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command",
+            "refresh_status": true
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "net",
+            "command": "create_endpoint",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Name",
+          "help": "A name for this resource",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "net_service",
+          "label": "Service",
+          "help": "The VPC Endpoint service",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "s3",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "s3",
+                "disableControls": [""]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "autoscaling",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "autoscaling",
+                "disableControls": ["route_tables"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "dynamodb",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "dynamodb",
+                "disableControls": [""]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "ec2",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "ec2",
+                "disableControls": ["route_tables"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "ecr_api",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "ecr_api",
+                "disableControls": ["route_tables"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "ecr_dkr",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "ecr_dkr",
+                "disableControls": ["route_tables"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "sqs",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "sqs",
+                "disableControls": ["route_tables"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "sns",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "sns",
+                "disableControls": ["route_tables"]
+              }
+            }
+          ]
+        },
+
+        {
+          "type": "Theia::Control::Select",
+          "id": "net_vpc_id",
+          "label": "VPC ID",
+          "help": "The VPC to create this Endpoint in.",
+          "datasource": "custom/module_net_vpcs?extra=true&module_name_arg=net",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A VPC is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "net_subnet_ids",
+          "label": "Subnets",
+          "help": "Select The Subnets to create this Endpoint in.",
+          "datasource": "custom/module_net_subnets?extra=true&module_name_arg=net"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "net_route_tables",
+          "label": "Add Route to Route Tables",
+          "help": "Add a route to this Endpoint to the following Route Tables",
+          "datasource": "custom/module_net_route_tables?extra=true&module_name_arg=net"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "net_tags",
+          "label": "Tags",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=net,${name}&result=params,net_tags",
+          "add_value_label": "Tags for your Endpoint resource"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+module "{{ name }}_theia_roles" {
+  source = "../modules/theia_roles"
+  prefix = "${replace("{{ name }}", "_", "-")}"
+  additional_buckets = [
+  "arn:aws:s3:::data-*",
+  "arn:aws:s3:::data-*/*",
+  "arn:aws:s3:::${replace("{{ name }}", "_", "-")}*",
+  "arn:aws:s3:::${replace("{{ name }}", "_", "-")}*/*",
+  ]
+  account_id = "{{ account }}"
+  region = "{{ region }}"
+  tags = {
+      "env" = "{{ env }}"
+      "profile" = "{{ name }}"
+      "workload" = "{{ workload }}"
+      "client" = "{{ client }}"
+      "author" = "rapid-cloud"
+  }
+}
+

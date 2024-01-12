@@ -1,0 +1,174 @@
+{
+    "type": "Theia::Action",
+    "label": "Redshift",
+    "id": "redshift",
+    "module": "redshift",
+    "steps": [
+        {
+            "type": "Theia::Step::Grid",
+            "id": "redshift",
+            "datasource": "data?type=metadata&filter_name=module,command&filter_value=redshift,create",
+            "env_param_required": true,
+            "columns": [
+                "module",
+                "name",
+                "redshift_node_count",
+                "redshift_node_type",
+                "redshift_vpc_id",
+                "timestamp"
+            ],
+            "title": "Redshift Cluster",
+            "description": "",
+            "submit": "Continue"
+        },
+        {
+            "type": "Theia::Step::Form",
+            "id": "redshift",
+            "title": "",
+            "description": "",
+            "submit": "Submit",
+            "not_editable": true,
+            "commands": [
+                {
+                    "label": "Remove",
+                    "require_confirmation": true,
+                    "confirmation_message": "Are you sure you want to remove this item?",
+                    "command": {
+                        "phase": "undo-command"
+                    },
+                    "new_hide": true
+                },
+                {
+                    "label": "Create",
+                    "command": {
+                        "phase": "redshift",
+                        "command": "create",
+                        "refresh_status": true
+                    }
+                }
+            ],
+            "controls": [
+                {
+                    "type": "Theia::Control::Input",
+                    "id": "name",
+                    "label": "Redshift Cluster Name",
+                    "help": "Enter cluster name (no spaces, hyphens or special characters)",
+                    "inputType": "text"
+                },
+                {
+                    "type": "Theia::Control::Input",
+                    "id": "redshift_node_count",
+                    "label": "Node Count",
+                    "help": "Amount of nodes in the cluster",
+                    "default": 1
+                },
+                {
+                    "type": "Theia::Control::Select",
+                    "id": "redshift_node_type",
+                    "label": "Node Type",
+                    "help": "The Cluster Node Type",
+                    "options": [
+                        {
+                            "type": "Theia::Option",
+                            "label": "dc2.large",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "dc2.large",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Theia::Option",
+                            "label": "dc2.8xlarge",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "dc2.8xlarge",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Theia::Option",
+                            "label": "ra3.xlplus",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "ra3.xlplus",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Theia::Option",
+                            "label": "ra3.4xlarge",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "ra3.4xlarge",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Theia::Option",
+                            "label": "ra3.16xlarge",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "ra3.16xlarge",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Theia::Control::Select",
+                    "id": "redshift_vpc_id",
+                    "label": "VPC ID",
+                    "help": "The VPC the cluster is deployed to",
+                    "datasource": "custom/module_redshift_vpcs?extra=true&module_name_arg=redshift",
+                    "validations": [
+                        {
+                            "type": "Theia::Validation::Required",
+                            "message": "VPC ID is required"
+                        }
+                    ]
+                },
+                {
+                    "type": "Theia::Control::MultiSelect",
+                    "id": "redshift_subnet_ids",
+                    "label": "Subnets",
+                    "help": "Select subnet ids to place your Redshift cluster in",
+                    "datasource": "custom/module_redshift_subnets?extra=true&module_name_arg=redshift",
+                    "validations": [
+                        {
+                            "type": "Theia::Validation::Required",
+                            "message": "At leasr one subnet is required"
+                        }
+                    ]
+                },
+                {
+                    "type": "Theia::Control::KeyValue",
+                    "id": "parameters",
+                    "label": "Parameters",
+                    "help": "Parameters you wish to apply to the Redshift cluster",
+                    "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=redshift,${name}&result=params,parameters",
+                    "add_value_label": "Paramaeters"
+                },
+                {
+                    "type": "Theia::Control::KeyValue",
+                    "id": "tags",
+                    "label": "Tags",
+                    "help": "Tags you wish to apply to the Redshift cluster",
+                    "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=redshift,${name}&result=params,tags",
+                    "add_value_label": "Tags"
+                }
+            ]
+        }
+    ],
+    "info": "### Redshift Cluster \n\n\n\nCreate Redshift Cluster\n"
+}

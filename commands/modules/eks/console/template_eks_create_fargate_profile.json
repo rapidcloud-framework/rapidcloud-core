@@ -1,0 +1,170 @@
+{
+  "type": "Theia::Action",
+  "label": "Fargate Profile",
+  "id": "eks_create_fargate_profile",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "eks_create_fargate_profile",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=eks,create_fargate_profile",
+      "env_param_required": true,
+      "columns": ["eks_profile_name","eks_cluster_name", "eks_eks_version", "timestamp"],
+      "title": "Fargate Profile",
+      "description": "Create an EKS fargate profile",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "eks_create_fargate_profile",
+      "title": "EKS Fargate Profile",
+      "description": "Create an EKS Fargate Profile",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "eks",
+            "command": "remove_node_group",
+            "refresh_status": true
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "eks",
+            "command": "create_fargate_profile",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_profile_name",
+          "label": "Fargate Profile Name",
+          "help": "Fargate Profile Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_cluster_name",
+          "label": "Cluster Name",
+          "help": "Select the Cluster name you wish to attach this Node Group to",
+          "datasource": "custom/module_eks_clusters?extra=true&module_name_arg=eks",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "eks_subnet_ids",
+          "label": "Subnets",
+          "help": "Select at least two subnets to place your EKS fargate nodes in",
+          "datasource": "custom/module_eks_subnets?extra=true&module_name_arg=eks"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_namespace_1",
+          "label": "Namespace 1",
+          "help": "First Namespace (out of 5)",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "First Namespace is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "eks_namespace_1_labels",
+          "label": "Namespace 1 labels",
+          "help": "labels to use with Namespace 1",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=eks,${name}&result=params,eks_namespace_1_labels",
+          "add_value_label": "labels for Namespace 1"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_namespace_2",
+          "label": "Namespace 2",
+          "help": "Second Namespace (out of 5)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "eks_namespace_2_labels",
+          "label": "Namespace 2 labels",
+          "help": "labels to use with Namespace 2",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=eks,${name}&result=params,eks_namespace_2_labels",
+          "add_value_label": "labels for Namespace 2"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_namespace_3",
+          "label": "Namespace 3",
+          "help": "Third Namespace (out of 5)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "eks_namespace_3_labels",
+          "label": "Namespace 3 labels",
+          "help": "labels to use with Namespace 3",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=eks,${name}&result=params,eks_namespace_3_labels",
+          "add_value_label": "labels for Namespace 3"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_namespace_4",
+          "label": "Namespace 4",
+          "help": "Forth Namespace (out of 5)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "eks_namespace_4_labels",
+          "label": "Namespace 4 labels",
+          "help": "labels to use with Namespace 4",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=eks,${name}&result=params,eks_namespace_4_labels",
+          "add_value_label": "labels for Namespace 4"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_namespace_5",
+          "label": "Namespace 5, Leave empty if you plan to install CORE DNS addons!",
+          "help": "Fifth Namespace (out of 5)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "eks_namespace_5_labels",
+          "label": "Namespace 5 labels",
+          "help": "labels to use with Namespace 5",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=eks,${name}&result=params,eks_namespace_5_labels",
+          "add_value_label": "labels for Namespace 5"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "eks_tags",
+          "label": "Tags",
+          "help": "Tags you wish to apply to the Fargate profile",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=eks,${name}&result=params,eks_tags",
+          "add_value_label": "Tags for your resource"
+        }
+      ]
+    }
+  ]
+}

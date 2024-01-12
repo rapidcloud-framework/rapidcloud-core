@@ -1,0 +1,24 @@
+{
+  "id": "azure_lz_wizard",
+  "label": "Landing Zone",
+  "order": 1000,
+  "dynamic": true,
+  "component": {
+    "file": "architecture-wizard",
+    "className": "ArchitectureWizardComponent",
+    "data": {
+      "id": "azure_lz_wizard",
+      "endpoint": "diagram/lz",
+      "info": "",
+      "command": {
+        "label": "Save",
+        "command": {
+          "phase": "architecture",
+          "command": "save-wizard",
+          "diagram_type": "lz"
+        }
+      }
+    }
+  },
+  "type": "Theia::Action"
+}

@@ -1,0 +1,71 @@
+{
+  "type": "Theia::Action",
+  "label": "Elastic Block Store",
+  "id": "ebs",
+  "module": "ebs",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "ebs",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=ebs",
+      "env_param_required": true,
+      "columns": ["name", "ebs_availability_zone", "ebs_volume_size", "timestamp"],
+      "title": "Elastic Block Store",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "ebs",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "ebs",
+            "command": "create",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "Name characters)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ebs_availability_zone",
+          "cli_id": "availability_zone",
+          "label": "Availability Zone",
+          "help": "AWS availability zone to deploy volume to",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ebs_volume_size",
+          "cli_id": "volume_size",
+          "label": "Volume Size",
+          "help": "Size of the volume in gibibytes (GiB)",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

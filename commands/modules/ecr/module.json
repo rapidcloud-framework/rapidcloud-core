@@ -1,0 +1,45 @@
+{
+    "ecr": {
+        "create": {
+            "enabled": true,
+            "help": "Create Elastic Container Registry",
+            "template_section": "containers",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "Name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },
+                "image_tag_mutability": {
+                    "name": "image_tag_mutability",
+                    "prompt": "Image Mutability (MUTABLE | IMMUTABLE)",
+                    "required": true,
+                    "default": "MUTABLE"
+                },
+                "scan_on_push": {
+                    "name": "scan_on_push",
+                    "prompt": "Scan images after being pushed to repository (yes|no)",
+                    "required": true,
+                    "default": "no"
+                },
+                "encryption_type": {
+                    "name": "encryption_type",
+                    "prompt": "Encryption Type (AES256 | KMS)",
+                    "required": true,
+                    "default": "AES256"
+                },
+                "kms_key": {
+                    "name": "kms_key",
+                    "prompt": "KMS Key ARN. Defaults to AWS managed key",
+                    "required": false,
+                    "default": ""
+                }
+            }
+        }
+    }
+}

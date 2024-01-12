@@ -1,0 +1,202 @@
+{
+  "type": "Theia::Action",
+  "label": "LB Listeners",
+  "id": "lb_add_listener",
+  "module": "lb",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "lb_add_listener",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=add_listener",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "lb_load_balancer_name",
+        "lb_port",
+        "lb_protocol",
+        "lb_target_group_name",
+        "lb_alpn_policy",
+        "lb_ssl_policy",
+        "lb_certificate_arn",
+        "timestamp"
+      ],
+      "title": "LB Listeners",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "lb_add_listener",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "lb",
+            "command": "add_listener",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "lb_load_balancer_name",
+          "cli_id": "load_balancer_name",
+          "label": "Load Balancer",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=lb,create&field=name&module_name_arg=lb"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "lb_port",
+          "cli_id": "port",
+          "label": "Port",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "lb_protocol",
+          "cli_id": "protocol",
+          "label": "Protocol",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "HTTP",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "HTTP",
+                "disableControls": [
+                  "lb_alpn_policy",
+                  "lb_ssl_policy",
+                  "lb_certificate_arn"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "HTTPS",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "HTTPS",
+                "disableControls": [
+                  "lb_alpn_policy"
+                ],
+                "enableControls": [
+                  "lb_certificate_arn",
+                  "lb_ssl_policy"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "TLS",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "TLS",
+                "enableControls": [
+                  "lb_alpn_policy",
+                  "lb_ssl_policy"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "TCP",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "TCP",
+                "disableControls": [
+                  "lb_alpn_policy",
+                  "lb_ssl_policy",
+                  "lb_certificate_arn"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "TCP_UDP",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "TCP_UDP",
+                "disableControls": [
+                  "lb_alpn_policy",
+                  "lb_ssl_policy",
+                  "lb_certificate_arn"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "lb_target_group_name",
+          "cli_id": "target_group_name",
+          "label": "Target Group",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=lb,create_target_group&field=name&module_name_arg=lb"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "lb_alpn_policy",
+          "cli_id": "alpn_policy",
+          "label": "ALPN Policy",
+          "help": "Protocol TLS Only",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "HTTP1Only",
+              "value": "HTTP1Only"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "HTTP2Only",
+              "value": "HTTP2Only"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "HTTP2Optional",
+              "value": "HTTP2Optional"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "HTTP2Preferred",
+              "value": "HTTP2Preferred"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "None",
+              "value": "None"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "lb_ssl_policy",
+          "cli_id": "ssl_policy",
+          "label": "SSL Policy",
+          "help": "Protocol TLS/HTTPS Only",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "lb_certificate_arn",
+          "cli_id": "certificate_arn",
+          "label": "Certificate ARN",
+          "help": "Protocol TLS/HTTPS Only",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

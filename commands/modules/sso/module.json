@@ -1,0 +1,179 @@
+{
+  "sso": {
+    "create_permission_set": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "organizations",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "description": {
+          "name": "description",
+          "prompt": "description",
+          "required": true,
+          "default": ""
+        },
+        "relay_state": {
+          "name": "relay_state",
+          "prompt": "relay state url",
+          "required": true,
+          "default": ""
+        },
+        "session_duration": {
+          "name": "session_duration",
+          "prompt": "session duration in ISO-8601 standard",
+          "required": true,
+          "default": ""
+        },
+        "aws_managed_policy_arns": {
+          "name": "aws_managed_policy_arns",
+          "prompt": "comma-separated list of AWS managed policy arns",
+          "required": true,
+          "default": ""
+        },
+        "inline_policy": {
+          "name": "inline_policy",
+          "prompt": "json for a custom policy",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_account_assignment": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "organizations",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "timestamp": "2023-02-03 14:05:24.357911",
+      "cmd_id": "20230203140517124164",
+      "id": "permission_set_name",
+      "fqn": "permission_set_name,account_name,principal_type",
+      "args": {
+        "permission_set_name": {
+          "name": "permission_set_name",
+          "prompt": "name of permission set",
+          "required": true,
+          "default": ""
+        },
+        "principal_type": {
+          "name": "principal_type",
+          "prompt": "principal type (USER|GROUP)",
+          "required": true,
+          "default": ""
+        },
+        "account_name": {
+          "name": "account_name",
+          "prompt": "account name",
+          "required": true,
+          "default": ""
+        },
+        "principal_ids": {
+          "name": "principal_ids",
+          "prompt": "comma-separated list of principal IDs if principals are not managed by RapidCloud",
+          "required": true,
+          "default": ""
+        },
+        "principal_users": {
+          "name": "principal_users",
+          "prompt": "comma-separated list of usernames if users are managed by RapidCloud",
+          "required": true,
+          "default": ""
+        },
+        "principal_groups": {
+          "name": "principal_groups",
+          "prompt": "comma-separated list of groups if groups are managed by RapidCloud",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_user": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "organizations",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "user_name",
+      "timestamp": "2023-02-03 14:04:26.566350",
+      "cmd_id": "20230203140412383867",
+      "args": {
+        "user_name": {
+          "name": "user_name",
+          "prompt": "unique username",
+          "required": true,
+          "default": ""
+        },
+        "display_name": {
+          "name": "display_name",
+          "prompt": "display name",
+          "required": true,
+          "default": ""
+        },
+        "first_name": {
+          "name": "first_name",
+          "prompt": "first name",
+          "required": true,
+          "default": ""
+        },
+        "last_name": {
+          "name": "last_name",
+          "prompt": "last name",
+          "required": true,
+          "default": ""
+        },
+        "email": {
+          "name": "email",
+          "prompt": "email",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_group": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "organizations",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "name",
+      "timestamp": "2023-02-03 14:04:37.980559",
+      "cmd_id": "20230203140431155434",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "description": {
+          "name": "description",
+          "prompt": "description",
+          "required": true,
+          "default": ""
+        },
+        "members": {
+          "name": "members",
+          "prompt": "comma-separated list of unique usernames",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  }
+}

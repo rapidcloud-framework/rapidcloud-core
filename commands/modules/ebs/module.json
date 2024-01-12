@@ -1,0 +1,33 @@
+{
+    "ebs": {
+        "create": {
+            "enabled": false,
+            "help": "Create Elastic Block Store",
+            "template_section": "storage",
+            "template_enabled": false,
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "Name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },
+                "volume_size": {
+                    "name": "volume_size",
+                    "prompt": "The size of the drive in GiBs",
+                    "required": true,
+                    "default": 8
+                },
+                "availability_zone": {
+                    "name": "availability_zone",
+                    "prompt": "Availability Zone",
+                    "required": true,
+                    "default": "us-east-1a"
+                }
+            }
+        }
+    }
+}

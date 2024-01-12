@@ -1,0 +1,838 @@
+{
+  "type": "Theia::Template",
+  "title": "RapidCloud for GCP - Automation and Acceleration Framework",
+  "footer": {
+    "type": "Theia::Footer",
+    "columns": [
+      {
+        "class": "text-muted text-start",
+        "content": "Copyright \u00a9 2020-2023 <a href='https://www.kinect-consulting.com/' target='_blank'>Kinect Consulting, LLC</a>."
+      },
+      {
+        "class": "text-muted text-start",
+        "content": "<a href='https://rapid-cloud.io/documentation/' target='_blank'>Documentation</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://kinect-rapid-cloud.s3.amazonaws.com/docs/RapidCloud-Terms-of-Service.html' target='_blank'>Terms of Service</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://rapid-cloud.io/contact-us/' target='_blank'>Contact Us</a>"
+      },
+      {
+        "class": "text-muted text-end",
+        "content": "v1.7.10-gcp"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "type": "Theia::Section",
+      "label": "Home",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/house-solid.svg",
+      "route": "home",
+      "id": "home",
+      "static": true,
+      "enabled": true,
+      "actions": [
+        {
+          "id": "dashboard",
+          "type": "Theia::Dashboard",
+          "label": "Dashboard",
+          "rows": [
+            {
+              "columns": [
+                {
+                  "size": 12,
+                  "panel": {
+                    "type": "Theia::Panel::Markdown",
+                    "title": "RapidCloud for GCP - Automation & Acceleration Framework",
+                    "content": "RapidCloud for GCP will provide infrastructure automation for popular use cases.\n\n\n\n## Support\n\n\n\n* [Contact Us](https://www.kinect-consulting.com/contact-us/) or (305) 428-8255\n\n\n"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Settings",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/list-check-solid.svg",
+      "route": "setup",
+      "id": "setup",
+      "enabled": true,
+      "actions": [
+        {
+          "type": "Theia::Action",
+          "label": "Subscription Information",
+          "id": "activate",
+          "module": "activate",
+          "env_not_required": true,
+          "steps": [
+            {
+              "type": "Theia::Step::Form",
+              "id": "activate",
+              "title": "Subscription Information",
+              "stripe_enabled": true,
+              "description_upgrade_dev": "<b>Upgrade to RapidCloud Premium:</b>&nbsp;&nbsp;<a href='https://buy.stripe.com/test_eVa6rBfaY1r33aE6op' target='_blank'>Annual Subscription</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://buy.stripe.com/test_9AQbLV8MAfhTh1u3cc' target='_blank'>Monthly Subscription</a>",
+              "description_upgrade_live": "<b>Upgrade to RapidCloud Premium:</b>&nbsp;&nbsp;<a href='https://buy.stripe.com/28oeWw9n15au9EI3cc' target='_blank'>Annual Subscription</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://buy.stripe.com/aEU4hS0QvbyS7wA289' target='_blank'>Monthly Subscription</a>",
+              "description": "",
+              "datasource": "account_info?extra=true",
+              "submit": "Activate",
+              "commands": [
+                {
+                  "label": "Save",
+                  "command": {
+                    "phase": "activate",
+                    "command": ""
+                  }
+                }
+              ],
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "email",
+                  "label": "Email",
+                  "help": "Enter your work email address",
+                  "inputType": "text",
+                  "validations": [
+                    {
+                      "type": "Theia::Validation::Required",
+                      "message": "Email is required"
+                    },
+                    {
+                      "type": "Theia::Validation::Email",
+                      "message": "Invalid email"
+                    }
+                  ],
+                  "readonly_edit": true
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "tier",
+                  "label": "Subscription Tier",
+                  "help": "",
+                  "readonly": "true",
+                  "default": "1",
+                  "options": [
+                    {
+                      "type": "Theia::Option",
+                      "label": "Basic (FREE)",
+                      "value": "1"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "Premium",
+                      "value": "2"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "Kinect Consulting Team",
+                      "value": "3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "order": 1000,
+          "info": "### Activate RapidCloud\n\n\n\n**Email**\n\n\n\nYour work email address\n"
+        },
+        {
+          "type": "Theia::Action",
+          "label": "Roles",
+          "id": "access_create_role",
+          "module": "access",
+          "app_roles": "admin",
+          "env_not_required": true,
+          "steps": [
+            {
+              "type": "Theia::Step::Grid",
+              "id": "access_create_role",
+              "datasource": "roles?extra=true",
+              "columns": [
+                "name",
+                "access_all",
+                "access_description"
+              ],
+              "title": "Roles",
+              "description": "",
+              "submit": "Continue"
+            },
+            {
+              "type": "Theia::Step::Form",
+              "id": "access_create_role",
+              "title": "",
+              "description": "",
+              "submit": "Submit",
+              "not_editable": true,
+              "commands": [
+                {
+                  "label": "Save",
+                  "command": {
+                    "phase": "access",
+                    "command": "create_role"
+                  }
+                }
+              ],
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "name",
+                  "cli_id": "name",
+                  "label": "Role Name",
+                  "help": "",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "access_description",
+                  "label": "Role Description",
+                  "help": "",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "access_all",
+                  "label": "Access to All RapidCloud Features",
+                  "default": "granular",
+                  "options": [
+                    {
+                      "type": "Theia::Option",
+                      "label": "granular",
+                      "value": "granular"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "read-only",
+                      "value": "read-only"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "read-write",
+                      "value": "read-write"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "none",
+                      "value": "none"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "order": 1000
+        },
+        {
+          "type": "Theia::Action",
+          "label": "Users",
+          "id": "users",
+          "module": "access",
+          "env_not_required": true,
+          "steps": [
+            {
+              "type": "Theia::Step::Grid",
+              "id": "users",
+              "datasource": "account_users",
+              "columns": [
+                "access_email",
+                "access_role",
+                "ux_context",
+                "status",
+                "timestamp"
+              ],
+              "title": "Users",
+              "hide_add": true
+            },
+            {
+              "type": "Theia::Step::Form",
+              "id": "users",
+              "title": "Assign Role",
+              "description": "",
+              "submit": "Submit",
+              "commands": [
+                {
+                  "label": "Submit",
+                  "command": {
+                    "phase": "access",
+                    "command": "assign_role"
+                  }
+                }
+              ],
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "access_email",
+                  "label": "User",
+                  "help": "",
+                  "inputType": "text",
+                  "readonly": true
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "access_role",
+                  "label": "Role",
+                  "help": "",
+                  "datasource": "role_names_for_select?extra=true&module_name_arg=access",
+                  "env_not_required": true
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "access_ux_context",
+                  "label": "User Experience Context",
+                  "help": "",
+                  "default": "admin",
+                  "options": [
+                    {
+                      "type": "Theia::Option",
+                      "label": "Admin (all features within currently assigned role)",
+                      "value": "admin"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "Engineer (non-admin features)",
+                      "value": "engineer"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "User (non-engineer features)",
+                      "value": "user"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "order": 1000
+        },
+        {
+          "type": "Theia::Action",
+          "label": "Environments",
+          "id": "environments",
+          "module": "init",
+          "env_not_required": true,
+          "steps": [
+            {
+              "type": "Theia::Step::Grid",
+              "id": "environments",
+              "datasource": "data?type=profile",
+              "columns": [
+                "name",
+                "created_by",
+                "shared",
+                "project",
+                "region",
+                "vpc",
+                "gcp_profile",
+                "timestamp"
+              ],
+              "title": "Environments",
+              "description": "",
+              "submit": "Continue"
+            },
+            {
+              "type": "Theia::Step::Form",
+              "id": "environments",
+              "title": "",
+              "description": "",
+              "submit": "Submit",
+              "commands": [
+                {
+                  "label": "Submit",
+                  "command": {
+                    "phase": "init",
+                    "command": "create-env"
+                  }
+                }
+              ],
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "name",
+                  "label": "Environment Name",
+                  "help": "Environment name is comprised of {org}_{workload}_{environment}. For example: myorg_bitools_dev or abccorp_orders_test. Use three fields below.",
+                  "inputType": "text",
+                  "readonly": true
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "client",
+                  "label": "Company or organization name",
+                  "help": "Enter your company or organization name (no spaces or special characters allowed)",
+                  "inputType": "text",
+                  "readonly_edit": true
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "workload",
+                  "label": "Workload/Application",
+                  "help": "Workload or Application Name (no spaces or special characters allowed)",
+                  "inputType": "text",
+                  "readonly_edit": true
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "env",
+                  "cli_arg": "env_suffix",
+                  "label": "Environment",
+                  "help": "Enter Environment (e.g. dev|qa|uat|stg|prod)",
+                  "inputType": "text",
+                  "readonly_edit": true
+                },
+                {
+                  "type": "Theia::Control::Toggle",
+                  "id": "shared",
+                  "label": "Is this environment shared with other engineers?"
+                },
+                {
+                  "type": "Theia::Control::MultiSelect",
+                  "id": "shared_with",
+                  "label": "Shared With",
+                  "help": "",
+                  "datasource": "users_for_select?extra=true",
+                  "env_not_required": true
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "gcp_profile",
+                  "label": "GCP Profile",
+                  "help": "Select GCP Profile name to allow RapidCloud access your GCP Project",
+                  "datasource": "cloud_profiles?cloud_arg=gcp",
+                  "env_not_required": true
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "project",
+                  "label": "GCP Project Name",
+                  "inputType": "text",
+                  "readonly_edit": true
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "vpc",
+                  "label": "VPC",
+                  "help": "GCP VPC",
+                  "inputType": "text",
+                  "readonly_edit": true
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "region",
+                  "label": "Region",
+                  "help": "e.g us-east1, us-east4",
+                  "inputType": "text",
+                  "readonly_edit": true
+                },
+                {
+                  "type": "Theia::Control::Toggle",
+                  "id": "vpn_only",
+                  "label": "Using VPN to connect to AWS"
+                }
+              ]
+            }
+          ],
+          "order": 1000,
+          "info": "### Environments\n\n\n\nAn environment is a specific GCP workload or application, with its own business logic, security, data catalog, data lake, databases, compute services and other cloud resources.\n\n\n\nYou can create as many environments as you want, in any GCP Account, region and VPC.\n\n\n\nEach environment is completely isolated and managed separately from other environments.\n\n\n\nEnvironment name is comprised of  {`org`}\\_{`workload`}\\_{`environment`}. for example: `kinect_bitools_dev` or `abccorp_orders_test`\n\n\n\n**Company or organization**\n\n\n\nEnter your company or organization name without spaces or special characters.\n\n\n\n**Workload/Application**\n\n\n\nWorkload Name without spaces or special characters. This should uniquely identify the type of workload or application you're creating this environment for.\n\n\n\n**Environment**\n\n\n\nThis is a specific instance of the environment (e.g. dev|qa|uat|stg|prod)\n\n\n\n**GCP Project Name**\n\n\n\nGCP Project Name to create your environment in\n\n\n\n**VPC**\n\n\n\nGCP VPC ID where VPC specific resources will be created.\n\n\n\n**Region**\n\n\n\nGCP Region where region specific resources will be created.\n\n\n\n**Are you using VPN to connect to your cloud account?**\n\n\n\nWe recommend always using VPN to connect to your cloud account.\n"
+        }
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Architecture",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/sitemap-solid.svg",
+      "route": "modeling",
+      "id": "modeling",
+      "enabled": true,
+      "actions": [
+        {
+          "id": "gcp_lz_wizard",
+          "label": "Landing Zone",
+          "order": 1000,
+          "dynamic": true,
+          "component": {
+            "file": "architecture-wizard",
+            "className": "ArchitectureWizardComponent",
+            "data": {
+              "id": "gcp_lz_wizard",
+              "endpoint": "diagram/lz",
+              "info": "",
+              "command": {
+                "label": "Save",
+                "command": {
+                  "phase": "architecture",
+                  "command": "save-wizard",
+                  "diagram_type": "lz"
+                }
+              }
+            }
+          },
+          "type": "Theia::Action"
+        },
+        {
+          "id": "gcp_net_wizard",
+          "label": "Network",
+          "order": 1000,
+          "dynamic": true,
+          "component": {
+            "file": "architecture-wizard",
+            "className": "ArchitectureWizardComponent",
+            "data": {
+              "id": "gcp_net_wizard",
+              "endpoint": "diagram/net",
+              "info": "",
+              "command": {
+                "label": "Save",
+                "command": {
+                  "phase": "architecture",
+                  "command": "save-wizard",
+                  "diagram_type": "net"
+                }
+              }
+            }
+          },
+          "type": "Theia::Action"
+        },
+        {
+          "id": "gcp_solution_wizard",
+          "label": "Solution Architecture",
+          "order": 1000,
+          "dynamic": true,
+          "component": {
+            "file": "architecture-wizard",
+            "className": "ArchitectureWizardComponent",
+            "data": {
+              "id": "gcp_solution_wizard",
+              "endpoint": "diagram/solution",
+              "info": "",
+              "command": {
+                "label": "Save",
+                "command": {
+                  "phase": "architecture",
+                  "command": "save-wizard",
+                  "diagram_type": "solution"
+                }
+              }
+            }
+          },
+          "type": "Theia::Action"
+        }
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Environment",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/sliders-solid.svg",
+      "route": "metadata",
+      "id": "metadata",
+      "enabled": true,
+      "actions": [
+        {
+          "type": "Theia::Action",
+          "label": "Metadata",
+          "id": "modules",
+          "module": "module",
+          "env_not_required": true,
+          "steps": [
+            {
+              "type": "Theia::Step::Grid",
+              "id": "modules",
+              "datasource": "data?type=metadata&flatten=false",
+              "env_param_required": true,
+              "columns": [
+                "module",
+                "command",
+                "name",
+                "timestamp",
+                "fqn",
+                "cmd_id"
+              ],
+              "title": "Environment Metadata",
+              "description": "",
+              "hide_add": true
+            },
+            {
+              "type": "Theia::Step::Json",
+              "id": "modules",
+              "title": "",
+              "description": ""
+            }
+          ],
+          "order": 10,
+          "info": "### Environment Metadata\n\n\n\nThis is top level metadata for current environment. Each metadata item may represent multiple AWS resources. To see AWS resource specific configurations, click on `AWS Resources` menu option.\n\n\n"
+        },
+        {
+          "type": "Theia::Action",
+          "label": "Infrastructure Resources",
+          "id": "infra_resources",
+          "module": "status",
+          "steps": [
+            {
+              "type": "Theia::Step::Grid",
+              "id": "infra_resources",
+              "datasource": "status?test=test",
+              "env_param_required": true,
+              "columns": [
+                "created",
+                "resource_type",
+                "resource_name",
+                "phase",
+                "command",
+                "timestamp",
+                "cmd_id"
+              ],
+              "title": "Infrastructure Resources",
+              "description": "This page shows all the Cloud Infrastructure Resources deployed or to be deployed as part of your current environment.\n",
+              "allowMarkdown": true,
+              "hide_add": true
+            },
+            {
+              "type": "Theia::Step::Json",
+              "id": "history",
+              "title": "",
+              "description": ""
+            }
+          ],
+          "order": 20
+        },
+        {
+          "type": "Theia::Action",
+          "label": "Properties",
+          "id": "properties",
+          "module": "init",
+          "steps": [
+            {
+              "type": "Theia::Step::Grid",
+              "id": "properties",
+              "datasource": "data?type=property",
+              "env_param_required": true,
+              "columns": [
+                "type",
+                "name",
+                "default_value",
+                "value"
+              ],
+              "title": "Properties",
+              "description": "",
+              "submit": "Continue"
+            },
+            {
+              "type": "Theia::Step::Form",
+              "id": "data",
+              "title": "",
+              "description": "",
+              "submit": "Submit",
+              "commands": [
+                {
+                  "label": "Save",
+                  "command": {
+                    "phase": "init",
+                    "command": "set-property",
+                    "refresh_status": false
+                  }
+                }
+              ],
+              "controls": [
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "type",
+                  "label": "Type",
+                  "help": "",
+                  "options": [
+                    {
+                      "type": "Theia::Option",
+                      "label": "general",
+                      "value": "general"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "api_gateway",
+                      "value": "api_gateway"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "aurora_mysql_instance",
+                      "value": "aurora_mysql_instance"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "aurora_postgresql_instance",
+                      "value": "aurora_postgresql_instance"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "cloudwatch_event_rule",
+                      "value": "cloudwatch_event_rule"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "dms_event_subscription",
+                      "value": "dms_event_subscription"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "dms_replication_instance",
+                      "value": "dms_replication_instance"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "dms_replication_task",
+                      "value": "dms_replication_task"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "dms_s3_target_endpoint",
+                      "value": "dms_s3_target_endpoint"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "dms_source_endpoint",
+                      "value": "dms_source_endpoint"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "emr_cluster",
+                      "value": "emr_cluster"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "glue_catalog_database",
+                      "value": "glue_catalog_database"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "glue_classifier",
+                      "value": "glue_classifier"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "glue_connection",
+                      "value": "glue_connection"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "glue_crawler",
+                      "value": "glue_crawler"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "glue_job",
+                      "value": "glue_job"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "glue_trigger",
+                      "value": "glue_trigger"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "kinesis_firehose_s3_delivery_stream",
+                      "value": "kinesis_firehose_s3_delivery_stream"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "kinesis_stream",
+                      "value": "kinesis_stream"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "kms_key",
+                      "value": "kms_key"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "lambda_event_source_mapping",
+                      "value": "lambda_event_source_mapping"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "lambda_function",
+                      "value": "lambda_function"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "lambda_layer",
+                      "value": "lambda_layer"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "msk_cluster",
+                      "value": "msk_cluster"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "rds_mysql_instance",
+                      "value": "rds_mysql_instance"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "rds_postgresql_instance",
+                      "value": "rds_postgresql_instance"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "redshift_cluster",
+                      "value": "redshift_cluster"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "s3_bucket",
+                      "value": "s3_bucket"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "s3_bucket_notification",
+                      "value": "s3_bucket_notification"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "s3_bucket_object",
+                      "value": "s3_bucket_object"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "sns_topic",
+                      "value": "sns_topic"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "sns_topic_subscription",
+                      "value": "sns_topic_subscription"
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "name",
+                  "label": "Property",
+                  "help": "Property (no spaces or special characters)",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "default_value",
+                  "label": "Default Value",
+                  "help": "Default Value",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "value",
+                  "label": "Value",
+                  "help": "Value",
+                  "inputType": "text"
+                }
+              ]
+            }
+          ],
+          "order": 1000,
+          "info": "### Properties\n\n\n\nRapidCloud properties are used by infrastructure automation modules to configure AWS resources. Each environment has its own set of default properties. You can modify property value if you want to change how specific resource is configured. \n\n\n\n**Type**\n\n\n\nProperty type is either `general` or for a specific AWS resource type.\n\n\n\n**Property**\n\n\n\nName of the property to set value for.\n\n\n\n**Default Value**\n\n\n\nDefault property value to be used by RapidCloud automation.\n\n\n\n**Value**\n\n\n\nYou can override default value here."
+        }
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Serverless",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/microchip-solid.svg",
+      "route": "serverless",
+      "id": "serverless",
+      "enabled": true,
+      "actions": []
+    }
+  ]
+}

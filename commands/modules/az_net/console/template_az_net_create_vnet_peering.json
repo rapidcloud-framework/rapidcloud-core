@@ -1,0 +1,106 @@
+{
+  "type": "Theia::Action",
+  "label": "VNET Peering",
+  "id": "create_vnet_peering",
+  "module": "az_net",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_vnet_peering",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_vnet_peering",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_net_resource_group",
+        "az_net_virtual_network_name",
+        "az_net_allow_forwarded_traffic",
+        "az_net_allow_virtual_network_access"
+      ],
+      "title": "VNET Peering",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_vnet_peering",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_net",
+            "command": "create_vnet_peering",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_virtual_network_name",
+          "label": "Virtual Network Name",
+          "help": "",
+          "inputType": "text",            
+          "datasource": "custom/vnets?module_name_arg=az_net",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A VNET is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_remote_virtual_network_id",
+          "label": "Remote VNET",
+          "help": "",
+          "inputType": "text",            
+          "datasource": "custom/vnets_ids?module_name_arg=az_net",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A VNET is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_net_allow_forwarded_traffic",
+          "cli_id": "allow_forwarded_traffic",
+          "label": "Allow Forwarded Traffic"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_net_allow_virtual_network_access",
+          "cli_id": "allow_virtual_network_access",
+          "label": "Allow Virtual Network Access Traffic"
+        }
+      ]    
+    }
+  ]
+}

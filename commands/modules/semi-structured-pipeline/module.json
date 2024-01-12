@@ -1,0 +1,28 @@
+{
+    "semi-structured-pipeline": {
+        "create": {
+            "enabled": true,
+            "help": "Quickstart for Semi-Structured Files to Redshift Pipeline, with transformation",
+            "template_section": "ingest",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": false,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "name", 
+                    "prompt": "Data Pipeline Name", 
+                    "required": true,
+                    "default": ""
+                },
+                "notes": {
+                    "name": "notes", 
+                    "prompt": "Notes", 
+                    "required": false,
+                    "default": ""
+                }
+            },
+            "import_modules": "transform.create,rds.create"
+        }
+    }
+}

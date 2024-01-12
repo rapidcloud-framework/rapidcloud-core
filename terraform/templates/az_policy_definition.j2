@@ -1,0 +1,14 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source        = "{{ module_source }}"
+  policy_name   = "{{ resource_name }}"
+  policy_mode   = "{{ params['policy_mode'] }}"
+  {% if params['metadata_json'] is defined %}
+  policy_metadata = jsonencode({{ params['metadata_json'] }})
+  {% endif %}
+  {% if params['parameters_json'] is defined %}
+  policy_parameters = jsonencode({{ params['parameters_json'] }})
+  {% endif %}
+  {% if params['policy_json'] is defined %}
+  policy_rule = jsonencode({{ params['policy_json'] }})
+  {% endif %}
+}

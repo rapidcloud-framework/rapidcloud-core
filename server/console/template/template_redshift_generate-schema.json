@@ -1,0 +1,50 @@
+{
+    "type": "Theia::Action",
+    "label": "This is RapidCloud menu option label for the module",
+    "id": "redshift_generate-schema",
+    "module": "redshift",
+    "steps": [
+        {
+            "type": "Theia::Step::Grid",
+            "id": "redshift_generate-schema",
+            "datasource": "data?type=metadata&filter_name=module&filter_value=redshift",
+            "env_param_required": true,
+            "columns": [
+                "name",
+                "timestamp"
+            ],
+            "title": "This is RapidCloud module main page title",
+            "description": "",
+            "submit": "Continue"
+        },
+        {
+            "type": "Theia::Step::Form",
+            "id": "redshift_generate-schema",
+            "title": "",
+            "description": "",
+            "submit": "Submit",
+            "not_editable": true,
+            "commands": [
+                {
+                    "label": "generate-schema",
+                    "command": {
+                        "phase": "redshift",
+                        "command": "generate-schema",
+                        "refresh_status": true
+                    }
+                }
+            ],
+            "controls": [
+                {
+                    "type": "Theia::Control::Input",
+                    "id": "name",
+                    "cli_id": "name",
+                    "label": "Name",
+                    "help": "",
+                    "inputType": "text"
+                }
+            ]
+        }
+    ],
+    "info": "### This file is optional\n\n\n\nUse it to provide help screen for the module. If not needed, remove this file"
+}

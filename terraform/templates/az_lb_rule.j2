@@ -1,0 +1,9 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source              = "{{ module_source }}"
+  name                = "{{ resource_name }}"
+  resource_group      = "{{params['resource_group']}}"
+  load_balancer = "{{ params['load_balancer'] }}"
+  protocol = "{{ params['protocol'] }}"
+  frontend_port = {{ params['frontend_port'] }}
+  backend_port = {{ params['backend_port'] }}
+}

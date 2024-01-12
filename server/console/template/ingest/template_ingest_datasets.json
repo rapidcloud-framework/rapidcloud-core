@@ -1,0 +1,125 @@
+{
+  "type": "Theia::Action",
+  "label": "RDBMS: Source Tables",
+  "id": "datasets",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "datasets",
+      "datasource": "data?type=dataset",
+      "env_param_required": true,
+      "columns": ["name","source_database","source_schema","source_table","size","pk","partitioned_by","cdc_via"],
+      "title": "Source Database Tables",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "dataset",
+      "title": "",
+      "description": "",
+      "readonly": false,
+      "editable_hide": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Submit",
+          "command": {
+            "phase": "ingest",
+            "command": "add-dataset"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "fqn",
+          "hidden": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "source_database",
+          "label": "Database Name",
+          "help": "Select an already registered database name",
+          "datasource": "formdata?type=source_database&field=name&data_fields=schema"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "source_schema",
+          "label": "Schema Name",
+          "help": "Enter Schema Name",
+          "inputType": "text",
+          "readonly": true,
+          "dependency": {
+            "controlId":  "source_database",
+            "field": "schema"
+          }        
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "source_table",
+          "cli_arg": "include_tables",
+          "label": "Include Tables",
+          "help": "Select table names or type `all` to include all tables",
+          "dynamic_datasource": "formdata?type=source_table&filter_name=database&filter_value=${source_database}&field=table_name"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "size",
+          "label": "Table Size",
+          "help": "Select size of table to indicate type of DMS task. See help info for details.",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "n/a",
+              "value": "n/a"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Small",
+              "value": "small"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Medium",
+              "value": "medium"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Large",
+              "value": "large"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Xlarge",
+              "value": "xlarge"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "prefix",
+          "label": "Dataset Prefix",
+          "help": "Example: prefix hr_ for source table employee will create dataset hr_employee",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "partitioned_by",
+          "label": "Partitions",
+          "help": "Comma separated list of attributes to organize this data in the datalake [default: year,month,day]",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

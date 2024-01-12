@@ -1,0 +1,46 @@
+{
+  "type": "Theia::Action",
+  "label": "Semi-structured Data Pipeline",
+  "id": "semi-structured-pipeline",
+  "module": "semi-structured-pipeline",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "semi-structured-pipeline",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=semi-structured-pipeline",
+      "env_param_required": true,
+      "columns": ["name","rds_name","rds_engine","rds_type","transform_name","transform_job_type","timestamp"],
+      "title": "Semi-structured Data Pipeline with Transformations",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "semi-structured-pipeline",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "semi-structured-pipeline",
+            "command": "create",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Data Pipeline Name",
+          "help": "Enter Data Pipeline Name (no space or special characters)",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

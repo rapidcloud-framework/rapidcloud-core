@@ -1,0 +1,39 @@
+resource "aws_sns_topic" "{{ profile }}-{{ resource_name }}-sns" {
+  name = "{{ profile }}-{{ resource_name }}"
+}
+
+resource "aws_dms_event_subscription" "{{ profile }}-{{ resource_name }}-{{ resource_type }}" {
+  enabled          = true
+  event_categories = [
+                "state change",
+                "deletion",
+                "configuration change",
+                "creation",
+                "failure"
+  ]
+  name             = replace("{{ profile }}_{{ resource_name }}", "_", "-")
+  sns_topic_arn    = aws_sns_topic.{{ profile }}-{{ resource_name }}-sns.arn
+  source_type = "{{ params['source_type'] }}"
+  source_ids              = [
+  {%- for p in params['source_ids'] -%}
+      "{{ p }}",
+  {%- endfor -%}
+  ]
+
+  {% if params['source_type']  == 'replication-task' %}
+  depends_on = [
+  {%- for p in params['source_ids'] -%}
+      aws_dms_replication_task.{{ p | replace("_", "-") }}-dms-replication-task,
+  {%- endfor -%}
+  ]
+  {% endif %}
+
+  tags = {
+  "Name"     = "${replace("{{ profile }}_{{ resource_name }}", "_", "-")}"
+      "env" = "{{ env }}"
+      "profile" = "{{ name }}"
+      "workload" = "{{ workload }}"
+      "client" = "{{ client }}"
+      "author" = "rapid-cloud"
+  }
+}

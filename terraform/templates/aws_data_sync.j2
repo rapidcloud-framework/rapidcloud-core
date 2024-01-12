@@ -1,0 +1,36 @@
+module "{{ profile }}_{{ resource_name }}_datasync" {
+  source            = "../modules/aws_data_sync"
+  ip_address             = "{{ params['ip_address']}}"    
+  agent_name             = "{{ params['agent_name']}}"    
+  server_hostname        = "{{ params['server_hostname']}}"         
+  nfs_subdirectory       = "{{ params['nfs_subdirectory']}}"          
+  s3_bucket_arn          = module.{{ profile }}_{{ params['s3_bucket_name']}}_s3_bucket.bucket_arn
+  s3_subdirectory        = "{{ params['s3_object_prefix']}}"
+  security_group_ids     = split( "," , "{{ params['endpoint_security_group_ids']}}" )
+  subnet_ids             = split( "," , "{{ params['endpoint_subnet_ids']}}" )
+  security_groups_arns   = tolist(local.securitygroup_arn_list_{{ resource_name }})
+  subnet_arns            = tolist(local.subnet_arn_list_{{ resource_name }})
+  vpc_id                 = "{{ params['endpoint_vpc_id']}}"
+  s3_location_name       = "{{ params['s3_bucket_name']}}"
+  nfs_location_name      = "{{ params['nfs_location_name']}}"
+  tags = {
+    "Name"      = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}
+data "aws_security_group" "sec_group_{{ resource_name }}" {
+  for_each = toset(split( "," , "{{ params['agent_security_groups_ids'] }}" ))
+  id = each.key
+}
+data "aws_subnet" "subnet_{{ resource_name }}" {
+  for_each = toset(split( "," , "{{ params['agent_subnet_ids'] }}" ))
+  id = each.key
+}
+locals {
+ subnet_arn_list_{{ resource_name }} = [for subnet in data.aws_subnet.subnet_{{ resource_name }} : "${subnet.arn}"]
+ securitygroup_arn_list_{{ resource_name }} = [for sec_group in data.aws_security_group.sec_group_{{ resource_name }} : "${sec_group.arn}"]
+}

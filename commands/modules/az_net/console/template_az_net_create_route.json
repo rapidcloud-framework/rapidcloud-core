@@ -1,0 +1,126 @@
+{
+    "type": "Theia::Action",
+    "label": "Route",
+    "id": "create_route",
+    "module": "az_net",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "create_route",
+        "datasource": "data?type=metadata&filter_name=command&filter_value=create_route",
+        "env_param_required": true,
+        "columns": [
+          "name",
+          "az_net_resource_group",
+          "az_net_route_table_name",
+          "az_net_address_prefix",
+          "az_net_next_hop_type"
+        ],
+        "title": "Routes",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "create_route",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create",
+            "command": {
+              "phase": "az_net",
+              "command": "create_route",
+              "refresh_status": true
+            }
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Input",
+            "id": "name",
+            "cli_id": "name",
+            "label": "Name",
+            "help": "",
+            "inputType": "text"
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_net_resource_group",
+            "label": "Resource Group Name",
+            "help": "",
+            "inputType": "text",
+            "datasource": "formdata_from_azure?type=resource_groups",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Resource Group is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_net_route_table_name",
+            "label": "Route Table Name",
+            "help": "",
+            "datasource": "custom/route_tables?module_name_arg=az_net",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Route Table is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Input",
+            "id": "az_net_address_prefix",
+            "label": "Address Prefix",
+            "help": "",
+            "inputType": "text"
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_net_next_hop_type",
+            "label": "Next Hop Type",
+            "help": "",
+            "options": [
+              {
+                "type": "Theia::Option",
+                "label": "VirtualNetworkGateway",
+                "value": "VirtualNetworkGateway"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "VnetLocal",
+                "value": "VnetLocal"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "Internet",
+                "value": "Internet"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "VirtualAppliance",
+                "value": "VirtualAppliance"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "None",
+                "value": "None"
+              }
+            ],
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A SKU is required"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  

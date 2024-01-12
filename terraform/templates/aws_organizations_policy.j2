@@ -1,0 +1,8 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source    = "../modules/aws_organizations/{{ resource_type }}"
+  name      = "{{ resource_name }}"
+  policy_text = <<CONTENT
+{{ params['policy_text'] }}
+CONTENT
+  description = "{{ params['description'] }}"
+}

@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "create": {
+      "enabled": false,
+      "example": "kc lambda create --no-prompt --lambda_name name --lambda_memory_size memory_size --lambda_timeout timeout --lambda_schedule schedule --lambda_env_vars env_vars --lambda_add_default_layers add_default_layers --lambda_enable_trend enable_trend --lambda_trend_app_security_group trend_app_security_group",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

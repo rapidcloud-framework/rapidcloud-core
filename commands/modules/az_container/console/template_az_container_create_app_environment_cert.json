@@ -1,0 +1,91 @@
+{
+  "type": "Theia::Action",
+  "label": "App Environment Certificate",
+  "id": "az_container_create_app_environment_cert",
+  "module": "az_container",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_container_create_app_environment_cert",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_app_environment_cert",
+      "env_param_required": true,
+      "columns": ["name","az_container_container_app_environment_id","timestamp"],
+      "title": "Container App Environment Certificate",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_container_create_app_environment_cert",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create Certificate",
+          "command": {
+            "phase": "az_container",
+            "command": "create_app_environment_cert",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Certificate Name",
+          "help": "The Container App Environment Certificate Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_container_app_environment_id",
+          "label": "Container App Environment",
+          "help": "",
+          "inputType": "text",
+          "datasource": "custom/container_app_envs?module_name_arg=az_container",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Container App Environment is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::TextArea",
+          "id": "az_container_certificate_blob_base64",
+          "label": "Certificate Blob (Base64)",
+          "help": "The Certificate Private Key as a base64 encoded PFX or PEM",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Private Key is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_certificate_password",
+          "label": "Certificate Password",
+          "help": "The password for the Certificate",
+          "inputType": "password",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Password is required"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

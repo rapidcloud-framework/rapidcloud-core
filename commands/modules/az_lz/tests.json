@@ -1,0 +1,22 @@
+{
+  "s3": {
+    "create_bucket": {
+      "enabled": false,
+      "example": "kc s3 create_bucket --no-prompt --s3_name name",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "ls": {
+      "enabled": false,
+      "example": "kc s3 ls --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "enable_trend": {
+      "enabled": false,
+      "example": "kc s3 enable_trend --no-prompt --s3_name name --s3_enable_trend enable_trend",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

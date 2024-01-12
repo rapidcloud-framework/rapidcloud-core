@@ -1,0 +1,70 @@
+{
+  "type": "Theia::Action",
+  "label": "Cloudfront Distribution",
+  "id": "cloudfront",
+  "module": "cloudfront",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "cloudfront",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=cloudfront",
+      "env_param_required": true,
+      "columns": ["name","timestamp","cloudfront_bucket_name","cloudfront_bucket_regional_domain_name","cloudfront_origin_id"],
+      "title": "Cloudfront Distributions",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "cloudfront",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Register",
+          "command": {
+            "phase": "cloudfront",
+            "command": "create",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "cloudfront_bucket_name",
+          "cli_id": "bucket_name",
+          "label": "Bucket Name",
+          "help": "Bucket that CloudFront will route requests to",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=s3,create_bucket&field=name"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "cloudfront_origin_id",
+          "cli_id": "origin_id",
+          "label": "Origin ID",
+          "help": "A unique identifier for the origin",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "waf_name",
+          "cli_id": "waf_name",
+          "label": "WAF Name",
+          "help": "WAF to protect this distribution",
+          "datasource": "formdata?type=metadata&filter_name=module,command,cf_associated&filter_value=waf,create,True&field=name"
+        }
+      ]
+    }
+  ]
+}

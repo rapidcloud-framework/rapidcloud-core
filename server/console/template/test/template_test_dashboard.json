@@ -1,0 +1,107 @@
+{
+    "id": "dashboard",
+    "type": "Theia::Dashboard",
+    "label": "Dashboard",
+    "rows": [
+        {
+            "columns": [
+                {
+                    "rows": [
+                        {
+                            "columns": [
+                                {
+                                    "size": 6,
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "panel": {
+                                                        "type": "Theia::Panel::Markdown",
+                                                        "title": "Panel 2",
+                                                        "content": "Panel 2"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "panel": {
+                                                        "type": "Theia::Panel::Markdown",
+                                                        "title": "Panel 3",
+                                                        "content": "Panel 3"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "panel": {
+                                                        "type": "Theia::Panel::Markdown",
+                                                        "title": "Panel 4",
+                                                        "content": "Panel 4"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "panel": {
+                                        "type": "Theia::Panel::Markdown",
+                                        "title": "Panel 5",
+                                        "content": "Panel 5"
+                                    }
+                                },
+                                {
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "panel": {
+                                                        "type": "Theia::Panel::Markdown",
+                                                        "title": "Table with markdown",
+                                                        "content": "| Syntax | Description |\n| ----------- | ----------- |\n| Header | Title |\n| Paragraph | Text |"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "columns": [
+                {
+                    "size": 6,
+                    "panel": {
+                        "type": "Theia::Panel::Table",
+                        "title": "Table with datasource",
+                        "description": "Available users",
+                        "columns": [
+                            {
+                                "key": "access_email",
+                                "label": "Email"
+                            },
+                            {
+                                "key": "access_role",
+                                "label": "Role"
+                            },
+                            {
+                                "key": "status",
+                                "label": "Status"
+                            }
+                        ],
+                        "datasource": "account_users",
+                        "env_required": false
+                    }
+                }
+            ]
+        }
+    ]
+}

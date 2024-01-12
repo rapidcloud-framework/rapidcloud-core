@@ -1,0 +1,46 @@
+{
+  "type": "Theia::Action",
+  "label": "This is RapidCloud menu option label for the module",
+  "id": "s3_enable_trend",
+  "module": "s3",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "s3_enable_trend",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=s3",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "This is RapidCloud module main page title",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "s3_enable_trend",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "enable_trend",
+          "command": {
+            "phase": "s3",
+            "command": "enable_trend",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

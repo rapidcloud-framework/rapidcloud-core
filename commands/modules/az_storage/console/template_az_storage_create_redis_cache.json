@@ -1,0 +1,300 @@
+{
+    "type": "Theia::Action",
+    "label": "Azure Redis Cache",
+    "id": "az_storage_create_redis_cache",
+    "module": "az_storage",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "az_storage_create_redis_cache",
+        "datasource": "data?type=metadata&filter_name=command&filter_value=create_redis_cache",
+        "env_param_required": true,
+        "columns": ["name","az_storage_capacity","az_storage_sku_name","az_storage_location","timestamp"],
+        "title": "Azure Redis Cache",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "az_storage_create_redis_cache",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create Azure Redis",
+            "command": {
+              "phase": "az_storage",
+              "command": "create_redis_cache",
+              "refresh_status": true                 
+            }
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Input",
+            "id": "name",
+            "label": "Cache Name",
+            "help": "The Azure Redis Cache Name",
+            "inputType": "text",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "Name is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_storage_resource_group_name",
+            "label": "Resource Group",
+            "help": "",
+            "datasource": "formdata_from_azure?type=resource_groups",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Resource Group is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_storage_location",
+            "label": "Location",
+            "help": "",
+            "datasource": "formdata_from_azure?type=locations",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Location is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_storage_sku_name",
+            "label": "SKU",
+            "help": "",
+            "options": [
+                {
+                  "type": "Theia::Option",
+                  "label": "Basic",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "Basic",
+                    "disableControls": ["az_storage_subnet_id"]
+                  } 
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Standard",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "Standard",
+                    "disableControls": ["az_storage_subnet_id"]
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Premium",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "Premium",
+                    "enableControls": ["az_storage_subnet_id"]
+                  }                
+                }
+              ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_storage_capacity",
+            "label": "Capacity",
+            "help": "",
+            "options": [
+                {
+                  "type": "Theia::Option",
+                  "id": "C0",
+                  "label": "C0",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "0"
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "id": "C1",
+                  "label": "C1",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "1"
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "id": "C2",
+                  "label": "C2",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "2"
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "C3",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "3"
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "C4",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "4"
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "C5",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "5"
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "C6",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "6"
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "P1",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "1"
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "P2",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "2"
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "P3",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "3"
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "P4",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "4"
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "P5",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "5"
+                  }
+                }
+              ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_storage_subnet_id",
+            "label": "Subnet",
+            "help": "The subnet in which the Redis Cache should be deployed",
+            "datasource": "formdata_from_azure?type=subnets"
+          },
+          {
+            "type": "Theia::Control::MultiSelect",
+            "id": "az_storage_identity_type",
+            "label": "Identity Type",
+            "help": "",
+            "options": [
+                {
+                  "type": "Theia::Option",
+                  "label": "SystemAssigned",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "SystemAssigned",
+                    "disableControls": ["az_storage_managed_ids"]
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "UserAssigned",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "UserAssigned",
+                    "enableControls": ["az_storage_managed_ids"]
+                  }
+                }
+            ]
+          },
+          {
+            "type": "Theia::Control::MultiSelect",
+            "id": "az_storage_managed_ids",
+            "label": "Managed Identities",
+            "help": "A list of one or more User Assigned Managed identities to assign to the Redis cluster",
+            "datasource": "custom/managedidentities?extra=true&module_name_arg=az_storage"
+          },
+          {
+            "type": "Theia::Control::MultiSelect",
+            "id": "az_storage_zones",
+            "label": "Availability Zones",
+            "help": "List of Availability Zones in which this Redis Cluster should be located",
+            "default": "1,2,3",
+            "options":[
+              {
+                "type": "Theia::Option",
+                "label": "1",
+                "value": {
+                  "type": "Theia::DataOption",
+                  "value": "1"
+                }
+              },
+              {
+                "type": "Theia::Option",
+                "label": "2",
+                "value": {
+                  "type": "Theia::DataOption",
+                  "value": "2"
+                }
+              },
+              {
+                "type": "Theia::Option",
+                "label": "3",
+                "value": {
+                  "type": "Theia::DataOption",
+                  "value": "3"
+                }
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::KeyValue",
+            "id": "az_storage_tags",
+            "label": "Tags",
+            "help": "Tags you wish to apply to the cache",
+            "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=az_storage,${name}&result=params,az_storage_tags",
+            "add_value_label": "Tags for your resource"
+          }
+        ]
+      }
+    ]
+  }

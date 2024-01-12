@@ -1,0 +1,4 @@
+resource "aws_sns_topic" "{{ profile }}-{{ resource_type }}-{{ resource_name }}" {
+    name = "{{ profile }}-{{ resource_name }}"
+    kms_master_key_id = aws_kms_key.{{ profile }}.arn
+}

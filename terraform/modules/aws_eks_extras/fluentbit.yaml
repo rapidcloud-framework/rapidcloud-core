@@ -1,0 +1,51 @@
+image:
+  repository: public.ecr.aws/aws-observability/aws-for-fluent-bit
+  tag: 2.28.4
+  pullPolicy: IfNotPresent
+
+rbac:
+  pspEnabled: false
+
+
+
+serviceAccount:
+  create: true
+  name: fluent-bit
+  annotations: {
+    eks.amazonaws.com/role-arn: ${role}
+  }
+
+resources:
+  limits:
+    memory: 250Mi
+  requests:
+    cpu: 50m
+    memory: 50Mi
+
+# annotations:
+    # eks.amazonaws.com/role-arn: ${role}
+    #
+cloudWatchLogs:
+  enabled: true
+  match: "*"
+  region: ${region}
+  logGroupName: /aws/eks/${cluster_name}/logs
+  # logGroupTemplate: /aws/eks/${cluster_name}/logs/$kubernetes['namespace_name'].$kubernetes['container_name']
+  logGroupTemplate: 
+  logStreamName:
+  logStreamPrefix: "fluentbit-"
+  logStreamTemplate: $kubernetes['pod_name'].$kubernetes['container_name']
+  logRetentionDays: ${fluentbit_log_retention_in_days}
+  logKey:
+  logFormat:
+  roleArn:
+  autoCreateGroup: true
+  endpoint:
+  metricNamespace:
+  metricDimensions:
+  stsEndpoint:
+  autoRetryRequests:
+  externalId:
+  # extraOutputs: |
+  #  log_format json/emf
+  #  worker 1

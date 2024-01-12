@@ -1,0 +1,91 @@
+{
+  "type": "Theia::Action",
+  "label": "Virtual network",
+  "id": "create_vnet",
+  "module": "az_net",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_vnet",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_vnet",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_net_location",
+        "az_net_resource_group",
+        "az_net_address_space"],
+      "title": "Virtual networks",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_vnet",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_net",
+            "command": "create_vnet",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_net_address_space",
+          "label": "Address Space",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_net_dns_servers",
+          "label": "DNS Servers",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

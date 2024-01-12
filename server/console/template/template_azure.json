@@ -1,0 +1,155 @@
+{
+  "type": "Theia::Template",
+  "title": "RapidCloud for Azure - Automation and Acceleration Framework",
+  "footer": {
+    "type": "Theia::Footer",
+    "columns": [
+      {
+        "class": "text-muted text-start",
+        "content": "Copyright © {copyright}."
+      },
+      {
+        "class": "text-muted text-start",
+        "content": "<a href='https://rapid-cloud.io/documentation/' target='_blank'>Documentation</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://kinect-rapid-cloud.s3.amazonaws.com/docs/RapidCloud-Terms-of-Service.html' target='_blank'>Terms of Service</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://rapid-cloud.io/contact-us/' target='_blank'>Contact Us</a>"
+      },
+      {
+        "class": "text-muted text-end",
+        "content": "v{version}-azure"
+      }
+    ]
+  },  
+  "sections": [
+    {
+      "type": "Theia::Section",
+      "label": "Home",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/house-solid.svg",
+      "route": "home",
+      "id": "home",
+      "static": true,
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Settings",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/list-check-solid.svg",
+      "route": "setup",
+      "id": "setup",
+      "enabled": true,
+      "actions": [
+        "activate",
+        "access_create_role",
+        "access_assign_role",
+        "azure_environments"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Architecture",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/sitemap-solid.svg",
+      "route": "modeling",
+      "id": "modeling",
+      "enabled": true,
+      "actions": [
+        "azure_lz_wizard",
+        "azure_net_wizard",
+        "azure_solution_wizard",
+        "azure_container_wizard"
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Environment",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/sliders-solid.svg",
+      "route": "metadata",
+      "id": "metadata",
+      "enabled": true,
+      "actions": [
+        "infra_resources",
+        "properties" 
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Custom Modules",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/code-solid.svg",
+      "route": "modules",
+      "id": "modules",
+      "enabled": false,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Landing Zone",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/people-roof-solid.svg",
+      "route": "az_landingzone",
+      "id": "az_landingzone",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Network",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/network-wired-solid.svg",
+      "route": "az_network",
+      "id": "az_network",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Storage",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/folder-closed-solid.svg",
+      "route": "az_storage",
+      "id": "az_storage",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Databases",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/database-solid.svg",
+      "route": "az_database",
+      "id": "az_database",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Containers",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/box-solid.svg",
+      "route": "az_containers",
+      "id": "az_containers",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Load Balancer",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/road-solid.svg",
+      "route": "az_loadbalancer",
+      "id": "az_loadbalancer",
+      "enabled": true,
+      "actions": [
+      ]
+    },
+    {
+      "type": "Theia::Section",
+      "label": "Deploy",
+      "icon": "https://rapidcloud-icons.s3.amazonaws.com/generic/circle-play-regular.svg",
+      "route": "deploy",
+      "id": "deploy",
+      "enabled": true,
+      "actions": [
+        "terraform"
+      ]
+    }
+  ]
+}

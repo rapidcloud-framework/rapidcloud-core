@@ -1,0 +1,25 @@
+{
+  "type": "Theia::Action",
+  "label": "Metadata",
+  "id": "modules",
+  "module": "module",
+  "env_not_required": true,
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "modules",
+      "datasource": "data?type=metadata&flatten=false",
+      "env_param_required": true,
+      "columns": ["module", "command", "name", "timestamp", "fqn", "cmd_id"],
+      "title": "Environment Metadata",
+      "description": "",
+      "hide_add": true
+    },
+    {
+      "type": "Theia::Step::Json",
+      "id": "modules",
+      "title": "",
+      "description": ""
+    }
+  ]
+}

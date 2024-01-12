@@ -1,0 +1,80 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source                 = "../modules/{{ resource_type }}"
+  cluster_name           = "${replace("{{ profile }}_{{ resource_name }}", "_", "-")}"
+  number_of_broker_nodes = "{{ params['number_of_broker_nodes'] }}"
+  instance_type          = "{{ params['instance_type'] }}"
+  volume_size            = "{{ params['volume_size'] }}"
+  kms_key_id             = aws_kms_key.{{ profile }}.arn
+
+  {% if params['kafka_version'] is defined  %}
+  kafka_version = "{{ params['kafka_version'] }}"
+  {% endif %}
+
+  {% if params['encryption_in_transit'] is defined  %}
+  encryption_in_transit = "{{ params['encryption_in_transit'] }}"
+  {% endif %}
+
+  {% if params['log_retention_in_days'] is defined  %}
+  log_retention_in_days = "{{ params['log_retention_in_days'] }}"
+  {% endif %}
+
+  {% if params['jmx_exporter'] is defined  %}
+  jmx_exporter = {{ params['jmx_exporter'] }}
+  {% endif %}
+
+  {% if params['node_exporter'] is defined  %}
+  node_exporter = {{ params['node_exporter'] }}
+  {% endif %}
+
+  {% if params['enhanced_monitoring'] is defined  %}
+  enhanced_monitoring = "{{ params['enhanced_monitoring'] }}"
+  {% endif %}
+
+  {% if params['server_properties'] is defined  %}
+  server_properties = "{% for k, v in params['server_properties'].items() %}{{ k }} = {{ v }}\n{% endfor %}"
+  {% endif %}
+
+
+  broker_subnets         = tolist(data.aws_subnets.private.ids)
+
+  {% if params['allowed_cidrs'] is defined  %}
+  allowed_cidrs = tolist({{ params['allowed_cidrs'] | tojson }})
+  {% endif %}
+
+  {% if params['allowed_sgs'] is defined  %}
+  allowed_sgs = tolist({{ params['allowed_sgs']  | tojson }})
+  {% endif %}
+
+  vpc_id                 = "{{ vpc }}"
+
+  tags = {
+    "Name"     = "{{ profile}}_{{ resource_name }}"
+    "env"      = "{{ env }}"
+    "profile"  = "{{ name }}"
+    "workload" = "{{ workload }}"
+    "client"   = "{{ client }}"
+    "author"   = "rapid-cloud"
+  }
+}
+
+# resource "aws_ssm_parameter" "{{ profile }}_{{ resource_name }}_{{ resource_type }}_zk" {
+#   name  = "{{ profile }}_{{ resource_name }}_{{ resource_type }}_zookeeper"
+#   type  = "String"
+#   value = module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.zookeeper_connect_string
+# }
+
+{% if params['encryption_in_transit'] is defined and 'PLAINTEXT' in params['encryption_in_transit'] %}
+resource "aws_ssm_parameter" "{{ profile }}_{{ resource_name }}_{{ resource_type }}_kafka" {
+  name  = "{{ profile }}_{{ resource_name }}_{{ resource_type }}_kafka_bootstrap_brokers"
+  type  = "String"
+  value = module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.bootstrap_brokers
+}
+{% endif %}
+
+{% if params['encryption_in_transit'] is defined and 'TLS' in params['encryption_in_transit'] %}
+resource "aws_ssm_parameter" "{{ profile }}_{{ resource_name }}_{{ resource_type }}_kafka_tls" {
+  name  = "{{ profile }}_{{ resource_name }}_{{ resource_type }}_kafka_bootstrap_brokers_tls"
+  type  = "String"
+  value = module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.bootstrap_brokers_tls
+}
+{% endif %}

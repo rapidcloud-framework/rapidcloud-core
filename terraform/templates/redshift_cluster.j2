@@ -1,0 +1,78 @@
+data "aws_secretsmanager_secret" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    name = "{{ params['master_password'] }}"
+}
+
+data "aws_secretsmanager_secret_version" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    secret_id = "${data.aws_secretsmanager_secret.{{ profile }}_{{ resource_name }}_{{ resource_type }}.id}"
+}
+
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    source        = "../modules/{{ resource_type }}"
+    cluster_name   = "${replace("{{ profile }}_{{ resource_name }}", "_", "-")}"
+    subnets = data.aws_subnets.private.ids
+    node_count      = {{ params['node_count'] | default(1) }}
+    node_type = "{{ params['node_type'] | default("dc2.large")}}"
+    sg_enable_self = true
+
+    master_username = "{{ params['master_username']}}"
+    database_name = "{{ params['database_name']}}"
+    master_password = data.aws_secretsmanager_secret_version.{{ profile }}_{{ resource_name }}_{{ resource_type }}.secret_string
+    vpc_id            = "{{ vpc }}"
+    allowed_cidr    = [data.aws_vpc.vpc.cidr_block]
+    kms_key_id      = aws_kms_key.{{ profile }}.arn
+    enable_logging = true
+    iam_roles = [module.{{ profile }}_glue_base.arn]
+
+  parameters =  {
+       "enable_user_activity_logging" = "true"
+  {% if params['parameters'] is defined %}
+  {% for p, pv in params['parameters'].items() %}
+       "{{ p }}" = "{{  pv }}",
+  {% endfor %}
+  {% endif %}
+  }
+
+    tags = {
+       "Name" = "{{ profile}}_{{ resource_name }}"
+       "env" = "{{ env }}"
+       "profile" = "{{ name }}"
+       "workload" = "{{ workload }}"
+       "client" = "{{ client }}"
+       "author" = "rapid-cloud"
+    }
+}
+
+resource "aws_secretsmanager_secret" "{{ profile }}_{{ resource_name }}_{{ resource_type }}_conn" {
+  description     = "{{ profile }}_{{ resource_name }}_{{ resource_type }} connection string"
+  kms_key_id      = aws_kms_key.{{ profile }}.arn
+  name            = "{{ profile }}/{{ resource_type }}/{{ resource_name }}/connection_string"
+}
+
+resource "aws_secretsmanager_secret_version" "{{ profile }}_{{ resource_name }}_{{ resource_type }}_conn" {
+  secret_id     = aws_secretsmanager_secret.{{ profile }}_{{ resource_name }}_{{ resource_type }}_conn.id
+  secret_string = jsonencode({
+	"host"="${module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.dns_name}",
+	"port"="${module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.port}",
+    "user"="{{ params['master_username']}}",
+    "password"="${data.aws_secretsmanager_secret_version.{{ profile }}_{{ resource_name }}_{{ resource_type }}.secret_string}",
+    "dbname"="{{ params['database_name']}}",
+})
+  depends_on = [module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.endpoint]
+}
+
+
+resource "aws_glue_connection" "{{ profile }}_{{ resource_name }}_{{ resource_type }}_conn" {
+  connection_properties = {
+  JDBC_CONNECTION_URL = "jdbc:redshift://${module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.endpoint}/{{ params['database_name']}}"
+  USERNAME            = "{{ params['master_username']}}"
+  PASSWORD            = data.aws_secretsmanager_secret_version.{{ profile }}_{{ resource_name }}_{{ resource_type }}.secret_string
+  }
+
+  name = "{{ profile }}_{{ resource_name }}_{{ resource_type }}"
+
+  physical_connection_requirements {
+    availability_zone      = data.aws_subnet.private[tolist(data.aws_subnets.private.ids)[0]].availability_zone
+    security_group_id_list = [module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.sg_id]
+    subnet_id              = tolist(data.aws_subnets.private.ids)[0]
+  }
+}

@@ -1,0 +1,19 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source               = "../modules/{{ resource_type }}"
+  name                 = replace("{{ resource_name }}-aws-lb", "_", "-")
+  is_internal          = {{ params['is_internal'] }}
+  type                 = "{{ params['type'] }}"
+  subnets              = {{ params['subnets'] | replace("'","\"") }}
+  {% if params['security_group_ids'] is defined and params['security_group_ids'] != '' %}
+  security_group_ids   = {{ params['security_group_ids'] | replace("'","\"") }}
+  {% endif %}
+
+  default_tags = {
+    Name        = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}

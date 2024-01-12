@@ -1,0 +1,14 @@
+module "{{ profile }}_{{ resource_name }}" {
+  env  = "{{ env }}"
+  profile = "{{ profile }}"
+  source        = "{{ module_source }}"
+  name   = "{{ resource_name }}"
+  location   = "{{ params['location'] }}"
+ {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+  {% endif %}
+}

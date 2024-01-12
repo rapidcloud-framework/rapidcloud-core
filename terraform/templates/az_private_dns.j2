@@ -1,0 +1,5 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source             = "{{ module_source }}"
+  name               = "{{ params['domain_name'] }}"
+  resource_group = "{{ params['resource_group'] }}"
+}

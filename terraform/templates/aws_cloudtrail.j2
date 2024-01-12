@@ -1,0 +1,10 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" { 
+  source                        = "{{ module_source }}"
+  name                          = "{{ params['trail_name'] }}"
+  s3_bucket_name                = "{{ params['s3_bucket_name'] }}"
+  include_global_service_events = "{{ params['include_global_service_events'] }}"
+  enable_log_file_validation    = "{{ params['enable_log_file_validation'] }}"
+  is_organization_trail         = "{{ params['is_organization_trail'] }}"
+  is_multi_region_trail         = "{{ params['is_multi_region_trail'] }}"
+  kms_key_id                    = "{{ params['kms_key_id'] }}"
+}

@@ -1,0 +1,18 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source        = "{{ module_source }}"
+  user_group_id = "{{ resource_name }}"
+  user_ids      = [
+    {% for u in params['users'] %}
+    module.{{ profile }}_{{ u }}_aws_elasticache_user.id,
+    {% endfor %}
+  ]
+
+  tags = {
+    "Name"      = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud-by-kinect"
+  }
+}

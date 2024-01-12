@@ -1,0 +1,24 @@
+module "{{ name }}_glue_base" {
+  source             = "../modules/glue_base"
+  prefix             = "${replace("{{ name }}", "_", "-")}"
+  region         = "{{ region }}"
+  additional_buckets = [
+  "{{ arn_prefix }}:s3:::data-*",
+  "{{ arn_prefix }}:s3:::data-*/*",
+  "{{ arn_prefix }}:s3:::data_*",
+  "{{ arn_prefix }}:s3:::data_*/*",
+  "{{ arn_prefix }}:s3:::${replace("{{ name }}", "_", "-")}*",
+  "{{ arn_prefix }}:s3:::${replace("{{ name }}", "_", "-")}*/*",
+  "{{ arn_prefix }}:s3:::{{ name }}*",
+  "{{ arn_prefix }}:s3:::{{ name }}*/*"
+  ]
+  account_id         = "{{ account }}"
+  tags = {
+      "env" = "{{ env }}"
+      "profile" = "{{ name }}"
+      "workload" = "{{ workload }}"
+      "client" = "{{ client }}"
+      "author" = "rapid-cloud"
+  }
+}
+

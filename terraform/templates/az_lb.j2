@@ -1,0 +1,12 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source              = "{{ module_source }}"
+  name                = "{{ resource_name }}"
+  location            = "{{ params['location'] }}"
+  resource_group      = "{{params['resource_group']}}"
+  public_ip_address_id = "{{ params['public_address_id'] }}"
+  {% if params['sku'] is defined and params['sku_tier'] is defined %}
+  sku  = "{{ params['sku'] }}"
+  sku_tier = "{{ params['sku_tier'] }}"
+  {% endif %}
+
+}

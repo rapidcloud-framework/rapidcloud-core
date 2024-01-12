@@ -1,0 +1,78 @@
+{
+  "type": "Theia::Action",
+  "label": "Amazon Certificate Manager",
+  "id": "acm",
+  "module": "acm",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "acm",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=acm",
+      "env_param_required": true,
+      "columns": [
+        "timestamp",
+        "acm_cert_domain_name",
+        "acm_cert_validation_method",
+        "acm_r53_zone_name"
+      ],
+      "title": "Amazon Certificate Manager",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "acm",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Register",
+          "command": {
+            "phase": "acm",
+            "command": "create",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "acm_cert_domain_name",
+          "cli_id": "cert_domain_name",
+          "label": "Certificate Domain Name",
+          "help": "Domain name for which the certificate should be issued",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "acm_cert_validation_method",
+          "cli_id": "cert_validation_method",
+          "label": "Certificate Validation Method",
+          "default": "DNS",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "DNS",
+              "value": "DNS"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Email",
+              "value": "EMAIL"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "acm_r53_zone_name",
+          "cli_id": "r53_zone_name",
+          "label": "Route53 Zone Name",
+          "help": "Route 53 Zone Name for Validation",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

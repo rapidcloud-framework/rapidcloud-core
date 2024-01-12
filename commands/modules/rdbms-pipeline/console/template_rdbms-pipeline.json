@@ -1,0 +1,46 @@
+{
+  "type": "Theia::Action",
+  "label": "RDBMS to Redshift Pipeline",
+  "id": "rdbms-pipeline",
+  "module": "rdbms-pipeline",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "rdbms-pipeline",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=quickstart2",
+      "env_param_required": true,
+      "columns": ["name","engine","server","schema"],
+      "title": "RDBMS to Redshift Data Pipeline",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "rdbms-pipeline",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "rdbms-pipeline",
+            "command": "create",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Data Pipeline Name",
+          "help": "Enter Data Pipeline Name (no space or special characters)",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

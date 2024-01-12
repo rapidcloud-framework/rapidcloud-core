@@ -1,0 +1,762 @@
+{
+ "version": "1.3.0",
+ "cellSize": 20,
+ "rows": 26,
+ "columns": 45,
+ "icons": [
+  {
+   "id": 69,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "name": "org_unit::*::*",
+   "text": "Root OU",
+   "x": 20,
+   "y": 1,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 70,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "account::*::*",
+   "text": "Mgmt Acct",
+   "x": 22,
+   "y": 3,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 72,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Cloud-alt_light-bg@4x.png",
+   "name": "",
+   "text": "",
+   "x": 0,
+   "y": 0,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 73,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "name": "",
+   "text": "Security OU",
+   "x": 2,
+   "y": 7,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 75,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "name": "",
+   "text": "Legacy OU",
+   "x": 38,
+   "y": 7,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 76,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "name": "",
+   "text": "Sandbox OU",
+   "x": 32,
+   "y": 7,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 77,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "name": "",
+   "text": "App 1 OU",
+   "x": 20,
+   "y": 7,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 78,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "name": "",
+   "text": "DevOps OU",
+   "x": 14,
+   "y": 7,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 79,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "name": "",
+   "text": "Network OU",
+   "x": 8,
+   "y": 7,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 80,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "name": "",
+   "text": "Audit SCP",
+   "x": 4,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 81,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Audit Account",
+   "x": 4,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 82,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "name": "",
+   "text": "Log Archive SCP",
+   "x": 4,
+   "y": 14,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 83,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "name": "",
+   "text": "Incident Response SCP",
+   "x": 4,
+   "y": 19,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 84,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Log Archive Account",
+   "x": 4,
+   "y": 16,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 85,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Incident Response Acct",
+   "x": 4,
+   "y": 21,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 86,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "name": "",
+   "text": "Network SCP",
+   "x": 10,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 87,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "name": "",
+   "text": "Legacy SCP",
+   "x": 40,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 88,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "name": "",
+   "text": "Sandbox SCP",
+   "x": 34,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 89,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "name": "",
+   "text": "App 1 Lower SCP",
+   "x": 22,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 90,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "name": "",
+   "text": "DevOps SCP",
+   "x": 16,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 91,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Network Account",
+   "x": 10,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 95,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Sandbox N Account",
+   "x": 34,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 96,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Sandbox 2 Account",
+   "x": 34,
+   "y": 13,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 97,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Test Account",
+   "x": 22,
+   "y": 13,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 98,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "App N CI/CD Account",
+   "x": 16,
+   "y": 21,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 99,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Prod Account",
+   "x": 22,
+   "y": 18,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 100,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "App 1 CI/CD Account",
+   "x": 16,
+   "y": 16,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 101,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Legacy Account",
+   "x": 40,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 102,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Sandbox 1 Account",
+   "x": 34,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 103,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Dev Account",
+   "x": 22,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 104,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "DevOps Account",
+   "x": 16,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 105,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "name": "",
+   "text": "App 1 SCP",
+   "x": 16,
+   "y": 14,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 106,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "name": "",
+   "text": "App 1 Prod SCP",
+   "x": 22,
+   "y": 16,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 107,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "name": "",
+   "text": "App N SCP",
+   "x": 16,
+   "y": 19,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 108,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "name": "",
+   "text": "App N OU",
+   "x": 26,
+   "y": 7,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 109,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "name": "",
+   "text": "App N Prod SCP",
+   "x": 28,
+   "y": 16,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 110,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "name": "",
+   "text": "App N Lower SCP",
+   "x": 28,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 111,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Prod Account",
+   "x": 28,
+   "y": 18,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 112,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Dev Account",
+   "x": 28,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 113,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "name": "",
+   "text": "Test Account",
+   "x": 28,
+   "y": 13,
+   "active": null,
+   "display": null
+  }
+ ],
+ "links": [
+  {
+   "from": 72,
+   "to": 72,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "cw_event_to_lambda",
+   "path": [
+    {
+     "x": 0,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 0,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 44,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 44,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 0,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 69,
+   "to": 69,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 20,
+     "y": 1,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 24,
+     "y": 1,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 24,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 1,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 73,
+   "to": 73,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 2,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 2,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 6,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 6,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 2,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 79,
+   "to": 79,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 8,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 8,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 12,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 12,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 8,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 78,
+   "to": 78,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 14,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 14,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 18,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 18,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 14,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 77,
+   "to": 77,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 20,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 24,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 24,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 76,
+   "to": 76,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 32,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 32,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 36,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 36,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 32,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 75,
+   "to": 75,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 38,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 38,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 42,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 42,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 38,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 108,
+   "to": 108,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 26,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 30,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 30,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  }
+ ],
+ "grid": false
+}

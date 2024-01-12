@@ -1,0 +1,231 @@
+{
+  "type": "Theia::Action",
+  "label": "Properties",
+  "id": "properties",
+  "module": "init",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "properties",
+      "datasource": "data?type=property",
+      "env_param_required": true,
+      "columns": [
+        "type",
+        "name",
+        "default_value",
+        "value"
+      ],
+      "title": "Properties",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "data",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "init",
+            "command": "set-property",
+            "refresh_status": false
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Select",
+          "id": "type",
+          "label": "Type",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "general",
+              "value": "general"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "api_gateway",
+              "value": "api_gateway"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "aurora_mysql_instance",
+              "value": "aurora_mysql_instance"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "aurora_postgresql_instance",
+              "value": "aurora_postgresql_instance"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "cloudwatch_event_rule",
+              "value": "cloudwatch_event_rule"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "dms_event_subscription",
+              "value": "dms_event_subscription"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "dms_replication_instance",
+              "value": "dms_replication_instance"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "dms_replication_task",
+              "value": "dms_replication_task"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "dms_s3_target_endpoint",
+              "value": "dms_s3_target_endpoint"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "dms_source_endpoint",
+              "value": "dms_source_endpoint"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "emr_cluster",
+              "value": "emr_cluster"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "glue_catalog_database",
+              "value": "glue_catalog_database"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "glue_classifier",
+              "value": "glue_classifier"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "glue_connection",
+              "value": "glue_connection"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "glue_crawler",
+              "value": "glue_crawler"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "glue_job",
+              "value": "glue_job"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "glue_trigger",
+              "value": "glue_trigger"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "kinesis_firehose_s3_delivery_stream",
+              "value": "kinesis_firehose_s3_delivery_stream"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "kinesis_stream",
+              "value": "kinesis_stream"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "kms_key",
+              "value": "kms_key"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "lambda_event_source_mapping",
+              "value": "lambda_event_source_mapping"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "lambda_function",
+              "value": "lambda_function"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "lambda_layer",
+              "value": "lambda_layer"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "msk_cluster",
+              "value": "msk_cluster"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "rds_mysql_instance",
+              "value": "rds_mysql_instance"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "rds_postgresql_instance",
+              "value": "rds_postgresql_instance"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "redshift_cluster",
+              "value": "redshift_cluster"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "s3_bucket",
+              "value": "s3_bucket"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "s3_bucket_notification",
+              "value": "s3_bucket_notification"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "s3_bucket_object",
+              "value": "s3_bucket_object"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "sns_topic",
+              "value": "sns_topic"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "sns_topic_subscription",
+              "value": "sns_topic_subscription"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Property",
+          "help": "Property (no spaces or special characters)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "default_value",
+          "label": "Default Value",
+          "help": "Default Value",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "value",
+          "label": "Value",
+          "help": "Value",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

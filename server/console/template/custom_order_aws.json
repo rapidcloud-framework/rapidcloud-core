@@ -1,0 +1,11 @@
+{
+  "databases": {
+    "redshift": 1000,
+    "redshift_create_serverless": 1000,
+    "datawarehouse_tables": 1000,
+    "redshift_load_sql": 1000
+  },
+  "": {
+    "redshift_generate-schema": 1000
+  }
+}

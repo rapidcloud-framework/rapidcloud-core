@@ -1,0 +1,10 @@
+{
+  "fsx": {
+    "create": {
+      "enabled": false,
+      "example": "kc fsx create --no-prompt --fsx_name name --fsx_ad_service_name ad_service_name --fsx_ad_admin_password ad_admin_password --fsx_storage_capacity storage_capacity --fsx_throughput_capacity throughput_capacity",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

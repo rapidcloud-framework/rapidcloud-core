@@ -1,0 +1,27 @@
+data "aws_secretsmanager_secret" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+name = "{{ params['password'] }}"
+}
+
+data "aws_secretsmanager_secret_version" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+secret_id = "${data.aws_secretsmanager_secret.{{ profile }}_{{ resource_name }}_{{ resource_type }}.id}"
+}
+
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source                      = "../modules/{{ resource_type }}"
+  endpoint_id                 = "${replace("{{ profile }}_{{ resource_name }}", "_", "-")}"
+  extra_connection_attributes = "{{ params['extra_connection_attributes'] }}"
+  engine_name                 = "{{ params['engine_name'] }}"
+  username                    = "{{ params['db_user'] }}"
+  password                    =  data.aws_secretsmanager_secret_version.{{ profile }}_{{ resource_name }}_{{ resource_type }}.secret_string
+  server_name                 = "{{ params['server_name'] }}"
+  port                        = "{{ params['port'] }}"
+  database_name               = "{{ params['database_name'] }}"
+  tags = {
+      "Name" = "${replace("{{ profile }}_{{ resource_name }}", "_", "-")}"
+      "env" = "{{ env }}"
+      "profile" = "{{ name }}"
+      "workload" = "{{ workload }}"
+      "client" = "{{ client }}"
+      "author" = "rapid-cloud"
+  }
+}

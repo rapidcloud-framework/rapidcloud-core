@@ -1,0 +1,35 @@
+{
+  "type": "Theia::Action",
+  "label": "tpaexec setup",
+  "id": "edb_tpaexec_setup",
+  "module": "edb",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "edb_tpaexec_setup",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "tpaexec_setup",
+          "command": {
+            "phase": "edb",
+            "command": "tpaexec_setup",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "edb_token",
+          "label": "TPA Token",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+data "aws_secretsmanager_secret" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    name = "{{ params['database_password'] }}"
+}
+
+data "aws_secretsmanager_secret_version" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    secret_id = "${data.aws_secretsmanager_secret.{{ profile }}_{{ resource_name }}_{{ resource_type }}.id}"
+}
+
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    source        = "../modules/{{ resource_type }}"
+    cluster_identifier   = "${replace("{{ resource_name }}", "_", "-")}"
+    cluster_instance_size = "{{ params['instance_class']}}"
+    cluster_instance_count = "{{ params['instance_count'] | default(1) }}"
+    vpc_id            = "{{ vpc }}"
+    db_subnets =   [for subnet in data.aws_subnet.private : subnet.id]
+    engine_version = "{{ params['engine_version'] | default("5.7.22") }}"
+    param_group_family = "{{ params['param_group_family'] | default("aurora-mysql5.7") }}"
+    database_name = "{{ params['resource_name'] | default('test')}}"
+    master_username  = "dbadmin"
+    master_password = data.aws_secretsmanager_secret_version.{{ profile }}_{{ resource_name }}_{{ resource_type }}.secret_string
+
+    allowed_ips = split(",", "{{ params['allowed_ips']}}")
+    {% if params['parameters'] is defined %}
+    parameters = [
+    {% for k, v in  params['parameters'].items() %}
+        {
+        name = "{{ k }}"
+        value = "{{ v }}"
+        },
+    {% endfor %}
+    ]
+    {% endif %}
+
+    tags = {
+    "Name" = "${replace("{{ profile }}_{{ resource_name }}", "_", "-")}"
+       "env" = "{{ env }}"
+       "profile" = "{{ name }}"
+       "workload" = "{{ workload }}"
+       "client" = "{{ client }}"
+       "author" = "rapid-cloud"
+    }
+}
+
+resource "aws_secretsmanager_secret" "{{ profile }}_{{ resource_name }}_{{ resource_type }}_conn" {
+  description     = "{{ profile }}_{{ resource_name }}_{{ resource_type }} connection string"
+  kms_key_id      = aws_kms_key.{{ profile }}.arn
+  name            = "{{ profile }}/{{ resource_type }}/{{ resource_name }}/connection_string"
+  depends_on = [module.{{ profile }}_{{ resource_name }}_{{resource_type}}.id]
+}
+
+resource "aws_secretsmanager_secret_version" "{{ profile }}_{{ resource_name }}_{{ resource_type }}_conn" {
+  secret_id     = aws_secretsmanager_secret.{{ profile }}_{{ resource_name }}_{{ resource_type }}_conn.id
+  secret_string = jsonencode({
+    "host"=split(":", module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.endpoint)[0],
+    "port"="${module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.port}",
+    "user"="{{ params['master_username']}}",
+    "password"="${data.aws_secretsmanager_secret_version.{{ profile }}_{{ resource_name }}_{{ resource_type }}.secret_string}",
+    "dbname"="{{ params['database_name'] | default('test')}}",
+})
+    depends_on = [module.{{ profile }}_{{ resource_name }}_{{resource_type}}.id]
+}
+
+resource "aws_glue_connection" "{{ profile }}_{{ resource_name }}_{{ resource_type }}_conn" {
+  connection_properties = {
+    JDBC_CONNECTION_URL = "jdbc:mysql://${module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.endpoint}/{{ params['database_name'] | default('test')}}"
+    USERNAME            = "{{ params['database_username']}}"
+    PASSWORD            = data.aws_secretsmanager_secret_version.{{ profile }}_{{ resource_name }}_{{ resource_type }}.secret_string
+  }
+
+  name = "{{ profile }}_{{ resource_name }}_{{ resource_type }}"
+
+  physical_connection_requirements {
+    availability_zone      = data.aws_subnet.private[tolist(data.aws_subnets.private.ids)[0]].availability_zone
+    security_group_id_list = [module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.sg_id]
+    subnet_id              = tolist(data.aws_subnets.private.ids)[0]
+  }
+}

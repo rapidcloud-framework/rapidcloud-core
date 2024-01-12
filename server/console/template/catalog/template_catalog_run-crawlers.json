@@ -1,0 +1,47 @@
+{
+  "type": "Theia::Action",
+  "label": "Update Glue Catalogs",
+  "id": "update_catalogs",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "update_catalogs",
+      "title": "Update Glue Catalog via Glue Crawlers",
+      "description": "This process runs Glue crawler for the selected datalake area",
+      "submit": "Run Crawlers",
+      "commands": [
+        {
+          "label": "Run Ingestion Crawlers",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure?",
+          "command": {
+            "phase": "deploy",
+            "command": "run-crawlers",
+            "pipeline_phase": "ingestion"
+          }
+        },
+        {
+          "label": "Run Raw Crawlers",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure?",
+          "command": {
+            "phase": "deploy",
+            "command": "run-crawlers",
+            "pipeline_phase": "raw"
+          }
+        },
+        {
+          "label": "Run Analysis Crawlers",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure?",
+          "command": {
+            "phase": "deploy",
+            "command": "run-crawlers",
+            "pipeline_phase": "analysis"
+          }
+        }
+      ]
+    }
+  ]
+}

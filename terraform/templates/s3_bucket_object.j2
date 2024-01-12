@@ -1,0 +1,6 @@
+resource "aws_s3_object" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    # bucket = "{{ params['bucket'] }}"
+    bucket = module.{{  params['bucket'] | replace("-", "_") }}_s3_bucket.bucket_name
+    key = "{{ params['key'] }}"
+    source = "../../{{ params['source'] }}"
+}

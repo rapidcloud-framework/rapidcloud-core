@@ -1,0 +1,28 @@
+{
+  "env": {
+    "create": {
+      "enabled": false,
+      "example": "kc env create --no-prompt --env_name name",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "list": {
+      "enabled": false,
+      "example": "kc env list --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "set": {
+      "enabled": false,
+      "example": "kc env set --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "describe": {
+      "enabled": false,
+      "example": "kc env describe --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

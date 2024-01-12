@@ -1,0 +1,40 @@
+resource "aws_s3_bucket_notification" "{{ profile }}-{{ resource_name }}-{{ resource_type }}" {
+  bucket = "{{ params['bucket'] }}"
+
+  {% if params['lambda_function'] is defined %}
+  lambda_function {
+  lambda_function_arn = module.{{ profile }}_{{ params['lambda_function']['lambda_function_arn'] }}_lambda_function.arn
+  events              = [
+  {% for p in params['lambda_function']['events'] %}
+      "{{ p }}",
+      ]
+  {% endfor %}
+
+  {% if params['lambda_function']['filter_prefix'] is defined %}
+  filter_prefix = "{{ params['lambda_function']['filter_prefix'] }}"
+  {% endif %}
+
+  {% if params['lambda_function']['filter_suffix'] is defined %}
+  filter_suffix = "{{ params['lambda_function']['filter_suffix'] }}"
+  {% endif %}
+
+  # end lambda function check
+  {% endif %}
+  }
+
+  depends_on = [module.{{  params['bucket'] | replace('-', '_') }}_s3_bucket]
+}
+
+# data "aws_s3_bucket" "{{ profile }}-{{ resource_name }}-{{ resource_type }}" {
+#     bucket = "{{ params['bucket'] }}"
+#     depends_on = [module.{{  params['bucket'] | replace('-', '_') }}_s3_bucket]
+# }
+
+resource "aws_lambda_permission" "{{ profile }}-{{ resource_name }}-{{ resource_type }}" {
+  statement_id  = "{{ profile }}-{{ resource_name }}-{{ resource_type }}_AllowExecutionFromS3"
+  action        = "lambda:InvokeFunction"
+  function_name = module.{{ profile }}_{{ params['lambda_function']['lambda_function_arn'] }}_lambda_function.name
+  principal     = "s3.amazonaws.com"
+  source_arn = module.{{  params['bucket'] | replace('-', '_') }}_s3_bucket.bucket_arn
+  depends_on = [module.{{  params['bucket'] | replace('-', '_') }}_s3_bucket]
+}

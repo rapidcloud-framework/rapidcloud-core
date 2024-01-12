@@ -1,0 +1,40 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source                                = "../modules/{{ resource_type }}"
+  prefix                                = "{{ profile }}"
+  replication_instance_id                 = "${replace("{{ profile }}_{{ resource_name }}", "_", "-")}"
+  env                                   = "{{ env }}"
+  vpc_id                                = "{{ vpc }}"
+  replication_group_destination_subnets = data.aws_subnets.private.ids
+  # availability_zone = data.aws_subnet.private[tolist(data.aws_subnets.private.ids)[0]].availability_zone
+  {% if params["multi_az"] == "true" %}
+    multi_az = true
+  {% else %}
+    multi_az = false
+  {% endif %}
+  create_dms_iam_roles = false
+  cidr_ingress_rules = {
+    "allow icmp" = "-1,-1,icmp,0.0.0.0/0"
+  }
+  cidr_egress_rules = {
+    "allow all" = "0,0,-1,0.0.0.0/0"
+  }
+  allocated_storage            = {{ params["allocated_storage"] }}
+  engine_version               = "{{ params["engine_version"] }}"
+  preferred_maintenance_window = "{{ params["preferred_maintenance_window"] }}"
+  apply_immediately  = true
+
+
+  replication_instance_class = "{{ params["replication_instance_class"] }}"
+  kms_key_arn                = aws_kms_key.{{ profile }}.arn
+
+  tags = {
+    "Name"     = "{{ profile}}_{{ resource_name }}"
+      "env" = "{{ env }}"
+      "profile" = "{{ name }}"
+      "workload" = "{{ workload }}"
+      "client" = "{{ client }}"
+      "author" = "rapid-cloud"
+  }
+}
+
+

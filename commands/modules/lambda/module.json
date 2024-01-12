@@ -1,0 +1,70 @@
+{
+    "lambda": {
+        "create": {
+            "enabled": true,
+            "help": "Create Lambda Function",
+            "template_section": "compute",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": false,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "Lambda Function Name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },           
+                "memory_size": {
+                    "name": "Memory Size", 
+                    "prompt": "Enter Memory Size in MB", 
+                    "required": true,
+                    "default": "128"
+                },           
+                "timeout": {
+                    "name": "Timeout", 
+                    "prompt": "Enter Timeout in seconds", 
+                    "required": true,
+                    "default": "60"
+                },           
+                "schedule": {
+                    "name": "Schedule", 
+                    "prompt": "Enter a cron expression", 
+                    "required": false,
+                    "default": ""
+                },           
+                "env_vars": {
+                    "name": "Environment Variables", 
+                    "prompt": "Enter environment variables as Json string or skip it here and modify in the console", 
+                    "required": false,
+                    "default": ""
+                },           
+                "include_layers": {
+                    "name": "RapidCloud supported Lambda Layers", 
+                    "prompt": "Comma separated list of RapidCloud supported Lambda Layers [kc_common,awswrangler,psycopg2]", 
+                    "required": false,
+                    "default": "kc_common"
+                },           
+                "enable_trend": {
+                    "name": "enable_trend", 
+                    "prompt": "Enable Trend Micro Cloud One Application Security [yes|no]", 
+                    "required": false,
+                    "default": "no",
+                    "type": "boolean"
+                },           
+                "trend_app_security_group": {
+                    "name": "trend_app_security_group", 
+                    "prompt": "For Trend Micro Application Security Customers, enter Group Name", 
+                    "required": false,
+                    "default": ""
+                },
+                "image_uri": {
+                    "name": "image_uri",
+                    "prompt": "ECR Image URI",
+                    "required": false,
+                    "default": ""
+                }
+            }
+        }
+    }
+}

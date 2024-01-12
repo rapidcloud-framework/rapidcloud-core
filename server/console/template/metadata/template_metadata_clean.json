@@ -1,0 +1,28 @@
+{
+  "type": "Theia::Action",
+  "label": "Remove Metadata",
+  "id": "clean",
+  "module": "metadata",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "clean",
+      "title": "Remove Environment Metadata",
+      "allowMarkdown": true,
+      "description": "",
+      "submit": "Remove Environment Metadata",
+      "commands": [
+        {
+          "label": "Clean",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove all metadata associated with your environment?",
+          "command": {
+            "phase": "metadata",
+            "command": "remove",
+            "refresh_status": true
+          }
+        }
+      ]
+    }
+  ]
+}

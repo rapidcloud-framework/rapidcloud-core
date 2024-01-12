@@ -1,0 +1,607 @@
+[
+    {
+        "id": 1002,
+        "text": "Landing Zone/Org",
+        "ids": [68,69,70],
+        "cli": ["kc org create_org"],
+        "actions": [
+            "org_create","org_create_ou","org_create_account"
+        ]
+    },
+    {
+        "id": 1002,
+        "text": "VPC",
+        "ids": [77,81,79,83],
+        "cli": ["kc net create_vpc"],
+        "actions": [
+            "net_create_vpc","net_create_subnet"
+        ]
+    },
+    {
+        "id": 2000,
+        "text": "Quickstarts",
+        "ids": [],
+        "children": [
+            {
+                "id": 2001,
+                "text": "EC2 Backend",
+                "ids": [1,53,60,76,72,73,74,75,35],
+                "cli": ["kc ec2-plus create"],
+                "actions": [
+                    "ec2-plus"
+                ]
+            },
+            {
+                "id": 1,
+                "text": "Data Lake",
+                "ids": [1,19,27,31,25,30,32,40,65],
+                "cli": ["kc datalake create"],
+                "actions": [
+                    "datalake"
+                ]
+            },
+            {
+                "id": 2001,
+                "text": "Semi-Structured Data to RDS Pipeline",
+                "ids": [1,19,27,31,25,30,32,40,65,5,9,41,24,26,27,42,30,29,31,33,34,35,66],
+                "cli": ["kc semi-structured-pipeline create"],
+                "actions": [
+                    "semi-structured-pipeline",
+                    "semistructured",
+                    "formats",
+                    "enable_semi_structured",
+                    "transformations",
+                    "target_databases",
+                    "target_database_tables"
+                ]
+            },
+            {
+                "id": 2001,
+                "text": "RDBMS to Redshift Pipeline (*)",
+                "ids": [1,66,4,11,12,13,19,24,40,41,27,29,30,31,32,34,37,65],
+                "cli": ["kc rdbms-pipeline create"],
+                "actions": [
+                    "rdbms-pipeline",
+                    "databases",
+                    "datasets",
+                    "schedules",
+                    "datatypes",
+                    "transformations",
+                    "redshift",
+                    "datawarehouse_tables"
+                ]
+            },
+            {
+                "id": 2001,
+                "text": "Web Application Backend (*)",
+                "ids": [1,58,53,52,62,64,54,62,39,38,35,66],
+                "cli": ["kc web-app create"],
+                "actions": [
+                    "web-app"
+                ]
+            },
+            {
+                "id": 2001,
+                "text": "Native Mobile App Backend (*)",
+                "ids": [1,59,53,52,62,64,54,62,39,38,35,66],
+                "cli": ["kc mobile-app create"],
+                "actions": [
+                    "mobile-app"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "text": "Data Ingestion",
+        "ids": [],
+        "children": [
+            {
+                "id": 2,
+                "text": "Ingest files",
+                "ids": [1,5,9,19,40,41,24,25,26,27,42,30,31,32,65],
+                "cli": ["kc ingest register-semi-structured"],
+                "actions": [
+                    "semistructured",
+                    "unstructured",
+                    "formats",
+                    "enable_semi_structured",
+                    "start"
+                ]
+            },
+            {
+                "id": 2001,
+                "text": "Migrate data with DataSync",
+                "ids": [1,91,5,9,19,40,41,24,25,26,27,42,30,31,32,65],
+                "actions": [
+                    "semistructured",
+                    "unstructured",
+                    "formats",
+                    "enable_semi_structured",
+                    "start"
+                ]
+            },
+            {
+                "id": 2002,
+                "text": "Process files with Amazon Textract",
+                "ids": [5,19,24,92,27],
+                "cli": [],
+                "actions": [
+                    "trendmicro_setup",
+                    "trendmicro_file_storage"
+                ]
+            },
+            {
+                "id": 3,
+                "text": "Scan with Trend Micro File Storage Security",
+                "ids": [84,85,86],
+                "cli": ["kc trendmicro filestorage_create_stack"],
+                "actions": [
+                    "trendmicro_setup",
+                    "trendmicro_file_storage"
+                ]
+            },
+            {
+                "id": 501,
+                "text": "Ingest from RDBMS to S3",
+                "cli": ["kc ingest register-source-database"],
+                "ids": [1,4,7,13,66,1,19,40,41,24,25,26,27,42,30,31,32,65],
+                "actions": [
+                    "databases",
+                    "datasets",
+                    "datatypes",
+                    "post-ingestion"
+                ]            
+            },
+            {
+                "id": 6,
+                "text": "Ingest from RDBMS to Aurora (*)",
+                "ids": [1,4,7,13,36],
+                "actions": [
+                    "databases",
+                    "datasets",
+                    "datatypes",
+                    "rds",
+                    "target_database_tables"
+                ],           
+                "cli": [
+                    "kc ingest register-source-database",
+                    "kc ingest register-target-database"
+                ]
+            },
+            {
+                "id": 7,
+                "text": "Ingest from RDBMS to RDS (*)",
+                "ids": [1,4,7,13,35],
+                "actions": [
+                    "databases",
+                    "datasets",
+                    "datatypes",
+                    "rds",
+                    "target_database_tables"
+                ],           
+                "cli": [
+                    "kc ingest register-source-database",
+                    "kc ingest register-target-database"
+                ]
+            },
+            {
+                "id": 9,
+                "text": "Batch CDC",
+                "ids": [1,11,12,16,18,17,20],
+                "cli": [
+                    "kc ingest schedule --phase inserts --schedule '<value>' --enabled <value>",
+                    "kc ingest schedule --phase updates --schedule '<value>' --enabled <value>"
+                ]        
+            },
+            {
+                "id": 11,
+                "text": "Ingest Events",
+                "ids": [8,15,19,40,41,24,25,26],
+                "cli": ["kc ingest add-event --dataset-name <value>"],
+                "actions": [
+                    "events"
+                ]
+            },              
+            {
+                "id": 18,
+                "text": "Reformat ingested data",
+                "ids": [1,24],
+                "cli": ["kc ingest add-format"],
+                "actions": [
+                    "formats"
+                ]
+            },			
+            {
+                "id": 19,
+                "text": "Apply PII rules",
+                "ids": [1,24,2],
+                "cli": ["kc secure add-rule"],
+                "actions": [
+                    "rules_rdbms",
+                    "rules_semi"
+                ]
+            },			
+            {
+                "id": 20,
+                "text": "Apply business rules",
+                "ids": [1,24,2],
+                "actions": [
+                    "semistructured"
+                ]
+            }		
+        ]
+    },
+    {
+        "id": 12,
+        "text": "Streaming Data",
+        "ids": [],
+        "actions": [
+            "streams"
+        ],
+        "children": [
+            {
+                "id": 13,
+                "text": "From Kinesis",
+                "ids": [47],
+                "cli": [
+                    "kc ingest register-stream --name <value> --type kinesis --consumer lambda_function  --memory_size <value>  --event_source <value>"
+                ]
+            },
+            {
+                "id": 14,
+                "text": "From Kafka",
+                "ids": [49],
+                "cli": [
+                    "kc ingest register-stream --name <value> --type kafka --consumer lambda_function  --memory_size <value>  --event_source <value>"
+                ]
+            },
+            {
+                "id": 15,
+                "text": "Process with Lambda Function",
+                "ids": [24],
+                "cli": [
+                    "kc ingest register-stream --name <value> --type <value> --consumer lambda_function  --memory_size <value>  --event_source <value>"
+                ]
+            },
+            {
+                "id": 16,
+                "text": "Process with Glue streaming",
+                "ids": [21],
+                "cli": [
+                    "kc ingest register-stream --name <value> --type <value> --consumer glue_streaming  --event_source <value>"
+                ]
+            },
+            {
+                "id": 17,
+                "text": "Save results to DynamoDB (*)",
+                "ids": [48]
+            }
+        ]
+    },
+    {
+        "id": 2001,
+        "text": "Analytics",
+        "ids": [],
+        "actions": [],
+        "children": [
+            {
+                "id": 21,
+                "text": "Batch analytics",
+                "ids": [1,27,29,31,32],
+                "actions": [
+                    "transformations"
+                ]
+            },
+            {
+                "id": 22,
+                "text": "Save analysis to QuickSight SPICE",
+                "ids": [63]
+            },
+            {
+                "id": 24,
+                "text": "Real-time low volume analytics",
+                "ids": [1,8,14,21,27,31,48],
+                "cli": ["kc analytics add-service --name <value>  --runtime glue"],
+                "actions": [
+                    "analytics"
+                ]
+            },			
+            {
+                "id": 25,
+                "text": "Real-time high volume analytics",
+                "ids": [1,8,14,22,27,31,48],
+                "cli": ["kc analytics add-service --name <value>  --runtime glue"],
+                "actions": [
+                    "analytics"
+                ]
+            },
+            {
+                "id": 33,
+                "text": "Custom Glue Job",
+                "ids": [1,46,3],
+                "cli": ["kc aws add-glue-job --name <value> --job_type <value>"],
+                "actions": [
+                    "gluejob"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "text": "Databases & Caching",
+        "ids": [],
+        "cli": [],
+        "children": [
+            {
+                "id": 27,
+                "text": "Aurora",
+                "ids": [1,36],
+                "cli": ["kc rds create"],
+                "actions": [
+                    "rds"
+                ]
+            },
+            {
+                "id": 28,
+                "text": "RDS",
+                "ids": [1,35],
+                "cli": ["kc rds create"],
+                "actions": [
+                    "rds",
+                    "target_database_tables"
+                ]
+            },
+            {
+                "id": 29,
+                "text": "Redshift",
+                "ids": [1,37],
+                "cli": ["kc redshift create"],
+                "actions": [
+                    "redshift"
+                ]
+            },
+            {
+                "id": 291,
+                "text": "DynamoDB (*)",
+                "ids": [1,48],
+                "cli": []
+            },
+            {
+                "id": 292,
+                "text": "OpenSearch",
+                "ids": [1,61],
+                "cli": []
+            },
+            {
+                "id": 293,
+                "text": "ElastiCache",
+                "ids": [1,93],
+                "cli": []
+            },             
+            {
+                "id": 2601,
+                "text": "Publish Data",
+                "ids": [31,32,34],
+                "cli": ["kc publish add-table"],
+                "actions": [
+                    "datawarehouse_tables",
+                    "target_database_tables"
+                ]
+            }
+        ]         
+    },					
+    {
+        "id": 31,
+        "text": "Compute",
+        "ids": [],
+        "actions": [
+        ],
+        "children": [
+            {
+                "id": 31,
+                "text": "Lambda Function",
+                "ids": [1,2,38],
+                "cli": ["kc lambda create"],
+                "actions": [
+                    "lambda"
+                ]
+            },		            
+            {
+                "id": 3103,
+                "text": "Scheduling via EventBridge",
+                "ids": [50],
+                "cli": [],
+                "actions": [
+                    "lambda"
+                ]
+            },		            
+            {
+                "id": 3101,
+                "text": "EC2",
+                "ids": [1,72],
+                "cli": ["kc ec2 create"],
+                "actions": [
+                    "ec2"
+                ]
+            },
+            {
+                "id": 3102,
+                "text": "EC2 Austo-Scaling Group",
+                "ids": [1,76],
+                "cli": ["kc asg create"],
+                "actions": [
+                    "asg"
+                ]
+            }
+        ]      
+    },
+    {
+        "id": 31,
+        "text": "Containers",
+        "ids": [],
+        "actions": [
+        ],
+        "children": [
+            {
+                "id": 3110,
+                "text": "ECR - Elastic Container Registry",
+                "ids": [1,57],
+                "cli": ["kc ecr create"],
+                "actions": [
+                    "ecr"
+                ]
+            },
+            {
+                "id": 3111,
+                "text": "ECS Fargate",
+                "ids": [1,55],
+                "cli": ["kc ecs create"],
+                "actions": [
+                    "ecs"
+                ]
+            },
+            {
+                "id": 3112,
+                "text": "EKS (*)",
+                "ids": [1,56],
+                "cli": ["kc eks create"],
+                "actions": [
+                    "eks"
+                ]
+            }
+        ]      
+    },
+    {
+        "id": 1010,
+        "text": "Workflows",
+        "ids": [],
+        "actions": [],
+        "children": [
+            {
+                "id": 1001,
+                "text": "Step Functions (*)",
+                "ids": [19,67],
+                "cli": ["kc workflow add --dataset-name <value>"],
+                "actions": [
+                ]
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "text": "Storage",
+        "ids": [],
+        "actions": [
+        ],
+        "children": [
+            {
+                "id": 31001,
+                "text": "S3",
+                "ids": [1,87],
+                "cli": ["kc s3 create_bucket"],
+                "actions": [
+                    "s3_create_bucket"
+                ]
+            },
+            {
+                "id": 3102,
+                "text": "EBS - Elastic Block Store",
+                "ids": [1,74,72],
+                "actions": [
+                    "ebs"
+                ]
+            },
+            {
+                "id": 3104,
+                "text": "FSx for Windows",
+                "ids": [1,73],
+                "cli": ["kc fsx create"],
+                "actions": [
+                    "fsx"
+                ]
+            },
+            {
+                "id": 3105,
+                "text": "Elastic File System",
+                "ids": [1,75],
+                "cli": ["kc efs create"],
+                "actions": [
+                    "efs"
+                ]
+            }
+        ]      
+    },
+    {
+        "id": 31,
+        "text": "Security",
+        "ids": [],
+        "actions": [
+        ],
+        "children": [
+            {
+                "id": 3109,
+                "text": "Certificate Manager",
+                "ids": [1,64],
+                "cli": ["kc acm create"],
+                "actions": [
+                    "certificatemanager"
+                ]
+            },
+            {
+                "id": 3107,
+                "text": "WAF - Web Application Firewall",
+                "ids": [1,62],
+                "cli": ["kc waf create"],
+                "actions": [
+                    "waf"
+                ]
+            }
+        ]      
+    },
+    {
+        "id": 31,
+        "text": "Content Delivery",
+        "ids": [],
+        "actions": [
+        ],
+        "children": [
+            {
+                "id": 3106,
+                "text": "Route53",
+                "ids": [1,53],
+                "cli": ["kc route53 create"],
+                "actions": [
+                    "route53"
+                ]
+            },
+            {
+                "id": 3108,
+                "text": "CloudFront",
+                "ids": [1,52],
+                "cli": ["kc cloudfront create"],
+                "actions": [
+                    "cloudfront"
+                ]
+            },
+            {
+                "id": 3113,
+                "text": "API Gateway",
+                "ids": [1,39],
+                "cli": ["kc apigateway create"],
+                "actions": [
+                    "apigateway"
+                ]
+            },
+            {
+                "id": 3103,
+                "text": "ALB - Application Load Balancer",
+                "ids": [1,60],
+                "cli": ["kc alb create"],
+                "actions": [
+                    "alb"
+                ]
+            }
+        ]      
+    }
+]

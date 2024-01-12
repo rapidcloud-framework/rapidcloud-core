@@ -1,0 +1,21 @@
+{
+    "theia_roles": "git::ssh://git@bitbucket.org/kinect-consulting/theia-roles.git/?ref=v1.8",
+    "s3_bucket": "git::ssh://git@bitbucket.org/kinect-consulting/dms.git//s3?ref=v1.7",
+    "dms_base": "git::ssh://git@bitbucket.org/kinect-consulting/dms.git//replication-instance-iam?ref=v1.9",
+    "dms_replication_instance": "git::ssh://git@bitbucket.org/kinect-consulting/dms.git//replication-instance?ref=v1.10",
+    "dms_s3_target_endpoint": "git::ssh://git@bitbucket.org/kinect-consulting/dms.git//s3_target_endpoint?ref=v1.7",
+    "dms_source_endpoint": "git::ssh://git@bitbucket.org/kinect-consulting/dms.git//source_endpoint?ref=v1.7",
+    "glue_catalog_database": "git::ssh://git@bitbucket.org/kinect-consulting/glue.git//catalog?ref=v1.4",
+    "glue_base": "git::ssh://git@bitbucket.org/kinect-consulting/glue.git//base?ref=v1.7",
+    "lambda_function_base": "git::ssh://git@bitbucket.org/kinect-consulting/lambda.git//bigdata_lambda_base?ref=v1.23",
+    "lambda_function": "git::ssh://git@bitbucket.org/kinect-consulting/lambda.git//bigdata_lambda_function?ref=v1.21",
+    "rds_postgresql_instance": "git::ssh://git@bitbucket.org/kinect-consulting/rds.git//postgresql?ref=v1.7",
+    "rds_mysql_instance": "git::ssh://git@bitbucket.org/kinect-consulting/rds.git//mysql?ref=v1.7",
+    "aurora_postgresql_instance": "git::ssh://git@bitbucket.org/kinect-consulting/rds.git//aurora-postgresql?ref=v1.7",
+    "aurora_mysql_instance": "git::ssh://git@bitbucket.org/kinect-consulting/rds.git//aurora-mysql?ref=v1.7",
+    "kinesis_firehose_s3_delivery_stream": "git::ssh://git@bitbucket.org/kinect-consulting/kinesis.git//firehose/s3?ref=v1.3",
+    "redshift_cluster": "git::ssh://git@bitbucket.org/kinect-consulting/redshift.git/?ref=v1.0",
+    "emr_cluster": "git::ssh://git@bitbucket.org/kinect-consulting/emr.git/?ref=v1.2",
+    "msk_cluster": "../../../../terraform-modules-aws/msk",
+    "msk_cluster_git": "git::ssh://git@bitbucket.org/kinect-consulting/msk.git/?ref=v1.0"
+}

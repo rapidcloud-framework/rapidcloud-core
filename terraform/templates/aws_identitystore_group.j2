@@ -1,0 +1,10 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source        = "../modules/aws_identitystore/{{ resource_type }}"
+  display_name  = "{{ resource_name }}"
+  description   = "{{ params['description'] }}"
+  user_ids      = [
+    {% for m in params['members'] %}
+    module.{{ profile }}_{{ m }}_aws_identitystore_user.id,
+    {% endfor %}
+  ]
+}

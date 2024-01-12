@@ -1,0 +1,22 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source        = "../modules/{{ resource_type }}"
+  bucket_name          = "${replace("{{ profile }}_{{ resource_name }}", "_", "-")}"
+  kms_key_arn          = aws_kms_key.{{ profile }}.id
+  tags = {
+    Name          = "{{ profile }}_{{ resource_name }}"
+    "env" = "{{ env }}"
+    "profile" = "{{ name }}"
+    "workload" = "{{ workload }}"
+    "client" = "{{ client }}"
+    "author" = "rapid-cloud"
+  }
+}
+
+{% if resource_name == 'utils' %}
+resource "null_resource" "{{ profile }}_{{ resource_name }}_{{ resource_type }}-sync" {
+  provisioner "local-exec" {
+    command = "aws s3 sync s3://kinect-rapid-cloud-utils/{{ utils_version }}/  s3://${module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.bucket_name}/ --delete"
+  }
+  depends_on = [module.{{ profile }}_{{ resource_name }}_{{ resource_type }}]
+}
+{% endif %}

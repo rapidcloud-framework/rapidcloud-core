@@ -1,0 +1,303 @@
+{
+  "type": "Theia::Action",
+  "label": "Cosmos DB NoSQL",
+  "id": "create_cosmosdb_nosql",
+  "module": "az_db",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_cosmosdb_nosql",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_cosmosdb_nosql",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_db_location",
+        "az_db_resource_group"
+      ],
+      "title": "Cosmos DB NoSQL",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_cosmosdb_nosql",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_db",
+            "command": "create_cosmosdb_nosql",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_db_enable_serverless",
+          "cli_id": "enable_serverless",
+          "label": "Enable Serverless"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_db_total_throughput_limit",
+          "cli_id": "total_throughput_limit",
+          "label": "Total Throughput Limit",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_enable_free_tier",
+          "label": "Enable Free Tier",
+          "default": "false",
+          "inputType": "text",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "True",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "true"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "False",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "false"
+              }
+            }]
+          },
+          {
+            "type": "Theia::Control::MultiSelect",
+            "id": "az_db_geo_location",
+            "label": "Geolocation",
+            "help": "",
+            "datasource": "formdata_from_azure?type=locations"
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_db_enable_multiple_write_locations",
+            "label": "Enable Multiple Write Locations",
+            "default": "false",
+            "help": "This value will be overwriten to False if Continuous Backup is selected ",
+            "options": [
+              {
+                "type": "Theia::Option",
+                "label": "True",
+                "value": {
+                  "type": "Theia::DataOption",
+                  "value": "true"
+                }
+              },
+              {
+                "type": "Theia::Option",
+                "label": "False",
+                "value": {
+                  "type": "Theia::DataOption",
+                  "value": "false"
+                }
+              }]
+          },
+          {
+            "type": "Theia::Control::Input",
+            "id": "az_db_ip_range_filter",
+            "label": "Allow Ips",
+            "help": "",
+            "inputType": "text"
+          },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_subnet_id",
+          "label": "Subnet",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=subnets"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_key_vault_key_id",
+          "label": "Encription Key",
+          "inputType": "text",
+          "datasource": "custom/unversioned_keys?module_name_arg=az_db"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_backup_type",
+          "label": "Backup Type",
+          "default": "",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Continuous",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "Continuous",
+                "disableControls":["az_db_enable_multiple_write_locations"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Periodic",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "Periodic",
+                "enableControls":["az_db_enable_multiple_write_locations"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_db_interval_in_minutes",
+          "cli_id": "interval_in_minutes",
+          "label": "Interval in minutes",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_db_retention_in_hours",
+          "cli_id": "retention_in_hours",
+          "label": "Retention in hours",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_storage_redundancy",
+          "label": "Storage Redundancy",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Geo",
+              "value": "Geo"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Local",
+              "value": "Local"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Zone",
+              "value": "Zone"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_identity_type",
+          "label": "Managed Identity Type",
+          "help": "The type of managed identity to assign",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "SystemAssigned",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "SystemAssigned",
+                "disableControls": ["az_db_identity_ids"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "UserAssigned",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "UserAssigned",
+                "enableControls": ["az_db_identity_ids"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_db_identity_ids",
+          "label": "User-Assigned Managed Identities",
+          "help": "A list of one or more User Assigned Managed identities to assign",
+          "datasource": "custom/managedidentities?extra=true&module_name_arg=az_db"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_db_database_name",
+          "cli_id": "az_db_database_name",
+          "label": "Database Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::CompositeGroup",
+          "id": "az_db_containers",
+          "label": "Container Definition",
+          "help": "",
+          "controls": [
+            {
+              "type": "Theia::Control::Input",
+              "id": "container_name",
+              "inputType": "text",
+              "label": "Container Name"
+            },
+            {
+              "type": "Theia::Control::Input",
+              "id": "partition_key",
+              "help": "",
+              "inputType": "text",
+              "label": "Partition Key"
+            },
+            {
+              "type": "Theia::Control::Input",
+              "id": "unique_key",
+              "help": "",
+              "inputType": "text",
+              "label": "Unique Key"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "ec2": {
+    "create": {
+      "enabled": true,
+      "help": "Create EC2 Instance",
+      "template_section": "compute",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "instance_type": {
+          "name": "instance_type",
+          "prompt": "EC2 Instance Type",
+          "required": true,
+          "default": "t2.micro"
+        },
+        "ami_id": {
+          "name": "ami_id",
+          "prompt": "AMI ID",
+          "required": true,
+          "default": ""
+        },
+        "key_name": {
+          "name": "key_name",
+          "prompt": "Key pair name. Must exist in AWS before creation.",
+          "required": false,
+          "default": ""
+        },
+        "vpc_id": {
+          "name": "vpc_id",
+          "prompt": "The ID of the VPC in which the instance is running.",
+          "required": true,
+          "default": "dynamic-config::vpc"
+        },
+        "availability_zone": {
+          "name": "availability_zone",
+          "prompt": "Availability Zone. Must match your Subnet's az if provided.",
+          "required": true,
+          "default": "us-east-1a"
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Subnet Id to place this ec2. Must be in the same VPC as your security group.",
+          "required": false,
+          "default": ""
+        },
+        "vpc_security_group_ids": {
+          "name": "vpc_security_group_ids",
+          "prompt": "Security groups ids to place this instance on. Must be in the same VPC as your security group.",
+          "required": false,
+          "default": ""
+        },
+        "role_name": {
+          "name": "role_name",
+          "prompt": "Existing role to create an instance profile.",
+          "required": false,
+          "default": ""
+        },
+        "volume_size": {
+          "name": "volume_size",
+          "prompt": "Volume Size",
+          "required": false,
+          "default": 0
+        },
+        "user_data": {
+          "name": "user_data",
+          "prompt": "User Data (run this automatically when starting the instance)",
+          "required": false,
+          "default": ""
+        },
+        "enable_trend": {
+          "name": "enable_trend",
+          "prompt": "Enable Trend Micro Cloud One Workload Security [yes|no]",
+          "required": false,
+          "default": "no"
+        },
+        "trend_workload_group": {
+          "name": "trend_workload_group",
+          "prompt": "For Trend Micro Workload Security Customers, enter Workload Group Name",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "list_unmanaged": {
+      "enabled": true,
+      "help": "",
+      "template_section": "compute",
+      "template_enabled": true
+    },
+    "enable_trend": {
+      "enabled": true,
+      "help": "Enable Trend Micro Workload Security for EC2 Instance",
+      "args": {
+        "target": {
+          "name": "target",
+          "prompt": "EC2 Instance or Launch Template [ec2|launch_template]",
+          "required": true,
+          "default": "ec2"
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "prompt": "Existing EC2 Instance ID",
+          "required": false,
+          "default": ""
+        },
+        "launch_template_id": {
+          "name": "launch_template_id",
+          "prompt": "Existing Launch Template ID",
+          "required": false,
+          "default": ""
+        },
+        "enable_trend": {
+          "name": "enable_trend",
+          "prompt": "Enable [yes|no]",
+          "required": true,
+          "default": "yes"
+        },
+        "trend_workload_group": {
+          "name": "trend_workload_group",
+          "prompt": "Trend Micro Workload Group Name (leave blank for default Computers Group",
+          "required": false,
+          "default": ""
+        }
+      },
+      "template_enabled": true
+    },
+    "list_launch_templates": {
+      "enabled": true,
+      "help": "",
+      "template_section": "compute",
+      "template_enabled": true
+    }
+  }
+}

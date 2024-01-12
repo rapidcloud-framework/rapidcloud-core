@@ -1,0 +1,46 @@
+{
+  "type": "Theia::Action",
+  "label": "This is RapidCloud menu option label for the module",
+  "id": "trendmicro_workload_list_policies",
+  "module": "trendmicro",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "trendmicro_workload_list_policies",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=trendmicro",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "This is RapidCloud module main page title",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "trendmicro_workload_list_policies",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "workload_list_policies",
+          "command": {
+            "phase": "trendmicro",
+            "command": "workload_list_policies",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

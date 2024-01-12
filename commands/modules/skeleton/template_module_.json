@@ -1,0 +1,46 @@
+{
+  "type": "Theia::Action",
+  "label": "This is RapidCloud menu option label for the module",
+  "id": "MODULE_NAME_PLACEHOLDER_COMMAND_NAME_PLACEHOLDER",
+  "module": "MODULE_NAME_PLACEHOLDER",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "MODULE_NAME_PLACEHOLDER_COMMAND_NAME_PLACEHOLDER",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=MODULE_NAME_PLACEHOLDER",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "This is RapidCloud module main page title",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "MODULE_NAME_PLACEHOLDER_COMMAND_NAME_PLACEHOLDER",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "COMMAND_NAME_PLACEHOLDER",
+          "command": {
+            "phase": "MODULE_NAME_PLACEHOLDER",
+            "command": "COMMAND_NAME_PLACEHOLDER",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

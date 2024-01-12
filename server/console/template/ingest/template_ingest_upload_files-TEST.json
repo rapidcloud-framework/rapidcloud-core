@@ -1,0 +1,68 @@
+{
+  "type": "Theia::Action",
+  "label": "Upload Files",
+  "id": "upload_files",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "data",
+      "title": "Upload Files to S3",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Select",
+          "id": "dataset_type",
+          "label": "Select File Type to upload",
+          "help": "",
+          "default": "dataset_unstructured",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Binary/Unstructured (e.g. invoices, documents, audio, video, images, etc)",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "dataset_unstructured",
+                "enableControls": ["samples"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Semi-Structured (Json, CSV, Excel, XML)",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "dataset_semi_structured",
+                "disableControls": ["samples"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "samples",
+          "label": "Uploaded files should only be used for learning purposes. This feature is only available for Binary/Unstructured files."
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "dataset",
+          "label": "Select existing dataset to upload files for. If you don't see a desired dataset, then you must first add it via `Documents & Binary Files` page. Alternatively, select `Unknown` to use RapidCloud document categorization algorithm (this is only applicable for documents). If you use `Unknown`, then you must first upload sample files",
+          "help": "Select a dataset",
+          "dynamic_datasource": "formdata?type=${dataset_type}&field=name&default_option=Unknown",
+          "default": "Unknown"
+        },
+        {
+          "label": "",
+          "help": "",
+          "id": "files",
+          "type": "Theia::Control::Upload",
+          "multiple":  false,
+          "dynamic_datasource": "formdata_from_aws?type=generate_presigned_url&dataset_type=code",
+          "new_hide": true
+        }
+      ]
+    }
+  ]
+}

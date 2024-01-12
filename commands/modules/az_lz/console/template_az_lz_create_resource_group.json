@@ -1,0 +1,69 @@
+{
+    "type": "Theia::Action",
+    "label": "Resource Groups",
+    "id": "create_resource_group",
+    "module": "az_lz",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "create_resource_group",
+        "datasource": "data?type=metadata&filter_name=command&filter_value=create_resource_group",
+        "env_param_required": true,
+        "columns": [
+          "name",
+          "az_lz_location",
+          "timestamp"
+        ],
+        "title": "Resource Groups",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "create_resource_group",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create",
+            "command": {
+              "phase": "az_lz",
+              "command": "create_resource_group",
+              "refresh_status": true
+            }
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Input",
+            "id": "name",
+            "cli_id": "name",
+            "label": "Name",
+            "help": "",
+            "inputType": "text",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Name is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_lz_location",
+            "label": "Location",
+            "help": "",
+            "datasource": "formdata_from_azure?type=locations",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Location is required"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

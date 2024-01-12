@@ -1,0 +1,24 @@
+module "{{ fqn }}" {
+  source                = "{{ module_source }}"
+  profile               = "{{ profile }}"
+  env                   = "{{ env }}"
+  workload              = "{{ workload }}"
+  cmd_id                = "{{ cmd_id }}"
+  name                  = "{{ resource_name }}"
+  location              = "{{ params['location'] }}"
+  resource_group_name   = "{{ params['resource_group_name'] }}"
+  capacity              = "{{ params['capacity'] }}"
+  family                = "{{ params['family'] }}"
+  sku_name              = "{{ params['sku_name'] }}"
+  subnet_id             = "{{ params['subnet_id'] }}"
+  identity_type         = "{{ params['identity_type'] }}"
+  managed_ids           = {{ params['managed_ids']|tojson }}
+  zones                 = {{ params['zones']|tojson }}
+  {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+  {% endif %}
+}

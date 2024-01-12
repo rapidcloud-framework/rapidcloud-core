@@ -1,0 +1,36 @@
+{
+  "workload": {
+    "enable_pause": {
+      "enabled": false,
+      "example": "kc workload enable_pause --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "pause": {
+      "enabled": false,
+      "example": "kc workload pause --no-prompt --workload_resource_type resource_type",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "resume": {
+      "enabled": false,
+      "example": "kc workload resume --no-prompt --workload_resource_type resource_type",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "schedule": {
+      "enabled": false,
+      "example": "kc workload schedule --no-prompt --workload_name name --workload_schedule_description schedule_description --workload_resource_type resource_type --workload_scheduled_pause scheduled_pause --workload_scheduled_resume scheduled_resume",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "status": {
+      "enabled": true,
+      "example": "kc workload status --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": [
+        "kc workload status --no-prompt"
+      ]
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "type": "Theia::Action",
+  "label": "Semi-structured Data Pipeline",
+  "id": "semi-structured-pipeline",
+  "module": "semi-structured-pipeline",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "semi-structured-pipeline",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=semi-structured-pipeline",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "rds_name",
+        "rds_engine",
+        "rds_type",
+        "transform_name",
+        "transform_job_type",
+        "timestamp"
+      ],
+      "title": "Semi-structured Data Pipeline with Transformations",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "semi-structured-pipeline",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "semi-structured-pipeline",
+            "command": "create",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Data Pipeline Name",
+          "help": "Enter Data Pipeline Name (no space or special characters)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::CompositeModule",
+          "id": "composite_module",
+          "modules": [
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "transform_enabled",
+              "label": "Add Transformation Glue Job for existing Datasets",
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "transform_name",
+                  "label": "Transformation Name",
+                  "help": "Transformation Name (no spaces or special characters)",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::MultiSelect",
+                  "id": "transform_base_datasets",
+                  "label": "Base Datasets",
+                  "help": "Select source datasets for this transformation",
+                  "datasource": "formdata?type=dataset|dataset_semi_structured&field=name"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "transform_job_type",
+                  "label": "Job Type",
+                  "help": "Comma separated names of previously added datasets",
+                  "options": [
+                    {
+                      "type": "Theia::Option",
+                      "label": "Python shell",
+                      "value": "pythonshell"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "Python Spark",
+                      "value": "glueetl"
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Toggle",
+                  "id": "transform_refresh_spice",
+                  "label": "Refresh results as QuickSight SPICE dataset"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "rds_enabled",
+              "label": "Create RDS or Aurora Database",
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "rds_name",
+                  "label": "Database Name",
+                  "help": "Enter database name (no space or special characters)",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "rds_engine",
+                  "label": "Database Engine",
+                  "help": "",
+                  "options": [
+                    {
+                      "type": "Theia::Option",
+                      "label": "MySQL",
+                      "value": "mysql"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "PostgreSQL",
+                      "value": "postgres"
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "rds_type",
+                  "label": "AWS Database Service",
+                  "help": "",
+                  "options": [
+                    {
+                      "type": "Theia::Option",
+                      "label": "RDS",
+                      "value": "rds"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "Aurora",
+                      "value": "aurora"
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "rds_multi_az",
+                  "label": "Multi Az",
+                  "help": "Multi Az",
+                  "default": "no",
+                  "options": [
+                    {
+                      "type": "Theia::Option",
+                      "label": "Yes",
+                      "value": "yes"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "No",
+                      "value": "no"
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "rds_database_name",
+                  "label": "Schema Name",
+                  "help": "Enter schema name (no space or special characters)",
+                  "inputType": "text"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

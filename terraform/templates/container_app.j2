@@ -1,0 +1,43 @@
+module "{{ fqn }}" {
+    source = "{{ module_source }}"
+    profile = "{{ profile }}"
+    env = "{{ env }}"
+    workload = "{{ workload }}"
+    cmd_id = "{{ cmd_id }}"
+    name = "{{ resource_name }}"
+    container_app_environment_id = module.{{ profile }}_container_app_env_{{ params["container_app_environment_id"] }}.id
+    resource_group = "{{ params["resource_group"] }}"
+    revision_mode = "{{ params["revision_mode"] }}"
+    container_name = "{{ params["container_name"] }}"
+    container_image = "{{ params["container_image"] }}"
+    container_cpu = "{{ params["container_cpu"] }}"
+    container_memory = "{{ params["container_memory"] }}"
+    {% if params['container_args'] is not none and params['container_args']|length > 0%}
+    container_args = {{ params["container_args"]|tojson }}
+    {% endif %}
+    container_probe_path = "{{ params["container_probe_path"] }}"
+    container_probe_port = "{{ params["container_probe_port"] }}"
+    max_replicas = "{{ params["max_replicas"] }}"    
+    min_replicas = "{{ params["min_replicas"] }}"
+    identity_type = "{{ params["identity_type"] }}"
+    {% if params['identity_ids'] is not none and params['identity_ids']|length > 0%}
+    identity_ids = {{ params["identity_ids"]|tojson }}
+    {% endif %}
+    ingress_target_port = "{{ params["ingress_target_port"] }}"
+    ingress_transport = "{{ params["ingress_transport"] }}"
+    ingress_insecureconnections = {{ params["ingress_allow_insecure_connections"] }}
+    registry_server = "{{ params["registry_server"] }}"
+    registry_managed_identity = "{{ params["registry_managed_identity"] }}"
+    registry_password = "{{ params["registry_password"] }}"
+    registry_username = "{{ params["registry_username"] }}"
+    {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+    depends_on = [
+      module.{{ profile }}_container_app_env_{{ params["container_app_environment_id"] }} 
+    ]
+}

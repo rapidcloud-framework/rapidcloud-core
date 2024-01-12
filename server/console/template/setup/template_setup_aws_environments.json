@@ -1,0 +1,182 @@
+
+{
+  "type": "Theia::Action",
+  "label": "Environments",
+  "id": "environments",
+  "module": "init",
+  "env_not_required": true,
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "environments",
+      "datasource": "data?type=profile",
+      "columns": ["name","created_by","shared","account","region","vpc","aws_profile","timestamp"],
+      "title": "Environments",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "environments",
+      "title": "Environment",
+      "submit": "Submit",
+      "allowMarkdown": true,
+      "description": "<b><b><b><i>Create Cross-Account Role to allow RapidCloud access to your Environment's AWS Account, if you haven't done so already</i></b>. You only need one role per account. If you plan on creating multiple environments in the same account, then specify existing `Cross-Account Role ARN` in the form below. <a href='{{x_acct_role_cf_url}}' target='_blank'>Create Cross-Account Role</a>",
+      "commands": [
+        {
+          "label": "Submit",
+          "command": {
+            "phase": "init",
+            "command": "create-env"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Environment Name",
+          "help": "Environment name is comprised of {org}_{workload}_{environment}. For example: myorg_bitools_dev or abccorp_orders_test. Use three fields below.",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "client",
+          "label": "Company or organization name",
+          "help": "Enter your company or organization name (no spaces or special characters allowed)",
+          "inputType": "text",
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "workload",
+          "label": "Workload/Application",
+          "help": "Workload or Application Name (no spaces or special characters allowed)",
+          "inputType": "text",
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "env",
+          "cli_arg": "env_suffix",
+          "label": "Environment",
+          "help": "Enter Environment (e.g. dev|qa|uat|stg|prod)",
+          "inputType": "text",
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "shared",
+          "label": "Is this environment shared with other engineers?"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "shared_with",
+          "label": "Shared With",
+          "help": "",
+          "datasource": "users_for_select?extra=true",
+          "env_not_required": true,
+          "default": ""
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "aws_profile",
+          "label": "AWS Profile",
+          "help": "Select AWS Profile to allow RapidCloud access to your Environment's AWS Account",
+          "datasource": "cloud_profiles?cloud_arg=aws",
+          "env_not_required": true,
+          "disableControls": [
+            "x_acct_role_arn"
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "x_acct_role_arn",
+          "label": "Cross-Account Role ARN",
+          "help": "If `AWS Profile` is not available or not selected above, specify Cross-Account Role ARN to allow RapidCloud access to your Environment's AWS Account. To create a role, use the link at the top of this form",
+          "env_not_required": true,
+          "disableControls": [
+            "aws_profile"
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "vpc",
+          "label": "VPC",
+          "help": "AWS VPC",
+          "inputType": "text",
+          "env_not_required": true,
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "region",
+          "label": "Region",
+          "help": "e.g us-east-1, us-east-2",
+          "readonly_edit": true,
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "US East (N. Virginia): us-east-1",
+              "value": "us-east-1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "US East (Ohio): us-east-2",
+              "value": "us-east-2"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "US West (N. California): us-west-1",
+              "value": "us-west-1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "US West (Oregon): us-west-2",
+              "value": "us-west-2"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Canada (Central): ca-central-1",
+              "value": "ca-central-1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "South America (São Paulo): sa-east-1",
+              "value": "sa-east-1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "AWS GovCloud (US-East): us-gov-east-1",
+              "value": "us-gov-east-1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "AWS GovCloud (US): us-gov-west-1",
+              "value": "us-gov-west-1"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ssh_pub_key",
+          "cli_arg": "ssh-pub-key",
+          "label": "SSH Public Key",
+          "help": "SSH Public Key will be used to access EMR clusters through SSH (if applicable)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ips_for_ssh",
+          "label": "Allowed IP Addresses",
+          "help": "Comma separated list of IP Addresses to be allowed SSH Access to EMR Cluster"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "vpn_only",
+          "label": "Using VPN to connect to AWS"
+        }
+      ]
+    }
+  ]
+}

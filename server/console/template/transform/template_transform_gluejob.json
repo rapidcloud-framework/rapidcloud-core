@@ -1,0 +1,82 @@
+{
+  "type": "Theia::Action",
+  "label": "Glue Jobs",
+  "id": "custom_glue_job",
+  "module": "aws",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "custom_glue_job",
+      "datasource": "data?type=aws_infra&filter_name=command&filter_value=add-glue-job&field=job_type&field_value=params.command.name",
+      "env_param_required": true,
+      "columns": ["resource_name","resource_type","job_type","command","timestamp"],
+      "title": "Custom Glue Job",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "aws_infra",
+      "title": "",
+      "description": "",
+      "readonly": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Submit",
+          "command": {
+            "phase": "aws",
+            "command": "add-glue-job",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "fqn",
+          "hidden": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "resource_name",
+          "cli_arg": "name",
+          "label": "Glue Job Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "job_type",
+          "label": "Job Type",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Python shell",
+              "value": "pythonshell"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Spark",
+              "value": "glueetl"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Spark streaming",
+              "value": "gluestreaming"
+            }         
+          ]        
+        }
+      ]
+    }
+  ]
+}

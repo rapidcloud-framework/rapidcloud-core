@@ -1,0 +1,45 @@
+{
+  "type": "Theia::Action",
+  "label": "This is RapidCloud menu option label for the module",
+  "id": "eks_remove_eks_cluster",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "eks_remove_eks_cluster",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=eks",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "This is RapidCloud module main page title",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "eks_remove_eks_cluster",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "remove_eks_cluster",
+          "command": {
+            "phase": "eks",
+            "command": "remove_eks_cluster",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

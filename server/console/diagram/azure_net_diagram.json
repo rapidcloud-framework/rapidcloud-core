@@ -1,0 +1,377 @@
+{
+ "version": "1.3.0",
+ "cellSize": 20,
+ "rows": 25,
+ "columns": 38,
+ "icons": [
+  {
+   "id": 70,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10064-icon-service-DNS-Zones.svg",
+   "name": "account::*::*",
+   "text": "Azure DNS",
+   "x": 5,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 72,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Cloud_light-bg@4x.png",
+   "name": "",
+   "text": "Azure",
+   "x": 1,
+   "y": 3,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 73,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10084-icon-service-Firewalls.svg",
+   "name": "",
+   "text": "Azure Firewall",
+   "x": 15,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 75,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10076-icon-service-Application-Gateways.svg",
+   "name": "",
+   "text": "Application Gateway",
+   "x": 19,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 77,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10073-icon-service-Front-Door-and-CDN-Profiles.svg",
+   "name": "",
+   "text": "Azure Front Door",
+   "x": 10,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 78,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10362-icon-service-Web-Application-Firewall-Policies(WAF).svg",
+   "name": "",
+   "text": "WAF Rules",
+   "x": 10,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 79,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/02742-icon-service-Subnet.svg",
+   "name": "",
+   "text": "Private Subnet 1",
+   "x": 21,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 80,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10067-icon-service-Network-Security-Groups.svg",
+   "name": "",
+   "text": "NSG",
+   "x": 16,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 81,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10066-icon-service-Network-Watcher.svg",
+   "name": "",
+   "text": "Network Watcher",
+   "x": 24,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 86,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10310-icon-service-NAT.svg",
+   "name": "",
+   "text": "NAT Gateway",
+   "x": 28,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 89,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10062-icon-service-Load-Balancers.svg",
+   "name": "",
+   "text": "Internal Load Balancer",
+   "x": 25,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 90,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/02422-icon-service-Bastions.svg",
+   "name": "",
+   "text": "Bastion",
+   "x": 27,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 91,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/02742-icon-service-Subnet.svg",
+   "name": "",
+   "text": "Private Subnet 2",
+   "x": 21,
+   "y": 13,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 101,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10061-icon-service-Virtual-Networks.svg",
+   "name": "",
+   "text": "Virtual Network",
+   "x": 13,
+   "y": 7,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 104,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/00427-icon-service-Private-Link.svg",
+   "name": "",
+   "text": "Private Link",
+   "x": 18,
+   "y": 15,
+   "active": null,
+   "display": null
+  }
+ ],
+ "links": [
+  {
+   "from": 72,
+   "to": 72,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "cw_event_to_lambda",
+   "path": [
+    {
+     "x": 1,
+     "y": 3,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 1,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 33,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 33,
+     "y": 3,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 1,
+     "y": 3,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 70,
+   "to": 77,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 5,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 10,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 77,
+   "to": 78,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 10,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 10,
+     "y": 15,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 75,
+   "to": 79,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 19,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 19,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 101,
+   "to": 101,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 13,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 28,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 28,
+     "y": 16,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 16,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 73,
+   "to": 75,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 15,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 19,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 75,
+   "to": 91,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 19,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 19,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 77,
+   "to": 73,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 10,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 15,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  }
+ ],
+ "grid": false
+}

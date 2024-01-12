@@ -1,0 +1,33 @@
+{
+    "acm": {
+        "create": {
+            "enabled": true,
+            "help": "",
+            "template_section": "compliance",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "id": "cert_domain_name",
+            "args": {
+                "cert_domain_name": {
+                    "name": "cert_domain_name", 
+                    "prompt": "Domain name for which the certificate should be issued.", 
+                    "required": true,
+                    "default": ""
+                },
+                "cert_validation_method": {
+                    "name": "cert_validation_method", 
+                    "prompt": "Which method to use for validation. DNS or EMAIL are valid.", 
+                    "required": true,
+                    "default": ""
+                },
+                "r53_zone_name": {
+                    "name": "r53_zone_name", 
+                    "prompt": "Route53 Zone id", 
+                    "required": true,
+                    "default": ""
+                }
+            }
+        }
+    }
+}

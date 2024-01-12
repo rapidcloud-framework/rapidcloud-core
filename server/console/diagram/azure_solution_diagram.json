@@ -1,0 +1,1049 @@
+{
+ "version": "1.3.0",
+ "cellSize": 20,
+ "rows": 30,
+ "columns": 38,
+ "icons": [
+  {
+   "id": 70,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/analytics/10150-icon-service-Data-Lake-Store-Gen1.svg",
+   "name": "account::*::*",
+   "text": "Data Lake Storage",
+   "x": 19,
+   "y": 4,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 72,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Cloud_light-bg@4x.png",
+   "name": "",
+   "text": "Azure",
+   "x": 4,
+   "y": 0,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 73,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/analytics/03332-icon-service-Power-BI-Embedded.svg",
+   "name": "",
+   "text": "Power BI",
+   "x": 31,
+   "y": 4,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 75,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/compute/10034-icon-service-VM-Scale-Sets.svg",
+   "name": "",
+   "text": "VM Scale Sets",
+   "x": 26,
+   "y": 7,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 77,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/analytics/10148-icon-service-Analysis-Services.svg",
+   "name": "",
+   "text": "Azure Analysis Services",
+   "x": 27,
+   "y": 4,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 78,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/compute/10035-icon-service-App-Services.svg",
+   "name": "",
+   "text": "App Services",
+   "x": 26,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 79,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/storage/10086-icon-service-Storage-Accounts.svg",
+   "name": "",
+   "text": "Storage Account",
+   "x": 31,
+   "y": 7,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 80,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/app+services/00046-icon-service-App-Service-Plans.svg",
+   "name": "",
+   "text": "App Service Plans",
+   "x": 21,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 81,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10007-icon-service-Resource-Groups.svg",
+   "name": "",
+   "text": "Resource Groups",
+   "x": 16,
+   "y": 13,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 86,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/security/10245-icon-service-Key-Vaults.svg",
+   "name": "",
+   "text": "Key Vault",
+   "x": 26,
+   "y": 12,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 89,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10062-icon-service-Load-Balancers.svg",
+   "name": "",
+   "text": "Internal Load Balancer",
+   "x": 10,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 90,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/monitor/00009-icon-service-Log-Analytics-Workspaces.svg",
+   "name": "",
+   "text": "Log Analytics",
+   "x": 21,
+   "y": 13,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 91,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/compute/10029-icon-service-Function-Apps.svg",
+   "name": "",
+   "text": "Function Apps",
+   "x": 16,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 101,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/analytics/00606-icon-service-Azure-Synapse-Analytics.svg",
+   "name": "",
+   "text": "Azure Synapse Analytics",
+   "x": 15,
+   "y": 4,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 104,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/databases/10137-icon-service-Cache-Redis.svg",
+   "name": "",
+   "text": "Azure Redis Cache",
+   "x": 31,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 105,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/databases/10121-icon-service-Azure-Cosmos-DB.svg",
+   "name": "",
+   "text": "Azure Cosmos DB",
+   "x": 31,
+   "y": 12,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 106,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/containers/10023-icon-service-Kubernetes-Services.svg",
+   "name": "",
+   "text": "Kubernetes Services",
+   "x": 26,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 107,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/databases/10130-icon-service-SQL-Database.svg",
+   "name": "",
+   "text": "SQL Databases",
+   "x": 31,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 108,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/containers/10105-icon-service-Container-Registries.svg",
+   "name": "",
+   "text": "Container Registry",
+   "x": 31,
+   "y": 18,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 109,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/00056-icon-service-CDN-Profiles.svg",
+   "name": "",
+   "text": "Content Delivery Network",
+   "x": 10,
+   "y": 20,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 110,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/storage/10086-icon-service-Storage-Accounts.svg",
+   "name": "",
+   "text": "Blob Storage",
+   "x": 16,
+   "y": 20,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 111,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/integration/10042-icon-service-API-Management-Services.svg",
+   "name": "",
+   "text": "API Management",
+   "x": 9,
+   "y": 23,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 112,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/integration/10206-icon-service-Event-Grid-Topics.svg",
+   "name": "",
+   "text": "Event Grid Topics",
+   "x": 27,
+   "y": 23,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 113,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/integration/02631-icon-service-Logic-Apps.svg",
+   "name": "",
+   "text": "Logic Apps",
+   "x": 31,
+   "y": 23,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 114,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/compute/10029-icon-service-Function-Apps.svg",
+   "name": "",
+   "text": "Function Apps",
+   "x": 13,
+   "y": 23,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 115,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/compute/10029-icon-service-Function-Apps.svg",
+   "name": "",
+   "text": "Function Apps 1",
+   "x": 22,
+   "y": 21,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 116,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/compute/10029-icon-service-Function-Apps.svg",
+   "name": "",
+   "text": "Function Apps 2",
+   "x": 22,
+   "y": 25,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 117,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/databases/10121-icon-service-Azure-Cosmos-DB.svg",
+   "name": "",
+   "text": "Azure Cosmos DB",
+   "x": 17,
+   "y": 23,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 118,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/ai+%2B+machine learning/10044-icon-service-Cognitive-Search.svg",
+   "name": "",
+   "text": "Cognitive Search",
+   "x": 31,
+   "y": 2,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 119,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/integration/10221-icon-service-Event-Grid-Subscriptions.svg",
+   "name": "",
+   "text": "Event Grid",
+   "x": 11,
+   "y": 4,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 120,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/analytics/00606-icon-service-Azure-Synapse-Analytics.svg",
+   "name": "",
+   "text": "Azure Synapse Analytics",
+   "x": 23,
+   "y": 4,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 121,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/databases/10126-icon-service-Data-Factories.svg",
+   "name": "",
+   "text": "Azure Data Factory",
+   "x": 11,
+   "y": 2,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 122,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/storage/10400-icon-service-Azure-Fileshares.svg",
+   "name": "",
+   "text": "",
+   "x": 31,
+   "y": 21,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 123,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/other/00327-icon-service-Azure-Virtual-Desktop.svg",
+   "name": "",
+   "text": "Virtual Desktop",
+   "x": 10,
+   "y": 17,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 124,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/02422-icon-service-Bastions.svg",
+   "name": "",
+   "text": "Bastion",
+   "x": 10,
+   "y": 14,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 125,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/ai+%2B+machine learning/10166-icon-service-Machine-Learning.svg",
+   "name": "",
+   "text": "Machine Learning",
+   "x": 23,
+   "y": 17,
+   "active": null,
+   "display": null
+  }
+ ],
+ "links": [
+  {
+   "from": 72,
+   "to": 72,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "cw_event_to_lambda",
+   "path": [
+    {
+     "x": 4,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 4,
+     "y": 28,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 36,
+     "y": 28,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 36,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 4,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 101,
+   "to": 70,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 15,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 19,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 120,
+   "to": 77,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 23,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 27,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 89,
+   "to": 106,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 10,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 15,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 15,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 80,
+   "to": 78,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 21,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 78,
+   "to": 90,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 26,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 89,
+   "to": 75,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 10,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 77,
+   "to": 73,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 27,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 75,
+   "to": 79,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 26,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 78,
+   "to": 104,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 26,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 106,
+   "to": 86,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 26,
+     "y": 16,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 12,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 106,
+   "to": 107,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 26,
+     "y": 15,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 15,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 106,
+   "to": 105,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 26,
+     "y": 15,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 28,
+     "y": 15,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 28,
+     "y": 12,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 12,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 106,
+   "to": 108,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 26,
+     "y": 15,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 18,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 18,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 109,
+   "to": 110,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 10,
+     "y": 20,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 16,
+     "y": 20,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 111,
+   "to": 114,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 9,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 114,
+   "to": 117,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 13,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 17,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 117,
+   "to": 115,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 17,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 19,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 19,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 22,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 117,
+   "to": 116,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 17,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 19,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 19,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 22,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 115,
+   "to": 112,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 22,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 25,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 25,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 27,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 116,
+   "to": 112,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 22,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 25,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 25,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 27,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 112,
+   "to": 113,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 27,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 70,
+   "to": 120,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 19,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 23,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 120,
+   "to": 118,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 23,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 23,
+     "y": 2,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 2,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 119,
+   "to": 101,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 11,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 15,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 121,
+   "to": 70,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 11,
+     "y": 2,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 19,
+     "y": 2,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 19,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  }
+ ],
+ "grid": false
+}

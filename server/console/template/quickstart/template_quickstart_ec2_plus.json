@@ -1,0 +1,385 @@
+{
+  "type": "Theia::Action",
+  "label": "EC2 Backend",
+  "id": "ec2_plus",
+  "module": "ec2_plus",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "ec2_plus",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=ec2_plus",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "timestamp"
+      ],
+      "title": "EC2 Backend",
+      "description": "EC2 Backend with supporting services (auto-scaling, load balancing, file storage, etc)",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "ec2_plus",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "ec2_plus",
+            "command": "create",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "Name characters)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::CompositeModule",
+          "id": "composite_module",
+          "modules": [
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "ec2_enabled",
+              "label": "Create EC2 Instance",
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "ec2_name",
+                  "cli_id": "name",
+                  "label": "Name",
+                  "help": "Name (characters)",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "ec2_instance_type",
+                  "cli_id": "instance_type",
+                  "label": "Instance Type",
+                  "help": "EC2 Instance Type",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "ec2_ami_id_selected",
+                  "label": "AMI",
+                  "help": "",
+                  "datasource": "formdata_from_aws?type=amis"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "ec2_ami_id",
+                  "cli_id": "ami_id",
+                  "label": "Provide AMI ID here if you do not see it in the list above. This value takes precedence.",
+                  "help": "",
+                  "default": "",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "ec2_key_name",
+                  "cli_id": "key_name",
+                  "label": "Key pair name",
+                  "help": "Key pair name",
+                  "datasource": "formdata_from_aws?type=key_pairs"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "ec2_vpc_id",
+                  "cli_id": "vpc_id",
+                  "label": "VPC ID",
+                  "help": "The ID of the VPC in which the instance is running",
+                  "datasource": "formdata_from_aws?type=vpcs"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "ec2_availability_zone",
+                  "label": "Availability Zone",
+                  "help": "AWS availability zone to deploy instance to",
+                  "datasource": "formdata_from_aws?type=availability_zones"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "ec2_subnet_id",
+                  "label": "Subnet Id to place this EC2",
+                  "help": "",
+                  "datasource": "formdata_from_aws?type=subnets"
+                },
+                {
+                  "type": "Theia::Control::MultiSelect",
+                  "id": "ec2_vpc_security_group_ids",
+                  "label": "Security Group Ids",
+                  "help": "Select one or more",
+                  "datasource": "formdata_from_aws?type=vpc_security_groups"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "ec2_role_name",
+                  "label": "Existing Role to create an Instance Profile",
+                  "help": "",
+                  "datasource": "formdata_from_aws?type=roles"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "ec2_volume_size",
+                  "cli_id": "volume_size",
+                  "label": "Volume Size",
+                  "help": "Volume size for instance in GB",
+                  "inputType": "text",
+                  "default": "8"
+                },
+                {
+                  "type": "Theia::Control::TextArea",
+                  "id": "ec2_user_data",
+                  "label": "User Data",
+                  "help": "User Data",
+                  "inputType": "text"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "asg_enabled",
+              "label": "Create Auto-Scaling Group",
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "asg_name",
+                  "cli_id": "name",
+                  "label": "Name",
+                  "help": "Name",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "asg_launch_template_name",
+                  "cli_id": "launch_template_name",
+                  "label": "Launch Template Name",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "asg_launch_template_version",
+                  "cli_id": "launch_template_version",
+                  "label": "Launch Template Version",
+                  "inputType": "text",
+                  "default": "$Latest"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "asg_instance_type",
+                  "cli_id": "instance_type",
+                  "label": "EC2 Instance Type",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "asg_ami_id",
+                  "cli_id": "ami_id",
+                  "label": "AMI ID",
+                  "help": "RapidCLoud currently only supports Amazon Linux based AMIs. Default is 'ami-0022f774911c1d690', Amazon Linux 2 Kernel 5.10 AMI 2.0.20220426.0 x86_64 HVM gp2",
+                  "default": "ami-0022f774911c1d690",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "asg_placement_group_name",
+                  "cli_id": "placement_group_name",
+                  "label": "Placement Group Name",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "asg_placement_group_strategy",
+                  "cli_id": "placement_group_strategy",
+                  "label": "Placement Group Strategy",
+                  "options": [
+                    {
+                      "type": "Theia::Option",
+                      "label": "Cluster",
+                      "value": "cluster"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "Partition",
+                      "value": "partition"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "Spread",
+                      "value": "spread"
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::MultiSelect",
+                  "id": "asg_vpc_zone_identifier",
+                  "cli_id": "vpc_zone_identifier",
+                  "label": "Subnets",
+                  "help": "",
+                  "datasource": "formdata_from_aws?type=subnets"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "asg_desired_capacity",
+                  "cli_id": "desired_capacity",
+                  "label": "Desired Capacity",
+                  "help": "The number of EC2 instances running in the group",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "asg_min_size",
+                  "cli_id": "min_size",
+                  "label": "Min Size",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "asg_max_size",
+                  "cli_id": "max_size",
+                  "label": "Max Size",
+                  "inputType": "text"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "fsx_enabled",
+              "label": "Create File System for Windows File Server",
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "fsx_name",
+                  "cli_id": "name",
+                  "label": "Name",
+                  "help": "Name",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "fsx_ad_service_name",
+                  "cli_id": "ad_service_name",
+                  "label": "AD Service Name",
+                  "help": "Directory FQN (corp.example.com)",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "fsx_ad_admin_password",
+                  "cli_id": "ad_admin_password",
+                  "label": "AD Admin Password",
+                  "inputType": "password"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "fsx_storage_capacity",
+                  "cli_id": "storage_capacity",
+                  "label": "Storage Capacity",
+                  "help": "(GiB) minimum of 32 and maximum of 65536",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "fsx_throughput_capacity",
+                  "cli_id": "throughput_capacity",
+                  "label": "Throughput Capacity",
+                  "help": "Throughput (MB/s) of the file system in power of 2 increments, minimum of 8 and maximum of 2048",
+                  "inputType": "text"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "efs_enabled",
+              "label": "Create Elastic File Service",
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "efs_name",
+                  "cli_id": "name",
+                  "label": "Name",
+                  "help": "Name",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Toggle",
+                  "id": "efs_encrypted",
+                  "cli_id": "encrypted",
+                  "label": "Encrypted?",
+                  "help": ""
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "lb_enabled",
+              "label": "Create Application Load Balancer",
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "lb_name",
+                  "cli_id": "name",
+                  "label": "Name",
+                  "help": "Load Balancer Name. Up to 26 characters.",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Toggle",
+                  "id": "lb_is_internal",
+                  "cli_id": "is_internal",
+                  "label": "Internal?",
+                  "help": ""
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "lb_type",
+                  "cli_id": "type",
+                  "label": "Load Balancer Type",
+                  "help": "",
+                  "default": "application",
+                  "options": [
+                    {
+                      "type": "Theia::Option",
+                      "label": "Application",
+                      "value": "application"
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "Network",
+                      "value": "network"
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::MultiSelect",
+                  "id": "lb_subnets",
+                  "cli_id": "subnets",
+                  "label": "Subnets",
+                  "help": "",
+                  "datasource": "formdata_from_aws?type=subnets"
+                },
+                {
+                  "type": "Theia::Control::MultiSelect",
+                  "id": "lb_security_group_ids",
+                  "label": "Security Group Ids",
+                  "help": "",
+                  "datasource": "formdata_from_aws?type=vpc_security_groups"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

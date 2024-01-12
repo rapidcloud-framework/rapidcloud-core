@@ -1,0 +1,10 @@
+{
+  "ecs": {
+    "create": {
+      "enabled": false,
+      "example": "kc ecs create --no-prompt --ecs_name name --ecs_image_url image_url --ecs_image_tag image_tag --ecs_task_cpu_units task_cpu_units --ecs_task_memory task_memory --ecs_container_cpu_units container_cpu_units --ecs_container_memory container_memory --ecs_open_ports open_ports --ecs_desired_count desired_count --ecs_task_role_arn task_role_arn --ecs_assign_public_ip assign_public_ip --ecs_subnet_ids subnet_ids --ecs_security_groups security_groups --ecs_environment_variables environment_variables",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

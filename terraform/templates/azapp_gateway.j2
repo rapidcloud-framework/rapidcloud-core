@@ -1,0 +1,50 @@
+module "{{ fqn }}" {
+    source                                  = "{{ module_source }}"
+    profile                                 = "{{ profile }}"
+    env                                     = "{{ env }}"
+    workload                                = "{{ workload }}"
+    cmd_id                                  = "{{ cmd_id }}"
+    name                                    = "{{ resource_name }}"
+    location                                = "{{ params["location"] }}"
+    resource_group                          = "{{ params["resource_group"] }}"
+    zones                                   = {{ params["zones"]|tojson }}
+    tier                                    = "{{ params["tier"] }}"
+    enable_autoscaling                      = {{ params["enable_autoscaling"]|lower }}
+    min_capacity                            = "{{ params["min_capacity"] }}"
+    capacity                                = "{{ params["capacity"] }}"
+    subnet_id                               = "{{ params["subnet_id"] }}"
+    frontend_port                           = "{{ params["frontend_port"] }}"
+    public_ip_addr_id                       = "{{ params["public_ip_addr_id"] }}"
+    {% if params['backend_ips'] is not none and params['backend_ips']|length > 0%}
+    backend_ips                             = {{ params["backend_ips"]|tojson }}
+    {% endif %}
+    {% if params['backend_fqdns'] is not none and params['backend_fqdns']|length > 0%}
+    backend_fqdns                           = {{ params["backend_fqdns"]|tojson }}
+    {% endif %}
+    backend_port                            = "{{ params["backend_port"] }}"
+    backend_protocol                        = "{{ params["backend_protocol"] }}"
+    http_listener_protocol                  = "{{ params["http_listener_protocol"] }}"
+    routing_rule_type                       = "{{ params["routing_rule_type"] }}"
+    enable_http2                            = {{ params["enable_http2"]|lower }}
+    {% if params['identity_ids'] is not none and params['identity_ids']|length > 0%}
+    identity_ids                            = {{ params["identity_ids"]|tojson }}
+    {% endif %}
+    enable_probe                            = {{ params["enable_probe"]|lower }}
+    health_probe_host                       = "{{ params["health_probe_host"] }}"
+    health_probe_path                       = "{{ params["health_probe_path"] }}"
+    health_probe_protocol                   = "{{ params["health_probe_protocol"] }}"
+    enable_waf                              = {{ params["enable_waf"]|lower }}
+    firewall_mode                           = "{{ params["firewall_mode"] }}"
+    rule_set_type                           = "{{ params["rule_set_type"] }}"
+    rule_set_version                        = "{{ params["rule_set_version"] }}"
+    {% if params['waf_policy_id'] is defined and params['waf_policy_id']|length > 0 %}
+    waf_policy_id                           = "{{ params["waf_policy_id"] }}"
+    {% endif %}
+    {% if params['tags'] is defined %}
+    tags                                    = {
+    {% for k, v in  params['tags'].items() -%}
+                                                "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+                                            }
+    {% endif %}
+}

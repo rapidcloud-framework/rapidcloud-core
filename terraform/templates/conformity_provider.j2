@@ -1,0 +1,12 @@
+data "aws_secretsmanager_secret" "conformity_api_key" {
+  name = "{{ params['api_key'] }}"
+}
+
+data "aws_secretsmanager_secret_version" "conformity_api_key_version" {
+  secret_id = data.aws_secretsmanager_secret.conformity_api_key.id
+}
+
+provider "conformity" {
+  region = "{{ params['region'] }}"
+  apikey = data.aws_secretsmanager_secret_version.conformity_api_key_version.secret_string
+}

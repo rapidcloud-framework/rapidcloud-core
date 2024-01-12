@@ -1,0 +1,244 @@
+{
+  "sns_topic": {
+    "publishing": {
+      "fqn": "sns_topic::rds::publishing",
+      "active": true
+    },
+    "general_notifications": {
+      "fqn": "sns_topic::init::general_notifications",
+      "active": true
+    },
+    "transformations": {
+      "fqn": "sns_topic::transform::transformations",
+      "active": true
+    }
+  },
+  "lambda_layer": {
+    "awswrangler": {
+      "fqn": "lambda_layer::init::awswrangler",
+      "active": true
+    },
+    "kc_common": {
+      "fqn": "lambda_layer::init::kc_common",
+      "active": true
+    },
+    "kc_governance": {
+      "fqn": "lambda_layer::init::kc_governance",
+      "active": true
+    },
+    "psycopg2": {
+      "fqn": "lambda_layer::init::psycopg2",
+      "active": true
+    },
+    "okta": {
+      "fqn": "lambda_layer::init::okta",
+      "active": true
+    }
+  },
+  "lambda_function": {
+    "qadb_start_glue_triggers": {
+      "fqn": "lambda_function::ingest::qadb_start_glue_triggers",
+      "active": false
+    },
+    "handle_s3_event_ingestion": {
+      "fqn": "lambda_function::rds::handle_s3_event_ingestion",
+      "active": true
+    },
+    "cdc_1024": {
+      "fqn": "lambda_function::ingest::cdc_1024",
+      "active": false
+    },
+    "ctas": {
+      "fqn": "lambda_function::ingest::ctas",
+      "active": false
+    },
+    "run_publishing": {
+      "fqn": "lambda_function::rds::run_publishing",
+      "active": true
+    },
+    "generic_event_handler": {
+      "fqn": "lambda_function::init::generic_event_handler",
+      "active": true
+    },
+    "qadb_run_small_tables_dms_task": {
+      "fqn": "lambda_function::ingest::qadb_run_small_tables_dms_task",
+      "active": false
+    },
+    "handle_s3_event_analysis": {
+      "fqn": "lambda_function::rds::handle_s3_event_analysis",
+      "active": true
+    },
+    "cdc_512": {
+      "fqn": "lambda_function::ingest::cdc_512",
+      "active": false
+    },
+    "test1_kinesis_stream_consumer": {
+      "fqn": "lambda_function::ingest::test1_kinesis_stream_consumer",
+      "active": false
+    },
+    "handle_s3_event_raw": {
+      "fqn": "lambda_function::rds::handle_s3_event_raw",
+      "active": true
+    },
+    "cdc_128": {
+      "fqn": "lambda_function::ingest::cdc_128",
+      "active": false
+    },
+    "cdc_2048": {
+      "fqn": "lambda_function::ingest::cdc_2048",
+      "active": false
+    }
+  },
+  "dms_replication_task": {
+    "qadb_small_tables_daily": {
+      "fqn": "dms_replication_task::ingest::qadb_small_tables_daily",
+      "active": false
+    },
+    "qadb_large_tables_full_and_cdc": {
+      "fqn": "dms_replication_task::ingest::qadb_large_tables_full_and_cdc",
+      "active": false
+    }
+  },
+  "glue_job": {
+    "publish_rds_postgres_actor": {
+      "fqn": "glue_job::rds::publish_rds_postgres_actor",
+      "active": false
+    },
+    "transform_main": {
+      "fqn": "glue_job::transform::transform_main",
+      "active": false
+    },
+    "test2_kafka_stream_consumer": {
+      "fqn": "glue_job::ingest::test2_kafka_stream_consumer",
+      "active": false
+    },
+    "transform_transform1": {
+      "fqn": "glue_job::transform::transform_transform1",
+      "active": false
+    }
+  },
+  "s3_bucket": {
+    "raw": {
+      "fqn": "s3_bucket::rds::raw",
+      "active": true
+    },
+    "query-results-bucket": {
+      "fqn": "s3_bucket::rds::query-results-bucket",
+      "active": true
+    },
+    "analysis": {
+      "fqn": "s3_bucket::rds::analysis",
+      "active": true
+    },
+    "ingestion": {
+      "fqn": "s3_bucket::rds::ingestion",
+      "active": true
+    },
+    "utils": {
+      "fqn": "s3_bucket::init::utils",
+      "active": true
+    }
+  },
+  "glue_catalog_database": {
+    "rawdb": {
+      "fqn": "glue_catalog_database::rds::rawdb",
+      "active": true
+    },
+    "ingestiondb": {
+      "fqn": "glue_catalog_database::rds::ingestiondb",
+      "active": true
+    },
+    "analysisdb": {
+      "fqn": "glue_catalog_database::rds::analysisdb",
+      "active": true
+    }
+  },
+  "s3_bucket_notification": {
+    "raw": {
+      "fqn": "s3_bucket_notification::rds::raw",
+      "active": true
+    },
+    "ingestion": {
+      "fqn": "s3_bucket_notification::rds::ingestion",
+      "active": true
+    },
+    "analysis": {
+      "fqn": "s3_bucket_notification::rds::analysis",
+      "active": true
+    }
+  },
+  "rds_postgresql_instance": {
+    "pg1": {
+      "fqn": "rds_postgresql_instance::rds::pg1",
+      "active": true
+    }
+  },
+  "lambda_event_source_mapping": {
+    "test1_kinesis_stream_consumer": {
+      "fqn": "lambda_event_source_mapping::ingest::test1_kinesis_stream_consumer",
+      "active": false
+    }
+  },
+  "glue_trigger": {
+    "transform_main": {
+      "fqn": "glue_trigger::transform::transform_main",
+      "active": false
+    },
+    "main": {
+      "fqn": "glue_trigger::ingest::main",
+      "active": false
+    },
+    "transform_transform1": {
+      "fqn": "glue_trigger::transform::transform_transform1",
+      "active": false
+    }
+  },
+  "glue_crawler": {
+    "transformations": {
+      "fqn": "glue_crawler::transform::transformations",
+      "active": true
+    }
+  },
+  "sns_topic_subscription": {
+    "transformations": {
+      "fqn": "sns_topic_subscription::rds::transformations",
+      "active": true
+    }
+  },
+  "kms_key": {
+    "kc_100_qa": {
+      "fqn": "kms_key::init::kc_100_qa",
+      "active": true
+    }
+  },
+  "dms_source_endpoint": {
+    "qadb-source": {
+      "fqn": "dms_source_endpoint::ingest::qadb-source",
+      "active": false
+    }
+  },
+  "cloudwatch_event_rule": {
+    "qadb_full": {
+      "fqn": "cloudwatch_event_rule::ingest::qadb_full",
+      "active": false
+    }
+  },
+  "dms_event_subscription": {
+    "qadb_dms_event": {
+      "fqn": "dms_event_subscription::ingest::qadb_dms_event",
+      "active": false
+    }
+  },
+  "dms_replication_instance": {
+    "main": {
+      "fqn": "dms_replication_instance::ingest::main",
+      "active": false
+    }
+  },
+  "dms_s3_target_endpoint": {
+    "qadb-target": {
+      "fqn": "dms_s3_target_endpoint::ingest::qadb-target",
+      "active": false
+    }
+  }
+}

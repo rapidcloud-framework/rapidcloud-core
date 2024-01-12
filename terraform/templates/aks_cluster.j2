@@ -1,0 +1,48 @@
+module "{{fqn}}" {
+    source                              = "{{module_source}}"
+    profile                             = "{{ profile }}"
+    name                                = "{{ resource_name }}"
+    location                            = "{{ params["location"] }}"
+    resource_group                      = "{{ params["resource_group"] }}"
+    auto_upgrade                        = {{ params["auto_upgrade"] }}
+    aks_version                         = "{{ params["aks_version"] }}"
+    private_cluster_enabled             = {{ params["private_cluster_enabled"]|lower }}
+    api_server_vnet_integrated_enabled  = {{ params["api_server_vnet_integrated_enabled"]|lower }}
+    {% if params["api_server_subnet_id"] != null %}
+    api_server_subnet_id                = "{{ params["api_server_subnet_id"] }}"
+    {% endif %}
+    {% if params["authorized_ip_ranges"] is defined and params["authorized_ip_ranges"]|length %}
+    authorized_ip_ranges                = {{ params["authorized_ip_ranges"]|tojson }}
+    {% endif %}
+    desired_size                        = {{ params["desired_size"] }}
+    max_size                            = {{ params["max_size"] }}
+    min_size                            = {{ params["min_size"] }}
+    vm_size                             = "{{ params["vm_size"] }}"
+    node_pool_zones                     = {{ params["node_pool_zones"]|tojson }}
+    azure_cni_enabled                   = {{ params["azure_cni_enabled"]|lower }}
+    network_policy                      = "{{ params["network_policy"] }}"
+    {% if params["vnet_subnet_id"] is defined and params["vnet_subnet_id"]|length %}
+    vnet_subnet_id                      = "{{ params["vnet_subnet_id"] }}"
+    {% endif %}
+    service_cidr                        = "{{ params["service_cidr"] }}"
+    dns_service_ip                      = "{{ params["dns_service_ip"] }}"
+    {% if params["pod_cidr"] is defined and params["pod_cidr"]|length %}
+    pod_cidr                            = "{{ params["pod_cidr"] }}"
+    {% endif %}
+    aad_enabled                         = {{ params["aad_enabled"]|lower }}
+    azure_rbac_enabled                  = {{ params["azure_rbac_enabled"]|lower }}
+    {% if params["rbac_aad_admin_group_object_ids"] is defined and params["rbac_aad_admin_group_object_ids"]|length %}
+    rbac_aad_admin_group_object_ids     = {{ params["rbac_aad_admin_group_object_ids"]|tojson }} 
+    {% endif %}
+    blob_driver_enabled                 = {{ params["blob_driver_enabled"]|lower }}
+    disk_driver_enabled                 = {{ params["disk_driver_enabled"]|lower }}
+    file_driver_enabled                 = {{ params["file_driver_enabled"]|lower }}
+    log_analytics_workspace_id          = "{{ params["log_analytics_workspace_id"] }}"
+    {% if params['tags'] is defined %}
+    tags                                = {
+    {% for k, v in  params['tags'].items() -%}
+                                            "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+                                        }
+    {% endif %}
+}

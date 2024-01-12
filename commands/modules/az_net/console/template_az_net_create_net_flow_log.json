@@ -1,0 +1,148 @@
+{
+  "type": "Theia::Action",
+  "label": "Network Watcher Flow Log",
+  "id": "create_net_flow_log",
+  "module": "az_net",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_net_flow_log",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_net_flow_log",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_net_location",
+        "az_net_resource_group",
+        "az_net_network_watcher_name"],
+      "title": "Network Watcher Flow Log",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_net_flow_log",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_net",
+            "command": "create_net_flow_log",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_network_watcher_name",
+          "label": "Network Watcher Name",
+          "help": "",
+          "datasource": "custom/watchers?extra=true&module_name_arg=az_net",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Network Watcher is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_network_security_group_id",
+          "label": "Network Security Group",
+          "help": "",
+          "datasource": "custom/nsgs?extra=true&module_name_arg=az_net",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A NSGS is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_storage_account_id",
+          "label": "Storage Account",
+          "help": "",
+          "datasource": "custom/storage_accounts?extra=true&module_name_arg=az_net",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Storage Account is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_net_enabled",
+          "cli_id": "enabled",
+          "label": "Enabled"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_net_retention_days",
+          "label": "Retention In Days",
+          "help": "",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Retention in days is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_workspace_id",
+          "label": "Workspace Name",
+          "help": "",
+          "datasource": "custom/log_workspaces?extra=true&module_name_arg=az_net",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Workspace Name is required"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

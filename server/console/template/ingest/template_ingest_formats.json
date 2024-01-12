@@ -1,0 +1,118 @@
+{
+  "type": "Theia::Action",
+  "label": "Semi-Structured Data Formatting",
+  "id": "formats",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "formats",
+      "datasource": "data?type=format",
+      "env_param_required": true,
+      "columns": ["phase","dataset","attr","attr_type","from_format","to_format"],
+      "title": "Data Formatting",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "format",
+      "title": "",
+      "description": "",
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Submit",
+          "command": {
+            "phase": "ingest",
+            "command": "add-format"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "fqn",
+          "hidden": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "pipeline_phase",
+          "label": "Data Pipeline Phase",
+          "help": "Data formatting is only supported during ingestion",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Ingestion",
+              "value": "ingestion"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "dataset",
+          "label": "Dataset Name",
+          "help": "",
+          "datasource": "formdata?type=dataset_semi_structured&field=name"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "attr",
+          "label": "Attribute Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "attr_type",
+          "label": "Attribute Type",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Date or Datetime",
+              "value": "date"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Amount",
+              "value": "amount"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Full Name",
+              "value": "fullname"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Any",
+              "value": "any"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "from_format",
+          "label": "Source Format",
+          "help": "Dates: '%m/%d/%Y' (10/15/2020), '%m/%d/%Y %H:%M' (10/15/2020 13:59); Amount: '$*' ($152.75); Full Name: 'l,f' (Doe, John), 'f l'", 
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "to_format",
+          "label": "Target Format",
+          "help": "Dates: '%Y-%m-%d' (2020-10-15); Amount: '*' (152.75); Full Name: 'split'", 
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

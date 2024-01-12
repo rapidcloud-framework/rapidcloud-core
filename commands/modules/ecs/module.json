@@ -1,0 +1,99 @@
+{
+    "ecs": {
+        "create": {
+            "help": "",
+            "enabled": true,
+            "template_section": "containers",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "Name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },
+                "image_url": {
+                    "name": "image_url",
+                    "prompt": "Image URL",
+                    "required": true,
+                    "default": ""
+                },
+                "image_tag": {
+                    "name": "image_tag",
+                    "prompt": "Image Tag",
+                    "required": true,
+                    "default": "latest"
+                },
+                "task_cpu_units": {
+                    "name": "task_cpu_units",
+                    "prompt": "CPU Units Available at the Task Level",
+                    "required": true,
+                    "default": 1024
+                },
+                "task_memory": {
+                    "name": "task_memory",
+                    "prompt": "Memory (MiB) Available at the Task Level",
+                    "required": true,
+                    "default": 2048
+                },
+                "container_cpu_units": {
+                    "name": "container_cpu_units",
+                    "prompt": "CPU Units Available at the Container Level",
+                    "required": true,
+                    "default": 512
+                },
+                "container_memory": {
+                    "name": "container_memory",
+                    "prompt": "Memory (MiB) Available at the Container Level",
+                    "required": true,
+                    "default": 256
+                },
+                "open_ports": {
+                    "name": "open_ports",
+                    "prompt": "Comma-Separated List of Ports to Make Available",
+                    "required": true,
+                    "default": "80, 443"
+                },
+                "desired_count": {
+                    "name": "desired_count",
+                    "prompt": "Number of Task Instances Desired",
+                    "required": true,
+                    "default": 1
+                },
+                "task_role_arn": {
+                    "name": "task_role_arn",
+                    "prompt": "ARN of IAM Role to Attach to Task. If Left Blank, RapidCloud Will Create an Empty Role",
+                    "required": false,
+                    "default": ""
+                },
+                "assign_public_ip": {
+                    "name": "assign_public_ip",
+                    "prompt": "Assign a Public IP Address to the ENI (yes | no)",
+                    "required": true,
+                    "default": "no"
+                },
+                "subnet_ids": {
+                    "name": "subnet_ids",
+                    "prompt": "Comma-Separated List of Subnets to Associate",
+                    "required": true,
+                    "default": ""
+                },
+                "security_groups": {
+                    "name": "security_groups",
+                    "prompt": "Comma-Separated List of Security Groups to Associate",
+                    "required": false,
+                    "default": ""
+                },
+                "environment_variables": {
+                    "name": "environment_variables",
+                    "prompt": "Comma-Separated List of Key/Value Pairs (foo=bar, env=test)",
+                    "required": false,
+                    "default": ""
+                }
+            }
+        }
+    }
+}

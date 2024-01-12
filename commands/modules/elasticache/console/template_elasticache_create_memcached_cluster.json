@@ -1,0 +1,131 @@
+{
+  "type": "Theia::Action",
+  "label": "Create Memcached Cluster",
+  "id": "elasticache_create_memcached_cluster",
+  "module": "elasticache",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "elasticache_create_memcached_cluster",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=elasticache,create_memcached_cluster",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "elasticache_node_type",
+        "elasticache_num_cache_nodes",
+        "elasticache_parameter_group_name",
+        "elasticache_apply_immediately",
+        "elasticache_engine_version",
+        "elasticache_maintenance_window",
+        "elasticache_notification_topic_arn",
+        "timestamp"
+      ],
+      "title": "Memcached Clusters",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "elasticache_create_memcached_cluster",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "elasticache",
+            "command": "create_memcached_cluster",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_node_type",
+          "label": "Node Type",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_num_cache_nodes",
+          "label": "Number of Cache Nodes",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_parameter_group_name",
+          "label": "Parameter Group Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "elasticache_apply_immediately",
+          "label": "Apply Immediately",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "elasticache_preferred_availability_zones",
+          "label": "Availability Zones",
+          "help": "must equal number of cache nodes or select only one to apply to all nodes",
+          "datasource": "formdata_from_aws?type=availability_zones"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_engine_version",
+          "label": "Engine Version",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_maintenance_window",
+          "label": "Maintenance Window",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_notification_topic_arn",
+          "label": "SNS Topic ARN",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "elasticache_security_group_ids",
+          "label": "Security Groups",
+          "datasource": "formdata_from_aws?type=vpc_security_groups"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "elasticache_subnet_ids",
+          "label": "Subnets",
+          "datasource": "formdata_from_aws?type=subnets"
+        }
+      ]
+    }
+  ]
+}

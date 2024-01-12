@@ -1,0 +1,21 @@
+module "{{ fqn }}" {
+    source = "{{ module_source }}"
+    profile = "{{ profile }}"
+    env = "{{ env }}"
+    workload = "{{ workload }}"
+    cmd_id = "{{ cmd_id }}"
+    name = "{{ resource_name }}"
+    container_app_environment_id = module.{{ profile }}_container_app_env_{{ params["container_app_environment_id"] }}.id
+    certificate_blob_base64 = "{{ params["certificate_blob_base64"] }}"
+    certificate_password = "{{ params["certificate_password"] }}"
+    {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+    depends_on = [
+      module.{{ profile }}_container_app_env_{{ params["container_app_environment_id"] }} 
+    ]
+}

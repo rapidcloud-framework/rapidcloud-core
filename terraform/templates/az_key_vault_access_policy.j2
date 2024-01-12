@@ -1,0 +1,13 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source                   = "{{ module_source }}"
+  name             = "{{ resource_name }}"
+  resource_group_name = "{{ params['rg_name'] }}"
+  key_vault_name ="{{ params['key_vault_name'] }}"
+  object_id = "{{ params['principal'] }}"
+  {% if params['secret_permissions_list'] is defined %}
+  secret_permissions       = split(",","{{ params['secret_permissions_list'] }}")
+  {% endif %}
+  {% if params['key_permissions_list'] is defined %}
+  key_permissions         = split(",","{{ params['key_permissions_list'] }}")
+  {% endif %}
+}

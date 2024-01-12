@@ -1,0 +1,31 @@
+resource "aws_glue_classifier" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  name     = "{{ profile }}_{{ resource_name }}"
+  {% if params['type'] is defined %}
+  {% if params['type'] == "csv" %}
+  csv_classifier {
+  allow_single_column    = {{ params['allow_single_column'] | lower }}
+  contains_header        = "{{ params['contains_header']}}"
+  delimiter              = "{{ params['delimiter']}}"
+  disable_value_trimming = {{ params['disable_value_trimming'] | lower }}
+  {% set comma = joiner(",") %}
+  header = [{%- for h in params['headers'] -%}
+  {{comma()}}"{{ h }}"
+  {%- endfor -%}]
+  quote_symbol           = "{{ params['qoute_symbol'] }}"
+  }
+  {% endif %}
+
+  {% if params['type'] == "json" %}
+  json_classifier {
+    json_path = "../../glue_classifiers/{{ params['json_path']}}"
+  }
+  {% endif %}
+
+  {% if params['type'] == "xml" %}
+  xml_classifier {
+      classification = "{{ params['classification'] }}"
+      row_tag        = "{{ params['row_tag'] }}"
+  }
+  {% endif %}
+  {% endif %}
+}

@@ -1,0 +1,59 @@
+{
+  "access": {
+    "create_role": {
+      "enabled": true,
+      "help": "",
+      "template_section": "setup",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": false,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Role Name (no spaces or special characters)",
+          "required": true,
+          "default": ""
+        },
+        "description": {
+          "name": "description",
+          "prompt": "Role Description",
+          "required": false,
+          "default": ""
+        },
+        "all": {
+          "name": "all",
+          "prompt": "Access level to All RapidCloud Features (granbular|read-only|read-write)",
+          "required": true,
+          "default": "granular"
+        }
+      }
+    },
+    "assign_role": {
+      "enabled": false,
+      "help": "",
+      "template_section": "setup",
+      "template_enabled": true,
+      "args": {
+        "email": {
+          "name": "email",
+          "prompt": "User Email",
+          "required": true,
+          "default": ""
+        },
+        "role": {
+          "name": "role",
+          "prompt": "Role Name",
+          "required": true,
+          "default": "RAPIDCLOUD_VIEWER"
+        },
+        "ux_context": {
+          "name": "ux_context",
+          "prompt": "User Experience Context",
+          "required": true,
+          "default": "admin"
+        }
+      }
+    }
+  }
+}

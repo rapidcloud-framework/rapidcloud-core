@@ -1,0 +1,217 @@
+{
+  "az_app_gtwy": {
+    "create_app_gtwy": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_app_gtwy",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter name of the resource group",
+          "required": true
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location",
+          "required": true,
+          "default": "eastus"
+        },
+        "zones": {
+          "name": "zones",
+          "prompt": "Enter the availability zones for the node pool (Ex: 1,2,3)",
+          "required": true,
+          "default": "1,2"
+        },
+        "tier": {
+          "name": "tier",
+          "prompt": "Enter the tier for the application gateway",
+          "required": true,
+          "default": "Standard_v2"
+        },
+        "enable_autoscaling": {
+          "name": "enable_autoscaling",
+          "prompt": "Enable autoscaling for the application gateway",
+          "required": true,
+          "default": false
+        },
+        "min_capacity": {
+          "name": "min_capacity",
+          "prompt": "Enter the minimum capacity (if autoscaling is enabled) for the application gateway",
+          "required": false,
+          "default": "1"
+        },
+        "capacity": {
+          "name": "capacity",
+          "prompt": "Enter the capacity (or maximum capacity, if autoscaling is enabled) for the application gateway.",
+          "required": true,
+          "default": "3"
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "The ID of the Subnet which the Application Gateway should be connected to",
+          "required": true
+        },
+        "public_ip_addr_id": {
+          "name": "public_ip_addr_id",
+          "prompt": "The ID of a Public IP Address which the Application Gateway should use"
+        },
+        "frontend_port": {
+          "name": "frontend_port",
+          "prompt": "The port used for the frontend",
+          "required": true
+        },
+        "http_listener_protocol": {
+          "name": "http_listener_protocol",
+          "prompt": "The protocol used for the HTTP listener",
+          "required": true,
+          "default": "Http"
+        },
+        "backend_ips": {
+          "name": "backend_ips",
+          "prompt": "The IPs that are part of the backend pool",
+          "required": false
+        },
+        "backend_fqdns": {
+          "name": "backend_fqdns",
+          "prompt": "The FQDNs that are part of the backend pool",
+          "required": false
+        },
+        "backend_port": {
+          "name": "backend_port",
+          "prompt": "The port used for the backend",
+          "required": true
+        },
+        "backend_protocol": {
+          "name": "backend_protocol",
+          "prompt": "The protocol used for the backend",
+          "required": true,
+          "default": "Http"
+        },
+        "routing_rule_type": {
+          "name": "routing_rule_type",
+          "prompt": "The type of the routing used for the rule",
+          "required": true
+        },
+        "enable_http2": {
+          "name": "enable_http2",
+          "prompt": "Enable HTTP/2 for this application gateway",
+          "required": false,
+          "default": false
+        },
+        "enable_probe": {
+          "name": "enable_probe",
+          "prompt": "Enable health probe for this application gateway",
+          "required": false,
+          "default": false
+        },
+        "health_probe_host": {
+          "name": "health_probe_host",
+          "prompt": "The hostname for the probe",
+          "required": false,
+          "default": "127.0.0.1"
+        },
+        "health_probe_path": {
+          "name": "health_probe_path",
+          "prompt": "The path for the probe",
+          "required": false,
+          "default": "/"
+        },
+        "health_probe_protocol": {
+          "name": "health_probe_protocol",
+          "prompt": "The protocol used for the probe",
+          "required": false,
+          "default": "Http"
+        },
+        "enable_waf": {
+          "name": "enable_waf",
+          "prompt": "Enable WAF for the application gateway",
+          "required": false,
+          "default": false
+        },
+        "firewall_mode": {
+          "name": "firewall_mode",
+          "prompt": "The firewall mode for the application gateway",
+          "required": false,
+          "default": "Detection"
+        },
+        "rule_set_type": {
+          "name": "rule_set_type",
+          "prompt": "The type of the rule set used for the web application firewall",
+          "required": false,
+          "default": "OWASP"
+        },
+        "rule_set_version": {
+          "name": "rule_set_version",
+          "prompt": "The version of the rule set used for the web application firewall",
+          "required": false,
+          "default": "3.2"
+        },
+        "waf_policy_id": {
+          "name": "waf_policy_id",
+          "prompt": "The ID of the web application firewall policy",
+          "required": false
+        },
+        "identity_ids": {
+          "name": "identity_ids",
+          "prompt": "The user-assigned managed identities used with this application gateway"
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the application gateway, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_waf_policy": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_app_gtwy",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter name of the resource group",
+          "required": true
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location",
+          "required": true,
+          "default": "eastus"
+        },
+        "rule_set_version": {
+          "name": "rule_set_version",
+          "prompt": "The version of the rule set used for the web application firewall policy",
+          "required": false,
+          "default": "3.2"
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the policy, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    }
+  }
+}

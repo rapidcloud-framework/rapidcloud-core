@@ -1,0 +1,68 @@
+{
+  "type": "Theia::Action",
+  "label": "Tenant Administration (prod)",
+  "id": "saas_exec_prod",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "saas_exec_prod",
+      "datasource": "saas?action=list_tenants&status=true&aws_profile=rc_prod",
+      "env_param_required": true,
+      "columns": ["domain","status","acct_id","ec2_instance_id","public_ip_address","timestamp"],
+      "title": "Tenant Administration (prod)",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "saas_exec_prod",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "exec (prod)",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure?",
+          "command": {
+            "phase": "saas",
+            "command": "exec",
+            "refresh_status": false                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "aws_profile",
+          "hidden": true,
+          "default": "rc_prod"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "email",
+          "label": "Email",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "action",
+          "label": "Action",
+          "help": "",
+          "datasource": "saas_actions?app_env=dev"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "cmd",
+          "label": "Command"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "output_key",
+          "label": "SSM Command Output Key"
+        }
+      ]
+    }
+  ]
+}

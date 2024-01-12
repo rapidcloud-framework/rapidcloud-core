@@ -1,0 +1,48 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source      = "../modules/aws_lb/{{ resource_type }}"
+  name        = "{{ resource_name }}"
+  port        = {{ params['port'] }}
+  protocol    = "{{ params['protocol'] }}"
+  target_type = "{{ params['target_type'] }}"
+  vpc_id      = "{{ params['vpc_id'] }}"
+
+  {% if params['load_balancer_type'].lower() == 'alb' and params['load_balancing_algorithm_type'] is not none %}
+  load_balancing_algorithm_type = "{{ params['load_balancing_algorithm_type'] }}"
+  {% endif %}
+
+  {% if params['load_balancer_type'].lower() == 'nlb' and params['preserve_client_ip'] is not none %}
+  preserve_client_ip = {{ params['preserve_client_ip'] }}
+  {% endif %}
+
+  {% if params['target_type'].lower() == 'ip' and params['ip_address_type'] is not none %}
+  ip_address_type = "{{ params['ip_address_type'] }}"
+  {% endif %}
+
+  {% if params['protocol'].lower() in ['http','https'] and params['protocol_version'] is not none %}
+  protocol_version = "{{ params['protocol_version'] }}"
+  {% endif %}
+
+  {% if params['targets'] is defined and params['targets']|length > 0 %}
+  {% if params['target_type'].lower() == 'ip' %}    
+  targets = {{ params['targets'] | replace("'","\"") }}
+  {% elif params['target_type'].lower() == 'instance' %}
+  targets = [
+  {% for t in params['targets'] %}
+    module.{{ profile }}_{{ t }}_ec2_instance.instance_id,
+  {% endfor %}
+  ]
+  {% else %}
+  targets = []
+
+  {% endif %}
+  {% endif %}
+
+  tags = {
+    Name        = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}

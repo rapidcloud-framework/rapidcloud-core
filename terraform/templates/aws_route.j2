@@ -1,0 +1,37 @@
+module "{{fqn}}" {
+  source = "{{ module_source }}"
+
+  env  = "{{ env }}"
+  profile = "{{ profile }}"
+  fqn = "{{ fqn }}"
+  workload = "{{ workload }}"
+  cmd_id = "{{ cmd_id }}"
+  name = "{{ params["name"] }}"
+
+
+  destination_cidr_block = "{{ params["destination_cidr_block"] }}"
+  transit_gateway_id = "{{ params["transit_gateway_id"] }}"
+  vpc_peering_connection_id = "{{ params["vpc_peering_connection_id"] }}"
+
+  route_tables = [
+  {%- if 'route_tables' in params.keys() and params["route_tables"] != ""  %}   
+  {% set route_table_list = params["route_tables"].split(',') %}
+  {% for route_table in route_table_list %}
+  module.{{ profile }}_aws_subnet_{{ route_table }}.route_table_id,
+  {% endfor %}
+  {%- endif %}
+  ]
+
+  depends_on = [
+  {%- if 'route_tables' in params.keys() and params["route_tables"] != ""  %}   
+  {% set route_table_list = params["route_tables"].split(',') %}
+  {% for route_table in route_table_list %}
+  module.{{ profile }}_aws_subnet_{{ route_table }}.route_table_id,
+  {% endfor %}
+  {%- endif %}
+  ]
+}
+
+{% for k, v in params.items() %}
+# {{k}} -> {{ v }}
+{% endfor %}

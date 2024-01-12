@@ -1,0 +1,77 @@
+{
+  "type": "Theia::Action",
+  "label": "AWS Organizational Units",
+  "id": "org_create_ou",
+  "module": "org",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "org_create_ou",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_ou",
+      "env_param_required": true,
+      "columns": ["name", "org_parent_name", "org_parent_type", "org_scps", "timestamp"],
+      "title": "AWS Organizational Units",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "org_create_ou",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "org",
+            "command": "create_ou",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "org_parent_name",
+          "label": "Parent Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "org_parent_type",
+          "label": "Parent Type",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Root",
+              "value": "root"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "OU",
+              "value": "ou"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "org_scps",
+          "label": "SCPs To Attach",
+          "help": "AWS allows a maximum of 5 SCPs to be attached",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=org,create_scp&field=name"
+        }
+      ]
+    }
+  ]
+}

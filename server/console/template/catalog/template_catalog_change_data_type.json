@@ -1,0 +1,41 @@
+{
+  "type": "Theia::Action",
+  "label": "Change Data Types",
+  "id": "post-crawlers",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "post-crawlers",
+      "title": "Change Glue Data Types (ingestion catalog)",
+      "description": "This process allows bulk change of data types in ingestion catalog after the initial ingestion process completed and catalog generated for the first time. For example, this might be needed when Glue crawler identifies a field as numeric, but it has to be string",
+      "commands": [
+        {
+          "label": "Change data types",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to run this?",
+          "command": {
+            "phase": "ingest",
+            "command": "post-crawlers"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "from-format",
+          "label": "From Format",
+          "help": "e.g double, bigint",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "to-format",
+          "label": "To Format",
+          "help": "e.g string",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

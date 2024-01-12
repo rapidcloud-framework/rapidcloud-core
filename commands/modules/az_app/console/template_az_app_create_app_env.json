@@ -1,0 +1,151 @@
+{
+  "type": "Theia::Action",
+  "label": "Azure App Service Environment",
+  "id": "create_app_env",
+  "module": "az_app",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_app_env",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_app_env",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_app_resource_group",
+        "timestamp"
+      ],
+      "title": "Azure App Service Environment",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_app_env",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "az_app",
+            "command": "create_app_env",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_subnet_id",
+          "label": "Subnet",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=subnets&bastion=true",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Subnet is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_pricing_tier",
+          "label": "Pricing Tier",
+          "default": "",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "I1",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "I1"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "I2 (Zone Redundant App Service)",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "I2"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "I3 (Dedicated host App Service)",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "I3"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_internal_load_balancing_mode",
+          "label": "Load Balancing Mode",
+          "default": "",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "None",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "None"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Web",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "Web"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Publishing",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "Publishing"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_app_allowed_user_ip_cidrs",
+          "label": "Allowed Ips",
+          "help": "Comma separated in CIDR notation i.e 55.66.77.0/24",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

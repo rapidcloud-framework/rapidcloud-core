@@ -1,0 +1,54 @@
+{
+  "type": "Theia::Action",
+  "label": "Redshift",
+  "id": "redshift",
+  "module": "redshift",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "redshift",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=redshift",
+      "env_param_required": true,
+      "columns": ["module","name","timestamp"],
+      "title": "Redshift Cluster",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "redshift",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "redshift",
+            "command": "create",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Redshift Cluster Name",
+          "help": "Enter cluster name (no spaces, hyphens or special characters)",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

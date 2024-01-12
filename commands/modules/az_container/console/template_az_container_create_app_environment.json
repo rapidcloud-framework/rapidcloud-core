@@ -1,0 +1,108 @@
+{
+  "type": "Theia::Action",
+  "label": "App Environment",
+  "id": "az_container_create_app_environment",
+  "module": "az_container",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_container_create_app_environment",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_app_environment",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "App Environment",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_container_create_app_environment",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create App Environment",
+          "command": {
+            "phase": "az_container",
+            "command": "create_app_environment",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "App Environment Name",
+          "help": "The Container App Environment Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_infrastructure_subnet_id",
+          "label": "Infrastructure Subnet",
+          "help": "The existing Subnet to use for the Container Apps Control Plane",
+          "datasource": "formdata_from_azure?type=subnets&min_prefixlen=23"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_log_analytics_workspace_id",
+          "label": "Log Analytics Workspace",
+          "help": "Log Analytics Workspace to link with the Container Managed Environment.",
+          "datasource": "formdata_from_azure?type=logworkspaces"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_container_internal_load_balancer_enabled",
+          "label": "Enable Internal Load Balancer",
+          "help": "Enable Internal Load Balancer",
+          "inputType": "text",
+          "default": true
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "az_container_tags",
+          "label": "Tags",
+          "help": "Tags you wish to apply to the nodes in this Node Group",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=az_container,${name}&result=params,az_container_tags",
+          "add_value_label": "Tags for your resource"
+        }
+      ]
+    }
+  ]
+}

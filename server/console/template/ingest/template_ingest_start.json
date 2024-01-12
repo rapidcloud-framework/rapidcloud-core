@@ -1,0 +1,26 @@
+{
+  "type": "Theia::Action",
+  "label": "Activate Ingestion Pipelines",
+  "id": "start",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "status",
+      "title": "Activate Environment",
+      "description": "Equivalent of running `kc ingest start` command. <br/><br/>This action performs the following (where applicable) <br/>- (1) generate DMS table mappings <br/>- (2) generate ingestiondb and rawdb catalog tables for relational data <br/>- (3) generate transformation Glue job templates <br/>- (4) activate daily ingestion schedules via DMS <br/>- (5) generate ingestiondb catalog tables for semi-structured data <br/>- (6) deploy generated Glue jobs (this will replace existing Glue scripts)",
+      "submit": "Activate Environment",
+      "commands": [
+        {
+          "label": "Submit",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want activate data ingestion for this environment?",
+          "command": {
+            "phase": "ingest",
+            "command": "start"
+          }
+        }
+      ]
+    }
+  ]
+}

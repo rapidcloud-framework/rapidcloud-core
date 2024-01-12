@@ -1,0 +1,99 @@
+{
+  "type": "Theia::Action",
+  "label": "Azure Front Door Profile",
+  "id": "az_frontdoor_create_fd_profile",
+  "module": "az_frontdoor",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_frontdoor_create_fd_profile",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_fd_profile",
+      "env_param_required": true,
+      "columns": ["name","az_frontdoor_sku_name", "timestamp"],
+      "title": "Front Door Profile",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_frontdoor_create_fd_profile",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create Profile",
+          "command": {
+            "phase": "az_frontdoor",
+            "command": "create_fd_profile",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Profile Name",
+          "help": "The Front Door Profile Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_sku_name",
+          "label": "SKU",
+          "help": "The SKU name for the Front Door profile",
+          "inputType": "text",
+          "default": "Standard_AzureFrontDoor",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Standard",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Standard_AzureFrontDoor"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Premium",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Premium_AzureFrontDoor"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "az_frontdoor_tags",
+          "label": "Tags",
+          "help": "Tags you wish to apply to the frontdoor profile",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=az_frontdoor,${name}&result=params,az_frontdoor_tags",
+          "add_value_label": "Tags for your resource"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "env": {
+    "create": {
+      "enabled": false,
+      "help": "",
+      "template_section": "",
+      "template_enabled": false,
+      "metadata_table": "metadata",
+      "create_aws_infra": false,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "list": {
+      "enabled": false,
+      "help": "",
+      "template_section": "",
+      "template_enabled": false
+    },
+    "set": {
+      "enabled": false,
+      "help": "",
+      "template_section": "",
+      "template_enabled": false
+    },
+    "describe": {
+      "enabled": false,
+      "help": "",
+      "template_section": "",
+      "template_enabled": false
+    }
+  }
+}

@@ -1,0 +1,253 @@
+{
+  "type": "Theia::Action",
+  "label": "EFS",
+  "id": "efs_create",
+  "module": "efs",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "efs",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=efs,create",
+      "env_param_required": true,
+      "columns": ["efs_fs_name", "efs_encrypted", "efs_performance_mode", "efs_throughput_mode", "efs_transition_to_ia", "timestamp"],
+      "title": "EFS (Managed File Storage for EC2)",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "efs",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "efs",
+            "command": "create",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "efs_fs_name",
+          "label": "EFS Name",
+          "help": "Name of the EFS File system to create the Mount Target in",
+          "datasource": "custom/module_efs_filesystems?extra=true&module_name_arg=efs",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "efs_encrypted",
+          "cli_id": "encrypted",
+          "label": "Encrypted?",
+          "default": "true"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "efs_enable_backups",
+          "cli_id": "enable_backups",
+          "label": "Enable Backups?",
+          "default": "true"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "efs_performance_mode",
+          "label": "Performance Mode",
+          "help": "The file system performance mode",
+          "inputType": "text",
+          "default": "generalPurpose",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "generalPurpose",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "generalPurpose"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "maxIO",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "maxIO"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "efs_throughput_mode",
+          "label": "Throughput Mode",
+          "help": "The file system throughput mode",
+          "inputType": "text",
+          "default": "bursting",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "bursting",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "bursting",
+                "disableControls": [
+                  "provisioned_throughput_in_mibps"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "elastic",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "elastic",
+                "disableControls": [
+                  "provisioned_throughput_in_mibps"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "provisioned",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "provisioned"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "efs_provisioned_throughput_in_mibps",
+          "label": "Provisioned Throughput In MiB/s, only if you selected \"provisioned\"",
+          "help": "The throughput, measured in MiB/s, that you want to provision for the file system",
+          "default": "0"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "efs_transition_to_ia",
+          "label": "Transition to IA Storage",
+          "help": "Set policy to transition files to the IA storage class",
+          "inputType": "text",
+          "default": "",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "none",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": ""
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "AFTER_1_DAY",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "AFTER_1_DAY"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "AFTER_7_DAYS",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "AFTER_7_DAYS"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "AFTER_14_DAYS",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "AFTER_14_DAYS"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "AFTER_30_DAYS",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "AFTER_30_DAYS"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "AFTER_60_DAYS",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "AFTER_60_DAYS"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "AFTER_90_DAYS",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "AFTER_90_DAYS"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "efs_transition_to_primary",
+          "label": "Transition files from IA",
+          "help": "Set policy Set policy to transition a file from IA storage to primary storage",
+          "inputType": "text",
+          "default": "",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "none",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": ""
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "AFTER_1_ACCESS",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "AFTER_1_ACCESS"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "efs_vpc_id",
+          "label": "VPC ID",
+          "help": "The VPC to create a mount target in",
+          "datasource": "custom/module_efs_vpcs?extra=true&module_name_arg=efs"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "efs_subnet_ids",
+          "label": "Subnets",
+          "help": "Select the subnets to create a mount Target in (1 per availability zone)",
+          "datasource": "custom/module_efs_subnets?extra=true&module_name_arg=efs"
+        }
+      ]
+    }
+  ]
+}

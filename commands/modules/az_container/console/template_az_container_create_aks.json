@@ -1,0 +1,432 @@
+{
+  "type": "Theia::Action",
+  "label": "AKS Cluster",
+  "id": "az_container_create_aks",
+  "module": "az_container",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_container_create_aks",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_aks",
+      "env_param_required": true,
+      "columns": ["name","az_container_private_cluster_enabled","az_container_azure_cni_enabled","az_container_aad_enabled","timestamp"],
+      "title": "Azure Kubernetes Service",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_container_create_aks",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create AKS",
+          "command": {
+            "phase": "az_container",
+            "command": "create_aks",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Cluster Name",
+          "help": "The AKS Cluster Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_aks_version",
+          "label": "AKS Version",
+          "help": "The AKS Cluster Version",
+          "inputType": "text",
+          "default": "1.26"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_container_auto_upgrade",
+          "label": "Auto Upgrade?",
+          "help": "Cluster Auto-Upgrade will update the Kubernetes Cluster (and its Node Pools) to the latest GA version of Kubernetes automatically",
+          "inputType": "text",
+          "default": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_private_cluster_enabled",
+          "label": "Enable Private Cluster",
+          "help": "Enable private cluster access to your AKS control plane (Recommended)",
+          "inputType": "text",
+          "default": "true",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Yes",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "true",
+                "disableControls": ["az_container_authorized_ip_ranges"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "No",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "false",
+                "enableControls": ["az_container_authorized_ip_ranges"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_authorized_ip_ranges",
+          "label": "Authorized IP Ranges",
+          "help": "A comma separated list of CIDRs that are allowed to access your Public AKS control plane. Allowed only when private cluster is disabled",
+          "inputType": "text",
+          "default": "0.0.0.0/0"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_api_server_vnet_integrated_enabled",
+          "label": "Enable VNET Integration",
+          "help": "Enable VNET Integration for the cluster",
+          "inputType": "text",
+          "default": "false",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Yes",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "true",
+                "enableControls": ["az_container_api_server_subnet_id"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "No",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "false",
+                "disableControls": ["az_container_api_server_subnet_id"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_api_server_subnet_id",
+          "label": "API Server Subnet",
+          "help": "The Subnet where the API server endpoint is delegated to. Required when VNET integration is enabled.",
+          "datasource": "formdata_from_azure?type=subnets"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_desired_size",
+          "label": "Desired Size",
+          "help": "The Node Pool desired size",
+          "inputType": "text",
+          "default": "2"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_max_size",
+          "label": "Max Size",
+          "help": "The Node Pool max size",
+          "inputType": "text",
+          "default": "5"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_min_size",
+          "label": "Min Size",
+          "help": "The Node Pool minimum size",
+          "inputType": "text",
+          "default": "1"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_vm_size",
+          "label": "VM Instance Type",
+          "help": "The VM Instance Type",
+          "inputType": "text",
+          "default": "Standard_DS2_v2"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_container_node_pool_zones",
+          "label": "Node Pool Zones",
+          "help": "List of Availability Zones in which this Kubernetes Cluster should be located",
+          "default": "1,2,3",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "1",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "1"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "2",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "2"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "3",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "3"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_azure_cni_enabled",
+          "label": "Enable Azure CNI",
+          "help": "Enable Azure CNI in the cluster",
+          "default": "true",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Yes",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "true",
+                "enableControls": [
+                  "az_container_vnet_subnet_id",
+                  "az_container_service_cidr",
+                  "az_container_dns_service_ip",
+                  "network_policy_azure"
+                ],
+                "disableControls": ["az_container_pod_cidr"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "No",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "false",
+                "disableControls": [
+                  "az_container_vnet_subnet_id",
+                  "az_container_service_cidr",
+                  "az_container_dns_service_ip",
+                  "network_policy_azure"
+                ],
+                "enableControls": ["az_container_pod_cidr"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_vnet_subnet_id",
+          "label": "Subnet ",
+          "help": "The Subnet where the Kubernetes Node Pool should exist",
+          "datasource": "formdata_from_azure?type=subnets"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_service_cidr",
+          "label": "Service CIDR",
+          "help": "The Network Range used by the Kubernetes service",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_dns_service_ip",
+          "label": "DNS Service IP",
+          "help": "IP address within the Kubernetes service address range that will be used by cluster service discovery",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_network_policy",
+          "label": "Network Policy",
+          "help": "Network policy to be used with Azure CNI",
+          "default": "azure",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "calico",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "calico",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "id": "network_policy_azure",
+              "label": "azure (applicable only when Azure CNI is enabled)",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "azure",
+                "disableControls": [""]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_pod_cidr",
+          "label": "Pod CIDR",
+          "help": "The CIDR to use for pod IP addresses",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_aad_enabled",
+          "label": "Enable Azure AD Integration",
+          "help": "Enable Azure AD Integration for the cluster",
+          "inputType": "text",
+          "default": "true",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Yes",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "true",
+                "enableControls": [
+                  "az_container_azure_rbac_enabled",
+                  "az_container_rbac_aad_admin_group_object_ids"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "No",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "false",
+                "disableControls": [
+                  "az_container_azure_rbac_enabled",
+                  "az_container_rbac_aad_admin_group_object_ids"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_azure_rbac_enabled",
+          "label": "Enable Azure RBAC",
+          "help": "Enable Azure RBAC",
+          "inputType": "text",
+          "default": "true",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Yes",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "true"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "No",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "false"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_container_rbac_aad_admin_group_object_ids",
+          "label": "Admin Groups",
+          "help": "List of Object IDs of Azure Active Directory Groups which should have Admin Role on the Cluster.",
+          "datasource": "formdata_from_azure?type=ad_groups"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_container_blob_driver_enabled",
+          "label": "Enable Blob Driver",
+          "help": "Enable Blob Driver",
+          "inputType": "text",
+          "default": true
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_container_file_driver_enabled",
+          "label": "Enable File Driver",
+          "help": "Enable File Driver",
+          "inputType": "text",
+          "default": true
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_container_disk_driver_enabled",
+          "label": "Enable Disk Driver",
+          "help": "Enable Disk Driver",
+          "inputType": "text",
+          "default": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_log_analytics_workspace_id",
+          "label": "Log Analytics Workspace",
+          "help": "Log Analytics Workspace which the OMS Agent should send data to.",
+          "datasource": "formdata_from_azure?type=logworkspaces"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "az_container_tags",
+          "label": "Tags",
+          "help": "Tags you wish to apply to the cluster",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=az_container,${name}&result=params,az_container_tags",
+          "add_value_label": "Tags for your resource"
+        }
+      ]
+    }
+  ]
+}

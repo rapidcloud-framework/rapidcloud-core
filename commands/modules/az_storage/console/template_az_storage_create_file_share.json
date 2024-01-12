@@ -1,0 +1,78 @@
+{
+    "type": "Theia::Action",
+    "label": "Storage Account File Share",
+    "id": "az_storage_create_file_share",
+    "module": "az_storage",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "az_storage_create_file_share",
+        "datasource": "data?type=metadata&filter_name=command&filter_value=create_file_share",
+        "env_param_required": true,
+        "columns": ["name","az_storage_storage_account_name","az_storage_quota","timestamp"],
+        "title": "Storage Account File Share",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "az_storage_create_file_share",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create Storage File Share",
+            "command": {
+              "phase": "az_storage",
+              "command": "create_file_share",
+              "refresh_status": true                 
+            }
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Input",
+            "id": "name",
+            "label": "File Share Name",
+            "help": "The Storage File Share Name",
+            "inputType": "text",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "Name is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_storage_storage_account_name",
+            "label": "Storage Account",
+            "help": "",
+            "datasource": "custom/storage_accounts?extra=true&module_name_arg=az_storage",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Storage Account is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Input",
+            "id": "az_storage_quota",
+            "label": "Quota (GB)",
+            "help": "The Storage File Share quota",
+            "inputType": "text",
+            "default": "50",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "Quota is required"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

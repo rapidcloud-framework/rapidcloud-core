@@ -1,0 +1,22 @@
+{
+  "org": {
+    "create": {
+      "enabled": false,
+      "example": "kc org create --no-prompt --org_name name --org_aws_service_access_principals aws_service_access_principals --org_enabled_policy_types enabled_policy_types",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "create_ou": {
+      "enabled": false,
+      "example": "kc org create_ou --no-prompt --org_name name --org_parent_name parent_name --org_parent_type parent_type",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "create_account": {
+      "enabled": false,
+      "example": "kc org create_account --no-prompt --org_name name --org_parent_name parent_name --org_email email",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

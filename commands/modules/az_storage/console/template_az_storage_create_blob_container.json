@@ -1,0 +1,96 @@
+{
+    "type": "Theia::Action",
+    "label": "Storage Account Blob Container",
+    "id": "az_storage_create_blob_container",
+    "module": "az_storage",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "az_storage_create_blob_container",
+        "datasource": "data?type=metadata&filter_name=command&filter_value=create_blob_container",
+        "env_param_required": true,
+        "columns": ["name","az_storage_storage_account_name","timestamp"],
+        "title": "Storage Account Blob Container",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "az_storage_create_blob_container",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create Storage Blob Container",
+            "command": {
+              "phase": "az_storage",
+              "command": "create_blob_container",
+              "refresh_status": true                 
+            }
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Input",
+            "id": "name",
+            "label": "Container Name",
+            "help": "The Storage Blob Container Name",
+            "inputType": "text",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "Name is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_storage_storage_account_name",
+            "label": "Storage Account",
+            "help": "",
+            "datasource": "custom/storage_accounts?extra=true&module_name_arg=az_storage",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Storage Account is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_storage_container_access_type",
+            "label": "Access Type",
+            "help": "",
+            "options": [
+                {
+                  "type": "Theia::Option",
+                  "label": "Blob",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "blob"
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Container",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "container"
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Private",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "private"
+                  }
+                }
+              ]
+          }
+        ]
+      }
+    ]
+  }

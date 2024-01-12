@@ -1,0 +1,10 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source              = "{{ module_source }}"
+  name                = "{{ resource_name }}"
+  resource_group      = "{{ params['resource_group'] }}"
+  vnet_name = "{{ params['vnet_name'] }}"
+  address_prefix    = split(",","{{ params['address_prefix'] }}")
+  {% if params['service_endpoints'] is not none and params['service_endpoints']|length > 0%}
+  service_endpoints = split(",","{{ params["service_endpoints"] }}")
+  {% endif %}
+}

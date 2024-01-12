@@ -1,0 +1,81 @@
+{
+  "type": "Theia::Action",
+  "label": "NAT Gateways",
+  "id": "net_create_natgw",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "net_create_natgw",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=net,create_natgw",
+      "env_param_required": true,
+      "columns": ["name","net_subnet_module_id","net_route_tables","timestamp"],
+      "title": "NAT Gateways",
+      "description": "Create a NAT Gateway and update routes for internet access, over NAT.\nIt is recommended to create one NAT Gateway per AZ if you are running production workloads.\nAn EIP will be allocated for this Gateway as well.",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "net_create_natgw",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command",
+            "refresh_status": true
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "net",
+            "command": "create_natgw",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Name",
+          "help": "The NAT Gateway name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "net_subnet_module_id",
+          "label": "Subnet",
+          "help": "Select a Subnet with an Internet Gateway route to create this NAT Gateway in.",
+          "datasource": "custom/module_net_subnets?extra=true&module_name_arg=net"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "net_route_tables",
+          "label": "Add to Route Tables",
+          "help": "A route to this NAT Gateway will be added to the route tables selected here",
+          "datasource": "custom/module_net_route_tables?extra=true&module_name_arg=net"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "net_tags",
+          "label": "Tags",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=net,${name}&result=params,net_tags",
+          "add_value_label": "Tags for your NAT Gateway resource"
+        }
+      ]
+    }
+  ]
+}

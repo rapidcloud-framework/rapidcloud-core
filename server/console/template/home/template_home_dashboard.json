@@ -1,0 +1,119 @@
+{
+    "id": "dashboard",
+    "type": "Theia::Dashboard",
+    "label": "Dashboard test",
+    "rows": [
+        {
+            "columns": [
+                {
+                    "size": 12,
+                    "panel": {
+                        "type": "Theia::Panel::Markdown",
+                        "title": "Full width panel 12 columns",
+                        "content": "Vestibulum quis efficitur velit. In at vehicula nisl, commodo finibus leo. Curabitur ac libero eu ipsum efficitur rutrum in eu sapien. Aliquam iaculis lobortis ante quis tincidunt. Phasellus mattis velit sed quam bibendum, in rutrum neque congue. Vivamus egestas placerat ipsum, eu pellentesque est consequat eu. Duis rutrum ligula eget est varius, non feugiat mauris tincidunt. Mauris sed lorem elementum, euismod felis vitae, vulputate sapien.\n\n"
+                    }
+                }
+            ]
+        },
+        {
+            "columns": [
+                {
+                    "rows": [
+                        {
+                            "columns": [
+                                {
+                                    "size": 6,
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "panel": {
+                                                        "type": "Theia::Panel::Markdown",
+                                                        "title": "First panel",
+                                                        "content": "In massa est, **accumsan** in *tellus* sed, ultrices convallis purus. Pellentesque vestibulum lectus eget dui iaculis, vel hendrerit nibh porta. Maecenas venenatis, ligula vel facilisis luctus, ante orci molestie quam, et egestas augue velit eget urna. Nunc sed mauris semper, maximus quam non, lobortis enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "panel": {
+                                                        "type": "Theia::Panel::Markdown",
+                                                        "title": "Second panel",
+                                                        "content": "* Sed vel facilisis ex. \n*  Maecenas interdum tellus porttitor mauris rhoncus\n*   eget dignissim libero sodales\n*  Aenean rhoncus enim ac mauris consequat\n*   ac scelerisque sem ultricies."
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "panel": {
+                                                        "type": "Theia::Panel::Markdown",
+                                                        "title": "Third panel",
+                                                        "content": "Integer tristique rutrum eros, vel convallis libero viverra eget. Phasellus vel lacinia massa, quis faucibus arcu. Morbi non urna ac nunc convallis maximus auctor sed quam. Vivamus vestibulum ultrices turpis non volutpat. Aenean pulvinar velit nunc."
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "panel": {
+                                        "type": "Theia::Panel::Markdown",
+                                        "title": "Other panel",
+                                        "content": "# Morbi aliquet quam fringilla\n dictum turpis sit amet, dignissim magna. Phasellus malesuada ex tellus, in facilisis arcu malesuada id. Suspendisse pellentesque ipsum quam, at vestibulum erat faucibus ac.\n ## Fusce placerat \n est nec varius porta. Pellentesque sit amet lobortis arcu. Etiam accumsan, leo a sodales maximus, nisl felis elementum sapien, luctus mattis mauris nunc quis lacus. Duis mauris eros, pharetra ac massa a, tincidunt accumsan nibh. Pellentesque `pretium sit amet` augue quis fermentum. Quisque vulputate odio at pellentesque pulvinar."
+                                    }
+                                },
+                                {
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "panel": {
+                                                        "type": "Theia::Panel::Markdown",
+                                                        "title": "Table with markdown",
+                                                        "content": "| Syntax | Description |\n| ----------- | ----------- |\n| Header | Title |\n| Paragraph | Text |"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "columns": [
+                {
+                    "size": 6,
+                    "panel": {
+                        "type": "Theia::Panel::Table",
+                        "title": "Table with datasource",
+                        "description": "Available users",
+                        "columns": [
+                            {
+                                "key": "access_email",
+                                "label": "Email"
+                            },
+                            {
+                                "key": "access_role",
+                                "label": "Role"
+                            },
+                            {
+                                "key": "status",
+                                "label": "Status"
+                            }
+                        ],
+                        "datasource": "account_users",
+                        "env_required": false
+                    }
+                }
+            ]
+        }
+    ]
+}

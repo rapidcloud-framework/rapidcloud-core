@@ -1,0 +1,28 @@
+{
+  "admin": {
+    "list_accounts": {
+      "enabled": false,
+      "example": "kc admin list_accounts --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "list_activations": {
+      "enabled": false,
+      "example": "kc admin list_activations --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "upgrade": {
+      "enabled": false,
+      "example": "kc admin upgrade --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "downgrade": {
+      "enabled": false,
+      "example": "kc admin downgrade --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

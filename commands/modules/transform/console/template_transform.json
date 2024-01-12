@@ -1,0 +1,84 @@
+{
+  "type": "Theia::Action",
+  "label": "Transform",
+  "id": "transform",
+  "module": "transform",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "transform",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=transform",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "Transform",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "transform",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "transform",
+            "command": "create",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Transformation Name",
+          "help": "Transformation Name (no spaces or special characters)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "transform_base_datasets",
+          "label": "Base Datasets",
+          "help": "Select source datasets for this transformation",
+          "datasource": "formdata?type=dataset|dataset_semi_structured&field=name"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "transform_job_type",
+          "label": "Job Type",
+          "help": "Comma separated names of previously added datasets",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Python shell",
+              "value": "pythonshell"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Python Spark",
+              "value": "glueetl"
+            }          
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "transform_refresh_spice",
+          "label": "Refresh results as QuickSight SPICE dataset"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source              = "{{ module_source }}"
+  name                = "{{ resource_name }}"
+  resource_group      = "{{params['resource_group']}}"
+  subnet_id            = "{{ params['subnet_id'] }}"
+  {% if params['internal_load_balancing_mode'] is defined and params['internal_load_balancing_mode']|length %}
+  internal_load_balancing_mode = "{{ params['internal_load_balancing_mode'] }}"
+  {% endif %}
+  {% if params['pricing_tier'] is defined and params['pricing_tier']|length %}
+  pricing_tier = "{{ params['pricing_tier'] }}"
+  {% endif %}
+  {% if params['allowed_user_ip_cidrs'] is defined and params['allowed_user_ip_cidrs']|length %}
+  allowed_user_ip_cidrs = split(",","{{ params['allowed_user_ip_cidrs'] }}")
+  {% endif %}
+}

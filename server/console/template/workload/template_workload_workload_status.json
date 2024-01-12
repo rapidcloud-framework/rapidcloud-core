@@ -1,0 +1,29 @@
+{
+  "type": "Theia::Action",
+  "label": "Status",
+  "id": "workload_status",
+  "module": "workload",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "workload_status",
+      "datasource": "workload/status?extra=true",
+      "env_param_required": true,
+      "columns": [
+        "service",
+        "res_type",
+        "status",
+        "arn"
+      ],
+      "title": "Workload Status for Paused/Resumed Resources",
+      "description": "",
+      "hide_add": true
+    },
+    {
+      "type": "Theia::Step::Json",
+      "id": "workload_status",
+      "title": "",
+      "description": ""
+    }
+  ]
+}

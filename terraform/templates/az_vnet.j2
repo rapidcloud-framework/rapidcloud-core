@@ -1,0 +1,10 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source        = "{{ module_source }}"
+  name          = "{{ resource_name }}"
+  location      = "{{ params['location'] }}"
+  resource_group = "{{params['resource_group']}}"
+  address_space = split(",","{{params['address_space']}}")
+  {% if params['dns_servers'] is defined %}
+  dns_servers = split(",","{{params['dns_servers']}}")
+  {% endif %}
+}

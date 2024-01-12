@@ -1,0 +1,392 @@
+{
+  "type": "Theia::Action",
+  "label": "EKS Cluster",
+  "id": "eks_create_cluster",
+  "module": "eks",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "eks_create_cluster",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=eks,create_cluster",
+      "env_param_required": true,
+      "columns": ["cluster_name", "eks_cluster_name", "eks_eks_version", "eks_subnet_ids", "eks_endpoint_public_access", "eks_endpoint_public_access_cidrs", "timestamp"],
+      "title": "EKC Cluster",
+      "description": "Create an EKS cluster",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "eks_create_cluster",
+      "title": "EKS Cluster",
+      "description": "Create an EKS Cluster",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Prior to removing this EKS cluster, Make sure to remove the AWS AUTH and EXTRAS and apply your changes!!!",
+          "command": {
+            "phase": "eks",
+            "command": "remove_eks_cluster",
+            "refresh_status": true
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "eks",
+            "command": "create_cluster",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_cluster_name",
+          "label": "Cluster Name",
+          "help": "The EKS Cluster Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_eks_version",
+          "label": "EKS Version",
+          "help": "The EKS Cluster Version",
+          "inputType": "text",
+          "default": "1.26"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "eks_subnet_ids",
+          "label": "Subnets",
+          "help": "Select 2 subnet ids to place your EKS control plane api in",
+          "datasource": "custom/module_eks_subnets?extra=true&module_name_arg=eks"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "eks_endpoint_public_access",
+          "label": "Public Api Access",
+          "help": "Enable public api access to your EKS control plane (Not Recommended)",
+          "inputType": "text",
+          "default": "false"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_endpoint_public_access_cidrs",
+          "label": "Public Api Access Cidrs",
+          "help": "A comma separated list of CIDRs that are allowed to access your Public EKS control plane",
+          "inputType": "text"
+        },
+
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "eks_log_types",
+          "label": "Log Types",
+          "help": "Select the log types you wish to log to cloudwatch",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "api",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "api",
+                "disableControls": [""]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "audit",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "audit",
+                "disableControls": ["route_tables"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "authenticator",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "authenticator",
+                "disableControls": [""]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "controllerManager",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "controllerManager",
+                "disableControls": [""]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "scheduler",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "scheduler",
+                "disableControls": [""]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_cluster_log_retention_period",
+          "label": "Log retention in days",
+          "help": "Log retention in days",
+          "options": [
+
+            {
+              "type": "Theia::Option",
+              "label": "0",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "0",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "1",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "1",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "3",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "3",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "5",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "5",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "7",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "7",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "14",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "14",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "30",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "30",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "60",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "60",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "90",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "90",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "120",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "120",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "150",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "150",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "180",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "180",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "365",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "365",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "400",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "400",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "545",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "545",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "731",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "731",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "1096",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "1096",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "1827",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "1827",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "2192",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "2192",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "2557",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "2557",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "2922",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "2922",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "3288",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "3288",
+                "disableControls": [""]
+              }
+            },
+
+            {
+              "type": "Theia::Option",
+              "label": "3653",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "3653",
+                "disableControls": [""]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "eks_tags",
+          "label": "Tags",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=eks,${name}&result=params,eks_tags",
+          "add_value_label": "Tags for your resource"
+        }
+
+      ]
+    }
+  ]
+}

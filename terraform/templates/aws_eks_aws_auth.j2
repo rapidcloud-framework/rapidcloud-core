@@ -1,0 +1,76 @@
+module "{{fqn}}" {
+    source = "{{ module_source }}"
+    env  = "{{ env }}"
+    profile = "{{ profile }}"
+    fqn = "{{ fqn }}"
+    workload = "{{ workload }}"
+    cmd_id = "{{ cmd_id }}"
+    cluster_name = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_cluster_info.id
+    eks_oidc_provider  = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_oidc_provider
+
+    map_roles = [
+    {% if params['map_roles_values'] is defined and params['map_roles_values'] is iterable %}
+    {%- for r in params["map_roles_values"] %}
+        {
+    {%-   for k, v in r.items() %}
+          {{ k }} = {{ v | tojson | safe  }}
+    {%-   endfor %}
+        },
+    {%- endfor %}
+    {% endif %}
+    ]
+
+    map_users = [
+    {% if params['map_users_values'] is defined and params['map_users_values'] is iterable %}
+    {%- for r in params["map_users_values"] %}
+        {
+    {%-   for k, v in r.items() %}
+          {{ k }} = {{ v | tojson | safe  }}
+    {%-   endfor %}
+        },
+    {%- endfor %}
+    {% endif %}
+    ]
+
+    {% if params['node_groups'] is defined and params['node_groups'] is iterable %}
+    node_group_roles = [
+    {% for n in  params['node_groups'] -%}
+        module.{{ profile }}_aws_eks_node_group_{{ n }}.role_arn,
+    {% endfor -%}
+    {% endif %}
+    ]
+
+    {% if params['fargate_profiles'] is defined and params['fargate_profiles'] is iterable %}
+    fargate_profile_roles = [
+    {% for n in params['fargate_profiles'] -%}
+        module.{{ profile }}_aws_eks_fargate_profile_{{ n }}.role_arn,
+    {% endfor -%}
+    {% endif %}
+    ]
+
+
+    depends_on = [
+    module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }},
+
+    {% if params['node_groups'] is defined and params['node_groups'] is iterable %}
+    {% for n in  params['node_groups'] -%}
+        module.{{ profile }}_aws_eks_node_group_{{ n }},
+    {% endfor -%}
+    {% endif %}
+    {% if params['fargate_profiles'] is defined and params['fargate_profiles'] is iterable %}
+    {% for n in params['fargate_profiles'] -%}
+        module.{{ profile }}_aws_eks_fargate_profile_{{ n }},
+    {% endfor -%}
+    {% endif %}
+    ]
+
+
+    providers = {
+      # helm       = helm.{{ profile }}_{{ params["cluster_name"] }}
+      kubernetes = kubernetes.{{ profile }}_{{ params["cluster_name"] }}
+    }
+}
+
+{% for k, v in params.items() %}
+# {{k}} -> {{ v }}
+{% endfor %}

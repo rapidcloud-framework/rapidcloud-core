@@ -1,0 +1,72 @@
+{
+  "type": "Theia::Action",
+  "label": "Enable Conformity",
+  "id": "trendmicro_conformity_enable",
+  "module": "trendmicro",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "trendmicro_conformity_enable",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=trendmicro,conformity_enable",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "trendmicro_conformity_environment",
+        "timestamp"
+      ],
+      "title": "Enable Conformity",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "trendmicro_conformity_enable",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Enable",
+          "command": {
+            "phase": "trendmicro",
+            "command": "conformity_enable",
+            "refresh_status": true
+          }
+        },
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "trendmicro_account_name",
+          "label": "AWS Account Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "trendmicro_conformity_environment",
+          "label": "Conformity Environment",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "trendmicro_conformity_tags",
+          "label": "Tags",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

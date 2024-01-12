@@ -1,0 +1,82 @@
+{
+  "type": "Theia::Action",
+  "label": "Schedule",
+  "id": "workload_schedule",
+  "module": "workload",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "workload_schedule",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=workload,schedule",
+      "env_param_required": true,
+      "columns": ["name","workload_resource_type","workload_schedule_description","workload_scheduled_pause","workload_scheduled_resume","timestamp"],
+      "title": "Workload Pause/Resume Schedules",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "workload_schedule",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this schedule?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Schedule",
+          "command": {
+            "phase": "workload",
+            "command": "schedule",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Schedule Name",
+          "help": "Up to 12 characters, no spaces",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "workload_schedule_description",
+          "label": "Schedule Description",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "workload_resource_type",
+          "label": "Resource Types to Pause",
+          "help": "",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=workload,enable_pause&field_prefix=workload_module_"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "workload_scheduled_pause",
+          "label": "Enter cron expression to schedule workload pause",
+          "help": "Example: pause every weekday at 7 PM EST => `0 0 ? * MON-FRI *`",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "workload_scheduled_resume",
+          "label": "Enter cron expression to schedule workload resume",
+          "help": "Example: resume every weekday at 7 AM EST => `0 12 ? * MON-FRI *`",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

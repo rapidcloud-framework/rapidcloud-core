@@ -1,0 +1,5 @@
+resource "aws_lambda_layer_version" "{{ profile }}_{{ resource_type }}_{{ resource_name }}" {
+    s3_bucket = "kinect-rapid-cloud-utils-{{ region }}"
+    s3_key = "{{ utils_version }}/lambda_layers/{{ params['filename'] }}"
+    layer_name = "{{ profile }}_{{ resource_type }}_{{ resource_name }}"
+}

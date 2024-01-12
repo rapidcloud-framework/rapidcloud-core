@@ -1,0 +1,24 @@
+{
+  "id": "azure_container_wizard",
+  "label": "Containers",
+  "order": 1000,
+  "dynamic": true,
+  "component": {
+    "file": "architecture-wizard",
+    "className": "ArchitectureWizardComponent",
+    "data": {
+      "id": "azure_container_wizard",
+      "endpoint": "diagram/container",
+      "info": "",
+      "command": {
+        "label": "Save",
+        "command": {
+          "phase": "architecture",
+          "command": "save-wizard",
+          "diagram_type": "container"
+        }
+      }
+    }
+  },
+  "type": "Theia::Action"
+}

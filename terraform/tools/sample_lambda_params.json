@@ -1,0 +1,22 @@
+{
+    "params": {
+        "memory_size": "128",
+        "role_name": "ingestion-raw",
+        "runtime": "python3.8",
+        "schedule": "0 4 * * ? *",
+        "source_path": "default_lambda_template",
+        "timeout": "120",
+        "env_vars": {
+            "KEY1": "value1",
+            "KEY2": "value2"
+        },
+        "immutable": true,
+        "layers": {
+            "10": "kc_100_qa_lambda_layer_awswrangler",
+            "arn": "arn:aws:lambda:us-east-1:800880067056:layer:CloudOne-ApplicationSecurity-python:1"
+        }
+    },
+    "profile": "kc_100_qa",
+    "resource_name": "my_lambda_function",
+    "resource_type": "lambda_function"
+}

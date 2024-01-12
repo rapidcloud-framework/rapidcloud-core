@@ -1,0 +1,23 @@
+{
+    "qa": {
+        "run_cli_tests": {
+            "enabled": false,
+            "help": "",
+            "create_aws_infra": false,
+            "args": {
+                "env_suffix": {
+                    "name": "env_suffix", 
+                    "prompt": "Environment Suffix as in rc_tests_{env_suffix}", 
+                    "required": true,
+                    "default": ""
+                },         
+                "modules": {
+                    "name": "modules", 
+                    "prompt": "Comma separated list of modules or ALL", 
+                    "required": true,
+                    "default": "ALL"
+                }           
+            }
+        }
+    }
+}

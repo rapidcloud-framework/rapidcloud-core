@@ -1,0 +1,46 @@
+{
+  "type": "Theia::Action",
+  "label": "This is RapidCloud menu option label for the module",
+  "id": "trendmicro_workload_generate_deployment_script",
+  "module": "trendmicro",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "trendmicro_workload_generate_deployment_script",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=trendmicro",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "This is RapidCloud module main page title",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "trendmicro_workload_generate_deployment_script",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "workload_generate_deployment_script",
+          "command": {
+            "phase": "trendmicro",
+            "command": "workload_generate_deployment_script",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

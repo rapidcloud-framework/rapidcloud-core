@@ -1,0 +1,76 @@
+{
+  "type": "Theia::Action",
+  "label": "Internet Gateways",
+  "id": "net_create_igw",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "net_create_igw",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=net,create_igw",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "vpc_module_id",
+        "timestamp"
+      ],
+      "title": "Internet Gateways",
+      "description": "Create an Internet Gateway and configure routing for direct internet connectivity",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "net_create_igw",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "net",
+            "command": "create_igw",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "The Internet Gateway name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "vpc_module_id",
+          "label": "VPC module id",
+          "cli_id": "vpc_module_id",
+          "help": "A New or RapidCloud deployed VPC to create this Subnet in",
+          "datasource": "custom/module_net_vpcs?extra=true&module_name_arg=net",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A VPC is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "route_tables",
+          "label": "Add Route to Route Tables",
+          "help": "Select the Route Tables that will be updated to provide internet access through this Gateway",
+          "datasource": "custom/module_net_route_tables?extra=true&module_name_arg=net"
+        }
+      ]
+    }
+  ]
+}

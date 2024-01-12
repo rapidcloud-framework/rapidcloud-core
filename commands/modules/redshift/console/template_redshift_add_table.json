@@ -1,0 +1,119 @@
+{
+  "type": "Theia::Action",
+  "label": "Redshift Tables",
+  "id": "datawarehouse_tables",
+  "module": "redshift",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "datawarehouse_tables",
+      "datasource": "data?type=publishing&filter_name=db_type&filter_value=redshift",
+      "env_param_required": true,
+      "columns": ["name","db_name","primary_key","sort_key","dist_key","dist_style"],
+      "title": "Redshift Tables",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "datawarehouse_tables",
+      "title": "",
+      "description": "",
+      "readonly": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Submit",
+          "command": {
+            "phase": "redshift",
+            "command": "add_table",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "fqn",
+          "hidden": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "db_name",
+          "cli_id": "redshift_db_name",
+          "label": "Database Name",
+          "help": "Select an already registered database name",
+          "datasource": "formdata?type=datawarehouse&field=name"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Table Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "primary_key",
+          "cli_id": "redshift_primary_key",
+          "label": "Primary Key",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "sort_key",
+          "cli_id": "redshift_sort_key",
+          "label": "Sort Key",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "dist_key",
+          "cli_id": "redshift_dist_key",
+          "label": "Distribution Key",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "dist_style",
+          "cli_id": "redshift_dist_style",
+          "label": "Data Distribution Style",
+          "help": "Defines data distribution style for the table. Allowed values are `{ AUTO | EVEN | KEY | ALL }`",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "AUTO",
+              "value": "AUTO"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "EVEN",
+              "value": "EVEN"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "KEY",
+              "value": "KEY"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "ALL",
+              "value": "ALL"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "Theia::Action",
+  "label": "Report Log",
+  "id": "report_log",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "report_log",
+      "datasource": "paginated_data?type=transform_log&filter_name=job_type&filter_value=report",
+      "pagination": "paginated_data_info?type=transform_log&filter_name=job_type&filter_value=report&sort_by=update_timestamp&sort_order=desc",
+      "env_param_required": true,
+      "columns": ["report_name","status","update_timestamp"],
+      "title": "Report Log",
+      "description": "",
+      "hide_add": true
+    },
+    {
+      "type": "Theia::Step::Json",
+      "id": "report_log"
+    }
+  ] 
+}

@@ -1,0 +1,107 @@
+{
+  "type": "Theia::Action",
+  "label": "Setup",
+  "id": "trendmicro_setup",
+  "module": "trendmicro",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "trendmicro_setup",
+      "datasource": "trendmicro/setup?extra=true",
+      "env_param_required": true,
+      "title": "Trend Micro API Key",
+      "description": "Trend Micro API Key needs to be set up only once, from any of the environments, and it will be used accross all your RapidCloud Environments going forward.",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "trendmicro",
+            "command": "setup",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "trendmicro_api_id",
+          "label": "Trend Micro Cloud One API ID",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "trendmicro_api_key",
+          "label": "Trend Micro Cloud One API Key",
+          "help": "API Key is encrypted and saved in Secrets Manager",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "trendmicro_conformity_region",
+          "label": "CloudOne Region",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "us-1",
+              "value": "us-1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "in-1",
+              "value": "in-1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "gb-1",
+              "value": "gb-1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "jp-1",
+              "value": "jp-1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "de-1",
+              "value": "de-1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "au-1",
+              "value": "au-1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "ca-1",
+              "value": "ca-1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "sg-1",
+              "value": "sg-1"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "trendmicro_enable_filestorage_security",
+          "label": "Enable Trend Micro File Storage Security for this environment. When enabled, an `Enable Trend Micro File Storage Security` toggle will appear on `Storage -> S3` page."
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "trendmicro_enable_workload_security",
+          "label": "Enable Trend Micro Workload Security for this environment. When enabled, an `Enable Trend Micro Workload Security` toggle and `Workload Group` drop-down will appear on `Compute -> Managed EC2 Instances | Unmanaged EC2 Instances | EC2 Launch Templates` pages."
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "trendmicro_enable_application_security",
+          "label": "Enable Trend Micro Application Security for this environment. When enabled, an `Enable Trend Micro Application Security` toggle and `Application Security Group` drop-down will appear on `Compute -> Lambda Functions` page."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source                    = "../modules/aws_autoscaling_group"
+  launch_template_name      = "{{ params['launch_template_name'] }}"
+  launch_template_version   = "{{ params['launch_template_version'] }}"
+  ami_id                    = "{{ params['ami_id'] }}"
+  instance_type             = "{{ params['instance_type'] }}"
+  desired_capacity          = "{{ params['desired_capacity'] }}"
+  max_size                  = "{{ params['max_size'] }}"
+  min_size                  = "{{ params['min_size'] }}"
+  placement_group_name      = "{{ params['placement_group_name'] }}"
+  placement_group_strategy  = "{{ params['placement_group_strategy'] }}"
+  {% if params['subnets_ids'] is defined %}    
+  subnets_ids               = {{ params['subnets_ids'] | replace("'","\"") }}
+  {% else %}
+  subnets_ids               = data.aws_subnets.private.ids
+  {% endif %}
+  tags = {
+    Name        = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}

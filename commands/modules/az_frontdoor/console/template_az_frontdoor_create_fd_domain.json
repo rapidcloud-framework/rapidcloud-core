@@ -1,0 +1,77 @@
+{
+  "type": "Theia::Action",
+  "label": "Azure Front Door Domain",
+  "id": "az_frontdoor_create_fd_domain",
+  "module": "az_frontdoor",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_frontdoor_create_fd_domain",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_fd_domain",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "Front Door Domain",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_frontdoor_create_fd_domain",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create Domain",
+          "command": {
+            "phase": "az_frontdoor",
+            "command": "create_fd_domain",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Domain Name",
+          "help": "The Front Door Domain Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_profile_id",
+          "label": "Profile",
+          "help": "",
+          "datasource": "formdata_from_azure_infra?type=create_fd_profile",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Profile is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_dns_zone",
+          "label": "DNS Zone",
+          "help": "The Azure DNS Zone for this subdomain",
+          "datasource": "formdata_from_azure_infra?type=create_dns_zone",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A DNS Zone is required"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source    = "../modules/aws_organizations/{{ resource_type }}"
+  name      = "{{ resource_name }}"
+  email     = "{{ params['email'] }}"
+  parent_id = module.{{ profile }}_{{ params['parent_name'] }}_aws_organizations_organizational_unit.id
+  scps = [
+  {% for scp_name in params['scps'] %}
+    module.{{ profile }}_{{ scp_name }}_aws_organizations_policy.id,
+  {% endfor %}
+  ]
+}

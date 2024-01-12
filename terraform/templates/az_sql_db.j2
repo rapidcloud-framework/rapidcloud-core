@@ -1,0 +1,8 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source              = "{{ module_source }}"
+  name                = "{{ resource_name }}"
+  server_id            = "{{ params['server_id'] }}"
+  max_size_gb      = "{{params['max_size_gb']}}"
+  start_ip_address     = "{{ params['start_ip_address'] }}"
+  end_ip_address       = "{{ params['end_ip_address'] }}"
+}

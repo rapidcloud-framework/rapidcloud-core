@@ -1,0 +1,271 @@
+{
+    "type": "Theia::Action",
+    "label": "Redshift Serverless",
+    "id": "redshift_create_serverless",
+    "steps": [
+        {
+            "type": "Theia::Step::Grid",
+            "id": "redshift_create_serverless",
+            "datasource": "data?type=metadata&filter_name=module,command&filter_value=redshift,create_serverless",
+            "env_param_required": true,
+            "columns": [
+                "name",
+                "timestamp",
+                "redshift_base_capacity",
+                "redshift_set_usage_limit",
+                "redshift_max_capacity"
+            ],
+            "title": "Redshift Serverless",
+            "description": "Deploy a Redshift Serverless Cluster",
+            "submit": "Continue"
+        },
+        {
+            "type": "Theia::Step::Form",
+            "id": "redshift_create_serverless",
+            "title": "Redshift Serverless",
+            "description": "Deploy a Redshift Serverless Cluster",
+            "submit": "Submit",
+            "not_editable": true,
+            "commands": [
+                {
+                    "label": "Remove",
+                    "require_confirmation": true,
+                    "confirmation_message": "Are you sure you want to remove this item?",
+                    "command": {
+                        "phase": "undo-command"
+                    },
+                    "new_hide": true
+                },
+                {
+                    "label": "Create",
+                    "command": {
+                        "phase": "redshift",
+                        "command": "create_serverless",
+                        "refresh_status": true
+                    }
+                }
+            ],
+            "controls": [
+                {
+                    "type": "Theia::Control::Input",
+                    "id": "name",
+                    "label": "Name",
+                    "help": "Enter A Namespace name, this will be used for both Namespace and Workgroup",
+                    "inputType": "text"
+                },
+                {
+                    "type": "Theia::Control::Select",
+                    "id": "redshift_vpc_id",
+                    "label": "VPC ID",
+                    "help": "The VPC the cluster is deployed to",
+                    "datasource": "custom/module_redshift_vpcs?extra=true&module_name_arg=redshift",
+                    "validations": [
+                        {
+                            "type": "Theia::Validation::Required",
+                            "message": "VPC ID is required"
+                        }
+                    ]
+                },
+                {
+                    "type": "Theia::Control::MultiSelect",
+                    "id": "redshift_subnet_ids",
+                    "label": "Subnets",
+                    "help": "Select at least 3 subnet ids in different AZs to place your Redshift serverless in",
+                    "datasource": "custom/module_redshift_subnets?extra=true&module_name_arg=redshift",
+                    "validations": [
+                        {
+                            "type": "Theia::Validation::Required",
+                            "message": "3 subnets are required"
+                        }
+                    ]
+                },
+                {
+                    "type": "Theia::Control::Select",
+                    "id": "redshift_base_capacity",
+                    "label": "Base Capacity (RPU) ",
+                    "help": "Base Capacity (RPU)",
+                    "default": "32",
+                    "datasource": "custom/module_redshift_rpus?extra=true&module_name_arg=redshift&capacity=32",
+                    "validations": [
+                        {
+                            "type": "Theia::Validation::Required",
+                            "message": "Please select a base capacity"
+                        }
+                    ]
+                },
+                {
+                    "type": "Theia::Control::Select",
+                    "id": "redshift_set_usage_limit",
+                    "label": "Usage Limit",
+                    "help": "Select \"Enabled\" to apply a max usage limit to Redshift serverless",
+                    "inputType": "text",
+                    "default": "false",
+                    "options": [
+                        {
+                            "type": "Theia::Option",
+                            "label": "Disabled",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "false",
+                                "disableControls": [
+                                    "redshift_max_capacity",
+                                    "redshift_usage_period",
+                                    "redshift_usage_type",
+                                    "redshift_breach_action"
+                                ],
+                                "enableControls": []
+                            }
+                        },
+                        {
+                            "type": "Theia::Option",
+                            "label": "Enabled",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "true",
+                                "enableControls": [
+                                    "redshift_max_capacity",
+                                    "redshift_usage_period",
+                                    "redshift_usage_type",
+                                    "redshift_breach_action"
+                                ],
+                                "disableControls": []
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Theia::Control::Select",
+                    "id": "redshift_max_capacity",
+                    "label": "Max Capacity (RPU) ",
+                    "help": "Max Capacity (RPU)",
+                    "default": "512",
+                    "datasource": "custom/module_redshift_rpus?extra=true&module_name_arg=redshift&capacity=512"
+                },
+                {
+                    "type": "Theia::Control::Select",
+                    "id": "redshift_usage_period",
+                    "label": "The period to apply the Usage Limit to",
+                    "help": "",
+                    "default": "monthly",
+                    "options": [
+                        {
+                            "type": "Theia::Option",
+                            "label": "monthly",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "monthly",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Theia::Option",
+                            "label": "weekly",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "weekly",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Theia::Option",
+                            "label": "daily",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "daily",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Theia::Control::Select",
+                    "id": "redshift_usage_type",
+                    "label": "The type of Redshift Serverless usage to create a usage limit for",
+                    "help": "",
+                    "default": "serverless-compute",
+                    "options": [
+                        {
+                            "type": "Theia::Option",
+                            "label": "serverless-compute",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "serverless-compute",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Theia::Option",
+                            "label": "cross-region-datasharing",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "cross-region-datasharing",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Theia::Control::Select",
+                    "id": "redshift_breach_action",
+                    "label": "The action that Redshift Serverless Cluster takes when the limit is reached",
+                    "help": "",
+                    "default": "log",
+                    "options": [
+                        {
+                            "type": "Theia::Option",
+                            "label": "log",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "log",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Theia::Option",
+                            "label": "deactivate",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "deactivate",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "type": "Theia::Option",
+                            "label": "emit-metric",
+                            "value": {
+                                "type": "Theia::DataOption",
+                                "value": "emit-metric",
+                                "disableControls": [
+                                    ""
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Theia::Control::KeyValue",
+                    "id": "tags",
+                    "label": "Tags",
+                    "help": "Tags you wish to apply to the Redshift Serverless cluster",
+                    "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=redshift,${name}&result=params,tags",
+                    "add_value_label": "Tags"
+                }
+            ]
+        }
+    ],
+    "info": "### This file is optional\n\n\n\nUse it to provide help screen for the module. If not needed, remove this file"
+}

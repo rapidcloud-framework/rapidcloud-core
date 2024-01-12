@@ -1,0 +1,92 @@
+{
+  "type": "Theia::Action",
+  "label": "FSx for Windows",
+  "id": "fsx",
+  "module": "fsx",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "fsx",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=fsx",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "fsx_ad_service_name",
+        "fsx_storage_capacity",
+        "fsx_throughput_capacity",
+        "timestamp"
+      ],
+      "title": "FSx for Windows",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "fsx",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "fsx",
+            "command": "create",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "Name",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "fsx_ad_service_name",
+          "cli_id": "ad_service_name",
+          "label": "AD Service Name",
+          "help": "Directory FQN (corp.example.com)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "fsx_ad_admin_password",
+          "cli_id": "ad_admin_password",
+          "label": "AD Admin Password",
+          "inputType": "password"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "fsx_storage_capacity",
+          "cli_id": "storage_capacity",
+          "label": "Storage Capacity",
+          "help": "(GiB) minimum of 32 and maximum of 65536",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "fsx_throughput_capacity",
+          "cli_id": "throughput_capacity",
+          "label": "Throughput Capacity",
+          "help": "Throughput (MB/s) of the file system in power of 2 increments, minimum of 8 and maximum of 2048",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

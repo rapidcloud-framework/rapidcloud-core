@@ -1,0 +1,49 @@
+module "{{fqn}}" {
+  source = "{{ module_source }}"
+    env  = "{{ env }}"
+    profile = "{{ profile }}"
+    fqn = "{{ fqn }}"
+    workload = "{{ workload }}"
+    cmd_id = "{{ cmd_id }}"
+    cluster_name  = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_cluster_info.id
+    eks_oidc_provider  = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_oidc_provider
+    compute_type  = "{{ params["compute_type"] }}"
+    subnet_ids = {
+    {%- if 'subnet_ids' in params.keys() and params["subnet_ids"] != ""  %}   
+    {% set subnet_list = params["subnet_ids"].split(',') %}
+    {% for subnet in subnet_list -%}
+    {{ subnet }} = module.{{ profile }}_aws_subnet_{{ subnet }}.id
+    {% endfor -%}
+    {% endif %}
+    }
+    eks_version  = "{{ params["eks_version"] }}"
+    enable_aws_coredns  = "{{ params["enable_aws_coredns"] }}"
+    aws_coredns_version  = "{{ params["aws_coredns_version"] }}"
+    aws_coredns_replica_count  = "{{ params["aws_coredns_replica_count"] }}"
+    enable_aws_kube_proxy  = "{{ params["enable_aws_kube_proxy"] }}"
+    aws_kube_proxy_version  = "{{ params["aws_kube_proxy_version"] }}"
+    enable_aws_vpc_cni  = "{{ params["enable_aws_vpc_cni"] }}"
+    aws_vpc_cni_version  = "{{ params["aws_vpc_cni_version"] }}"
+    enable_aws_ebs_csi  = "{{ params["enable_aws_ebs_csi"] }}"
+    aws_ebs_csi_version  = "{{ params["aws_ebs_csi_version"] }}"
+    {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+
+    depends_on = [
+      module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }} 
+    ]
+
+    providers = {
+      # helm       = helm.{{ profile }}_{{ params["cluster_name"] }}
+      kubernetes = kubernetes.{{ profile }}_{{ params["cluster_name"] }}
+    }
+}
+
+{% for k, v in params.items() %}
+# {{k}} -> {{ v }}
+{% endfor %}

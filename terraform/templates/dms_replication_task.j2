@@ -1,0 +1,37 @@
+resource "aws_dms_replication_task" "{{ profile | replace("_", "-") }}-{{resource_name | replace("_", "-") }}-{{ resource_type | replace("_", "-") }}" {
+
+
+  ################################
+  migration_type           = "{{ params['migration_type'] | default('full-load')}}"
+  replication_instance_arn = module.{{ profile }}_{{ params['replication_instance'] }}_dms_replication_instance.arn
+  replication_task_id      = replace("{{ profile }}_{{ resource_name }}", "_", "-")
+  source_endpoint_arn      = module.{{ profile }}_{{ params['source_endpoint'] }}_dms_source_endpoint.arn
+  target_endpoint_arn      = module.{{ profile }}_{{ params['target_endpoint'] }}_dms_s3_target_endpoint.arn
+
+  tags = {
+    "Name"     = "{{ profile }}_{{ resource_name }}"
+      "env" = "{{ env }}"
+      "profile" = "{{ name }}"
+      "workload" = "{{ workload }}"
+      "client" = "{{ client }}"
+      "author" = "rapid-cloud"
+  }
+
+  lifecycle {
+    ignore_changes = [replication_task_settings, table_mappings]
+  }
+
+  ############################################################
+  # This will be done elsewhere
+  ############################################################
+
+
+  replication_task_settings = "{}"
+
+  ############################################################
+  # This will be done elsewhere
+  ############################################################
+
+
+  table_mappings = "{\"rules\":[{\"rule-type\":\"selection\",\"rule-id\":\"1\",\"rule-name\":\"1\",\"object-locator\":{\"schema-name\":\"%\",\"table-name\":\"%\"},\"rule-action\":\"include\"}]}"
+}

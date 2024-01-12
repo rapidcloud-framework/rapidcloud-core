@@ -1,0 +1,48 @@
+{
+  "s3": {
+    "create_bucket": {
+      "enabled": true,
+      "help": "",
+      "template_section": "storage",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": false,
+      "id": "name",
+      "immutable": true,
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Bucket Name. It will be automatically prefixed with your environment name.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "ls": {
+      "enabled": false,
+      "help": "",
+      "template_section": "",
+      "template_enabled": false
+    },
+    "enable_trend": {
+      "enabled": false,
+      "help": "",
+      "template_section": "",
+      "template_enabled": false,
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Bucket Name. It will be automatically prefixed with your environment name.",
+          "required": true,
+          "default": ""
+        },
+        "enable_trend": {
+          "name": "enable_trend",
+          "prompt": "Enable Trend Micro Cloud One File Storage Security [yes|no]",
+          "required": false,
+          "default": "no"
+        }
+      }
+    }
+  }
+}

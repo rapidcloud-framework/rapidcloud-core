@@ -1,0 +1,117 @@
+{
+    "type": "Theia::Action",
+    "label": "Custom Role Subscription",
+    "id": "create_role_assignment_subscription",
+    "module": "az_lz",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "create_role_assignment_subscription",
+        "datasource": "data?type=metadata&filter_name=command&filter_value=create_role_assignment_subscription",
+        "env_param_required": true,
+        "columns": [
+          "name",
+          "az_lz_permissions_actions",
+          "az_lz_permissions_noactions",
+          "az_lz_assignable_scopes"
+        ],
+        "title": "Custom Role Subscription",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "create_role_assignment_subscription",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create",
+            "command": {
+              "phase": "az_lz",
+              "command": "create_role_assignment_subscription",
+              "refresh_status": true
+            }
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Input",
+            "id": "name",
+            "cli_id": "name",
+            "label": "Role Name",
+            "help": "",
+            "inputType": "text",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Name is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::TextArea",
+            "id": "az_lz_permissions_actions",
+            "label": "Permission Actions",
+            "help": "",
+            "inputType": "text",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Permission Actions is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::TextArea",
+            "id": "az_lz_permissions_noactions",
+            "label": "Permission no Actions",
+            "help": "",
+            "inputType": "text"
+          },
+          {
+            "type": "Theia::Control::TextArea",
+            "id": "az_lz_data_actions",
+            "label": "Data Actions",
+            "help": "",
+            "inputType": "text"
+          },
+          {
+            "type": "Theia::Control::TextArea",
+            "id": "az_lz_data_noactions",
+            "label": "Data no Actions",
+            "help": "",
+            "inputType": "text"
+          },
+          {
+            "type": "Theia::Control::MultiSelect",
+            "id": "az_lz_assignable_scopes",
+            "label": "Assignable Scopes",
+            "help": "",
+            "datasource": "custom/assignable_scopes?extra=true&module_name_arg=az_lz",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Assignable scope is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_lz_principal",
+            "label": "Principal",
+            "help": "",
+            "datasource": "custom/users?extra=true&module_name_arg=az_lz",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Principal is required"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

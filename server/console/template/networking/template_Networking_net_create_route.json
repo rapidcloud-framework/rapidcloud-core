@@ -1,0 +1,99 @@
+{
+  "type": "Theia::Action",
+  "label": "Create Routes",
+  "id": "net_create_route",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "net_create_route",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=net,create_route",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "timestamp",
+        "destination_cidr",
+        "route_tables",
+        "transit_gateway_id",
+        "vpc_peering_connection_id"
+      ],
+      "title": "Create Routes",
+      "description": "Establish Additional Routes",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "net_create_route",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "net",
+            "command": "create_route",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "destination_cidr_block",
+          "cli_id": "destination_cidr_block",
+          "label": "Destination CIDR",
+          "help": "The CIDR you want to establish a route to",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Destination CIDR is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "route_tables",
+          "cli_id": "route_tables",
+          "label": "Route Tables",
+          "help": "The Route Tables that will be updated to provide access using this route",
+          "inputType": "text",
+          "datasource": "custom/module_net_route_tables?extra=true&module_name_arg=net"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "transit_gateway_id",
+          "cli_id": "transit_gateway_id",
+          "label": "Transit Gateway ID",
+          "help": "The Transit Gateway ID",
+          "inputType": "text",
+          "datasource": "custom/module_net_tgw?extra=true&module_name_arg=net"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "vpc_peering_connection_id",
+          "cli_id": "vpc_peering_connection_id",
+          "label": "VPC Peer ID",
+          "help": "The VPC Peer ID",
+          "inputType": "text",
+          "datasource": "custom/module_net_vpc_peers?extra=true&module_name_arg=net"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "type": "Theia::Action",
+  "label": "DNS Zone",
+  "id": "create_dns_zone",
+  "module": "az_net",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_dns_zone",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_dns_zone",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_net_resource_group"
+      ],
+      "title": "DNS Zone",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_dns_zone",
+      "title": "DNS Zones",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_net",
+            "command": "create_dns_zone",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_net_domain_name",
+          "cli_id": "domain_name",
+          "label": "Domain Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

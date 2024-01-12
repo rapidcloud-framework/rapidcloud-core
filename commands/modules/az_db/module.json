@@ -1,0 +1,269 @@
+{
+  "az_db": {
+    "create_sql_server": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_database",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the MSSQL Server.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the MSSQL Server.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "dns_alias": {
+          "name": "dns_alias",
+          "prompt": "Enter the dns_alias name.",
+          "required": true,
+          "default": ""
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Enter the subnet_id.",
+          "required": true,
+          "default": ""
+        },
+        "start_ip_address": {
+          "name": "start_ip_address",
+          "prompt": "Enter the start_ip_address.",
+          "required": true,
+          "default": ""
+        },
+        "end_ip_address": {
+          "name": "end_ip_address",
+          "prompt": "Enter the end_ip_address.",
+          "required": true,
+          "default": ""
+        },
+        "administrator_login": {
+          "name": "administrator_login",
+          "prompt": "Enter the administrator_login.",
+          "required": false,
+          "default": ""
+        },
+        "administrator_login_password": {
+          "name": "administrator_login_password",
+          "prompt": "Enter the administrator_login_password.",
+          "required": false,
+          "default": ""
+        },
+        "ad_admin": {
+          "name": "ad_admin",
+          "prompt": "Enter the AD Admin username.",
+          "required": false,
+          "default": ""
+        },
+        "object_id": {
+          "name": "object_id",
+          "prompt": "Enter the Object Id",
+          "required": false,
+          "default": ""
+        },
+        "user_identity": {
+          "name": "user_identity",
+          "prompt": "Enter the User Identity",
+          "required": false,
+          "default": ""
+        },
+        "tde_key": {
+          "name": "tde_key",
+          "prompt": "Enter the TDE Key",
+          "required": false,
+          "default": ""
+        },
+        "tde_enabled_create": {
+          "name": "tde_enabled_create",
+          "prompt": "true or false",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "create_sql_db": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_database",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the MSSQL Database.",
+          "required": true,
+          "default": ""
+        },
+        "server_id": {
+          "name": "server_id",
+          "prompt": "Enter the location of the MSSQL Server.",
+          "required": true,
+          "default": ""
+        },
+        "max_size_gb": {
+          "name": "max_size_gb",
+          "prompt": "Enter the Size",
+          "required": true,
+          "default": ""
+        },
+        "start_ip_address": {
+          "name": "start_ip_address",
+          "prompt": "Enter the start_ip_address.",
+          "required": true,
+          "default": ""
+        },
+        "end_ip_address": {
+          "name": "end_ip_address",
+          "prompt": "Enter the end_ip_address.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_cosmosdb_nosql": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_database",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter the name of the MSSQL Database.",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the MSSQL Server.",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "total_throughput_limit": {
+          "name": "total_throughput_limit",
+          "prompt": "Enter the Total Throughput Limit.",
+          "required": true,
+          "default": ""
+        },
+        "enable_free_tier": {
+          "name": "enable_free_tier",
+          "prompt": "Enter Enable Free Tier.",
+          "required": true,
+          "default": ""
+        },
+        "geo_location": {
+          "name": "geo_location",
+          "prompt": "Enter Enable Geolocation",
+          "required": true,
+          "default": ""
+        },
+        "enable_multiple_write_locations": {
+          "name": "enable_multiple_write_locations",
+          "prompt": "Enter Enable Multiple Write Locations",
+          "required": true,
+          "default": ""
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Enter the subnet_id.",
+          "required": true,
+          "default": ""
+        },
+        "enable_serverless": {
+          "name": "enable_serverless",
+          "prompt": "Enable Serverless",
+          "type": "boolean",
+          "required": false,
+          "default": ""
+        },
+        "key_vault_key_id": {
+          "name": "key_vault_key_id",
+          "prompt": "Enable Key id",
+          "required": false,
+          "default": ""
+        },
+        "backup_type": {
+          "name": "backup_type",
+          "prompt": "Enter Backup Type",
+          "required": false,
+          "default": ""
+        },
+        "storage_redundancy": {
+          "name": "storage_redundancy",
+          "prompt": "Enter Storage Redundancy",
+          "required": false,
+          "default": ""
+        },
+        "interval_in_minutes": {
+          "name": "interval_in_minutes",
+          "prompt": "Enter interval in minutes",
+          "required": false,
+          "default": ""
+        },
+        "retention_in_hours": {
+          "name": "retention_in_hours",
+          "prompt": "Enter retention in hours",
+          "required": false,
+          "default": ""
+        },
+        "ip_range_filter": {
+          "name": "ip_range_filter",
+          "prompt": "Enter allowed Ips",
+          "required": false,
+          "default": ""
+        },
+        "identity_type": {
+          "name": "identity_type",
+          "prompt": "Enter the type of managed identity used for authentication",
+          "required": false,
+          "default": ""
+        },
+        "identity_ids": {
+          "name": "identity_ids",
+          "prompt": "Enter the user assigned managed identity IDs used for authentication",
+          "required": false
+        },
+        "database_name": {
+          "name": "database_name",
+          "prompt": "Enter the Database Name",
+          "required": false,
+          "default": ""
+        },
+        "containers": {
+          "name": "containers",
+          "prompt": "Enter the container definition",
+          "required": false,
+          "default": "",
+          "type": "json"
+        }
+      }
+    }
+  }
+}

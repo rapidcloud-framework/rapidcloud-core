@@ -1,0 +1,83 @@
+{
+  "type": "Theia::Action",
+  "label": "Route 53",
+  "id": "route53",
+  "module": "route53",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "route53",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=route53",
+      "env_param_required": true,
+      "columns": [
+        "route53_record_name",
+        "timestamp",
+        "route53_record_type",
+        "route53_zone_id",
+        "route53_ttl",
+        "route53_record_list"
+      ],
+      "title": "Route 53",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "route53",
+      "title": "Route 53 Record",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Add Record",
+          "command": {
+            "phase": "route53",
+            "command": "add_record",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "route53_record_name",
+          "cli_id": "record_name",
+          "label": "Record Name",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "route53_record_type",
+          "cli_id": "record_type",
+          "label": "Record Type",
+          "help": "Valid values are: A",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "route53_zone_id",
+          "cli_id": "zone_id",
+          "label": "Hosted Zone ID",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "route53_ttl",
+          "cli_id": "ttl",
+          "label": "Record TTL (seconds)",
+          "inputType": "text",
+          "help": "TTL defaults to 300"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "route53_record_list",
+          "cli_id": "record_list",
+          "label": "Records List",
+          "inputType": "text",
+          "help": "Comma-separated list of records"
+        }
+      ]
+    }
+  ]
+}

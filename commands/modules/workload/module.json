@@ -1,0 +1,128 @@
+{
+  "workload": {
+    "enable_pause": {
+      "enabled": true,
+      "help": "",
+      "template_section": "workload",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "args": {
+        "module_aws_instance": {
+          "name": "module_aws_instance",
+          "prompt": "Enable Stop/Start EC2 Instances (aws_instance) [true|false]",
+          "required": true,
+          "default": false,
+          "type": "boolean"
+        },
+        "module_aws_autoscaling_group": {
+          "name": "module_aws_autoscaling_group",
+          "prompt": "Enable Downsize/Upsize Auto Scaling Groups (aws_autoscaling_group) [true|false]",
+          "required": true,
+          "default": false,
+          "type": "boolean"
+        },
+        "module_aws_ecs_cluster": {
+          "name": "module_aws_ecs_cluster",
+          "prompt": "Enable Downsize/Upsize ECS Fargate Cluster (aws_ecs_cluster) [true|false]",
+          "required": true,
+          "default": false,
+          "type": "boolean"
+        },
+        "module_aws_db_instance": {
+          "name": "module_aws_db_instance",
+          "prompt": "Enable Start/Stop RDS Instances (aws_db_instance) [true|false]",
+          "required": true,
+          "default": false,
+          "type": "boolean"
+        },
+        "module_aws_rds_cluster": {
+          "name": "module_aws_rds_cluster",
+          "prompt": "Enable Start/Stop Aurora Clusters, including read replica (aws_rds_cluster) [true|false]",
+          "required": true,
+          "default": false,
+          "type": "boolean"
+        },
+        "module_aws_redshift_cluster": {
+          "name": "module_aws_redshift_cluster",
+          "prompt": "Enable Pause/Resume Redshift Clusters (aws_redshift_cluster) [true|false]",
+          "required": true,
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "pause": {
+      "enabled": true,
+      "help": "",
+      "template_section": "workload",
+      "template_enabled": true,
+      "args": {
+        "resource_type": {
+          "name": "resource_type",
+          "prompt": "Resource Types to Pause (comma separated)",
+          "required": true,
+          "default": "all"
+        }
+      }
+    },
+    "resume": {
+      "enabled": true,
+      "help": "",
+      "template_section": "workload",
+      "template_enabled": true,
+      "args": {
+        "resource_type": {
+          "name": "resource_type",
+          "prompt": "Resource Types to Resume (comma separated)",
+          "required": true,
+          "default": "all"
+        }
+      }
+    },
+    "schedule": {
+      "enabled": true,
+      "help": "",
+      "template_section": "workload",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Schedule Name (up to 12 characters, no spaces)",
+          "required": true,
+          "default": ""
+        },
+        "schedule_description": {
+          "name": "schedule_description",
+          "prompt": "Schedule Description",
+          "required": true,
+          "default": ""
+        },
+        "resource_type": {
+          "name": "resource_type",
+          "prompt": "Resource Types to Pause (comma separated)",
+          "required": true,
+          "default": "all"
+        },
+        "scheduled_pause": {
+          "name": "scheduled_pause",
+          "prompt": "Cron expression to pause",
+          "required": false,
+          "default": ""
+        },
+        "scheduled_resume": {
+          "name": "scheduled_resume",
+          "prompt": "Cron expression to resume",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "status": {
+      "enabled": true,
+      "help": "",
+      "template_section": "workload",
+      "template_enabled": true
+    }
+  }
+}

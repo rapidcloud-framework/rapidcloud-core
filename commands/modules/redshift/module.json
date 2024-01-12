@@ -1,0 +1,73 @@
+{
+  "redshift": {
+    "create": {
+      "enabled": true,
+      "help": "Create Redshift Cluster",
+      "template_section": "databases",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Redshift Cluster Name",
+          "prompt": "Enter Name with no spaces, hyphens or special characters",
+          "required": true,
+          "default": "main"
+        }
+      }
+    },
+    "add_table": {
+      "enabled": true,
+      "help": "Add table to an existing Redshift cluster",
+      "template_section": "databases",
+      "template_enabled": true,
+      "create_aws_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Redshift Table Name",
+          "prompt": "Enter Name with no spaces or special characters",
+          "required": true,
+          "default": ""
+        },
+        "db_name": {
+          "name": "Redshift Cluster Name",
+          "prompt": "Enter Existing Redshift Cluster Name",
+          "required": true,
+          "default": ""
+        },
+        "primary_key": {
+          "name": "Primary Key",
+          "prompt": "Enter Table Primary Key",
+          "required": true,
+          "default": ""
+        },
+        "sort_key": {
+          "name": "Sort Key",
+          "prompt": "Enter Comma separated sort keys",
+          "required": false,
+          "default": ""
+        },
+        "dist_key": {
+          "name": "Distribution Key",
+          "prompt": "Enter Distribution Key",
+          "required": false,
+          "default": ""
+        },
+        "dist_style": {
+          "name": "Data Distribution Style",
+          "prompt": "Enter data distribution style { AUTO | EVEN | KEY | ALL }",
+          "required": false,
+          "default": "AUTO"
+        }
+      }
+    },
+    "generate-schema": {
+      "enabled": false,
+      "help": "",
+      "template_section": "",
+      "template_enabled": false
+    }
+  }
+}

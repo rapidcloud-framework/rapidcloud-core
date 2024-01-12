@@ -1,0 +1,13 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source              = "{{ module_source }}"
+  name                = "{{ resource_name }}"
+  location            = "{{ params['location'] }}"
+  resource_group      = "{{params['resource_group']}}"
+  sku_name            = "{{ params['sku_name'] }}"
+  sku_tier            = "{{ params['sku_tier'] }}"
+  {% if params['subnet_id'] is defined and params['public_ip_address_id'] is defined %}
+  subnet_id            = "{{ params['subnet_id'] }}"
+  public_ip_address_id = "{{ params['public_ip_address_id'] }}"
+  {% endif %}
+
+}

@@ -1,0 +1,61 @@
+{
+    "type": "Theia::Action",
+    "label": "Create Conformity Group",
+    "id": "trendmicro_conformity_create_group",
+    "module": "trendmicro",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "trendmicro_conformity_create_group",
+        "datasource": "data?type=metadata&filter_name=module,command&filter_value=trendmicro,conformity_create_group",
+        "env_param_required": true,
+        "columns": ["name","timestamp"],
+        "title": "Create Conformity Group",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "trendmicro_conformity_create_group",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create",
+            "command": {
+              "phase": "trendmicro",
+              "command": "conformity_create_group",
+              "refresh_status": true                 
+            }
+          },
+          {
+            "label": "Remove",
+            "require_confirmation": true,
+            "confirmation_message": "Are you sure you want to remove this item?",
+            "command": {
+              "phase": "undo-command"
+            },
+            "new_hide": true
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Input",
+            "id": "name",
+            "label": "Group Name",
+            "help": "",
+            "inputType": "text"
+          },
+          {
+            "type": "Theia::Control::Input",
+            "id": "trendmicro_conformity_tags",
+            "label": "Tags",
+            "help": "",
+            "inputType": "text"
+          }
+        ]
+      }
+    ]
+  }

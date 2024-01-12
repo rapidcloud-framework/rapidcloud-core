@@ -1,0 +1,31 @@
+resource "aws_glue_trigger" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  name = "{{ profile }}_{{ resource_name }}_{{ resource_type }}"
+  type = "{{ params['type']}}"
+
+
+  actions {
+    job_name = "{{ params['actions']['job_name'] }}"
+    arguments = {
+    {% if params['actions']['arguments'] is mapping %}
+    {% for k, v in params['actions']['arguments'].items() %}
+    "{{- k }}" = "{{ v -}}"
+    {% endfor %}
+    {% endif %}
+    }
+  }
+
+ {% if params['predicate']['conditions'] is mapping %}
+   predicate {
+    conditions {
+      {% for k, v in params['predicate']['conditions'].items() %}
+      {{- k }} = "{{ v -}}"
+      {% endfor %}
+    }
+  }
+{% endif %}
+
+  lifecycle {
+	ignore_changes = [enabled]
+  }
+}
+

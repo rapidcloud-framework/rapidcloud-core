@@ -1,0 +1,758 @@
+{
+ "version": "1.3.0",
+ "cellSize": 20,
+ "rows": 27,
+ "columns": 45,
+ "icons": [
+  {
+   "id": 70,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/identity/10221-icon-service-Azure-Active-Directory.svg",
+   "name": "account::*::*",
+   "text": "Azure Active Directory Tenant",
+   "x": 22,
+   "y": 1,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 72,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Cloud_light-bg@4x.png",
+   "name": "",
+   "text": "Azure",
+   "x": 5,
+   "y": 0,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 73,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10011-icon-service-Management-Groups.svg",
+   "name": "",
+   "text": "Identity MG",
+   "x": 9,
+   "y": 13,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 75,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10011-icon-service-Management-Groups.svg",
+   "name": "",
+   "text": "Landing Zones MG",
+   "x": 24,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 76,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10011-icon-service-Management-Groups.svg",
+   "name": "",
+   "text": "Sandbox MG",
+   "x": 33,
+   "y": 13,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 77,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10011-icon-service-Management-Groups.svg",
+   "name": "",
+   "text": "Platform MG",
+   "x": 17,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 78,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10011-icon-service-Management-Groups.svg",
+   "name": "",
+   "text": "Network MG",
+   "x": 21,
+   "y": 13,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 79,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10011-icon-service-Management-Groups.svg",
+   "name": "",
+   "text": "Management MG",
+   "x": 15,
+   "y": 13,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 80,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/management+%2B+governance/10316-icon-service-Policy.svg",
+   "name": "",
+   "text": "Identity Policy",
+   "x": 11,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 81,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10002-icon-service-Subscriptions.svg",
+   "name": "",
+   "text": "Identity Subscription",
+   "x": 11,
+   "y": 17,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 86,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/management+%2B+governance/10316-icon-service-Policy.svg",
+   "name": "",
+   "text": "Management Policy",
+   "x": 17,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 88,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/management+%2B+governance/10316-icon-service-Policy.svg",
+   "name": "",
+   "text": "Sandbox Policy",
+   "x": 35,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 89,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/management+%2B+governance/10316-icon-service-Policy.svg",
+   "name": "",
+   "text": "App Prod Policy",
+   "x": 29,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 90,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/management+%2B+governance/10316-icon-service-Policy.svg",
+   "name": "",
+   "text": "Network Policy",
+   "x": 23,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 91,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10002-icon-service-Subscriptions.svg",
+   "name": "",
+   "text": "Management Subscription",
+   "x": 17,
+   "y": 17,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 101,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/management+%2B+governance/10316-icon-service-Policy.svg",
+   "name": "",
+   "text": "Root Policy",
+   "x": 26,
+   "y": 5,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 102,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10002-icon-service-Subscriptions.svg",
+   "name": "",
+   "text": "Sandbox 1 Subscription",
+   "x": 35,
+   "y": 17,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 103,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10002-icon-service-Subscriptions.svg",
+   "name": "",
+   "text": "Sandbox N Account",
+   "x": 35,
+   "y": 19,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 104,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10002-icon-service-Subscriptions.svg",
+   "name": "",
+   "text": "Network Subscription",
+   "x": 23,
+   "y": 17,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 108,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10011-icon-service-Management-Groups.svg",
+   "name": "",
+   "text": "App MG",
+   "x": 27,
+   "y": 13,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 111,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10011-icon-service-Management-Groups.svg",
+   "name": "",
+   "text": "Root MG",
+   "x": 22,
+   "y": 5,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 112,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10002-icon-service-Subscriptions.svg",
+   "name": "",
+   "text": "App Prod Subscription",
+   "x": 29,
+   "y": 21,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 113,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/general/10002-icon-service-Subscriptions.svg",
+   "name": "",
+   "text": "App Non Prod Subscription",
+   "x": 29,
+   "y": 19,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 114,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/management+%2B+governance/10316-icon-service-Policy.svg",
+   "name": "",
+   "text": "App Non Prod Policy",
+   "x": 29,
+   "y": 17,
+   "active": null,
+   "display": null
+  }
+ ],
+ "links": [
+  {
+   "from": 72,
+   "to": 72,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "Azure",
+   "path": [
+    {
+     "x": 5,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 5,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 41,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 41,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 5,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 73,
+   "to": 73,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 9,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 9,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 9,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 79,
+   "to": 79,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 15,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 15,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 19,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 19,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 15,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 78,
+   "to": 78,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 21,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 25,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 25,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 76,
+   "to": 76,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 33,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 33,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 37,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 37,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 33,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 108,
+   "to": 108,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 27,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 27,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 27,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 70,
+   "to": 111,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 22,
+     "y": 2,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 22,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 111,
+   "to": 101,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 22,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 111,
+   "to": 77,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 22,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 22,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 17,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 17,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 111,
+   "to": 75,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 22,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 22,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 24,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 24,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 77,
+   "to": 73,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 17,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 17,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 9,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 9,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 77,
+   "to": 79,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 17,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 17,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 15,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 15,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 77,
+   "to": 78,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 17,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 17,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 75,
+   "to": 108,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 24,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 24,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 27,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 27,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 111,
+   "to": 76,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 22,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 22,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 33,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 33,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  }
+ ],
+ "grid": false
+}

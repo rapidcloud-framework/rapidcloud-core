@@ -1,0 +1,2 @@
+## Note to Igor
+ I noticed that you have a metadata.py file inside of our kc_common folder. I did NOT want to mess with your version, so I created my own. I was going to refactor all of the modules out of the Lambda folders and place them into a common module like we did for modules and for our Josten's project.  I have refactored all of the our job templates to extract out all the functions into class modules, so that the other scripts can use. I have also done the same thing for our Lambda functions.

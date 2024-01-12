@@ -1,0 +1,339 @@
+{
+  "sections": [
+    {
+      "type": "Theia::Section",
+      "label": "Az_compute",
+      "route": "az_compute",
+      "id": "az_compute",
+      "enabled": true,
+      "actions": [
+        {
+          "type": "Theia::Action",
+          "label": "Virtual Machine Scale Set",
+          "id": "az_compute_create_virtual_machine_scale_set",
+          "module": "az_compute",
+          "steps": [
+            {
+              "type": "Theia::Step::Grid",
+              "id": "az_compute_create_virtual_machine_scale_set",
+              "datasource": "data?type=metadata&filter_name=command&filter_value=create_virtual_machine_scale_set",
+              "env_param_required": true,
+              "columns": [
+                "name",
+                "virtual_machine_scale_set_location",
+                "timestamp"
+              ],
+              "title": "Virtual Machine Scale Set",
+              "description": "",
+              "submit": "Continue"
+            },
+            {
+              "type": "Theia::Step::Form",
+              "id": "az_compute_create_virtual_machine_scale_set",
+              "title": "",
+              "description": "",
+              "submit": "Submit",
+              "not_editable": true,
+              "commands": [
+                {
+                  "label": "Create Virtual Machine Scale Set",
+                  "command": {
+                    "phase": "az_compute",
+                    "command": "create_scale_set",
+                    "refresh_status": true
+                  }
+                }
+              ],
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "name",
+                  "label": "Scale Set Name",
+                  "help": "The Virtual Machine Scale Set Name",
+                  "inputType": "text",
+                  "validations": [
+                    {
+                      "type": "Theia::Validation::Required",
+                      "message": "Name is required"
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "scale_set_type",
+                  "label": "OS Scale set type",
+                  "help": "The Virtual Machine Scale Scale set type windows/linux",
+                  "inputType": "text",
+                  "options": [
+                    {
+                      "type": "Theia::Option",
+                      "label": "linux",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "linux",
+                        "disableControls": [
+                          "admin_password"
+                        ]
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "windows",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "windows",
+                        "disableControls": [
+                          "admin_ssh_key_username",
+                          "admin_ssh_key_public_key"
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "az_compute_resource_group_name",
+                  "label": "Resource Group",
+                  "help": "",
+                  "datasource": "custom/resourcegroups?extra=true&module_name_arg=az_compute",
+                  "validations": [
+                    {
+                      "type": "Theia::Validation::Required",
+                      "message": "A Resource Group is required"
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "az_compute_location",
+                  "label": "Location",
+                  "help": "",
+                  "datasource": "custom/locations?extra=true&module_name_arg=az_compute",
+                  "validations": [
+                    {
+                      "type": "Theia::Validation::Required",
+                      "message": "A Location is required"
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "admin_username",
+                  "label": "Admin User Name",
+                  "help": "The username of the local administrator on each Virtual Machine Scale Set instance",
+                  "inputType": "text",
+                  "validations": [
+                    {
+                      "type": "Theia::Validation::Required",
+                      "message": "Admin Username is required"
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "admin_password",
+                  "label": "Admin Password",
+                  "help": "The Password which should be used for the local-administrator on this Virtual Machine",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "instances",
+                  "label": "instances",
+                  "help": "Number of instances to be created in the scale set",
+                  "inputType": "text",
+                  "default": "1"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "admin_ssh_key_username",
+                  "label": "Admin ssh Username",
+                  "help": "The Username for which this Public SSH Key should be configured",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "admin_ssh_key_public_key",
+                  "label": "SSH Public Key",
+                  "help": "The Public Key which should be used for authentication, which needs to be at least 2048-bit and in ssh-rsa format",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "az_compute_sku",
+                  "label": "SKU",
+                  "help": "The VM Instance Type",
+                  "inputType": "text",
+                  "default": "Standard_DS2_v2"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "az_compute_network_interface_name",
+                  "label": "Network Interface Name",
+                  "help": "The Name which should be used for this Network Interface",
+                  "inputType": "text",
+                  "default": "nic1"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "az_compute_network_interface_primary",
+                  "label": "Primary Network Interface?",
+                  "help": "Is this the Primary IP Configuration?",
+                  "inputType": "text",
+                  "default": "true"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "az_compute_network_interface_ip_configuration_name",
+                  "label": "Network Interface IP Config Name",
+                  "help": "The Name which should be used for this IP Configuration",
+                  "inputType": "text",
+                  "default": "ipconfig1"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "az_compute_network_interface_ip_configuration_primary",
+                  "label": "Primary Network Interface IP Config?",
+                  "help": "The Name which should be used for this Network Interface",
+                  "inputType": "text",
+                  "default": "true"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "az_compute_network_interface_ip_configuration_subnet_id",
+                  "label": "Network Interface Subnet ID",
+                  "help": "The ID of the Subnet which this IP Configuration should be connected to",
+                  "datasource": "custom/subnets?extra=true&module_name_arg=az_compute",
+                  "validations": [
+                    {
+                      "type": "Theia::Validation::Required",
+                      "message": "A Subnet ID is required"
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::KeyValue",
+                  "id": "az_compute_tags",
+                  "label": "Tags",
+                  "help": "Tags you wish to apply to the nodes in this Node Group",
+                  "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=az_compute,${name}&result=params,az_compute_tags",
+                  "add_value_label": "Tags for your resource"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "az_compute_os_disk_storage_account_type",
+                  "label": "OS Disk type",
+                  "help": "The Type of Storage Account which should back this the Internal OS Disk",
+                  "options": [
+                    {
+                      "type": "Theia::Option",
+                      "label": "Standard_LRS",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "Standard_LRS"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "StandardSSD_LRS",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "StandardSSD_LRS"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "StandardSSD_ZRS",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "StandardSSD_ZRS"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "Premium_LRS",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "Premium_LRS"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "Premium_ZRS",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "Premium_ZRS"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "az_compute_os_disk_caching",
+                  "label": "OS Disk Caching",
+                  "help": "The Type of Caching which should be used for the Internal OS Disk",
+                  "options": [
+                    {
+                      "type": "Theia::Option",
+                      "label": "None",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "None"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "ReadOnly",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "ReadOnly"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "ReadWrite",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "ReadWrite"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "az_compute_source_image_reference_publisher",
+                  "label": "VM Image Publisher",
+                  "help": "Specifies the publisher of the image used to create the virtual machines",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "az_compute_source_image_reference_offer",
+                  "label": "VM Image Offer",
+                  "help": "Specifies the offer of the image used to create the virtual machines",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "az_compute_source_image_reference_sku",
+                  "label": "VM Image SKU",
+                  "help": "Specifies the SKU of the image used to create the virtual machines",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "az_compute_source_image_reference_version",
+                  "label": "VM Image Version",
+                  "help": "Specifies the version of the image used to create the virtual machine",
+                  "inputType": "text"
+                }
+              ]
+            }
+          ],
+          "info": "### This file is optional\n\n\n\nUse it to provide help screen for the module. If not needed, remove this file",
+          "order": 1000
+        }
+      ]
+    }
+  ]
+}

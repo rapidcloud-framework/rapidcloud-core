@@ -1,0 +1,8 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source       = "../modules/aws_identitystore/{{ resource_type }}"
+  user_name    = "{{ resource_name }}"
+  display_name = "{{ params['display_name'] }}"
+  first_name   = "{{ params['first_name'] }}"
+  last_name    = "{{ params['last_name'] }}"
+  email        = "{{ params['email'] }}"
+}

@@ -1,0 +1,125 @@
+{
+  "all_apps": "support,aws,aws_lz,aws_document_processing,aws_data_pipelines,aws_backend,aws_containers,aws_integrations,azure,gcp",
+  "apps": {
+    "aws": {
+      "order": 1,
+      "enabled": false,
+      "title": "Infrastructure Automation for AWS",
+      "cloud": "aws",
+      "description": "Define, configure and deploy your AWS Infrastructure with complete automation using Terraform"
+    },
+    "aws_data_pipelines":  {
+      "order": 2,
+      "enabled": true,
+      "title": "Data and Analytics for AWS",
+      "cloud": "aws",
+      "description": "Ingest, Transform, Analyze and Search data from various data sources"
+    },
+    "aws_backend": {
+      "order": 4,
+      "enabled": true,
+      "title": "Web and Mobile Backends for AWS",
+      "cloud": "aws",
+      "description": "Setup your Web or Mobile Applications Backend"
+    },
+    "aws_containers": {
+      "order": 5,
+      "enabled": true,
+      "title": "Containers and Kubernetes on AWS",
+      "cloud": "aws",
+      "description": "Setup, configure and deploy your Managed Kubernetes Services and Elastic Container Services"
+    },
+    "aws_document_processing":  {
+      "order": 6,
+      "enabled": true,
+      "title": "Document Processing for AWS",
+      "cloud": "aws",
+      "description": "Process PDF documents, invoices, bills, etc using Amazon Extract and ML"
+    },
+    "aws_integrations":  {
+      "order": 7,
+      "enabled": false,
+      "title": "3rd Party Integrations for AWS",
+      "cloud": "aws",
+      "description": "3rd Party Integrations - Trendmicro, New Relic, etc"
+    },
+    "aws_lz": {
+      "order": 8,
+      "enabled": true,
+      "title": "Landing Zone for AWS",
+      "cloud": "aws",
+      "description": "Setup your AWS Landing Zone, including Org Structure and Networking"
+    },
+    "azure":  {
+      "order": 21,
+      "enabled": true,
+      "title": "Infrastructure Automation for Azure",
+      "cloud": "azure",
+      "description": "Define, configure and deploy your Azure Infrastructure with complete automation using Terraform"
+    },
+    "gcp":  {
+      "order": 31,
+      "enabled": false,
+      "title": "Infrastructure Automation for GCP",
+      "cloud": "gcp",
+      "description": "Define, configure and deploy your GCP Infrastructure with complete automation using Terraform"
+    },
+    "saas_setup": {
+      "order": 98,
+      "enabled": false,
+      "title": "SaaS Account Setup",
+      "cloud": "aws",
+      "description": ""
+    },
+    "support": {
+      "order": 99,
+      "enabled": true,
+      "title": "Administration & Support",
+      "cloud": "aws",
+      "description": "Only available to RapidCloud Support Team"
+    }
+  },
+  "aws": {
+    "home": "all",
+    "setup": "all",
+    "modeling": "aws,aws_document_processing,aws_data_pipelines,aws_integrations,azure,aws_lz,aws_backend,aws_containers",
+    "metadata": "aws,aws_document_processing,aws_data_pipelines,aws_integrations,azure,aws_lz,aws_backend,aws_containers",
+    "modules": "",
+    "organizations": "aws_lz",
+    "VPC": "aws_lz",
+    "ingest": "aws,aws_data_pipelines",
+    "document_processing": "aws_document_processing",
+    "report": "aws_document_processing",
+    "catalog": "aws,aws_data_pipelines",
+    "transform": "aws,aws_data_pipelines",
+    "databases": "aws,aws_data_pipelines,aws_backend",
+    "Elasticache": "aws_backend",
+    "compliance": "aws,aws_data_pipelines",
+    "trendmicro": "aws,aws_integrations",
+    "compute": "aws_backend,aws_data_pipelines",
+    "containers": "aws_containers,aws_backend",
+    "EKS": "aws_containers",
+    "networking": "aws_backend,aws_containers",
+    "search": "aws_backend,aws_containers",
+    "storage": "aws_backend,aws_containers",
+    "deploy": "aws,aws_document_processing,aws_data_pipelines,aws_integrations,azure,aws_lz,aws_backend,aws_containers",
+    "workload": "aws_backend,aws_containers",
+    "logs": "aws,aws_data_pipelines",
+    "test": "",
+    "saas": "support",
+    "saas_setup": "saas_setup"
+  },
+  "azure": {
+    "home": "all",
+    "setup": "all",
+    "metadata": "azure",
+    "Landing Zone": "azure",
+    "network": "azure"
+  },
+  "gcp": {
+    "home": "all",
+    "setup": "all",
+    "metadata": "gcp",
+    "compute": "gcp"
+  }
+}

@@ -1,0 +1,15 @@
+module "{{fqn}}" {
+    source                              = "{{module_source}}"
+    env                                 = "{{ env }}"
+    workload                            = "{{ workload }}"
+    cmd_id                              = "{{ cmd_id }}"
+    profile                             = "{{ profile }}"
+    name                                = "{{ resource_name }}"
+    profile_id                          = module.{{ profile }}_frontdoor_profile_{{ params["profile_id"] }}.id
+    health_probe_protocol               = "{{ params["health_probe_protocol"] }}"
+    health_probe_path                   = "{{ params["health_probe_path"] }}"
+    
+    depends_on = [
+      module.{{ profile }}_frontdoor_profile_{{ params["profile_id"] }}
+    ]
+}

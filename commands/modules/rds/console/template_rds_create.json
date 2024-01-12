@@ -1,0 +1,115 @@
+{
+  "type": "Theia::Action",
+  "label": "RDS/Aurora",
+  "id": "rds",
+  "module": "rds",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "rds",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=rds",
+      "env_param_required": true,
+      "columns": ["name","rds_engine","rds_type"],
+      "title": "Databases",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "rds",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "rds",
+            "command": "create",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Database Name",
+          "help": "Enter database name (no space or special characters)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "rds_engine",
+          "label": "Database Engine",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "MySQL",
+              "value": "mysql"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "PostgreSQL",
+              "value": "postgres"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "rds_type",
+          "label": "AWS Database Service",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "RDS",
+              "value": "rds"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Aurora",
+              "value": "aurora"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "rds_multi_az",
+          "label": "Multi Az",
+          "help": "Multi Az",
+          "default": "no",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "No",
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "rds_database_name",
+          "label": "Schema Name",
+          "help": "Enter schema name (no space or special characters)",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

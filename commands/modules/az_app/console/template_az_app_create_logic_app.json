@@ -1,0 +1,77 @@
+{
+  "type": "Theia::Action",
+  "label": "Azure Logic App",
+  "id": "create_logic_app",
+  "module": "az_app",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_logic_app",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_logic_app",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_app_location",
+        "az_app_resource_group"
+      ],
+      "title": "Logic App",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_logic_app",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "az_app",
+            "command": "create_logic_app",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

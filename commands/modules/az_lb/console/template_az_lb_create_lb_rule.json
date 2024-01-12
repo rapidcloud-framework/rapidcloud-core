@@ -1,0 +1,112 @@
+{
+  "type": "Theia::Action",
+  "label": "Load Balancer Rule",
+  "id": "create_lb_rule",
+  "module": "az_lb",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_lb_rule",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_lb_rule",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_lb_load_balancer"],
+      "title": "Load Balancer Rule",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_lb_rule",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_lb",
+            "command": "create_lb_rule",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_lb_load_balancer",
+          "label": "Load Balancer",
+          "help": "",
+          "inputType": "text",
+          "datasource": "custom/lbs?module_name_arg=az_lb",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Load Balancer is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_lb_protocol",
+          "help": "",
+          "label": "Protocol",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Tcp",
+              "value": "Tcp"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Udp",
+              "value": "Udp"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "All",
+              "value": "All"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_lb_frontend_port",
+          "help": "",
+          "inputType": "text",
+          "label": "Frontend Port",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Frontend Port is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_lb_backend_port",
+          "help": "",
+          "inputType": "text",
+          "label": "Backend Port",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Backend Port is required"
+            }
+          ]
+        }
+
+      ]
+    }
+  ]
+}

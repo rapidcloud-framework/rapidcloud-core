@@ -1,0 +1,146 @@
+{
+    "datasync": {
+        "create": {
+            "enabled": true,
+            "help": "",
+            "template_section": "ingest",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "Name", 
+                    "prompt": "Enter RC resource name here.", 
+                    "required": true,
+                    "default": ""
+                },           
+                "agent_name": {
+                    "name": "agent_name", 
+                    "prompt": "Name to be assigned to the Datasync agent", 
+                    "required": true,
+                    "default": ""
+                },           
+                "ip_address": {
+                    "name": "ip_address", 
+                    "prompt": "IP where the datasync agent service is running. DataSync Agent must be accessible on port 80 from where Terraform is running.", 
+                    "required": true,
+                    "default": ""
+                },           
+                "nfs_location_name": {
+                    "name": "nfs_location_name", 
+                    "prompt": "Specify a name for this nfs location", 
+                    "required": true,
+                    "default": ""
+                },           
+                "server_hostname": {
+                    "name": "server_hostname", 
+                    "prompt": "(Source) The IP address or DNS name of the NFS server.", 
+                    "required": true,
+                    "default": ""
+                },           
+                "nfs_subdirectory": {
+                    "name": "nfs_subdirectory", 
+                    "prompt": "(Source) Subdirectory within the NFS server to perform actions as source. Should be exported by the NFS server.", 
+                    "required": true,
+                    "default": ""
+                },           
+                "s3_bucket_name": {
+                    "name": "s3_bucket_name", 
+                    "prompt": "(Destination) S3 Bucket name for the destination.", 
+                    "required": true,
+                    "default": ""
+                },           
+                "s3_object_prefix": {
+                    "name": "s3_object_prefix", 
+                    "prompt": "(Destination) Prefix to perform actions within the S3 bucket.", 
+                    "required": true,
+                    "default": ""
+                },           
+                "bucket_access_role_name": {
+                    "name": "bucket_access_role_name", 
+                    "prompt": "IAM Role name used to connect to the S3 Bucket.", 
+                    "required": true,
+                    "default": ""
+                },           
+                "endpoint_vpc_id": {
+                    "name": "endpoint_vpc_id", 
+                    "prompt": "The ID of the VPC in which the vpc endpoint will be used.", 
+                    "required": true,
+                    "default": ""
+                },           
+                "endpoint_security_group_ids": {
+                    "name": "endpoint_security_group_ids", 
+                    "prompt": "The ID of one or more security groups to associate with the network interface for the vpc endpoint.", 
+                    "required": true,
+                    "default": ""
+                },           
+                "endpoint_subnet_ids": {
+                    "name": "endpoint_subnet_ids", 
+                    "prompt": "The ID of one or more subnets in which to create a network interface for the vpc endpoint.", 
+                    "required": true,
+                    "default": ""
+                },           
+                "agent_security_groups_ids": {
+                    "name": "agent_security_groups_ids", 
+                    "prompt": "The Id of the security group used to assing to your datasync agent.", 
+                    "required": true,
+                    "default": ""
+                },           
+                "agent_subnet_ids": {
+                    "name": "agent_subnet_ids", 
+                    "prompt": "The subnet id in which DataSync will create elastic network interface for the data transfer task.", 
+                    "required": true,
+                    "default": ""
+                }           
+            }
+        },
+        "create_task": {
+            "enabled": true,
+            "help": "",
+            "template_section": "ingest",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "Name", 
+                    "prompt": "Enter RC Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },           
+                "dst_datasync_name": {
+                    "name": "dst_datasync_name", 
+                    "prompt": "Datasync task agent and locations", 
+                    "required": true,
+                    "default": ""
+                },           
+                "ds_task_name": {
+                    "name": "ds_task_name", 
+                    "prompt": "Enter task name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },    
+                "dst_exclude_value": {
+                    "name": "dst_exclude_value", 
+                    "prompt": "Datasync exclude simple pattern. E.g. /folder1|/folder2", 
+                    "required": true,
+                    "default": ""
+                },           
+                "dst_include_value": {
+                    "name": "dst_include_value", 
+                    "prompt": "Datasync include simple pattern. E.g. /folder1|/folder2", 
+                    "required": true,
+                    "default": ""
+                },           
+                "dst_schedule_expression": {
+                    "name": "dst_schedule_expression", 
+                    "prompt": "Specifies the schedule you want your task to use for repeated executions.", 
+                    "required": true,
+                    "default": ""
+                }            
+            }
+        }
+    }
+}

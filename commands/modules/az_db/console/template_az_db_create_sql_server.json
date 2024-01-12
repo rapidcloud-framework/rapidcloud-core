@@ -1,0 +1,246 @@
+{
+  "type": "Theia::Action",
+  "label": "MSSQL Server",
+  "id": "create_sql_server",
+  "module": "az_db",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_sql_server",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_sql_server",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_db_location",
+        "az_db_resource_group",
+        "az_db_dns_alias"
+      ],
+      "title": "MSSQL Server",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_sql_server",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_db",
+            "command": "create_sql_server",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_db_dns_alias",
+          "cli_id": "dns_alias",
+          "label": "DNS Alias",
+          "help": "",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A DNS Alias is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_subnet_id",
+          "label": "Subnet",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=subnets",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Subnet is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_sql_login_enabled",
+          "label": "Enable SQL Authentication",
+          "default": "Enable",
+          "inputType": "text",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Enable",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Enable",
+                "enableControls":["az_db_administrator_login","az_db_administrator_login_password"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Disable",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Disable",
+                "disableControls":["az_db_administrator_login","az_db_administrator_login_password"]
+              }
+            }]
+          },
+          {
+            "type": "Theia::Control::Input",
+            "id": "az_db_administrator_login",
+            "label": "Admin Login",
+            "inputType": "text"
+          },
+          {
+            "type": "Theia::Control::Input",
+            "id": "az_db_administrator_login_password",
+            "label": "Admin Password",
+            "inputType": "password"
+          },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_aad_login_enable",
+          "label": "Enable AD Authentication",
+          "default": "Disable",
+          "inputType": "text",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Enable",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Enable",
+                "enableControls":["az_db_ad_admin","az_db_object_id"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Disable",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Disable",
+                "disableControls":["az_db_ad_admin","az_db_object_id"]
+              }
+            }]
+          },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_db_ad_admin",
+          "label": "AD Admin",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_object_id",
+          "label": "Object ID",
+          "help": "",
+          "datasource": "custom/users?extra=true&module_name_arg=az_db"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_db_start_ip_address",
+          "cli_id": "start_ip_address",
+          "label": "Start IP Address",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_db_end_ip_address",
+          "cli_id": "end_ip_address",
+          "label": "End IP Address",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_tad_enable",
+          "label": "Enable TDE",
+          "default": "Disable",
+          "inputType": "text",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Enable",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Enable",
+                "enableControls":["az_db_tde_key","az_db_user_identity","az_db_tde_enabled_create"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Disable",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Disable",
+                "disableControls":["az_db_tde_key","az_db_user_identity","az_db_tde_enabled_create"]
+              }
+            }]
+          },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_tde_key",
+          "label": "Key Vault Key",
+          "inputType": "text",
+          "datasource": "custom/keys?module_name_arg=az_db"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_user_identity",
+          "label": "User Identity",
+          "help": "",
+          "inputType": "text",
+          "datasource": "custom/identities?module_name_arg=az_db"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_db_tde_enabled_create",
+          "label": "Create TDE",
+          "help": "If true this will take precedence over using existing Key Vault Key"
+        }
+      ]
+    }
+  ]
+}

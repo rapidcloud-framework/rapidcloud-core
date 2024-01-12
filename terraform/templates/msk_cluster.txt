@@ -1,0 +1,26 @@
+# the msk_cluster template will build a kafka cluster
+# below is a json with all currently supported params
+
+
+"params": {
+  "number_of_broker_nodes": 2,
+  "log_retention_in_days": 7,
+  "enhanced_monitoring": "PER_BROKER",
+  "kafka_version": "2.2.1",
+  "encryption_in_transit": "TLS_PLAINTEXT",
+  "allowed_cidrs": [
+   "172.30.10.0/24",
+   "172.30.20.0/24"
+  ],
+  "allowed_sgs": [
+   "sg-0a171f7f1e679734c",
+   "sg-0d1214c6f9b8e07bb"
+  ],
+  "volume_size": 10,
+  "server_properties": {
+   "auto.create.topics.enable ": "true",
+   "unclean.leader.election.enable ": "true",
+   "default.replication.factor": "2"
+  },
+  "instance_type": "kafka.t3.small"
+}

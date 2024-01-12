@@ -1,0 +1,609 @@
+{
+  "az_container": {
+    "create_aks": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_containers",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter name of the resource group",
+          "required": true
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location",
+          "required": true,
+          "default": "eastus"
+        },
+        "aks_version": {
+          "name": "aks_version",
+          "prompt": "Enter AKS version",
+          "required": true,
+          "default": "1.26"
+        },
+        "private_cluster_enabled": {
+          "name": "private_cluster_enabled",
+          "prompt": "Enable private cluster?",
+          "required": true,
+          "default": true
+        },
+        "api_server_vnet_integrated_enabled": {
+          "name": "api_server_vnet_integrated_enabled",
+          "prompt": "Enable VNET integration for the cluster",
+          "required": true,
+          "default": false,
+          "enableControls": [
+            "api_server_subnet_id"
+          ]
+        },
+        "api_server_subnet_id": {
+          "name": "api_server_subnet_id",
+          "prompt": "Enter the ID of the Subnet where the API server endpoint is delegated to (Required when VNET integration is enabled)",
+          "required": false
+        },
+        "authorized_ip_ranges": {
+          "name": "authorized_ip_ranges",
+          "prompt": "Enter the CIDR format of IP addresses that can have access to your public endpoint (Required when private cluster is disabled)",
+          "required": false
+        },
+        "desired_size": {
+          "name": "desired_size",
+          "prompt": "Enter the desired size for the node pool",
+          "required": true,
+          "default": 3
+        },
+        "max_size": {
+          "name": "max_size",
+          "prompt": "Enter the max size for the node pool",
+          "required": true,
+          "default": 5
+        },
+        "min_size": {
+          "name": "min_size",
+          "prompt": "Enter the min size for the node pool",
+          "required": true,
+          "default": 1
+        },
+        "vm_size": {
+          "name": "vm_size",
+          "prompt": "Enter the VM instance size for the node pool",
+          "required": true,
+          "default": "Standard_DS2_v2"
+        },
+        "node_pool_zones": {
+          "name": "node_pool_zones",
+          "prompt": "Enter the availability zones for the node pool (Ex: 1,2,3)",
+          "required": true,
+          "default": "1,2"
+        },
+        "azure_cni_enabled": {
+          "name": "azure_cni_enabled",
+          "prompt": "Enable Azure CNI for advanced networking? (True/False)",
+          "required": true,
+          "default": true
+        },
+        "network_policy": {
+          "name": "network_policy",
+          "prompt": "Enter the network policy (ex: calico or azure)",
+          "required": true,
+          "default": "azure"
+        },
+        "vnet_subnet_id": {
+          "name": "vnet_subnet_id",
+          "prompt": "Enter the ID of the subnet to deploy the cluster nodes (Required when Azure CNI is enabled)",
+          "required": false
+        },
+        "service_cidr": {
+          "name": "service_cidr",
+          "prompt": "A CIDR notation IP range from which to assign service cluster IPs. It must not overlap with any Subnet IP ranges. For example: 10.0.0.0/16.",
+          "required": true
+        },
+        "dns_service_ip": {
+          "name": "dns_service_ip",
+          "prompt": "Enter the DNS service IP",
+          "required": true
+        },
+        "pod_cidr": {
+          "name": "pod_cidr",
+          "prompt": "Enter the CIDR to use for pod IP addresses. Only applicable if Azure CNI is disabled.",
+          "required": false
+        },
+        "auto_upgrade": {
+          "name": "auto_upgrade",
+          "prompt": "Do you want to auto upgrade the cluster?",
+          "required": true,
+          "default": true
+        },
+        "aad_enabled": {
+          "name": "aad_enabled",
+          "prompt": "Enable Azure AD Integration.",
+          "required": true,
+          "default": true
+        },
+        "azure_rbac_enabled": {
+          "name": "azure_rbac_enabled",
+          "prompt": "Enable Azure RBAC for authorization",
+          "required": true,
+          "default": true
+        },
+        "rbac_aad_admin_group_object_ids": {
+          "name": "rbac_aad_admin_group_object_ids",
+          "prompt": "Enter the group IDs that should be the admin on the cluster (Required when Azure RBAC is enabled)",
+          "required": false
+        },
+        "blob_driver_enabled": {
+          "name": "blob_driver_enabled",
+          "prompt": "Enable Blob Driver on the cluster?",
+          "required": true,
+          "default": true
+        },
+        "disk_driver_enabled": {
+          "name": "disk_driver_enabled",
+          "prompt": "Enable Disk Driver on the cluster?",
+          "required": true,
+          "default": true
+        },
+        "file_driver_enabled": {
+          "name": "file_driver_enabled",
+          "prompt": "Enable File Driver on the cluster?",
+          "required": true,
+          "default": true
+        },
+        "log_analytics_workspace_id": {
+          "name": "log_analytics_workspace_id",
+          "prompt": "Enter the Log Analytics workspace ID to use for the cluster",
+          "required": true
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the AKS Cluster, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_node_pool": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_containers",
+      "template_enabled": true,
+      "timestamp": "2023-05-03 10:28:23.133403",
+      "cmd_id": null,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Enter the name of the AKS Cluster",
+          "required": true
+        },
+        "aks_version": {
+          "name": "aks_version",
+          "prompt": "Enter AKS version",
+          "required": true,
+          "default": "1.26"
+        },
+        "node_count": {
+          "name": "node_count",
+          "prompt": "Enter the desired number of nodes in the node pool",
+          "required": true,
+          "default": 3
+        },
+        "max_size": {
+          "name": "max_size",
+          "prompt": "Enter the maximum number of nodes in the node pool",
+          "required": true,
+          "default": 5
+        },
+        "min_size": {
+          "name": "min_size",
+          "prompt": "Enter the minimum number of nodes in the node pool",
+          "required": true,
+          "default": 1
+        },
+        "instance_size": {
+          "name": "instance_size",
+          "prompt": "Enter the size of nodes in the node pool",
+          "required": true,
+          "default": "Standard_D2_v2"
+        },
+        "os_sku": {
+          "name": "os_sku",
+          "prompt": "Enter the SKU of the nodes in the node pool",
+          "required": true,
+          "default": "Ubuntu"
+        },
+        "os_type": {
+          "name": "os_type",
+          "prompt": "Enter the type of the nodes in the node pool - Windows or Linux",
+          "required": true,
+          "default": "Linux"
+        },
+        "node_pool_mode": {
+          "name": "node_pool_mode",
+          "prompt": "Enter the mode of the node pool - System or User",
+          "required": true,
+          "default": "User"
+        },
+        "use_spot_instance": {
+          "name": "use_spot_instance",
+          "prompt": "Do you want to use spot instances for this node pool?",
+          "required": true,
+          "default": true
+        },
+        "eviction_policy": {
+          "name": "eviction_policy",
+          "prompt": "Enter the eviction policy for the nodes in the node pool - Delete or Deallocate",
+          "required": true,
+          "default": "Delete"
+        },
+        "zones": {
+          "name": "zones",
+          "prompt": "Enter the availability zones for the nodes in the node pool (Ex: 1,2,3)",
+          "required": true,
+          "default": "1,2"
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Enter the subnet ID where the node pool should exist",
+          "required": false
+        },
+        "capacity_reservation_group_id": {
+          "name": "capacity_reservation_group_id",
+          "prompt": "Enter the ID of the Capacity Reservation Group where this Node Pool should exist",
+          "required": false
+        },
+        "node_labels": {
+          "name": "node_labels",
+          "prompt": "Provide a json string with labels you wish to apply to the AKS Cluster, for example \"{'label1':'value1','label2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        },
+        "node_taints": {
+          "name": "node_taints",
+          "prompt": "Provide a comma separated list of Kubernetes taints which should be applied to nodes in the agent pool (e.g \"key=value:NoSchedule\")",
+          "required": false
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the AKS Cluster, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_app_environment": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_containers",
+      "template_enabled": true,
+      "timestamp": "2023-05-03 10:27:40.019543",
+      "cmd_id": null,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter Name with no spaces",
+          "required": true
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location",
+          "required": true
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the resource group",
+          "required": true
+        },
+        "infrastructure_subnet_id": {
+          "name": "infrastructure_subnet_id",
+          "prompt": "Enter the ID of the subnet to use for the container apps control plane",
+          "required": false
+        },
+        "log_analytics_workspace_id": {
+          "name": "log_analytics_workspace_id",
+          "prompt": "Enter the ID of the log analytics workspace",
+          "required": true
+        },
+        "internal_load_balancer_enabled": {
+          "name": "internal_load_balancer_enabled",
+          "prompt": "Should the container environment operate in internal load balancing mode",
+          "required": false,
+          "default": false
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the container environment, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_app_environment_cert": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_containers",
+      "template_enabled": true,
+      "timestamp": "2023-05-03 10:28:23.133403",
+      "cmd_id": null,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true
+        },
+        "container_app_environment_id": {
+          "name": "container_app_environment_id",
+          "prompt": "Enter ID of the Container App Environment",
+          "required": true
+        },
+        "certificate_blob_base64": {
+          "name": "certificate_blob_base64",
+          "prompt": "Enter the Certificate Private Key as a base64 encoded PFX or PEM",
+          "required": true
+        },
+        "certificate_password": {
+          "name": "certificate_password",
+          "prompt": "Enter the password for the Certificate",
+          "required": true
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the container environment certificate, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_app": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_containers",
+      "template_enabled": true,
+      "timestamp": "2023-05-03 10:28:23.133403",
+      "cmd_id": null,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "container_app_environment_id": {
+          "name": "container_app_environment_id",
+          "prompt": "Enter ID of the Container App Environment",
+          "required": true
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the resource group",
+          "required": true
+        },
+        "revision_mode": {
+          "name": "revision_mode",
+          "prompt": "Enter the revision mode",
+          "required": false,
+          "default": "Single"
+        },
+        "container_name": {
+          "name": "container_name",
+          "prompt": "Enter the name of the container",
+          "required": true
+        },
+        "container_image": {
+          "name": "container_image",
+          "prompt": "Enter the image of the container (Ex: \"mcr.microsoft.com/azuredocs/containerapps-helloworld:latest\")",
+          "required": true
+        },
+        "container_cpu": {
+          "name": "container_cpu",
+          "prompt": "Enter the CPU for the container (Ex: 0.25)",
+          "required": false,
+          "default": 0.25
+        },
+        "container_memory": {
+          "name": "container_memory",
+          "prompt": "Enter the memory for the container (Ex: \"0.5Gi\")",
+          "required": false,
+          "default": "0.5Gi"
+        },
+        "container_args": {
+          "name": "container_args",
+          "prompt": "Enter the args for the container",
+          "required": false
+        },
+        "container_probe_path": {
+          "name": "container_probe_path",
+          "prompt": "Enter the path for the liveliness probe of the container",
+          "required": false,
+          "default": "/"
+        },
+        "container_probe_port": {
+          "name": "container_probe_port",
+          "prompt": "Enter the port for the liveliness probe of the container",
+          "required": false,
+          "default": 80
+        },
+        "max_replicas": {
+          "name": "max_replicas",
+          "prompt": "Enter the maximum number of replicas for the container",
+          "required": false,
+          "default": 3
+        },
+        "min_replicas": {
+          "name": "min_replicas",
+          "prompt": "Enter the minimum number of replicas for the container",
+          "required": false,
+          "default": 1
+        },
+        "identity_type": {
+          "name": "identity_type",
+          "prompt": "Enter the type of managed identity used for authentication",
+          "required": false,
+          "default": "SystemAssigned"
+        },
+        "identity_ids": {
+          "name": "identity_ids",
+          "prompt": "Enter the user assigned managed identity IDs used for authentication",
+          "required": false
+        },
+        "ingress_target_port": {
+          "name": "ingress_target_port",
+          "prompt": "Enter the target port on the container used for ingress traffic",
+          "required": false,
+          "default": 80
+        },
+        "ingress_transport": {
+          "name": "ingress_transport",
+          "prompt": "Enter the transport method used for ingress",
+          "required": false,
+          "default": "auto"
+        },
+        "ingress_allow_insecure_connections": {
+          "name": "ingress_allow_insecure_connections",
+          "prompt": "Enable insecure connections to the container app?",
+          "required": false,
+          "default": true
+        },
+        "registry_server": {
+          "name": "registry_server",
+          "prompt": "Enter the hostname of the container registry",
+          "required": true
+        },
+        "registry_managed_identity": {
+          "name": "registry_managed_identity",
+          "prompt": "Enter the resource ID of the user assigned managed identity to use when pulling from the container registry",
+          "required": false
+        },
+        "registry_password": {
+          "name": "registry_password",
+          "prompt": "Enter the name of the Secret Reference containing the password value for the user on the container registry",
+          "required": false
+        },
+        "registry_username": {
+          "name": "registry_username",
+          "prompt": "Enter the username to use for the container registry",
+          "required": false
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the container environment, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_registry": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_containers",
+      "template_enabled": true,
+      "timestamp": "2023-05-03 10:28:23.133403",
+      "cmd_id": null,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter name of the resource group",
+          "required": true
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location",
+          "required": true,
+          "default": "eastus"
+        },
+        "sku": {
+          "name": "sku",
+          "prompt": "Enter the SKU",
+          "required": true,
+          "default": "Standard"
+        },
+        "enable_public_access": {
+          "name": "enable_public_access",
+          "prompt": "Enable public access to the registry?",
+          "required": true,
+          "default": true
+        },
+        "enable_encryption": {
+          "name": "enable_encryption",
+          "prompt": "Enable encryption to the registry using customer managed key?",
+          "required": true,
+          "default": true
+        },
+        "encryption_key_id": {
+          "name": "encryption_key_id",
+          "prompt": "Encryption Key ID if encryption is enabled",
+          "required": false
+        },
+        "encryption_client_id": {
+          "name": "encryption_client_id",
+          "prompt": "Client ID of the managed identity if encryption is enabled",
+          "required": false
+        },
+        "identity_ids": {
+          "name": "identity_ids",
+          "prompt": "List of customer managed identities used to access the registry",
+          "required": false
+        },
+        "identity_type": {
+          "name": "identity_type",
+          "prompt": "Identity type used for the container registry",
+          "required": false
+        },
+        "enable_admin": {
+          "name": "enable_admin",
+          "prompt": "Enable admin user",
+          "required": false,
+          "default": false
+        },
+        "geolocations": {
+          "name": "geolocations",
+          "prompt": "List of locations to which the contents of the registry would be replicated to",
+          "required": false
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the container registry, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    }
+  }
+}

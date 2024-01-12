@@ -1,0 +1,18 @@
+module "{{ profile }}_{{ resource_name }}_aws_cloudfront_distribution" {
+  source                          = "../modules/aws_cloudfront_distribution"
+  bucket_regional_domain_name     = replace("{{ profile }}-{{ params['bucket_name'] }}.s3.{{ region }}.amazonaws.com", "_", "-")
+
+  origin_id                       = "{{ params['origin_id'] }}"
+  
+  tags = {
+    "Name"      = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+ {% if params['waf_name'] is defined and params['waf_name'] != "" %}
+    web_acl_id = module.{{ profile }}_{{ params['waf_name'] }}_aws_waf.waf_arn
+  {% endif %} 
+}

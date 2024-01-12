@@ -1,0 +1,173 @@
+{
+  "type": "Theia::Action",
+  "label": "Templates",
+  "id": "module_create_template",
+  "module": "module",
+  "env_not_required": true,
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "module_create_template",
+      "datasource": "/module/get_templates?extra=true",
+      "columns": ["template_module", "template_action", "label", "template_id"],
+      "title": "Console Templates",
+      "description": "",
+      "hide_add": true
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "module_create_template",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "create_template",
+          "command": {
+            "phase": "module",
+            "command": "create_template"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "template_module",
+          "label": "Module Name",
+          "help": "",
+          "inputType": "text",
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "template_action",
+          "label": "Command Name",
+          "help": "",
+          "inputType": "text",
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::CompositeModule",
+          "id": "composite_module",
+          "modules": [
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "grid_enabled",
+              "label": "Grid",
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "grid_title",
+                  "label": "Page Title",
+                  "help": "",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "grid_datasource",
+                  "label": "Data Source Endpoint",
+                  "help": "",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::TextArea",
+                  "id": "grid_columns",
+                  "label": "Column Names from Data Source",
+                  "help": "comma separated",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::TextArea",
+                  "id": "grid_description",
+                  "label": "Description to be displayed under Grid Title",
+                  "help": "",
+                  "inputType": "text"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "form_enabled",
+              "label": "Form",
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "form_title",
+                  "label": "Form Title",
+                  "help": "",
+                  "inputType": "text"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "form_submit_enabled",
+              "label": "Submit Button",
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "form_submit_label",
+                  "label": "Submit Label",
+                  "help": "",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Toggle",
+                  "id": "form_submit_require_confirmation",
+                  "label": "Require Confirmation Before Submit",
+                  "help": ""
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "form_submit_confirmation_message",
+                  "label": "Confirmation Message",
+                  "help": "",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Toggle",
+                  "id": "form_submit_refresh_status",
+                  "label": "Refresh Status After Submit",
+                  "help": ""
+                }
+              ]
+            },           
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "form_undo_enabled",
+              "label": "Remove Button",
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "form_undo_label",
+                  "label": "Remove Label",
+                  "help": "",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Toggle",
+                  "id": "form_undo_require_confirmation",
+                  "label": "Require Confirmation Before Remove",
+                  "help": ""
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "form_undo_confirmation_message",
+                  "label": "Confirmation Message",
+                  "help": "",
+                  "inputType": "text"
+                },
+                {
+                  "type": "Theia::Control::Toggle",
+                  "id": "form_undo_refresh_status",
+                  "label": "Refresh Status After Remove",
+                  "help": ""
+                }
+              ]
+            }            
+          ]
+        }
+      ]
+    }
+  ]
+}

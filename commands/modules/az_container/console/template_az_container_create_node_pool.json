@@ -1,0 +1,291 @@
+{
+  "type": "Theia::Action",
+  "label": "AKS Node Pool",
+  "id": "az_container_create_node_pool",
+  "module": "az_container",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_container_create_node_pool",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_node_pool",
+      "env_param_required": true,
+      "columns": ["name","az_container_cluster_name", "az_container_use_spot_instance", "az_container_os_type", "timestamp"],
+      "title": "AKS Node Pool", 
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_container_create_node_pool",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create AKS Node Pool",
+          "command": {
+            "phase": "az_container",
+            "command": "create_node_pool",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Node Pool Name",
+          "help": "The AKS Node Pool Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_cluster_name",
+          "label": "AKS Cluster",
+          "help": "",
+          "datasource": "custom/aks_clusters?extra=true&module_name_arg=az_container",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Cluster is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_aks_version",
+          "label": "AKS Version",
+          "help": "The AKS Cluster Version used for the agents",
+          "inputType": "text",
+          "default": "1.26"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_node_count",
+          "label": "Desired Size",
+          "help": "The Node Pool desired size",
+          "inputType": "text",
+          "default": "2"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_max_size",
+          "label": "Max Size",
+          "help": "The Node Pool max size",
+          "inputType": "text",
+          "default": "5"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_min_size",
+          "label": "Min Size",
+          "help": "The Node Pool minimum size",
+          "inputType": "text",
+          "default": "1"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_container_instance_size",
+          "label": "VM Instance Type",
+          "help": "The VM Instance Type",
+          "inputType": "text",
+          "default": "Standard_DS2_v2"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_os_sku",
+          "label": "OS SKU",
+          "help": "OS SKU used by the agent pool",
+          "default": "Ubuntu",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "Azure Linux",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "AzureLinux"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Ubuntu",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Ubuntu"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Windows 2019",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Windows2019"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Windows 2022",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Windows2022"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_os_type",
+          "label": "Operating System",
+          "help": "OS used by the agent pool",
+          "default": "Linux",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "Windows",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Windows"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Linux",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Linux"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_node_pool_mode",
+          "label": "Node Pool Mode",
+          "help": "Mode used by the agent pool",
+          "default": "User",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "System",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "System"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "User",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "User"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_container_use_spot_instance",
+          "label": "Use Spot Instances?",
+          "help": "Enable to use spot instances for the node pool",
+          "inputType": "text",
+          "default": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_eviction_policy",
+          "label": "Eviction Policy",
+          "help": "Eviction policy by the VMs in the node pool. Required when spot instances are enabled",
+          "default": "Delete",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "Deallocate",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Deallocate"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Delete",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Delete"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_container_node_pool_zones",
+          "label": "Node Pool Zones",
+          "help": "List of Availability Zones in which this Kubernetes Cluster should be located",
+          "default": "1,2,3",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "1",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "1"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "2",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "2"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "3",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "3"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_subnet_id",
+          "label": "Node Pool Subnet",
+          "help": "The Subnet where the node pool should exist",
+          "datasource": "formdata_from_azure?type=subnets"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "az_container_node_labels",
+          "label": "Node Labels",
+          "help": "Labels you wish to apply to the nodes in this Node Pool",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=az_container,${name}&result=params,az_container_labels",
+          "add_value_label": "Labels for your resource"
+        },
+        {
+          "type": "Theia::Control::TextArea",
+          "id": "az_container_node_taints",
+          "label": "Node Taints",
+          "help": "Ex: sku=gpu:NoSchedule",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "az_container_tags",
+          "label": "Tags",
+          "help": "Tags you wish to apply to the nodes in this Node Group",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=az_container,${name}&result=params,az_container_tags",
+          "add_value_label": "Tags for your resource"
+        }
+      ]
+    }
+  ]
+}

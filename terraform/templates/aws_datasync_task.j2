@@ -1,0 +1,27 @@
+module "{{ profile }}_{{ resource_name }}_datasync_task" {
+ #TODO Figure out how to select the output arn from the location and destination respectively
+  source                  = "../modules/aws_datasync_task"
+  dst_loc_destination_arn = module.{{profile}}_{{params['dst_datasync_name']}}_datasync.s3_location_arn
+  ds_task_name            = "{{ params['ds_task_name'] }}"
+  dst_loc_source_arn      = module.{{profile}}_{{params['dst_datasync_name']}}_datasync.nfs_location_arn
+  
+  {% if params['dst_exclude_value'] != "" %}
+    dst_exclude_filter_type = "SIMPLE_PATTERN"
+    dst_exclude_value       = "{{ params['dst_exclude_value'] }}"
+  {% endif %}
+
+  {% if params['dst_include_value'] != "" %}
+    dst_include_filter_type = "SIMPLE_PATTERN"
+    dst_include_value       = "{{ params['dst_include_value'] }}"
+  {% endif %}
+  
+  dst_schedule_expression = "{{ params['dst_schedule_expression'] }}"
+  tags = {
+    "Name"      = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}

@@ -1,0 +1,332 @@
+[
+    {
+        "feature": "saas",
+        "tiers": "3",
+        "description": "RapidCLoud SaaS Tenant Management"
+    },
+    {
+        "feature": "help",
+        "tiers": "1,2,3",
+        "description": "CLI Help"
+    },
+    {
+        "feature": "metadata",
+        "tiers": "1,2,3",
+        "description": "RapidCloud Metadata"
+    },
+    {
+        "feature": "console",
+        "tiers": "1,2,3",
+        "description": "Start RapidCloud Console"
+    },
+    {
+        "feature": "admin",
+        "tiers": "3",
+        "description": "RapidCLoud Super Admin"
+    },
+    {
+        "feature": "confirm",
+        "tiers": "3",
+        "description": "RapidCLoud Super Admin"
+    },
+    {
+        "feature": "module",
+        "tiers": "2,3",
+        "description": "RapidCloud Modules"
+    },
+    {
+        "feature": "status",
+        "tiers": "1,2,3",
+        "description": "RapidCloud Environment Status"
+    },
+    {
+        "feature": "account",
+        "tiers": "1,2,3",
+        "description": "RapidCloud Account Information"
+    },
+    {
+        "feature": "agree_terms",
+        "tiers": "1,2,3",
+        "description": "Agree with RapidCloud Terms"
+    },
+    {
+        "feature": "env",
+        "tiers": "1,2,3",
+        "description": "RapidCloud Environments"
+    },
+    {
+        "feature": "init",
+        "tiers": "1,2,3",
+        "description": "RapidCloud Environments"
+    },
+    {
+        "feature": "dynamodb_scan",
+        "tiers": "1,2,3",
+        "description": "Dynamodb Scan"
+    },
+    {
+        "feature": "rds",
+        "tiers": "2,3",
+        "description": "RDS"
+    },
+    {
+        "feature": "ec2",
+        "tiers": "1,2,3",
+        "description": "EC2"
+    },
+    {
+        "feature": "ecs",
+        "tiers": "1,2,3",
+        "description": "ECS Fargate"
+    },
+    {
+        "feature": "ebs",
+        "tiers": "1,2,3",
+        "description": "Elastic Block Store"
+    },
+    {
+        "feature": "fsx",
+        "tiers": "1,2,3",
+        "description": "FSx for Windows"
+    },
+    {
+        "feature": "efs",
+        "tiers": "1,2,3",
+        "description": "Elastic File System"
+    },
+    {
+        "feature": "cloudfront",
+        "tiers": "1,2,3",
+        "description": "CloudFront"
+    },
+    {
+        "feature": "ingest",
+        "tiers": "2,3",
+        "description": "Data Ingestion"
+    },
+    {
+        "feature": "transform",
+        "tiers": "2,3",
+        "description": "Transformation Jobs via Glue"
+    },
+    {
+        "feature": "analytics",
+        "tiers": "2,3",
+        "description": "Analytics Jobs via Glue or EMR"
+    },
+    {
+        "feature": "publishing",
+        "tiers": "2,3",
+        "description": "Data Publishsing to RDS, Aurora or Redshift"
+    },
+    {
+        "feature": "publish",
+        "tiers": "2,3",
+        "description": "Data Publishsing to RDS, Aurora or Redshift"
+    },
+    {
+        "feature": "secure",
+        "tiers": "2,3",
+        "description": "PII Rules"
+    },
+    {
+        "feature": "rules",
+        "tiers": "2,3",
+        "description": "PII Rules"
+    },
+    {
+        "feature": "architecture",
+        "tiers": "1,2,3",
+        "description": "Architecture Diagrams"
+    },
+    {
+        "feature": "activate",
+        "tiers": "1,2,3",
+        "description": "RapidCloud Activation"
+    },
+    {
+        "feature": "datalake",
+        "tiers": "1,2,3",
+        "description": "S3 Datalake"
+    },
+    {
+        "feature": "remove",
+        "tiers": "1,2,3",
+        "description": "Remove Metadata"
+    },
+    {
+        "feature": "tf",
+        "tiers": "1,2,3",
+        "description": "Terraform Actions"
+    },
+    {
+        "feature": "ec2_plus",
+        "tiers": "2,3",
+        "description": "EC2 Backend"
+    },
+    {
+        "feature": "asg",
+        "tiers": "1,2,3",
+        "description": "Auto Scaling Groups"
+    },
+    {
+        "feature": "ecr",
+        "tiers": "1,2,3",
+        "description": "Elastic Container Registry"
+    },
+    {
+        "feature": "aws",
+        "tiers": "1,2,3",
+        "description": "Ad-hoc AWS commands"
+    },
+    {
+        "feature": "redshift",
+        "tiers": "2,3",
+        "description": "Redshift"
+    },
+    {
+        "feature": "semi-structured-pipeline",
+        "tiers": "2,3",
+        "description": "Semi-Structured Files Ingestion Pipeline"
+    },
+    {
+        "feature": "rdbms-pipeline",
+        "tiers": "2,3",
+        "description": "RDBMS Ingestion Pipeline"
+    },
+    {
+        "feature": "undo-command",
+        "tiers": "1,2,3",
+        "description": "Undo RapidCloud Command"
+    },
+    {
+        "feature": "lambda",
+        "tiers": "1,2,3",
+        "description": "Lambda Functions"
+    },
+    {
+        "feature": "lb",
+        "tiers": "1,2,3",
+        "description": "Load Balancing"
+    },
+    {
+        "feature": "trendmicro",
+        "tiers": "1,2,3",
+        "description": "Trend Micro Cloud One Integration"
+    },
+    {
+        "feature": "workload",
+        "tiers": "2,3",
+        "description": "Pause and Resume Resources"
+    },    
+    {
+        "feature": "qa",
+        "tiers": "3",
+        "description": "Integration Testing"
+    },    
+    {
+        "feature": "net",
+        "tiers": "2,3",
+        "description": "Networking"
+    },
+    {
+        "feature": "s3",
+        "tiers": "1,2,3",
+        "description": "S3"
+    },
+    {
+        "feature": "acm",
+        "tiers": "1,2,3",
+        "description": "Amazon Certificate Manager"
+    },
+    {
+        "feature": "api",
+        "tiers": "1,2,3",
+        "description": "API Gateway and Lambda Integrations"
+    },
+    {
+        "feature": "org",
+        "tiers": "1,2,3",
+        "description": "Organizations and Accounts"
+    },
+    {
+        "feature": "route53",
+        "tiers": "1,2,3",
+        "description": "Route53 Record Sets"
+    },
+    {
+        "feature": "access",
+        "tiers": "1,2,3",
+        "description": "User Roles and Permissions"
+    },
+    {
+        "feature": "opensearch",
+        "tiers": "2,3",
+        "description": "OpenSearch"
+    },
+    {
+        "feature": "datasync",
+        "tiers": "2,3",
+        "description": "DataSync"
+    },
+    {
+        "feature": "emr",
+        "tiers": "2,3",
+        "description": "EMR",
+        "enabled": false
+    },
+    {
+        "feature": "edb",
+        "tiers": "2,3",
+        "description": "EDB",
+        "enabled": false
+    },
+    {
+        "feature": "elasticache",
+        "tiers": "2,3",
+        "description": "ElastiCache",
+        "enabled": false
+    },
+    {
+        "feature": "az_lz",
+        "tiers": "1,2,3",
+        "description": "Azure Landing Zone",
+        "enabled": false
+    },
+    {
+        "feature": "az_net",
+        "tiers": "1,2,3",
+        "description": "Azure Networking",
+        "enabled": false
+    },
+    {
+        "feature": "storagegateway",
+        "tiers": "2,3",
+        "description": "AWS Storage Gateway",
+        "enabled": false
+    },
+    {
+        "feature": "eks",
+        "tiers": "2,3",
+        "description": "EKS",
+        "enabled": false
+    },
+    {
+        "feature": "gcp_org",
+        "tiers": "1,2,3",
+        "description": "GCP Org",
+        "enabled": false
+    },
+    {
+        "feature": "gcp_net",
+        "tiers": "1,2,3",
+        "description": "GCP Networking",
+        "enabled": false
+    },
+    {
+        "feature": "newrelic",
+        "tiers": "1,2,3",
+        "description": "New Relic Integration",
+        "enabled": false
+    }
+]

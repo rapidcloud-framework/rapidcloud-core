@@ -1,0 +1,5 @@
+{
+  "az_compute": {
+    "az_compute_create_virtual_machine_scale_set": 1000
+  }
+}

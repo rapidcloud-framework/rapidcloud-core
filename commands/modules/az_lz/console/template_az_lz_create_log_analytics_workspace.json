@@ -1,0 +1,151 @@
+{
+  "type": "Theia::Action",
+  "label": "Log Analytics Monitoring Workspace",
+  "id": "create_log_analytics_workspace",
+  "module": "az_lz",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_log_analytics_workspace",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_log_analytics_workspace",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_lz_location",
+        "az_lz_sku",
+        "az_lz_retention_in_days",
+        "az_lz_rg_name"
+      ],
+      "title": "Log Analytics Monitoring Workspace",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_log_analytics_workspace",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_lz",
+            "command": "create_log_analytics_workspace",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_lz_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_lz_rg_name",
+          "label": "Resource Group Name",
+          "help": "",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_lz_sku",
+          "label": "SKU",
+          "help": "",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A SKU is required"
+            }
+          ],
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Free",
+              "value": "Free"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "PerNode",
+              "value": "PerNode"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Premium",
+              "value": "Premium"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Standard",
+              "value": "Standard"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Standalone",
+              "value": "Standalone"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Unlimited",
+              "value": "Unlimited"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "CapacityReservation",
+              "value": "CapacityReservation"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "PerGB2018",
+              "value": "PerGB2018"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_lz_retention_in_days",
+          "label": "Retention In Days",
+          "help": "",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Retention in days is required"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

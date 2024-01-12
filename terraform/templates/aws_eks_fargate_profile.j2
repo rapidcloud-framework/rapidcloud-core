@@ -1,0 +1,102 @@
+module "{{fqn}}" {
+    source = "{{ module_source }}"
+    env  = "{{ env }}"
+    profile = "{{ profile }}"
+    fqn = "{{ fqn }}"
+    workload = "{{ workload }}"
+    cmd_id = "{{ cmd_id }}"
+    profile_name  = "{{ params["profile_name"] }}"
+    cluster_name  = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_cluster_info.id
+    subnet_ids = {
+    {%- if 'subnet_ids' in params.keys() and params["subnet_ids"] != ""  %}   
+    {% set subnet_list = params["subnet_ids"].split(',') %}
+    {% for subnet in subnet_list -%}
+    {{ subnet }} = module.{{ profile }}_aws_subnet_{{ subnet }}.id
+    {% endfor -%}
+    {% endif %}
+    }
+    selectors = [
+
+        {% if params['namespace_1'] is defined and params['namespace_1'] != '' -%}
+        { 
+            namespace = "{{ params['namespace_1'] }}"
+            labels = {
+            {%      if params['namespace_1_labels'] is defined and params['namespace_1_labels'] is iterable %}
+            {%      for k, v in params['namespace_1_labels'].items() -%}
+                    "{{ k }}" = "{{ v }}"
+            {%      endfor -%}
+                }
+            {%      endif %}
+        },
+        
+        {% endif %}
+
+        {% if params['namespace_2'] is defined and params['namespace_2'] != '' -%}
+        { 
+            namespace = "{{ params['namespace_2'] }}"
+            labels = {
+            {%      if params['namespace_2_labels'] is defined and params['namespace_2_labels'] is iterable %}
+            {%      for k, v in params['namespace_2_labels'].items() -%}
+                    "{{ k }}" = "{{ v }}"
+            {%      endfor -%}
+                }
+            {%      endif %}
+        }, 
+        {% endif %}
+
+        {% if params['namespace_3'] is defined and params['namespace_3'] != '' -%}
+        { 
+            namespace = "{{ params['namespace_3'] }}"
+            labels = {
+            {%      if params['namespace_3_labels'] is defined and params['namespace_3_labels'] is iterable %}
+            {%      for k, v in params['namespace_3_labels'].items() -%}
+                    "{{ k }}" = "{{ v }}"
+            {%      endfor -%}
+                }
+            {%      endif %}
+        }, 
+        {% endif %}
+
+        {% if params['namespace_4'] is defined and params['namespace_4'] != '' -%}
+        { 
+            namespace = "{{ params['namespace_4'] }}"
+            labels = {
+            {%      if params['namespace_4_labels'] is defined and params['namespace_4_labels'] is iterable %}
+            {%      for k, v in params['namespace_4_labels'].items() -%}
+                    "{{ k }}" = "{{ v }}"
+            {%      endfor -%}
+                }
+            {%      endif %}
+        }, 
+        {% endif %}
+
+        {% if params['namespace_5'] is defined and params['namespace_5'] != '' -%}
+        { 
+            namespace = "{{ params['namespace_5'] }}"
+            labels = {
+            {%      if params['namespace_5_labels'] is defined and params['namespace_5_labels'] is iterable %}
+            {%      for k, v in params['namespace_5_labels'].items() -%}
+                    "{{ k }}" = "{{ v }}"
+            {%      endfor -%}
+                }
+            {%      endif %}
+        }, 
+        {% endif %}
+    ]
+
+    {% if params['tags'] is defined %}
+    tags = {
+    {%   for k, v in  params['tags'].items() -%}
+         "{{ k }}" = "{{ v }}"
+    {%   endfor -%}
+    }
+    {% endif %}
+    depends_on = [
+      module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }} 
+    ]
+}
+
+
+{% for k, v in params.items() %}
+# {{k}} -> {{ v }}
+{% endfor %}

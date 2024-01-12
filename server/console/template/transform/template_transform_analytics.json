@@ -1,0 +1,71 @@
+{
+  "type": "Theia::Action",
+  "label": "Analytics",
+  "id": "analytics",
+  "module": "analytics",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "analytics",
+      "datasource": "data?type=analytics",
+      "env_param_required": true,
+      "columns": ["name","runtime"],
+      "title": "Analytics",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "analytics",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Save",
+          "command": {
+            "phase": "analytics",
+            "command": "add-service",
+            "refresh_status": true             
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Job Name",
+          "help": "No spaces or special characters (e.g. fraud_detection, customer_recommendations)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "runtime",
+          "label": "Runtime execution service",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "AWS EMR - Spark Streaming",
+              "value": "emr"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "AWS Glue Streaming",
+              "value": "glue"
+            }          
+          ]
+        }
+      ]
+    }
+  ]
+}

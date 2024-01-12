@@ -1,0 +1,38 @@
+module "{{ fqn }}" {
+    source = "{{ module_source }}"
+    env  = "{{ env }}"
+    profile = "{{ profile }}"
+    fqn = "{{ fqn }}"
+    workload = "{{ workload }}"
+    cmd_id = "{{ cmd_id }}"
+    encrypted         = "{{ params["encrypted"]}}"
+    fs_name  = "{{ params["fs_name"] }}"
+    vpc_id = module.{{profile }}_aws_vpc_{{ params["vpc_id"] }}.id 
+    transition_to_ia = "{{ params["transition_to_ia"] }}"
+    transition_to_primary = "{{ params["transition_to_primary"] }}"
+    enable_backups = "{{ params["enable_backups"] }}"
+    performance_mode = "{{ params["performance_mode"] }}"
+    throughput_mode = "{{ params["throughput_mode"] }}"
+    provisioned_throughput_in_mibps  = "{{ params["provisioned_throughput_in_mibps"] }}"
+
+    subnet_ids = {
+    {%- if 'subnet_ids' in params.keys() and params["subnet_ids"] != ""  %}   
+    {% set subnet_list = params["subnet_ids"].split(',') %}
+    {% for subnet in subnet_list -%}
+    {{ subnet }} = module.{{ profile }}_aws_subnet_{{ subnet }}.id
+    {% endfor -%}
+    {% endif %}
+    }
+
+    {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+}
+
+{% for k, v in params.items() %}
+# {{k}} -> {{ v }}
+{% endfor %}

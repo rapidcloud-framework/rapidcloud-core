@@ -1,0 +1,25 @@
+{
+  "saas": {
+    "exec": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "saas",
+      "template_enabled": true,
+      "args": {
+        "email": {
+          "name": "email",
+          "prompt": "Email",
+          "required": false,
+          "default": ""
+        },
+        "cmd": {
+          "name": "cmd",
+          "prompt": "Command",
+          "required": false,
+          "default": ""
+        }
+      }
+    }
+  }
+}

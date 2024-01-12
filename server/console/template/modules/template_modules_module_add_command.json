@@ -1,0 +1,91 @@
+{
+  "type": "Theia::Action",
+  "label": "Commands",
+  "id": "commands",
+  "module": "module",
+  "env_not_required": true,
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "commands",
+      "datasource": "/module/get_commands?extra=true",
+      "columns": [
+        "module_name",
+        "module_action",
+        "enabled",
+        "template_enabled",
+        "template_section"
+      ],
+      "title": "Commands",
+      "description": ""
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "commands",
+      "title": "",
+      "description": "",
+      "readonly": false,
+      "commands": [
+        {
+          "label": "Save Command",
+          "command": {
+            "phase": "module",
+            "command": "add_command",
+            "refresh_status": false
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Select",
+          "id": "module_name",
+          "label": "Module Name",
+          "help": "",
+          "datasource": "/module/get_modules_select?extra=true&module_name_arg=module",
+          "readonly_edit": true,
+          "env_not_required": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "module_action",
+          "label": "Command Name",
+          "help": "",
+          "inputType": "text",
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "enabled",
+          "label": "Command Enabled",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "template_enabled",
+          "label": "Console Template Enabled",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "template_section",
+          "label": "Console Template Section",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "id_arg",
+          "label": "Command Metadata Unique ID Argument",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::TextArea",
+          "id": "args",
+          "label": "Command Arguments",
+          "help": "Must be valid JSON"
+        }
+      ]
+    }
+  ]
+}

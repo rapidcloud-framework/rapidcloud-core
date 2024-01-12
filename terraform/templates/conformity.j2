@@ -1,0 +1,7 @@
+module "{{ profile }}_{{ params['account_name'] }}_{{ resource_type }}" {
+  source                      = "../modules/{{ resource_type }}"
+  stack_name                  = "{{ profile | replace("_","-") }}-conformity-stack"
+  conformity_aws_account_name = "{{ params['account_name'] }}"
+  conformity_environment      = "{{ params['conformity_environment'] }}"
+  tags                        = {{ params['conformity_tags']|replace("'","\"") }}
+}

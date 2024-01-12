@@ -1,0 +1,16 @@
+resource "aws_kms_key" "{{ profile }}" {
+  description = "{{ profile }}"
+    tags = {
+       "Name" = "{{ profile}}"
+       "env" = "{{ env }}"
+       "profile" = "{{ name }}"
+       "workload" = "{{ workload }}"
+       "client" = "{{ client }}"
+       "author" = "rapid-cloud"
+    }
+}
+
+resource "aws_kms_alias" "{{ profile }}" {
+  name          = "alias/{{ profile }}"
+  target_key_id = aws_kms_key.{{ profile }}.id
+}

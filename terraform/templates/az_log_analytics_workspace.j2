@@ -1,0 +1,10 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source        = "{{ module_source }}"
+  name   = "{{ resource_name }}"
+  location   = "{{ params['location'] }}"
+  sku   = "{{ params['sku'] }}"
+  resource_group_name = "{{ params['rg_name'] }}"
+  {% if params['retention_in_days'] is defined %}
+  retention_in_days = {{ params['retention_in_days'] }}
+  {% endif %}
+}

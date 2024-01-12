@@ -1,0 +1,26 @@
+{
+  "type": "Theia::Action",
+  "label": "Enable Semi-structured",
+  "id": "enable_semi_structured",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "status",
+      "title": "Enable Semi-structured Datasets",
+      "description": "Enable all disabled semi-structured datasets and run CDC for initially uploaded files for the first time",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Submit",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to enable all disabled semi-structured datasets?",
+          "command": {
+            "phase": "ingest",
+            "command": "enable-semi-structured"
+          }
+        }
+      ]
+    }
+  ]
+}

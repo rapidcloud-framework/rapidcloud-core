@@ -1,0 +1,159 @@
+{
+  "type": "Theia::Action",
+  "label": "AWS ECS",
+  "id": "ecs",
+  "module": "ecs",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "ecs",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=ecs",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "timestamp",
+        "ecs_image_url",
+        "ecs_image_tag",
+        "ecs_task_cpu_units",
+        "ecs_task_memory",
+        "ecs_container_cpu_units",
+        "ecs_container_memory",
+        "ecs_open_ports",
+        "ecs_task_role_arn",
+        "ecs_desired_count",
+        "ecs_assign_public_ip",
+        "ecs_subnet_ids",
+        "ecs_security_groups",
+        "ecs_environment_variables"
+      ],
+      "title": "AWS ECS",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "ecs",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "ecs",
+            "command": "create",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "Name",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ecs_image_url",
+          "cli_id": "image_url",
+          "label": "Image URL",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ecs_image_tag",
+          "cli_id": "image_tag",
+          "label": "Image Tag",
+          "inputType": "text",
+          "default": "latest"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ecs_task_cpu_units",
+          "cli_id": "task_cpu_units",
+          "label": "Task CPU Units",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ecs_task_memory",
+          "cli_id": "task_memory",
+          "label": "Task Memory (MiB)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ecs_container_cpu_units",
+          "cli_id": "container_cpu_units",
+          "label": "Container CPU Units",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ecs_container_memory",
+          "cli_id": "container_memory",
+          "label": "Container Memory (MiB)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ecs_open_ports",
+          "cli_id": "open_ports",
+          "label": "Open Ports",
+          "help": "Comma-Separated List of Ports to Make Available",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ecs_desired_count",
+          "cli_id": "desired_count",
+          "label": "Desired Task Count",
+          "help": "Number of Task Instances Desired",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ecs_task_role_arn",
+          "cli_id": "task_role_arn",
+          "label": "Task Role ARN",
+          "help": "If Blank, RapidCloud Will Create an Empty Role",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "ecs_assign_public_ip",
+          "cli_id": "assign_public_ip",
+          "label": "Assign Public IP?"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "ecs_subnet_ids",
+          "cli_id": "subnet_ids",
+          "label": "Subnet IDs",
+          "help": "Comma-Separated List of Subnets to Associate",
+          "datasource": "formdata_from_aws?type=subnets"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "ecs_security_groups",
+          "cli_id": "security_groups",
+          "label": "Security Groups",
+          "help": "Comma-Separated List of Security Groups to Associate",
+          "datasource": "formdata_from_aws?type=vpc_security_groups"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ecs_environment_variables",
+          "cli_id": "environment_variables",
+          "label": "Environment Variables",
+          "help": "Comma-Separated List of Key/Value Pairs (foo=bar, env=test)",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

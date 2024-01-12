@@ -1,0 +1,98 @@
+{
+  "admin": {
+    "list_accounts": {
+      "enabled": true,
+      "help": "List all RapidCloud accounts"
+    },
+    "list_activations": {
+      "enabled": true,
+      "help": "List all user activations for specified account",
+      "args": {
+        "domain": {
+          "name": "domain",
+          "prompt": "Enter Account Domain",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "upgrade": {
+      "enabled": false,
+      "help": "Upgrade account to Premium"
+    },
+    "downgrade": {
+      "enabled": false,
+      "help": "Downgrade account to Free"
+    },
+    "confirm_activation": {
+      "enabled": true,
+      "help": "Confirm activation manually",
+      "args": {
+        "email": {
+          "name": "email",
+          "prompt": "Email",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_subdomain": {
+      "enabled": false,
+      "help": "",
+      "args": {
+        "subdomain": {
+          "name": "subdomain",
+          "prompt": "Subdomain",
+          "required": true,
+          "default": ""
+        },
+        "public_ip": {
+          "name": "public_ip",
+          "prompt": "Public IP Address",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "get_tenant_details": {
+      "cloud": "aws",
+      "enabled": false,
+      "help": "",
+      "template_section": "",
+      "template_enabled": false,
+      "args": {
+        "domain": {
+          "name": "domain",
+          "prompt": "domain",
+          "required": true,
+          "default": ""
+        }
+      },
+      "timestamp": "2023-06-22 13:14:46.804251",
+      "cmd_id": "20230622131446604928"
+    },
+    "get_cross_account_role_cf_template": {
+      "cloud": "aws",
+      "enabled": false,
+      "help": "",
+      "template_section": "",
+      "template_enabled": false,
+      "args": {
+        "domain": {
+          "name": "domain",
+          "prompt": "domain",
+          "required": true,
+          "default": ""
+        },
+        "account": {
+          "name": "account",
+          "prompt": "account",
+          "required": true,
+          "default": ""
+        }
+      },
+      "timestamp": "2023-06-22 15:36:23.742087",
+      "cmd_id": "20230622153623563302"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "aws_architecture",
+  "enabled": true,
+  "label": "Environment State",
+  "component": {
+    "file": "architecture",
+    "className": "ArchitectureComponent"
+  },
+  "dynamic": true,
+  "type": "Theia::Action"
+}

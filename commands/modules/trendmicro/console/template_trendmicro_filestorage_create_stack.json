@@ -1,0 +1,171 @@
+{
+  "type": "Theia::Action",
+  "label": "File Storage Security Stacks",
+  "id": "trendmicro_file_storage",
+  "module": "trendmicro",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "trendmicro_file_storage",
+      "datasource": "trendmicro/fss/stacks?test=test",
+      "env_param_required": true,
+      "columns": ["trendmicro_stack_type","trendmicro_bucket","tm_fss_stackID","tm_fss_status","timestamp"],
+      "title": "File Storage Security",
+      "allowMarkdown": true,
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "trendmicro_file_storage",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this stack? This will delete CloudFormation Stack in your AWS account and corresponding File Storage Security stack in your Trend Micro Cloud One account.",
+          "command": {
+            "phase": "trendmicro",
+            "command": "filestorage_delete_stack",
+            "refresh_status": true
+          },
+          "new_hide": true             
+        },
+        {
+          "label": "Submit",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to create or update File Storage Security Stack?",
+          "command": {
+            "phase": "trendmicro",
+            "command": "filestorage_create_stack",
+            "refresh_status": true
+          },
+          "editable_hide": true
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "fqn",
+          "cli_arg": "trendmicro_fqn",
+          "inputType": "text",
+          "hidden": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "trendmicro_stack_type",
+          "label": "Stack Type",
+          "help": "Trend Micro Cloud One File Storage Security Stack Type [all-in-one|scanner|storage]",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "All-In-One",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "all-in-one",
+                "enableControls": [
+                  "trendmicro_bucket"
+                ]             
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Scanner",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "scanner",
+                "disableControls": [
+                  "trendmicro_bucket"
+                ]             
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Storage",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "storage",
+                "enableControls": [
+                  "trendmicro_bucket"
+                ]             
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "trendmicro_bucket",
+          "label": "S3 Bucket Name",
+          "help": "Bucket Name (Storage Stack only)",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "cf_stack_name",
+          "cli_arg": "ignored",
+          "label": "CloudFormation Stack Name",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "trendmicro_role_arn",
+          "cli_arg": "ignored",
+          "label": "Stack Management Role ARN",
+          "help": "Stack Management Role ARN is provided to Trend Micro automatically by RapidCloud upon creation of this stack",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "tm_fss_stackID",
+          "cli_arg": "ignored",
+          "label": "Trend Micro Cloud One - File Storage Security Stack ID",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "tm_fss_account",
+          "cli_arg": "ignored",
+          "label": "Trend Micro Cloud One - File Storage Security Account",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "tm_fss_region",
+          "cli_arg": "ignored",
+          "label": "Trend Micro Cloud One - File Storage Security Region",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "tm_fss_updated",
+          "cli_arg": "ignored",
+          "label": "Trend Micro Cloud One - File Storage Security Stack Updated Timestamp",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "tm_fss_name",
+          "cli_arg": "ignored",
+          "label": "Trend Micro Cloud One - File Storage Security Stack Name",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        }
+      ]
+    }
+  ]
+}

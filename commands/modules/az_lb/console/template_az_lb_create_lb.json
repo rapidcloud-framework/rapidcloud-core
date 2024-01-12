@@ -1,0 +1,126 @@
+{
+  "type": "Theia::Action",
+  "label": "Load Balancer",
+  "id": "create_lb",
+  "module": "az_lb",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_lb",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_lb",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_lb_location",
+        "az_lb_resource_group"],
+      "title": "Load Balancer",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_lb",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_lb",
+            "command": "create_lb",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_lb_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_lb_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_lb_public_address_id",
+          "label": "Public IP",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=public_ips",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Public IP is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_lb_sku",
+          "help": "",
+          "label": "SKU",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Basic",
+              "value": "Basic"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Standard",
+              "value": "Standard"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_lb_sku_tier",
+          "help": "",
+          "label": "SKU Tier",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Global",
+              "value": "Global"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Regional",
+              "value": "Regional"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

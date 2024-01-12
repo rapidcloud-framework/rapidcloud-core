@@ -1,0 +1,10 @@
+{
+  "acm": {
+    "create": {
+      "enabled": false,
+      "example": "kc acm create --no-prompt --acm_cert_domain_name cert_domain_name --acm_cert_validation_method cert_validation_method --acm_r53_zone_name r53_zone_name",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

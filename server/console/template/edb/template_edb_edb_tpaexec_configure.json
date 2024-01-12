@@ -1,0 +1,62 @@
+{
+  "type": "Theia::Action",
+  "label": "tpaexec configure",
+  "id": "edb_tpaexec_configure",
+  "module": "edb",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "edb_tpaexec_configure",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=edb",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "timestamp"
+      ],
+      "title": "tpaexec configure",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "edb_tpaexec_configure",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "tpaexec_configure",
+          "command": {
+            "phase": "edb",
+            "command": "tpaexec_configure",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Cluster Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "architecture",
+          "label": "Architecture",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "platform",
+          "label": "Platform",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

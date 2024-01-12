@@ -1,0 +1,148 @@
+{
+  "type": "Theia::Action",
+  "label": "Firewall",
+  "id": "create_firewall",
+  "module": "az_net",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_firewall",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_firewall",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_net_location",
+        "az_net_resource_group",
+        "az_net_sku_name",
+        "az_net_sku_tier"
+      ],
+      "title": "Firewall",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_firewall",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_net",
+            "command": "create_firewall",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_sku_name",
+          "label": "SKU Name",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "AZFW_Hub",
+              "value": "AZFW_Hub"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "AZFW_VNet",
+              "value": "AZFW_VNet"
+            }
+          ],
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A SKU is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_sku_tier",
+          "label": "SKU Tier",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Premium",
+              "value": "Premium"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Standard",
+              "value": "Standard"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Basic",
+              "value": "Basic"
+            }
+          ],
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A SKU Tier is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_subnet_id",
+          "label": "Subnet",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=subnets"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_public_address_id",
+          "label": "Public IP",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=public_ips"
+        }
+      ]
+    }
+  ]
+}

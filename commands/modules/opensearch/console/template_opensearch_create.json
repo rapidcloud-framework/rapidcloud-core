@@ -1,0 +1,110 @@
+{
+  "type": "Theia::Action",
+  "label": "OpenSearch",
+  "id": "opensearch",
+  "module": "opensearch",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "opensearch_create",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=opensearch",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "instance_type",
+        "nodes",
+        "ebs_storage_size",
+        "timestamp"
+      ],
+      "title": "OpenSearch Clusters",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "opensearch_create",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Submit",
+          "command": {
+            "phase": "opensearch",
+            "command": "create",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "Name of the cluster (also referred to as the OpenSearch \"Domain\")",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "instance_type",
+          "cli_id": "instance_type",
+          "label": "Instance Type",
+          "help": "Set the OpenSearch instance type (r5.large.search, etc.)",
+          "default": "r5.large.search",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "high_availability",
+          "cli_id": "high_availability",
+          "label": "Enable High-Availability",
+          "default": true,
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "nodes",
+          "cli_id": "nodes",
+          "label": "Nodes",
+          "help": "Total number of nodes (if high-availability is disabled, must be a multiple of 2)",
+          "default": 2,
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ebs_storage_size",
+          "cli_id": "ebs_storage_size",
+          "label": "EBS Storage Size",
+          "help": "Storage capacity (GiB) per node, minimum of 10 and maximum of 2048",
+          "default": 10,
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "subnet_ids",
+          "label": "Subnet Ids",
+          "help": "",
+          "datasource": "formdata_from_aws?type=subnets"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "security_group_ids",
+          "label": "Security Group Ids",
+          "help": "",
+          "datasource": "formdata_from_aws?type=vpc_security_groups"
+        }
+      ]
+    }
+  ]
+}

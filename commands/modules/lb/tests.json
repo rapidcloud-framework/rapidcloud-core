@@ -1,0 +1,10 @@
+{
+  "lb": {
+    "create": {
+      "enabled": false,
+      "example": "kc lb create --no-prompt --lb_name name --lb_is_internal is_internal --lb_type type --lb_subnets subnets",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

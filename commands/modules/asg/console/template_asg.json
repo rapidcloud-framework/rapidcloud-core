@@ -1,0 +1,159 @@
+{
+  "type": "Theia::Action",
+  "label": "Auto Scaling Groups",
+  "id": "asg",
+  "module": "asg",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "asg",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=asg",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "asg_launch_template_name",
+        "asg_launch_template_version",
+        "asg_instance_type",
+        "asg_ami_id",
+        "asg_placement_group_name",
+        "asg_placement_group_strategy",
+        "asg_vpc_zone_identifier",
+        "asg_desired_capacity",
+        "asg_min_size",
+        "asg_max_size",
+        "timestamp"
+      ],
+      "title": "Auto Scaling Groups",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "asg",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "asg",
+            "command": "create",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "Name",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "asg_launch_template_name",
+          "cli_id": "launch_template_name",
+          "label": "Launch Template Name",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "asg_launch_template_version",
+          "cli_id": "launch_template_version",
+          "label": "Launch Template Version",
+          "inputType": "text",
+          "default": "$Latest"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "asg_instance_type",
+          "cli_id": "instance_type",
+          "label": "EC2 Instance Type",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "asg_ami_id",
+          "cli_id": "ami_id",
+          "label": "AMI ID",
+          "help": "RapidCLoud currently only supports Amazon Linux based AMIs. Default is 'ami-0022f774911c1d690', Amazon Linux 2 Kernel 5.10 AMI 2.0.20220426.0 x86_64 HVM gp2",
+          "default": "ami-0022f774911c1d690",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "asg_placement_group_name",
+          "cli_id": "placement_group_name",
+          "label": "Placement Group Name",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "asg_placement_group_strategy",
+          "cli_id": "placement_group_strategy",
+          "label": "Placement Group Strategy",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Cluster",
+              "value": "cluster"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Partition",
+              "value": "partition"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Spread",
+              "value": "spread"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "asg_vpc_zone_identifier",
+          "cli_id": "vpc_zone_identifier",
+          "label": "Subnets",
+          "help": "",
+          "datasource": "formdata_from_aws?type=subnets"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "asg_desired_capacity",
+          "cli_id": "desired_capacity",
+          "label": "Desired Capacity",
+          "help": "The number of EC2 instances running in the group",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "asg_min_size",
+          "cli_id": "min_size",
+          "label": "Min Size",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "asg_max_size",
+          "cli_id": "max_size",
+          "label": "Max Size",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

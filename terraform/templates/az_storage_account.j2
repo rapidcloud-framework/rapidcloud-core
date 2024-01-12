@@ -1,0 +1,25 @@
+module "{{ fqn }}" {
+  source              = "{{ module_source }}"
+  profile             = "{{ profile }}"
+  env                 = "{{ env }}"
+  workload            = "{{ workload }}"
+  cmd_id              = "{{ cmd_id }}"
+  name                = "{{ resource_name }}"
+  location            = "{{ params["location"] }}"
+  resource_group_name = "{{ params["resource_group_name"] }}"
+  access_tier        = "{{ params["access_tier"] }}"
+  account_replication_type = "{{ params["account_replication_type"] }}"
+  {% if params["ip_addresses"] is defined and params["ip_addresses"]|length > 0%}
+  ip_addresses        = {{ params["ip_addresses"]|tojson }}
+  {% endif %}
+  {% if params["subnet_ids"] is defined and params["subnet_ids"]|length > 0 %}
+  subnet_ids          = {{ params["subnet_ids"]|tojson }}
+  {% endif %}
+  {% if params["tags"] is defined %}
+    tags = {
+    {% for k, v in  params["tags"].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+  {% endif %}
+}

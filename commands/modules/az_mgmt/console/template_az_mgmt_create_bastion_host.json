@@ -1,0 +1,143 @@
+{
+  "type": "Theia::Action",
+  "label": "Azure Bastion Host",
+  "id": "create_bastion_host",
+  "module": "az_mgmt",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_bastion_host",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_bastion_host",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_mgmt_location",
+        "az_mgmt_resource_group"
+      ],
+      "title": "Azure Bastion Host",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_bastion_host",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_mgmt",
+            "command": "create_bastion_host",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_mgmt_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_mgmt_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_mgmt_sku_name",
+          "label": "SKU",
+          "help": "The SKU name for the Bastion Host",
+          "inputType": "text",
+          "default": "Basic",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Basic",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Basic",
+                "disableControls": ["az_mgmt_file_copy_enabled"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Standard",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Standard",
+                "enableControls": ["az_mgmt_file_copy_enabled"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_mgmt_copy_paste_enabled",
+          "label": "Copy/Paste Enabled"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_mgmt_file_copy_enabled",
+          "label": "File Copy Enabled"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_mgmt_subnet_id",
+          "label": "Subnet",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=subnets&bastion=true",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Subnet is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_mgmt_public_address_id",
+          "label": "Public Address IP",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=public_ips",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Public IP is required"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

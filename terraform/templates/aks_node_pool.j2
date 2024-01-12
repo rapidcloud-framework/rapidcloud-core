@@ -1,0 +1,48 @@
+module "{{ fqn }}" {
+    source = "{{ module_source }}"
+    profile = "{{ profile }}"
+    env = "{{ env }}"
+    workload = "{{ workload }}"
+    cmd_id = "{{ cmd_id }}"
+    name = "{{ resource_name }}"
+    cluster_id = module.{{ profile }}_aks_cluster_{{ params["cluster_name"] }}.id
+    cluster_name = "{{ params["cluster_name"] }}"
+    aks_version = "{{ params["aks_version"] }}"
+    node_count = "{{ params["node_count"] }}"
+    max_size = "{{ params["max_size"] }}"
+    min_size = "{{ params["min_size"] }}"
+    instance_size = "{{ params["instance_size"] }}"
+    node_pool_mode = "{{ params["node_pool_mode"] }}"
+    eviction_policy = "{{ params["eviction_policy"] }}"
+    zones = {{ params["zones"]|tojson }}
+    os_sku = "{{ params["os_sku"] }}"
+    os_type = "{{ params["os_type"] }}"
+    use_spot_instance = {{ params["use_spot_instance"] }}
+    subnet_id = "{{ params["subnet_id"] }}"
+    {% if params["capacity_reservation_group_id"] is defined and params["capacity_reservation_group_id"]|length %}
+    capacity_reservation_group_id = "{{ params["capacity_reservation_group_id"] }}"
+    {% endif %}
+    {% if params['node_labels'] is defined %}
+    node_labels = {
+    {% for k, v in  params['node_labels'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+    {% if params['node_taints'] is not none and params['node_taints']|length > 0%}
+    node_taints = {{ params["node_taints"]|tojson }}
+    {% endif %}
+    {% if params["os_disk_size_gb"] is defined and params["os_disk_size_gb"]|length %}
+    os_disk_size_gb = {{ params["os_disk_size_gb"] }}
+    {% endif %}
+    {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+    depends_on = [
+      module.{{ profile }}_aks_cluster_{{ params["cluster_name"] }} 
+    ]
+}

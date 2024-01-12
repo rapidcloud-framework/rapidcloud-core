@@ -1,0 +1,36 @@
+{
+  "type": "Theia::Action",
+  "label": "Resume",
+  "id": "workload_resume",
+  "module": "workload",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "workload_resume",
+      "title": "Resume Workload Resources",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "resume",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to resume selected resource types right now?",
+          "command": {
+            "phase": "workload",
+            "command": "resume"            
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "workload_resource_type",
+          "label": "Resource Types to Resume",
+          "help": "",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=workload,enable_pause&field_prefix=workload_module_"
+        }
+      ]
+    }
+  ]
+}

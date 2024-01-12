@@ -1,0 +1,1300 @@
+{
+ "version": "1.3.0",
+ "cellSize": 28,
+ "rows": 33,
+ "columns": 32,
+ "icons": [
+  {
+   "id": 1,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/project/project.png",
+   "name": "",
+   "text": "Prod Shared VPC Project",
+   "x": 2,
+   "y": 0,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 2,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/project/project.png",
+   "name": "",
+   "text": "prj-c-interconnect (HA)",
+   "x": 26,
+   "y": 16,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 3,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/virtual_private_cloud/virtual_private_cloud.png",
+   "name": "",
+   "text": "Prod Shared VPC",
+   "x": 5,
+   "y": 1,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 4,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/project/project.png",
+   "name": "",
+   "text": "Prod Project for App 1",
+   "x": 16,
+   "y": 0,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 5,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/compute_engine/compute_engine.png",
+   "name": "",
+   "text": "VM (app workload)",
+   "x": 18,
+   "y": 2,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 6,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/project/project.png",
+   "name": "",
+   "text": "Prod Project for App 2",
+   "x": 16,
+   "y": 5,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 7,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/compute_engine/compute_engine.png",
+   "name": "",
+   "text": "VM (app workload)",
+   "x": 18,
+   "y": 7,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 8,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/project/project.png",
+   "name": "",
+   "text": "Prod Project for App 3",
+   "x": 16,
+   "y": 10,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 9,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/compute_engine/compute_engine.png",
+   "name": "",
+   "text": "VM (app workload)",
+   "x": 18,
+   "y": 12,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 10,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/project/project.png",
+   "name": "",
+   "text": "prj-c-dns-hub",
+   "x": 26,
+   "y": 0,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 11,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/cloud_network/cloud_network.png",
+   "name": "",
+   "text": "subnet-region-1",
+   "x": 7,
+   "y": 4,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 12,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/cloud_network/cloud_network.png",
+   "name": "",
+   "text": "subnet-region-2",
+   "x": 7,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 14,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/project/project.png",
+   "name": "",
+   "text": "prj-b-cicd",
+   "x": 26,
+   "y": 8,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 15,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/virtual_private_cloud/virtual_private_cloud.png",
+   "name": "",
+   "text": "vpc-c-dns-hub",
+   "x": 28,
+   "y": 1,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 16,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/virtual_private_cloud/virtual_private_cloud.png",
+   "name": "",
+   "text": "VPC for Cloud Build",
+   "x": 28,
+   "y": 9,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 17,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/cloud_interconnect/cloud_interconnect.png",
+   "name": "",
+   "text": "interconnect(s)",
+   "x": 28,
+   "y": 18,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 18,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/project/project.png",
+   "name": "",
+   "text": "Non-Prod Shared VPC Project",
+   "x": 2,
+   "y": 16,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 19,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/virtual_private_cloud/virtual_private_cloud.png",
+   "name": "",
+   "text": "Dev Shared VPC",
+   "x": 5,
+   "y": 26,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 20,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/virtual_private_cloud/virtual_private_cloud.png",
+   "name": "",
+   "text": "Non-Prod Shared VPC",
+   "x": 5,
+   "y": 17,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 21,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/cloud_network/cloud_network.png",
+   "name": "",
+   "text": "subnet-region-1",
+   "x": 7,
+   "y": 18,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 22,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/cloud_network/cloud_network.png",
+   "name": "",
+   "text": "subnet-region-2",
+   "x": 7,
+   "y": 21,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 23,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/project/project.png",
+   "name": "",
+   "text": "Dev Shared VPC Project",
+   "x": 2,
+   "y": 25,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 24,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/cloud_network/cloud_network.png",
+   "name": "",
+   "text": "subnet-region-1",
+   "x": 7,
+   "y": 27,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 25,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/cloud_network/cloud_network.png",
+   "name": "",
+   "text": "subnet-region-2",
+   "x": 7,
+   "y": 30,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 26,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/project/project.png",
+   "name": "",
+   "text": "Non-Prod Projects: App 1, 2, 3, ...",
+   "x": 16,
+   "y": 17,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 27,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/compute_engine/compute_engine.png",
+   "name": "",
+   "text": "",
+   "x": 17,
+   "y": 19,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 28,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/compute_engine/compute_engine.png",
+   "name": "",
+   "text": "",
+   "x": 18,
+   "y": 20,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 29,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/compute_engine/compute_engine.png",
+   "name": "",
+   "text": "",
+   "x": 19,
+   "y": 21,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 30,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/project/project.png",
+   "name": "",
+   "text": "Dev Projects: App 1, 2, 3, ...",
+   "x": 16,
+   "y": 26,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 31,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/compute_engine/compute_engine.png",
+   "name": "",
+   "text": "",
+   "x": 19,
+   "y": 30,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 32,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/compute_engine/compute_engine.png",
+   "name": "",
+   "text": "",
+   "x": 18,
+   "y": 29,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 33,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/gcp-icons/compute_engine/compute_engine.png",
+   "name": "",
+   "text": "",
+   "x": 17,
+   "y": 28,
+   "active": null,
+   "display": null
+  }
+ ],
+ "links": [
+  {
+   "from": 2,
+   "to": 2,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 26,
+     "y": 16,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 16,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 16,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 3,
+   "to": 3,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 5,
+     "y": 1,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 9,
+     "y": 1,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 9,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 5,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 5,
+     "y": 1,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 1,
+   "to": 1,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 2,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 10,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 10,
+     "y": 14,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 2,
+     "y": 14,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 2,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 3,
+   "to": 5,
+   "markerEnd": false,
+   "markerStart": true,
+   "name": "IP interface",
+   "path": [
+    {
+     "x": 8,
+     "y": 2,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 18,
+     "y": 2,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 4,
+   "to": 4,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 16,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 16,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 16,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 6,
+   "to": 6,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 16,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 16,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 16,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 3,
+   "to": 7,
+   "markerEnd": false,
+   "markerStart": true,
+   "name": "",
+   "path": [
+    {
+     "x": 8,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 18,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 8,
+   "to": 8,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 16,
+     "y": 10,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 10,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 14,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 16,
+     "y": 14,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 16,
+     "y": 10,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 3,
+   "to": 9,
+   "markerEnd": false,
+   "markerStart": true,
+   "name": "",
+   "path": [
+    {
+     "x": 8,
+     "y": 12,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 18,
+     "y": 12,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 10,
+   "to": 10,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 26,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 0,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 14,
+   "to": 14,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 26,
+     "y": 8,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 8,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 13,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 8,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 15,
+   "to": 15,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 28,
+     "y": 1,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 30,
+     "y": 1,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 30,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 28,
+     "y": 4,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 28,
+     "y": 1,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 16,
+   "to": 16,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 28,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 30,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 30,
+     "y": 12,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 28,
+     "y": 12,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 28,
+     "y": 9,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 18,
+   "to": 18,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 2,
+     "y": 16,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 10,
+     "y": 16,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 10,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 2,
+     "y": 23,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 2,
+     "y": 16,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 20,
+   "to": 20,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 5,
+     "y": 17,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 9,
+     "y": 17,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 9,
+     "y": 22,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 5,
+     "y": 22,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 5,
+     "y": 17,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 23,
+   "to": 23,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 2,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 10,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 10,
+     "y": 32,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 2,
+     "y": 32,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 2,
+     "y": 25,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 19,
+   "to": 19,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 5,
+     "y": 26,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 9,
+     "y": 26,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 9,
+     "y": 31,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 5,
+     "y": 31,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 5,
+     "y": 26,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 26,
+   "to": 26,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 16,
+     "y": 17,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 17,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 22,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 16,
+     "y": 22,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 16,
+     "y": 17,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 26,
+   "to": 26,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 16,
+     "y": 17,
+     "offsetX": 1,
+     "offsetY": 1
+    },
+    {
+     "x": 20,
+     "y": 17,
+     "offsetX": 1,
+     "offsetY": 1
+    },
+    {
+     "x": 20,
+     "y": 22,
+     "offsetX": 1,
+     "offsetY": 1
+    },
+    {
+     "x": 16,
+     "y": 22,
+     "offsetX": 1,
+     "offsetY": 1
+    },
+    {
+     "x": 16,
+     "y": 17,
+     "offsetX": 1,
+     "offsetY": 1
+    }
+   ]
+  },
+  {
+   "from": 26,
+   "to": 26,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 16,
+     "y": 17,
+     "offsetX": 2,
+     "offsetY": 2
+    },
+    {
+     "x": 20,
+     "y": 17,
+     "offsetX": 2,
+     "offsetY": 2
+    },
+    {
+     "x": 20,
+     "y": 22,
+     "offsetX": 2,
+     "offsetY": 2
+    },
+    {
+     "x": 16,
+     "y": 22,
+     "offsetX": 2,
+     "offsetY": 2
+    },
+    {
+     "x": 16,
+     "y": 17,
+     "offsetX": 2,
+     "offsetY": 2
+    }
+   ]
+  },
+  {
+   "from": 20,
+   "to": 26,
+   "markerEnd": false,
+   "markerStart": true,
+   "name": "",
+   "path": [
+    {
+     "x": 8,
+     "y": 20,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 17,
+     "y": 20,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 30,
+   "to": 30,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 16,
+     "y": 26,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 26,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 20,
+     "y": 31,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 16,
+     "y": 31,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 16,
+     "y": 26,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 30,
+   "to": 30,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 16,
+     "y": 26,
+     "offsetX": 1,
+     "offsetY": 1
+    },
+    {
+     "x": 20,
+     "y": 26,
+     "offsetX": 1,
+     "offsetY": 1
+    },
+    {
+     "x": 20,
+     "y": 31,
+     "offsetX": 1,
+     "offsetY": 1
+    },
+    {
+     "x": 16,
+     "y": 31,
+     "offsetX": 1,
+     "offsetY": 1
+    },
+    {
+     "x": 16,
+     "y": 26,
+     "offsetX": 1,
+     "offsetY": 1
+    }
+   ]
+  },
+  {
+   "from": 30,
+   "to": 30,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 16,
+     "y": 26,
+     "offsetX": 2,
+     "offsetY": 2
+    },
+    {
+     "x": 20,
+     "y": 26,
+     "offsetX": 2,
+     "offsetY": 2
+    },
+    {
+     "x": 20,
+     "y": 31,
+     "offsetX": 2,
+     "offsetY": 2
+    },
+    {
+     "x": 16,
+     "y": 31,
+     "offsetX": 2,
+     "offsetY": 2
+    },
+    {
+     "x": 16,
+     "y": 26,
+     "offsetX": 2,
+     "offsetY": 2
+    }
+   ]
+  },
+  {
+   "from": 19,
+   "to": 30,
+   "markerEnd": false,
+   "markerStart": true,
+   "name": "",
+   "path": [
+    {
+     "x": 8,
+     "y": 29,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 17,
+     "y": 29,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 20,
+   "to": 26,
+   "markerEnd": false,
+   "markerStart": true,
+   "name": "",
+   "path": [
+    {
+     "x": 8,
+     "y": 20,
+     "offsetX": 0,
+     "offsetY": 1
+    },
+    {
+     "x": 17,
+     "y": 20,
+     "offsetX": 0,
+     "offsetY": 1
+    }
+   ]
+  },
+  {
+   "from": 20,
+   "to": 26,
+   "markerEnd": false,
+   "markerStart": true,
+   "name": "",
+   "path": [
+    {
+     "x": 8,
+     "y": 20,
+     "offsetX": 0,
+     "offsetY": 2
+    },
+    {
+     "x": 17,
+     "y": 20,
+     "offsetX": 0,
+     "offsetY": 2
+    }
+   ]
+  },
+  {
+   "from": 19,
+   "to": 30,
+   "markerEnd": false,
+   "markerStart": true,
+   "name": "",
+   "path": [
+    {
+     "x": 8,
+     "y": 29,
+     "offsetX": 0,
+     "offsetY": 1
+    },
+    {
+     "x": 17,
+     "y": 29,
+     "offsetX": 0,
+     "offsetY": 1
+    }
+   ]
+  },
+  {
+   "from": 19,
+   "to": 30,
+   "markerEnd": false,
+   "markerStart": true,
+   "name": "",
+   "path": [
+    {
+     "x": 8,
+     "y": 29,
+     "offsetX": 0,
+     "offsetY": 2
+    },
+    {
+     "x": 17,
+     "y": 29,
+     "offsetX": 0,
+     "offsetY": 2
+    }
+   ]
+  }
+ ],
+ "grid": false
+}

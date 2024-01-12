@@ -1,0 +1,62 @@
+{
+  "type": "Theia::Action",
+  "label": "Redis User Groups",
+  "id": "elasticache_create_user_group",
+  "module": "elasticache",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "elasticache_create_user_group",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=elasticache,create_user_group",
+      "env_param_required": true,
+      "columns": ["name", "timestamp"],
+      "title": "Redis User Groups",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "elasticache_create_user_group",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "elasticache",
+            "command": "create_user_group",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "elasticache_users",
+          "label": "Users",
+          "help": "",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=elasticache,create_user&field=name"
+        }
+      ]
+    }
+  ]
+}

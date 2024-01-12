@@ -1,0 +1,15 @@
+{
+  "type": "Theia::Action",
+  "label": "In-Progress",
+  "id": "inprogress",
+  "module": "inprogress",
+  "env_not_required": true,
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "inprogress",
+      "title": "Activation is in Progress",
+      "description": "Your RapidCloud Instance is being created ..."
+    }
+  ]
+}

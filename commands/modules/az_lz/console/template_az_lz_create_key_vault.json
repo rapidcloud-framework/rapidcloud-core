@@ -1,0 +1,109 @@
+{
+    "type": "Theia::Action",
+    "label": "Key Vault",
+    "id": "create_key_vault",
+    "module": "az_lz",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "create_key_vault",
+        "datasource": "data?type=metadata&filter_name=command&filter_value=create_key_vault",
+        "env_param_required": true,
+        "columns": [
+          "name",
+          "az_lz_location",
+          "az_lz_sku_name",
+          "az_lz_rg_name"
+        ],
+        "title": "Key Vault",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "create_key_vault",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create",
+            "command": {
+              "phase": "az_lz",
+              "command": "create_key_vault",
+              "refresh_status": true
+            }
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Input",
+            "id": "name",
+            "cli_id": "name",
+            "label": "Key Vault Name",
+            "help": "",
+            "inputType": "text"
+            ,
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Name is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_lz_location",
+            "label": "Location",
+            "help": "",
+            "datasource": "formdata_from_azure?type=locations",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Location is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_lz_rg_name",
+            "label": "Resource Group Name",
+            "help": "",
+            "inputType": "text",
+            "datasource": "formdata_from_azure?type=resource_groups",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Resource Group is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_lz_sku_name",
+            "label": "SKU Name",
+            "help": "",
+            "options": [
+              {
+                "type": "Theia::Option",
+                "label": "Standard",
+                "value": "standard"
+              },
+              {
+                "type": "Theia::Option",
+                "label": "Premium",
+                "value": "premium"
+              }
+            ],
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A SKU is required"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

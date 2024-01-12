@@ -1,0 +1,64 @@
+{
+  "az_mgmt": {
+    "create_bastion_host": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_mgmt",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the azure firewall.",
+          "required": false,
+          "default": "eastus"
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "sku_name": {
+          "name": "sku_name",
+          "prompt": "Enter the name of the SKU (Basic or Standard).",
+          "required": true,
+          "default": "Basic"
+        },
+        "copy_paste_enabled": {
+          "name": "copy_paste_enabled",
+          "prompt": "true or false",
+          "type": "boolean",
+          "required": false
+        },
+        "file_copy_enabled": {
+          "name": "file_copy_enabled",
+          "prompt": "true or false",
+          "type": "boolean",
+          "required": false
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Enter firewall's subnet_id",
+          "required": false,
+          "default": ""
+        },
+        "public_address_id": {
+          "name": "public_address_id",
+          "prompt": "Enter firewal's public_address_id",
+          "required": false,
+          "default": ""
+        }
+      }
+    }
+  }
+}

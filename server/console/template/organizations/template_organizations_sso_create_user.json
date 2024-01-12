@@ -1,0 +1,91 @@
+{
+  "type": "Theia::Action",
+  "label": "SSO Users",
+  "id": "sso_create_user",
+  "module": "sso",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "sso_create_user",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=sso,create_user",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "sso_user_name",
+        "sso_display_name",
+        "sso_first_name",
+        "sso_last_name",
+        "sso_email",
+        "timestamp"
+      ],
+      "title": "SSO Users",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "sso_create_user",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "sso",
+            "command": "create_user",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "sso_user_name",
+          "cli_id": "user_name",
+          "label": "User Name",
+          "help": "Unique",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "sso_display_name",
+          "label": "Display Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "sso_first_name",
+          "label": "First Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "sso_last_name",
+          "label": "Last Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "email",
+          "label": "Email",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "type": "Theia::Action",
+  "label": "App Service",
+  "id": "create_web_app",
+  "module": "az_app",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_web_app",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_web_app",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_app_location",
+        "az_app_resource_group"
+      ],
+      "title": "App Service",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_web_app",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "az_app",
+            "command": "create_web_app",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_service_plan_id",
+          "label": "Service Plan",
+          "help": "",
+          "inputType": "text",
+          "datasource": "custom/service_plans?module_name_arg=az_app",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Service plan is required"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

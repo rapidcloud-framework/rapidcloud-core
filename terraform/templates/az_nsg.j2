@@ -1,0 +1,9 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source             = "{{ module_source }}"
+  name               = "{{ resource_name }}"
+  location           = "{{ params['location'] }}"
+  resource_group_name= "{{ params['resource_group'] }}"
+  {% if params['security_rule'] is defined %}
+  security_rule = {{ params['security_rule'] }}
+  {% endif %}
+}

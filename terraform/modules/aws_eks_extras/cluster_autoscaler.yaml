@@ -1,0 +1,7 @@
+autoDiscovery:
+  clusterName: ${cluster_name}
+  # tags:
+  # - k8s.io/cluster-autoscaler/enabled
+  # - k8s.io/cluster-autoscaler/${cluster_name}
+awsRegion: ${region}
+replicaCount: 2

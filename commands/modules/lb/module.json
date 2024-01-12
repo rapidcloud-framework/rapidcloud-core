@@ -1,0 +1,185 @@
+{
+  "lb": {
+    "create": {
+      "enabled": true,
+      "help": "Create Application Load Balancer",
+      "template_section": "networking",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "is_internal": {
+          "name": "is_internal",
+          "prompt": "Internal LB (yes | no)",
+          "required": true,
+          "default": "yes"
+        },
+        "type": {
+          "name": "type",
+          "prompt": "Load Balancer (application | network)",
+          "required": true,
+          "default": "application"
+        },
+        "subnets": {
+          "name": "subnets",
+          "prompt": "A comma-separated list of subnet IDs to attach to the LB",
+          "required": true,
+          "default": ""
+        },
+        "security_group_ids": {
+          "name": "security_group_ids",
+          "prompt": "Security group IDs to attach to the LB",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "add_listener": {
+      "help": "Add LB Listener",
+      "template_section": "networking",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "load_balancer_name": {
+          "name": "load_balancer_name",
+          "prompt": "Name of load balancer in RC",
+          "required": true,
+          "default": ""
+        },
+        "protocol": {
+          "name": "protocol",
+          "prompt": "Protocol for connections from clients to the load balancer",
+          "required": true,
+          "default": "HTTP"
+        },
+        "port": {
+          "name": "port",
+          "prompt": "Port on which the load balancer is listening",
+          "required": true,
+          "default": "80"
+        },
+        "target_group_name": {
+          "name": "target_group_name",
+          "prompt": "Name of target group in RC to route traffic to",
+          "required": true,
+          "default": ""
+        },
+        "alpn_policy": {
+          "name": "alpn_policy",
+          "prompt": "Name of the Application-Layer Protocol Negotiation (ALPN) policy (valid for TLS protocol only)",
+          "required": false,
+          "default": null
+        },
+        "ssl_policy": {
+          "name": "ssl_policy",
+          "prompt": "Name of the SSL Policy for the listener, required for protocols TLS/HTTPS",
+          "required": false,
+          "default": null
+        },
+        "certificate_arn": {
+          "name": "certificate_arn",
+          "prompt": "ARN of the default SSL server certificate, required if protocol is HTTPS",
+          "required": false,
+          "default": null
+        }
+      }
+    },
+    "create_target_group": {
+      "help": "Create LB Target Group",
+      "template_section": "networking",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "port": {
+          "name": "port",
+          "prompt": "Port on which targets receive traffic",
+          "required": true,
+          "default": "80"
+        },
+        "protocol": {
+          "name": "protocol",
+          "prompt": "Protocol to use for routing traffic to the targets",
+          "required": true,
+          "default": "HTTP"
+        },
+        "target_type": {
+          "name": "target_type",
+          "prompt": "target type: instance | ip",
+          "required": true,
+          "default": "instance"
+        },
+        "vpc_id": {
+          "name": "vpc_id",
+          "prompt": "Identifier of the VPC in which to create the target group",
+          "required": true,
+          "default": ""
+        },
+        "load_balancer_type": {
+          "name": "load_balancer_type",
+          "prompt": "load balancer type: ALB | NLB",
+          "required": true,
+          "default": "alb"
+        },
+        "load_balancing_algorithm_type": {
+          "name": "load_balancing_algorithm_type",
+          "prompt": "algorithm type: valid only for ALB (round_robin | least_outstanding_requests)",
+          "required": false,
+          "default": null
+        },
+        "preserve_client_ip": {
+          "name": "preserve_client_ip",
+          "prompt": "preserve client ip? valid only for NLB",
+          "required": false,
+          "default": null
+        },
+        "ip_address_type": {
+          "name": "ip_address_type",
+          "prompt": "IP address type, valid only for IP target type",
+          "required": false,
+          "default": null
+        },
+        "protocol_version": {
+          "name": "protocol_version",
+          "prompt": "Protocol version, valid only when protocol is HTTP/HTTPS",
+          "required": false,
+          "default": null
+        },
+        "ip_targets": {
+          "name": "ip_targets",
+          "prompt": "comma-separated list of RC EC2 instance names, valid only for instance target type",
+          "required": true,
+          "default": ""
+        },
+        "ec2_targets": {
+          "name": "ip_targets",
+          "prompt": "comma-separated list of IPs, valid only for IP target type",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  }
+}

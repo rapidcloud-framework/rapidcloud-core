@@ -1,0 +1,7 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source             = "{{ module_source }}"
+  public_ip_name     = "{{ resource_name }}"
+  resource_group_name = "{{ params['resource_group_name'] }}"
+  location           = "{{ params['location'] }}"
+  sku                = "{{ params['sku_name'] }}"
+}

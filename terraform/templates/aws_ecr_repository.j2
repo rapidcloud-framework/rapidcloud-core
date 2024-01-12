@@ -1,0 +1,21 @@
+module "{{ profile }}_{{ resource_name }}_aws_ecr_repository" {
+  source               = "../modules/aws_ecr_repository"
+  name                 = "{{ profile }}_{{ resource_name }}"
+  image_tag_mutability = "{{ params['image_tag_mutability'] }}"
+  scan_on_push         = "{{ params['scan_on_push'] }}"
+  encryption_type      = "{{ params['encryption_type'] }}"
+  {% if params['kms_key'] == '' %}
+  kms_key = null
+  {% else %}
+  kms_key = "{{ params['kms_key'] }}"
+  {% endif %}
+
+  tags = {
+    "Name"      = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}

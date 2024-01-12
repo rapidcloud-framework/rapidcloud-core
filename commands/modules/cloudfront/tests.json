@@ -1,0 +1,10 @@
+{
+  "cloudfront": {
+    "create": {
+      "enabled": false,
+      "example": "kc cloudfront create --no-prompt --cloudfront_name name --cloudfront_bucket_name bucket_name --cloudfront_bucket_regional_domain_name bucket_regional_domain_name --cloudfront_origin_id origin_id",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

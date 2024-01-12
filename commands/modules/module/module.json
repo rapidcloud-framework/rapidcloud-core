@@ -1,0 +1,155 @@
+{
+  "module": {
+    "create": {
+      "enabled": true,
+      "help": "Create code skeleton for a new RapidCloud module",
+      "template_section": "modules",
+      "template_enabled": true,
+      "id": "name",
+      "cloud": "general",
+      "args": {
+        "name": {
+          "name": "Module Name",
+          "prompt": "Enter Module Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "action": {
+          "name": "action",
+          "prompt": "Enter Command Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "cloud": {
+          "name": "cloud",
+          "prompt": "Cloud? (aws|azure|gcp)",
+          "required": true,
+          "default": "aws"
+        },
+        "repo_dir": {
+          "name": "repo_dir",
+          "prompt": "Enter Module repo directory, or `.` for default location",
+          "required": true,
+          "default": "."
+        }
+      }
+    },
+    "add_command": {
+      "enabled": true,
+      "help": "Add command to the existing module",
+      "template_section": "modules",
+      "template_enabled": true,
+      "cloud": "general",
+      "args": {
+        "module_name": {
+          "name": "Module Name",
+          "prompt": "Enter existing Module Name",
+          "required": true,
+          "default": ""
+        },
+        "command_name": {
+          "name": "Command Name",
+          "prompt": "Enter NEW Command Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "cloud": {
+          "name": "cloud",
+          "prompt": "Cloud? (aws|azure|gcp)",
+          "required": true,
+          "default": "aws"
+        }
+      }
+    },
+    "show": {
+      "enabled": true,
+      "help": "Show all modules",
+      "template_section": "metadata",
+      "template_enabled": true,
+      "cloud": "general"
+    },
+    "activate": {
+      "enabled": true,
+      "help": "Activate module",
+      "cloud": "general",
+      "args": {
+        "name": {
+          "name": "Module Name",
+          "prompt": "Enter Module Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "commands": {
+          "name": "Module Commands",
+          "prompt": "ALL or comma separated list of module commands to activate",
+          "required": true,
+          "default": "ALL"
+        }
+      }
+    },
+    "deactivate": {
+      "enabled": true,
+      "help": "Deactivate module",
+      "cloud": "general",
+      "args": {
+        "name": {
+          "name": "Module Name",
+          "prompt": "Enter Module Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "commands": {
+          "name": "Module Commands",
+          "prompt": "ALL or comma separated list of module commands to activate",
+          "required": true,
+          "default": "ALL"
+        }
+      }
+    },
+    "export": {
+      "enabled": true,
+      "help": "",
+      "template_section": "",
+      "template_enabled": false,
+      "cloud": "general",
+      "args": {
+        "name": {
+          "name": "Module Name",
+          "prompt": "Enter Module Name with no spaces",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "install": {
+      "enabled": true,
+      "help": "",
+      "template_section": "",
+      "template_enabled": false,
+      "cloud": "general",
+      "args": {
+        "name": {
+          "name": "Module Name",
+          "prompt": "Enter Module Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "zipfile_path": {
+          "name": "zipfile_path",
+          "prompt": "Module Zip File Path",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_template": {
+      "cloud": "aws",
+      "enabled": false,
+      "help": "",
+      "template_section": "modules",
+      "template_enabled": true,
+      "timestamp": "2023-01-31 16:40:23.937947",
+      "cmd_id": "20230131164023897251"
+    }
+  }
+}

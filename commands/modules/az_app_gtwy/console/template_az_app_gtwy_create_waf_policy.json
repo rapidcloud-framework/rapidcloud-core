@@ -1,0 +1,143 @@
+{
+  "type": "Theia::Action",
+  "label": "Web Application Firewall Policy",
+  "id": "az_app_gtwy_create_waf_policy",
+  "module": "az_app_gtwy",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_app_gtwy_create_waf_policy",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_waf_policy",
+      "env_param_required": true,
+      "columns": ["name","az_app_gtwy_rule_set_version","timestamp"],
+      "title": "Web Application Firewall Policy",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_app_gtwy_create_waf_policy",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create WAF Policy",
+          "command": {
+            "phase": "az_app_gtwy",
+            "command": "create_waf_policy",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "WAF Policy Name",
+          "help": "The WAF Policy Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_gtwy_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_gtwy_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_gtwy_rule_set_version",
+          "label": "Rule Set Version",
+          "help": "The version of the rule set used for the web application firewall policy",
+          "default": "3.2",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "0.1",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "0.1"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "1.0",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "1.0"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "2.2.9",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "2.2.9"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "3.0",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "3.0"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "3.1",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "3.1"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "3.2",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "3.2"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "az_app_gtwy_tags",
+          "label": "Tags",
+          "help": "Tags you wish to apply to the web application firewall policy",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=az_app_gtwy,${name}&result=params,az_app_gtwy_tags",
+          "add_value_label": "Tags for your resource"
+        }
+      ]
+    }
+  ]
+}

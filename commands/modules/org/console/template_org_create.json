@@ -1,0 +1,80 @@
+{
+  "type": "Theia::Action",
+  "label": "AWS Organizations",
+  "id": "org_create",
+  "module": "org",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "org_create",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=org,create",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "AWS Organizations",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "org_create",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "org",
+            "command": "create",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "org_aws_service_access_principals",
+          "label": "AWS Service Access Principals",
+          "help": "comma-separated list",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "org_enabled_policy_types",
+          "label": "Enabled Policy Types",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "SERVICE_CONTROL_POLICY",
+              "value": "SERVICE_CONTROL_POLICY"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "TAG_POLICY",
+              "value": "TAG_POLICY"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "BACKUP_POLICY",
+              "value": "BACKUP_POLICY"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "AISERVICES_OPT_OUT_POLICY",
+              "value": "AISERVICES_OPT_OUT_POLICY"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

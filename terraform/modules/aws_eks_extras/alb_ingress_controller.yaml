@@ -1,0 +1,12 @@
+replicaCount: 2
+image:
+  repository: 602401143452.dkr.ecr.${region}.amazonaws.com/amazon/aws-load-balancer-controller
+  pullPolicy: IfNotPresent
+clusterName: ${cluster_name}
+serviceAccount:
+  create: true
+  annotations: {
+      eks.amazonaws.com/role-arn: "${role}"
+    }
+  name: aws-load-balancer-controller
+  automountServiceAccountToken: true

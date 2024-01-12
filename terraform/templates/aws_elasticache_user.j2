@@ -1,0 +1,6 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" { 
+  source        = "{{ module_source }}"
+  user_id       = "{{ resource_name }}"
+  user_name     = "{{ params['user_name'] }}"
+  access_string = "{{ params['access_string'] }}"
+}

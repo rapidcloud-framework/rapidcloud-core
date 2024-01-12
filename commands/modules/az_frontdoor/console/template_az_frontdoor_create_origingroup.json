@@ -1,0 +1,98 @@
+{
+  "type": "Theia::Action",
+  "label": "Azure Front Door Origin Group",
+  "id": "az_frontdoor_create_origingroup",
+  "module": "az_frontdoor",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_frontdoor_create_origingroup",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_origingroup",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "Front Door Origin Group",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_frontdoor_create_origingroup",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create Origin Group",
+          "command": {
+            "phase": "az_frontdoor",
+            "command": "create_origingroup",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Origin Group Name",
+          "help": "The Front Door Origin Group Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_profile_id",
+          "label": "Profile",
+          "help": "",
+          "datasource": "formdata_from_azure_infra?type=create_fd_profile",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Profile is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_health_probe_protocol",
+          "label": "Health Probe Protocol",
+          "help": "The protocol used for the frontdoor health probe",
+          "inputType": "text",
+          "default": "Http",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Http",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Http"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Https",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Https"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_frontdoor_health_probe_path",
+          "label": "Health Probe Path",
+          "help": "The path for the health probe",
+          "inputType": "text",
+          "default": "/"
+        }
+      ]
+    }
+  ]
+}

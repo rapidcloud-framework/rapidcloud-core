@@ -1,0 +1,95 @@
+{
+  "az_lb": {
+    "create_lb": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_loadbalancer",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter location of the security group.",
+          "required": false,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "public_address_id": {
+          "name": "public_address_id",
+          "prompt": "Enter firewal's public_address_id",
+          "required": true,
+          "default": ""
+        },
+        "sku": {
+          "name": "sku",
+          "prompt": "Enter sku",
+          "required": false,
+          "default": ""
+        },
+        "sku_tier": {
+          "name": "sku_tier",
+          "prompt": "Enter sku tier",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "create_lb_rule": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_loadbalancer",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "timestamp": "2023-07-13 15:46:39.781798",
+      "cmd_id": null,
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "load_balancer": {
+          "name": "load_balancer",
+          "prompt": "Enter the load balancer name and resource group ex: lb_name|rg_name",
+          "required": true,
+          "default": ""
+        },
+        "protocol": {
+          "name": "protocol",
+          "prompt": "Enter protocol",
+          "required": true,
+          "default": ""
+        },
+        "frontend_port": {
+          "name": "frontend_port",
+          "prompt": "Enter frontend port",
+          "required": true,
+          "default": ""
+        },
+        "backend_port": {
+          "name": "backend_port",
+          "prompt": "Enter backend port",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  }
+}

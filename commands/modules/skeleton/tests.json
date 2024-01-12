@@ -1,0 +1,10 @@
+{
+  "skeleton": {
+    "COMMAND_NAME_PLACEHOLDER": {
+      "enabled": false,
+      "example": "kc skeleton COMMAND_NAME_PLACEHOLDER --no-prompt --skeleton_name name",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

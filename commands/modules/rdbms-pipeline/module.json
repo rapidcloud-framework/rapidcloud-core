@@ -1,0 +1,22 @@
+{
+    "rdbms-pipeline": {
+        "create": {
+            "enabled": false,
+            "help": "Quickstart for RDBMS to Redshift Pipeline, with transformation",
+            "template_section": "quickstart",
+            "template_enabled": false,
+            "id": "name",
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "args": {
+                "name": {
+                    "name": "Name", 
+                    "prompt": "Data Pipeline Name", 
+                    "required": true,
+                    "default": ""
+                }           
+            },
+            "import_modules": "transform.create,redshift.create"
+        }
+    }
+}

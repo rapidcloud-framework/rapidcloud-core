@@ -1,0 +1,10 @@
+{
+  "asg": {
+    "create": {
+      "enabled": false,
+      "example": "kc asg create --no-prompt --asg_name name --asg_launch_template_name launch_template_name --asg_instance_type instance_type --asg_ami_id ami_id --asg_launch_template_version launch_template_version --asg_placement_group_name placement_group_name --asg_placement_group_strategy placement_group_strategy --asg_vpc_zone_identifier vpc_zone_identifier --asg_desired_capacity desired_capacity --asg_max_size max_size --asg_min_size min_size",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

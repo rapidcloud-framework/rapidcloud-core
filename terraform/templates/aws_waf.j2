@@ -1,0 +1,55 @@
+
+module "{{ profile }}_{{ resource_name }}_aws_waf" {
+  source          = "../modules/aws_waf"
+  waf_name                  = "{{ resource_name }}"
+  {% if params['allow_requests_by_default'] == "true" %}
+    allow_requests_by_default = true
+  {% else %}
+    allow_requests_by_default = false
+  {% endif %}
+  
+  {% if params['cf_associated'] == "True" %}
+    waf_scope                 = "CLOUDFRONT"
+  {% else %}
+    waf_scope                 = "REGIONAL"
+  {% endif %}
+
+  {% if params['cf_associated'] == "True" %}
+    region                    = "us-east-1"
+  {% endif %}
+  
+  tags                      = {
+    Name        = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}
+
+{% set associated_resources_list = [] %}
+{% if params['associated_apigw_list'] != "" %}
+  {% for apigw in params['associated_apigw_list'].split(",") %}
+    {% set  tmp = apigw ~ "-" ~ profile ~ "_aws_api_gateway_stage" %}
+    {{ associated_resources_list.append(tmp) or "" }}
+  {% endfor %}
+{% endif %}
+
+{% if params['associated_alb_list'] != "" %}
+  {% for alb in params['associated_alb_list'].split(",") %}
+    {% set  tmp = alb ~ "_" ~ "aws_lb"%}
+    {{ associated_resources_list.append(tmp) or ""  }}
+  {% endfor %}
+{% endif %}
+
+{% if params['cf_associated'] == "False" and associated_resources_list != "" %}
+{% for resource in associated_resources_list %}
+  resource "aws_wafv2_web_acl_association" "rc_waf_resource_association_{{ resource }}" {
+
+    resource_arn = "${module.{{ profile }}_{{ resource }}.arn}"
+    web_acl_arn  = "${module.{{ profile }}_{{ resource_name }}_aws_waf.waf_arn}"
+
+  }
+{% endfor %}
+{% endif %}

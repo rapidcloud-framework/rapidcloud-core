@@ -1,0 +1,95 @@
+{
+  "type": "Theia::Action",
+  "label": "SSO Permission Sets",
+  "id": "sso_create_permission_set",
+  "module": "sso",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "sso_create_permission_set",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=sso,create_permission_set",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "sso_description",
+        "sso_relay_state",
+        "sso_session_duration",
+        "timestamp"
+      ],
+      "title": "SSO Permission Sets",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "sso_create_permission_set",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "sso",
+            "command": "create_permission_set",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "sso_description",
+          "label": "Description",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "sso_relay_state",
+          "label": "Relay State URL",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "sso_session_duration",
+          "label": "Session Duration",
+          "help": "In ISO-8601 Standard",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "sso_aws_managed_policy_arns",
+          "label": "AWS Managed Policy ARNs",
+          "help": "comma-separated list",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::TextArea",
+          "id": "sso_inline_policy",
+          "label": "Custom Policy Text",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

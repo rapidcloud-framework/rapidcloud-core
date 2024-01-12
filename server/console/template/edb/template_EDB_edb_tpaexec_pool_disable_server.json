@@ -1,0 +1,49 @@
+{
+  "type": "Theia::Action",
+  "label": "tpaexec pool-disable-server",
+  "id": "edb_tpaexec_pool_disable_server",
+  "module": "edb",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "edb_tpaexec_pool_disable_server",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=edb",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "timestamp"
+      ],
+      "title": "tpaexec pool-disable-server",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "edb_tpaexec_pool_disable_server",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "tpaexec_pool_disable_server",
+          "command": {
+            "phase": "edb",
+            "command": "tpaexec_pool_disable_server",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "version": "1.7.10",
+  "module_repos": {
+      "rc-aws-net": "v1.0.6",
+      "rc-aws-elasticache": "v1.0.0",
+      "rc-aws-route53": "v1.0.0",
+      "rc-aws-efs": "v0.0.3",
+      "rc-aws-eks": "v0.0.3",
+      "rc-aws-log-aggregation": "master",
+      "rc-aws-eventbridges": "master",
+      "rc-aws-sns": "master",
+      "rc-az-quickstarts": "master",
+      "rc-az-lz": "v1.0.4",
+      "rc-az-net": "v1.0.4",
+      "rc-az-storage": "v1.0.4",
+      "rc-az-db": "v1.0.4",
+      "rc-az-container": "v1.0.4",
+      "rc-az-lb": "v1.0.4",
+      "rc-az-mgmt": "v1.0.4",
+      "rc-az-app-gtwy": "v1.0.4",
+      "rc-az-frontdoor": "v1.0.4",
+      "rc-az-app": "v1.0.4",
+      "rc-reports": "v0.0.2",
+      "rc-saas": "v0.0.1"
+  },
+  "copyright": "2020-2023 <a href='https://www.kinect-consulting.com/' target='_blank'>Kinect Consulting, LLC</a>"
+}

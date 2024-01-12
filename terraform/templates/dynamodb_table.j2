@@ -1,0 +1,28 @@
+# {{ name }}
+resource "aws_dynamodb_table" "{{ profile }}_{{ resource_name }}_{{ resource_type }}"   {
+  name           = "{{ profile }}_{{ resource_name }}"
+  billing_mode   = "PROVISIONED"
+  read_capacity  = {{ params['read_capacity'] | default(10)}}
+  write_capacity = {{ params['write_capacity'] | default(10)}}
+  hash_key       = "UserId"
+  range_key      = "GameTitle"
+
+  attribute {
+    name = "UserId"
+    type = "S"
+  }
+
+  attribute {
+    name = "GameTitle"
+    type = "S"
+  }
+
+  tags = {
+    Name = "{{ profile }}_{{ resource_name }}"
+    "env" = "{{ env }}"
+    "profile" = "{{ name }}"
+    "workload" = "{{ workload }}"
+    "client" = "{{ client }}"
+    "author" = "rapid-cloud"
+  }
+}

@@ -1,0 +1,30 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source                    = "../modules/aws_ssoadmin/{{ resource_type }}"
+  name                      = "{{ resource_name }}"
+  description               = "{{ params['description'] }}"
+  {% if params['relay_state']|length > 0 %}
+  relay_state               = "{{ params['relay_state'] }}"
+  {% endif %}
+  {% if params['session_duration']|length > 0 %}
+  session_duration          = "{{ params['session_duration'] }}"
+  {% endif %}
+  {% if params['aws_managed_policy_arns']|length > 0 %}
+  aws_managed_policy_arns   = {{ params['aws_managed_policy_arns'] | replace("'","\"") }}
+  {% endif %}
+  {% if params['customer_managed_policies']|length > 0 %}
+  customer_managed_policies = {{ params['customer_managed_policies'] }}
+  {% endif %}
+  {% if params['inline_policy']|length > 0 %}
+  inline_policy             = <<CONTENT
+  {{ params['inline_policy'] }}
+CONTENT
+  {% endif %}
+  tags = {
+    Name        = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}

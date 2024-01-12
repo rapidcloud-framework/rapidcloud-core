@@ -1,0 +1,12 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source      = "../modules/aws_api_gateway/{{ resource_type }}"
+  rest_api_id = module.{{ profile }}_{{ params['rest_api_name'] }}_aws_api_gateway_rest_api.id
+  {% if params['triggers'] is defined and params['triggers']|length > 0 %}
+  triggers    = concat(
+  {% for t in params['triggers'] %}
+    [module.{{ profile }}_{{ params['rest_api_name'] }}_{{ t['parent_resource_name'] }}_{{ t['resource_name'] }}_aws_api_gateway_resource.resource_id], module.{{ profile }}_{{ params['rest_api_name'] }}_{{ t['parent_resource_name'] }}_{{ t['resource_name'] }}_aws_api_gateway_resource.method_ids, module.{{ profile }}_{{ params['rest_api_name'] }}_{{ t['parent_resource_name'] }}_{{ t['resource_name'] }}_aws_api_gateway_resource.integration_ids,
+  {% endfor %}
+  )
+  {% endif %}
+  stage_name  = "{{ env }}"
+}

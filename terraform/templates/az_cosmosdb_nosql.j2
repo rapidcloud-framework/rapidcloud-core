@@ -1,0 +1,26 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source              = "{{ module_source }}"
+  name                = "{{ resource_name }}"
+  location            = "{{ params['location'] }}"
+  resource_group      = "{{params['resource_group']}}"
+  total_throughput_limit = {{params['total_throughput_limit']}}
+  enable_free_tier = "{{params['enable_free_tier']}}"
+  geo_location = split(",","{{ params['geo_location'] }}")
+  enable_multiple_write_locations = "{{params['enable_multiple_write_locations']}}"
+  subnet_id = "{{params['subnet_id']}}"
+  enable_serverless = "{{params['enable_serverless']}}"
+  key_vault_key_id = "{{params['key_vault_key_id']}}"
+  backup_type = "{{params['backup_type']}}"
+  storage_redundancy = "{{params['storage_redundancy']}}"
+  interval_in_minutes = {{params['interval_in_minutes']}}
+  retention_in_hours = {{params['retention_in_hours']}}
+  ip_range_filter = "{{ params['ip_range_filter'] }}"
+  identity_type = "{{ params["identity_type"] }}"
+  {% if params['identity_ids'] is not none and params['identity_ids']|length > 0%}
+  identity_ids = split(",","{{ params["identity_ids"] }}")
+  {% endif %}
+  database_name = "{{ params["database_name"] }}"
+  {% if params['containers'] is defined %}
+  containers = {{ params['containers'] }}
+  {% endif %}
+}

@@ -1,0 +1,506 @@
+{
+  "type": "Theia::Action",
+  "label": "Application Gateway",
+  "id": "az_app_gtwy_create_app_gtwy",
+  "module": "az_app_gtwy",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_app_gtwy_create_app_gtwy",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_app_gtwy",
+      "env_param_required": true,
+      "columns": ["name","az_app_gtwy_tier","timestamp"],
+      "title": "Application Gateway",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_app_gtwy_create_app_gtwy",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create Application Gateway",
+          "command": {
+            "phase": "az_app_gtwy",
+            "command": "create_app_gtwy",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "App Gateway Name",
+          "help": "The App Gateway Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_gtwy_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_gtwy_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_app_gtwy_zones",
+          "label": "App Gateway Zones",
+          "help": "List of Availability Zones in which this App Gateway should be located",
+          "default": "1,2,3",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "1",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "1"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "2",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "2"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "3",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "3"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_gtwy_tier",
+          "label": "App Gateway Tier",
+          "help": "Tier of the SKU for the App Gateway",
+          "default": "Standard_v2",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "Standard_v2",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Standard_v2",
+                "disableControls": ["az_app_gtwy_enable_waf"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "WAF_v2",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "WAF_v2",
+                "enableControls": ["az_app_gtwy_enable_waf"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_gtwy_enable_autoscaling",
+          "label": "Enable Autoscaling?",
+          "help": "Enable autoscaling for the App Gateway",
+          "default": "True",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "True",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "True",
+                "enableControls": ["az_app_gtwy_min_capacity"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "False",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "False",
+                "disableControls": ["az_app_gtwy_min_capacity"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_app_gtwy_min_capacity",
+          "label": "Minimum Capacity",
+          "help": "The minimum capacity for the application gateway",
+          "inputType": "text",
+          "default": "1"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_app_gtwy_capacity",
+          "label": "Capacity (Maximum Capacity)",
+          "help": "The capacity (or the maximum capacity if autoscaling is enabled) for the application gateway",
+          "inputType": "text",
+          "default": "3"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_gtwy_subnet_id",
+          "label": "Subnet",
+          "help": "The Subnet where the App Gateway should exist",
+          "datasource": "formdata_from_azure?type=subnets&min_prefixlen=24"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_gtwy_public_ip_addr_id",
+          "label": "Listener Public IP",
+          "help": "The public IP where the App Gateway should exist",
+          "datasource": "formdata_from_azure?type=public_ips"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_app_gtwy_frontend_port",
+          "label": "Listener Port",
+          "help": "The frontend port for the application gateway",
+          "inputType": "text",
+          "default": "80"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_gtwy_http_listener_protocol",
+          "label": "Listener Protocol",
+          "help": "The protocol used for the HTTP listener",
+          "default": "Http",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "Http",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Http"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Https",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Https"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_app_gtwy_backend_ips",
+          "label": "Backend IP Addresses",
+          "help": "Comma-separated list of IP addresses that are part of the backend pool",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_app_gtwy_backend_fqdns",
+          "label": "Backend FQDNs",
+          "help": "Comma-separated list of FQDNs that are part of the backend pool",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_app_gtwy_backend_port",
+          "label": "Backend Port",
+          "help": "The backend port for the application gateway",
+          "inputType": "text",
+          "default": "80"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_gtwy_backend_protocol",
+          "label": "Backend Protocol",
+          "help": "The protocol used for the application gateway backend",
+          "default": "Http",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "Http",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Http"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Https",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Https"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_gtwy_routing_rule_type",
+          "label": "Routing Rule Type",
+          "help": "Type of routing rule used for the App Gateway",
+          "default": "Basic",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "Basic",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Basic"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "PathBasedRouting",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "PathBasedRouting"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_app_gtwy_enable_http2",
+          "label": "Enable HTTP2",
+          "help": "Enable HTTP2 for the application gateway resource",
+          "inputType": "text",
+          "default": true
+        },
+        {
+          "type": "Theia::Control::CompositeModule",
+          "id": "composite_module",
+          "modules": [
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "az_app_gtwy_enable_probe",
+              "label": "Enable Health Probe?",
+              "help": "Enable health probe for the application gateway",
+              "controls": [
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "az_app_gtwy_health_probe_host",
+                  "label": "Host",
+                  "help": "The hostname for the probe",
+                  "inputType": "text",
+                  "default": "127.0.0.1"
+                },
+                {
+                  "type": "Theia::Control::Input",
+                  "id": "az_app_gtwy_health_probe_path",
+                  "label": "Path",
+                  "help": "The path for the probe",
+                  "inputType": "text",
+                  "default": "/"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "az_app_gtwy_health_probe_protocol",
+                  "label": "Protocol",
+                  "help": "The protocol used for the probe",
+                  "default": "Http",
+                  "options":[
+                    {
+                      "type": "Theia::Option",
+                      "label": "Http",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "Http"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "Https",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "Https"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::CompositeModule",
+          "id": "composite_module",
+          "modules": [
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "az_app_gtwy_enable_waf",
+              "label": "Enable Web Application Firewall?",
+              "help": "Enable WAF for the application gateway",
+              "controls": [
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "az_app_gtwy_firewall_mode",
+                  "label": "Firewall Mode",
+                  "help": "The mode used for the web application firewall",
+                  "default": "Detection",
+                  "options":[
+                    {
+                      "type": "Theia::Option",
+                      "label": "Detection",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "Detection"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "Prevention",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "Prevention"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "az_app_gtwy_rule_set_type",
+                  "label": "Rule Set Type",
+                  "help": "The type of the rule set used for the web application firewall",
+                  "default": "OWASP",
+                  "options":[
+                    {
+                      "type": "Theia::Option",
+                      "label": "OWASP",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "OWASP"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "Microsoft_BotManagerRuleSet",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "Microsoft_BotManagerRuleSet"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "az_app_gtwy_rule_set_version",
+                  "label": "Rule Set Version",
+                  "help": "The version of the rule set used for the web application firewall",
+                  "default": "3.2",
+                  "options":[
+                    {
+                      "type": "Theia::Option",
+                      "label": "0.1",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "0.1"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "1.0",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "1.0"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "2.2.9",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "2.2.9"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "3.0",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "3.0"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "3.1",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "3.1"
+                      }
+                    },
+                    {
+                      "type": "Theia::Option",
+                      "label": "3.2",
+                      "value": {
+                        "type": "Theia::DataOption",
+                        "value": "3.2"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "az_app_gtwy_waf_policy_id",
+                  "label": "WAF Policy",
+                  "help": "The web application firewall policy",
+                  "datasource": "custom/waf_policies?extra=true&module_name_arg=az_app_gtwy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_app_gtwy_identity_ids",
+          "label": "Managed Identitities",
+          "help": "The user-assigned managed identities used with this application gateway",
+          "datasource": "formdata_from_azure?type=managedidentities"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "az_app_gtwy_tags",
+          "label": "Tags",
+          "help": "Tags you wish to apply to the application gateway",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=az_app_gtwy,${name}&result=params,az_app_gtwy_tags",
+          "add_value_label": "Tags for your resource"
+        }
+      ]
+    }
+  ]
+}

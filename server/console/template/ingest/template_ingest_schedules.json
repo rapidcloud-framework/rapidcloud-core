@@ -1,0 +1,93 @@
+{
+  "type": "Theia::Action",
+  "label": "RDBMS: DMS Schedules",
+  "id": "schedules",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "schedules",
+      "datasource": "data?type=schedule",
+      "env_param_required": true,
+      "columns": ["source_database","task","type","schedule","enabled"],
+      "title": "Replication Schedules",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "data",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command",
+            "refresh_status": true
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Save",
+          "command": {
+            "phase": "ingest",
+            "command": "schedule"    
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "task",
+          "hidden": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "source_database",
+          "label": "Source Database",
+          "help": "Select an already registered source database",
+          "datasource": "formdata?type=source_database&field=name"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "type",
+          "label": "Select replication type",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Full replication of small tables",
+              "value": "full"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "CDC for Inserts",
+              "value": "inserts"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "CDC for Updates",
+              "value": "updates"
+            }          
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "schedule",
+          "label": "Enter schedule as cron expression",
+          "help": "Example: run every day at midnight => 0 4 * * ? *",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "enabled",
+          "label": "Enable this migration task"
+        }
+      ]
+    }
+  ]
+}

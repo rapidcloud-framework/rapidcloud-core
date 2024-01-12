@@ -1,0 +1,16 @@
+tags = {
+    "Name" = "{{ profile }}_{{ resource_name }}"
+    "client" = "{{ client }}"
+    "workload" = "{{ workload }}"
+    "env" = "{{ env }}"
+    "profile" = "{{ name }}"
+    "author" = "rapid-cloud"
+    {% if user_arn is defined -%}
+    "deployed_by" = "{{ user_arn }}"
+    {% endif -%}
+    {% if custom_tags is defined -%}
+    {% for k, v in  custom_tags.items() -%}
+    "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    {% endif -%}
+}

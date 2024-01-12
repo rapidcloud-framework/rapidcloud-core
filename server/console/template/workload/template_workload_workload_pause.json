@@ -1,0 +1,36 @@
+{
+  "type": "Theia::Action",
+  "label": "Pause",
+  "id": "workload_pause",
+  "module": "workload",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "workload_pause",
+      "title": "Pause Workload Resources",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "pause",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to pause selected resource types right now?",
+          "command": {
+            "phase": "workload",
+            "command": "pause"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "workload_resource_type",
+          "label": "Resource Types to Pause",
+          "help": "",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=workload,enable_pause&field_prefix=workload_module_&module_name_arg=workload"
+        }
+      ]
+    }
+  ]
+}

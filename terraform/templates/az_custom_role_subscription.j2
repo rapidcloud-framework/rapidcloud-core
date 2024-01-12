@@ -1,0 +1,10 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source        = "{{ module_source }}"
+  role_name   = "{{ resource_name  }}"
+  actions = split(",","{{ params['permissions_actions'] }}")
+  no_actions = split(",","{{ params['permissions_noactions'] }}")
+  data_actions = split(",","{{ params['data_actions'] }}")
+  not_data_actions = split(",","{{ params['data_noactions'] }}")
+  assignable_scopes = split(",","{{ params['assignable_scopes'] }}")
+  principal_id   = "{{ params['principal']  }}"
+}

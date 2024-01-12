@@ -1,0 +1,399 @@
+{
+  "elasticache": {
+    "create_redis_cluster": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "Elasticache",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "node_type": {
+          "name": "node_type",
+          "prompt": "Node Type",
+          "required": true,
+          "default": ""
+        },
+        "parameter_group_name": {
+          "name": "parameter_group_name",
+          "prompt": "Parameter Group Name",
+          "required": true,
+          "default": ""
+        },
+        "apply_immediately": {
+          "name": "apply_immediately",
+          "prompt": "Apply Immediately",
+          "required": true,
+          "default": "no"
+        },
+        "availability_zone": {
+          "name": "availability_zone",
+          "prompt": "Availability Zone",
+          "required": true,
+          "default": ""
+        },
+        "engine_version": {
+          "name": "engine_version",
+          "prompt": "Engine Version",
+          "required": true,
+          "default": ""
+        },
+        "final_snapshot_identifier": {
+          "name": "final_snapshot_identifier",
+          "prompt": "Final Snapshot Identifier",
+          "required": true,
+          "default": ""
+        },
+        "maintenance_window": {
+          "name": "maintenance_window",
+          "prompt": "Maintenance Window",
+          "required": true,
+          "default": ""
+        },
+        "notification_topic_arn": {
+          "name": "notification_topic_arn",
+          "prompt": "Notification Topic ARN",
+          "required": true,
+          "default": ""
+        },
+        "replication_group_id": {
+          "name": "replication_group_id",
+          "prompt": "Replication Group ID",
+          "required": true,
+          "default": ""
+        },
+        "security_group_ids": {
+          "name": "security_group_ids",
+          "prompt": "Comma-separated List of SG IDs",
+          "required": true,
+          "default": ""
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Comma-separated List of Subnet IDs",
+          "required": true,
+          "default": ""
+        },
+        "log_destination": {
+          "name": "log_destination",
+          "prompt": "Log Destination",
+          "required": true,
+          "default": ""
+        },
+        "log_destination_type": {
+          "name": "log_destination_type",
+          "prompt": "Log Destination Type",
+          "required": true,
+          "default": ""
+        },
+        "log_format": {
+          "name": "log_format",
+          "prompt": "Log Format",
+          "required": true,
+          "default": ""
+        },
+        "log_type": {
+          "name": "log_type",
+          "prompt": "Log Type",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_memcached_cluster": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "Elasticache",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "node_type": {
+          "name": "node_type",
+          "prompt": "Node Type",
+          "required": true,
+          "default": ""
+        },
+        "num_cache_nodes": {
+          "name": "num_cache_nodes",
+          "prompt": "Number of Cache Nodes",
+          "required": true,
+          "default": ""
+        },
+        "parameter_group_name": {
+          "name": "parameter_group_name",
+          "prompt": "Parameter Group Name",
+          "required": true,
+          "default": ""
+        },
+        "apply_immediately": {
+          "name": "apply_immediately",
+          "prompt": "Apply Immediately",
+          "required": true,
+          "default": "no"
+        },
+        "preferred_availability_zones": {
+          "name": "preferred_availability_zones",
+          "prompt": "Availability Zones",
+          "required": true,
+          "default": ""
+        },
+        "engine_version": {
+          "name": "engine_version",
+          "prompt": "Engine Version",
+          "required": true,
+          "default": ""
+        },
+        "maintenance_window": {
+          "name": "maintenance_window",
+          "prompt": "Maintenance Window",
+          "required": true,
+          "default": ""
+        },
+        "notification_topic_arn": {
+          "name": "notification_topic_arn",
+          "prompt": "Notification Topic ARN",
+          "required": true,
+          "default": ""
+        },
+        "security_group_ids": {
+          "name": "security_group_ids",
+          "prompt": "Comma-separated List of SG IDs",
+          "required": true,
+          "default": ""
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Comma-separated List of Subnet IDs",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_replication_group": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "Elasticache",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "description": {
+          "name": "description",
+          "prompt": "Description",
+          "required": true,
+          "default": ""
+        },
+        "node_type": {
+          "name": "node_type",
+          "prompt": "Node Type",
+          "required": true,
+          "default": ""
+        },
+        "parameter_group_name": {
+          "name": "parameter_group_name",
+          "prompt": "Parameter Group Name",
+          "required": true,
+          "default": ""
+        },
+        "apply_immediately": {
+          "name": "apply_immediately",
+          "prompt": "Apply Immediately",
+          "required": true,
+          "default": "no"
+        },
+        "engine_version": {
+          "name": "engine_version",
+          "prompt": "Engine Version",
+          "required": true,
+          "default": ""
+        },
+        "kms_key_name": {
+          "name": "kms_key_name",
+          "prompt": "KMS Key Name",
+          "required": true,
+          "default": ""
+        },
+        "at_rest_encryption_enabled": {
+          "name": "at_rest_encryption_enabled",
+          "prompt": "At Rest Encryption Enabled",
+          "required": true,
+          "default": ""
+        },
+        "transit_encryption_enabled": {
+          "name": "transit_encryption_enabled",
+          "prompt": "Transit Encryption Enabled",
+          "required": true,
+          "default": ""
+        },
+        "automatic_failover_enabled": {
+          "name": "automatic_failover_enabled",
+          "prompt": "Automatic Failover Enabled",
+          "required": true,
+          "default": ""
+        },
+        "multi_az_enabled": {
+          "name": "multi_az_enabled",
+          "prompt": "Multi AZ Enabled",
+          "required": true,
+          "default": ""
+        },
+        "user_group_name": {
+          "name": "user_group_name",
+          "prompt": "User Group Name",
+          "required": true,
+          "default": ""
+        },
+        "num_cache_clusters": {
+          "name": "num_cache_clusters",
+          "prompt": "Number of Cache Clusters (Redis Cluster Mode Disabled)",
+          "required": true,
+          "default": ""
+        },
+        "num_node_groups": {
+          "name": "num_node_groups",
+          "prompt": "Number of Node Groups (Redis Cluster Mode Enabled)",
+          "required": true,
+          "default": ""
+        },
+        "replicas_per_node_group": {
+          "name": "replicas_per_node_group",
+          "prompt": "Replicas per Node Group (Redis Cluster Mode Enabled)",
+          "required": true,
+          "default": ""
+        },
+        "final_snapshot_identifier": {
+          "name": "final_snapshot_identifier",
+          "prompt": "Final Snapshot Identifier",
+          "required": true,
+          "default": ""
+        },
+        "maintenance_window": {
+          "name": "maintenance_window",
+          "prompt": "Maintenance Window",
+          "required": true,
+          "default": ""
+        },
+        "notification_topic_arn": {
+          "name": "notification_topic_arn",
+          "prompt": "Notification Topic ARN",
+          "required": true,
+          "default": ""
+        },
+        "security_group_ids": {
+          "name": "security_group_ids",
+          "prompt": "Comma-separated List of SG IDs",
+          "required": true,
+          "default": ""
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Comma-separated List of Subnet IDs",
+          "required": true,
+          "default": ""
+        },
+        "log_destination": {
+          "name": "log_destination",
+          "prompt": "Log Destination",
+          "required": true,
+          "default": ""
+        },
+        "log_destination_type": {
+          "name": "log_destination_type",
+          "prompt": "Log Destination Type",
+          "required": true,
+          "default": ""
+        },
+        "log_format": {
+          "name": "log_format",
+          "prompt": "Log Format",
+          "required": true,
+          "default": ""
+        },
+        "log_type": {
+          "name": "log_type",
+          "prompt": "Log Type",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_user": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "Elasticache",
+      "template_enabled": true,
+      "timestamp": "2023-03-16 15:25:30.646950",
+      "cmd_id": "20230316152522227733",
+      "metadata_table": "metadata",
+      "id": "user_id",
+      "args": {
+        "user_id": {
+          "name": "user_id",
+          "prompt": "User ID",
+          "required": true,
+          "default": ""
+        },
+        "user_name": {
+          "name": "user_name",
+          "prompt": "User Name",
+          "required": true,
+          "default": ""
+        },
+        "access_string": {
+          "name": "access_string",
+          "prompt": "Access String",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_user_group": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "Elasticache",
+      "template_enabled": true,
+      "timestamp": "2023-03-16 15:26:15.602349",
+      "cmd_id": "20230316152536825734",
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Group Name",
+          "required": true,
+          "default": ""
+        },
+        "users": {
+          "name": "users",
+          "prompt": "Comma-separated list of user IDs",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "home": {},
+  "modeling": {
+    "wizard": 1000,
+    "lzwizard": 1000,
+    "gcp_lz_wizard": 1000,
+    "gcp_net_wizard": 1000,
+    "gcp_solution_wizard": 1000
+  },
+  "modules": {
+    "module_create": 1000,
+    "module_add_command": 1000,
+    "module_create_template": 1000
+  },
+  "setup": {
+    "activate": 1000,
+    "access_create_role": 1000,
+    "access_assign_role": 1000,
+    "environments": 1000,
+    "gcp_environments": 1000
+  },
+  "metadata": {
+    "module_show": 10,
+    "infra_resources": 20,
+    "properties": 1000,
+    "clean": 30,
+    "export": 1000,
+    "import": 1000
+  },
+  "serverless": {}
+}

@@ -1,0 +1,12 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source              = "{{ module_source }}"
+  name                = "{{ resource_name }}"
+  location            = "{{ params['location'] }}"
+  resource_group      = "{{params['resource_group']}}"
+  sku                 = "{{params['sku_name']}}"
+  copy_paste_enabled = "{{params['copy_paste_enabled']}}"
+  file_copy_enabled = "{{params['file_copy_enabled']}}"
+  subnet_id            = "{{ params['subnet_id'] }}"
+  public_ip_address_id = "{{ params['public_address_id'] }}"
+
+}

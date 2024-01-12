@@ -1,0 +1,52 @@
+{
+  "type": "Theia::Action",
+  "label": "Modules",
+  "id": "modules",
+  "module": "module",
+  "env_not_required": true,
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "modules",
+      "datasource": "/module/get_modules?extra=true",
+      "columns": ["module_name", "module_dir"],
+      "title": "Modules",
+      "description": ""
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "modules",
+      "title": "",
+      "description": "",
+      "readonly": false,
+      "commands": [
+        {
+          "label": "Create Module",
+          "command": {
+            "phase": "module",
+            "command": "create",
+            "refresh_status": false
+          },
+          "editable_hide": true
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "module_name",
+          "label": "Module Name",
+          "help": "",
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "module_action",
+          "label": "Command Name",
+          "help": "",
+          "inputType": "text",
+          "readonly_edit": true
+        }
+      ]
+    }
+  ]
+}

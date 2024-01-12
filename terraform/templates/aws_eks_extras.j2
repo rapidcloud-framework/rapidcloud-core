@@ -1,0 +1,44 @@
+module "{{fqn}}" {
+    source = "{{ module_source }}"
+    env  = "{{ env }}"
+    profile = "{{ profile }}"
+    region    = "{{ region }}"
+    account   = "{{ account }}"
+    fqn = "{{ fqn }}"
+    workload = "{{ workload }}"
+    cmd_id = "{{ cmd_id }}"
+    cluster_name  = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_cluster_info.id
+    eks_oidc_provider  = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_oidc_provider
+    cluster_version  = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_cluster_info.version
+    vpc_id = module.{{profile }}_aws_vpc_{{ params["vpc_id"] }}.id 
+
+    install_efs_csi = "{{ params["install_efs_csi"] }}"
+    file_system_id  = module.{{ profile }}_aws_efs_file_system_{{ params["fs_name"] }}.id
+
+    install_cluster_autoscaler = "{{ params["install_cluster_autoscaler"] }}"
+    install_fluentbit_cloudwatch = "{{ params["install_fluentbit_cloudwatch"] }}"
+    fluentbit_log_retention_in_days = "{{ params["fluentbit_log_retention_in_days"] }}"
+    install_ingress_alb = "{{ params["install_ingress_alb"] }}"
+    install_metrics_server = "{{ params["install_metrics_server"] }}"
+
+
+    {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+    depends_on = [
+      module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }} 
+    ]
+
+    providers = {
+      helm       = helm.{{ profile }}_{{ params["cluster_name"] }}
+      kubernetes = kubernetes.{{ profile }}_{{ params["cluster_name"] }}
+    }
+}
+
+{% for k, v in params.items() %}
+# {{k}} -> {{ v }}
+{% endfor %}

@@ -1,0 +1,22 @@
+{
+  "redshift": {
+    "create": {
+      "enabled": false,
+      "example": "kc redshift create --no-prompt --redshift_name name",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "add_table": {
+      "enabled": false,
+      "example": "kc redshift add_table --no-prompt --redshift_name name --redshift_db_name db_name --redshift_primary_key primary_key --redshift_sort_key sort_key --redshift_dist_key dist_key --redshift_dist_style dist_style",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "generate-schema": {
+      "enabled": false,
+      "example": "kc redshift generate-schema --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "type": "Theia::Action",
+  "label": "Addons",
+  "id": "eks_manage_addons",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "eks_manage_addons",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=eks,manage_addons",
+      "env_param_required": true,
+      "columns": ["eks_cluster_name",
+        "eks_compute_type",
+        "eks_enable_aws_coredns",
+        "eks_enable_aws_kube_proxy",
+        "eks_enable_aws_vpc_cni",
+        "eks_enable_aws_ebs_csi",
+        "timestamp"],
+      "title": "Addons",
+      "description": "Deploy AWS EKS addons",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "eks_manage_addons",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command",
+            "refresh_status": true
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "eks",
+            "command": "manage_addons",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_cluster_name",
+          "label": "Cluster Name",
+          "help": "The name of the Cluster to install addons to",
+          "datasource": "custom/module_eks_clusters?extra=true&module_name_arg=eks",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_compute_type",
+          "label": "Compute Type",
+          "help": "The Compute Type of the Cluster",
+          "inputType": "text",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "EC2",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "ec2",
+                "disableControls": [
+                  "eks_subnet_ids"
+                ],
+                "enbaleControls": [
+                  "eks_enable_aws_kube_proxy",
+                  "eks_aws_kube_proxy_version",
+                  "eks_enable_aws_vpc_cni",
+                  "eks_aws_vpc_cni_version",
+                  "eks_enable_aws_ebs_csi",
+                  "eks_aws_ebs_csi_version"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Fargate",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "fargate",
+                "enableControls": [
+                  "eks_subnet_ids"
+                ],
+                "disableControls": [
+                  "eks_enable_aws_kube_proxy",
+                  "eks_aws_kube_proxy_version",
+                  "eks_enable_aws_vpc_cni",
+                  "eks_aws_vpc_cni_version",
+                  "eks_enable_aws_ebs_csi",
+                  "eks_aws_ebs_csi_version"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "eks_subnet_ids",
+          "label": "Subnets",
+          "help": "Select two subnets to place your addon pods in (Fargate Only)",
+          "datasource": "custom/module_eks_subnets?extra=true&module_name_arg=eks"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "eks_enable_aws_coredns",
+          "label": "Enable COREDNS addon",
+          "help": "Enable COREDNS addon",
+          "inputType": "text",
+          "default": "false"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_aws_coredns_version",
+          "label": "COREDNS Version",
+          "help": "Enable COREDNS addon",
+          "inputType": "text",
+          "dynamic_datasource": "custom/module_eks_addon_version?extra=true&module_name_arg=eks&a=coredns&v=${eks_cluster_name}"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_aws_coredns_replica_count",
+          "label": "COREDNS Pod Count",
+          "help": "How many COREDNS pods should be running",
+          "inputType": "text",
+          "default": "2"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "eks_enable_aws_kube_proxy",
+          "label": "Enable KUBE PROXY addon",
+          "help": "Enable KUBE PROXY addon",
+          "inputType": "text",
+          "default": "false"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_aws_kube_proxy_version",
+          "label": "KUBE PROXY version",
+          "dynamic_datasource": "custom/module_eks_addon_version?extra=true&module_name_arg=eks&a=kube-proxy&v=${eks_cluster_name}"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "eks_enable_aws_vpc_cni",
+          "label": "Enable VPC CNI addon",
+          "help": "Enable VPC CNI addon",
+          "inputType": "text",
+          "default": "false"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_aws_vpc_cni_version",
+          "label": "VPC CNI version",
+          "help": "Enable VPC CNI addon version",
+          "dynamic_datasource": "custom/module_eks_addon_version?extra=true&module_name_arg=eks&a=vpc-cni&v=${eks_cluster_name}"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "eks_enable_aws_ebs_csi",
+          "label": "Enable EBS CSI addon",
+          "help": "Enable EBS CSI addon",
+          "inputType": "text",
+          "default": "false"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_aws_ebs_csi_version",
+          "label": "EBS CSI version",
+          "help": "EBS CSI addon version",
+          "dynamic_datasource": "custom/module_eks_addon_version?extra=true&module_name_arg=eks&a=aws-ebs-csi-driver&v=${eks_cluster_name}"
+        }
+      ]
+    }
+  ]
+}

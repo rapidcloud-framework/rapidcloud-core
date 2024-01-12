@@ -1,0 +1,104 @@
+{
+  "type": "Theia::Action",
+  "label": "Load Balancers",
+  "id": "lb_create",
+  "module": "lb",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "lb",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=lb,create",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "lb_is_internal",
+        "lb_type",
+        "lb_subnets",
+        "lb_security_group_ids",
+        "timestamp"
+      ],
+      "title": "Load Balancers",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "lb",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "lb",
+            "command": "create",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "Load Balancer Name. Up to 26 characters.",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "lb_is_internal",
+          "cli_id": "is_internal",
+          "label": "Internal?",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "lb_type",
+          "cli_id": "type",
+          "label": "Load Balancer Type",
+          "help": "",
+          "default": "application",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Application",
+              "value": "application"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Network",
+              "value": "network"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "lb_subnets",
+          "cli_id": "subnets",
+          "label": "Subnets",
+          "help": "",
+          "datasource": "formdata_from_aws?type=subnets&module_name_arg=lb"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "lb_security_group_ids",
+          "label": "Security Group Ids",
+          "help": "",
+          "datasource": "formdata_from_aws?type=vpc_security_groups&module_name_arg=lb"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+resource "aws_kinesis_stream" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    name             = "{{ profile }}_{{ resource_name }}"
+    shard_count      = {{ params['shard_count'] | default(1) }}
+    retention_period = {{ params['retention_period'] | default(24) }}
+    {% if params['shard_level_metrics'] is defined %}
+    shard_level_metrics =  [
+        {% for m in params['shard_level_metrics'] %}
+            "{{ m }}",
+        {% endfor %}
+    ]
+    {% endif %}
+
+    tags = {
+      "Name"     = "{{ profile }}_{{ resource_name }}"
+      "env"      = "{{ env }}"
+      "profile"  = "{{ name }}"
+      "workload" = "{{ workload }}"
+      "client"   = "{{ client }}"
+      "author"   = "rapid-cloud"
+    }
+}

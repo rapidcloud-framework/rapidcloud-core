@@ -1,0 +1,22 @@
+{
+  "rds": {
+    "create": {
+      "enabled": false,
+      "example": "kc rds create --no-prompt --rds_name name --rds_type type --rds_engine engine --rds_multi_az multi_az --rds_database_name database_name",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "add_table": {
+      "enabled": false,
+      "example": "kc rds add_table --no-prompt --rds_name name --rds_db_name db_name --rds_primary_key primary_key",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "generate-schema": {
+      "enabled": false,
+      "example": "kc rds generate-schema --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "type": "Theia::Action",
+  "label": "Run Report",
+  "id": "report_run",
+  "module": "report",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "sample_report",
+      "title": "Run Report",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Run Report",
+          "command": {
+            "phase": "report",
+            "command": "run"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Select",
+          "id": "name",
+          "label": "Choose Report",
+          "help": "",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=report,define_report&field=name"
+        }        
+      ]
+    }
+  ]
+}

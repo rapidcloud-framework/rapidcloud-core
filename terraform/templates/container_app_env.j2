@@ -1,0 +1,20 @@
+module "{{ fqn }}" {
+    source = "{{ module_source }}"
+    profile = "{{ profile }}"
+    env = "{{ env }}"
+    workload = "{{ workload }}"
+    cmd_id = "{{ cmd_id }}"
+    name = "{{ resource_name }}"
+    location = "{{ params["location"] }}"
+    resource_group = "{{ params["resource_group"] }}"
+    infrastructure_subnet_id = "{{ params["infrastructure_subnet_id"] }}"
+    log_analytics_workspace_id = "{{ params["log_analytics_workspace_id"] }}"
+    internal_load_balancer_enabled = "{{ params["internal_load_balancer_enabled"] }}"
+    {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+}

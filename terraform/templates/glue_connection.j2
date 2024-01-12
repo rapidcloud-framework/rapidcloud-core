@@ -1,0 +1,23 @@
+data "aws_secretsmanager_secret" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    name = "{{ params['password'] }}"
+}
+
+data "aws_secretsmanager_secret_version" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    secret_id = "${data.aws_secretsmanager_secret.{{ profile }}_{{ resource_name }}_{{ resource_type }}.id}"
+}
+
+resource "aws_glue_connection" "{{ profile }}_{{ resource_name }}_{{ resource_type }}_conn" {
+  connection_properties = {
+  JDBC_CONNECTION_URL = "{{ params['jdbc_connection'] }}"
+    USERNAME            = "{{ params['username']}}"
+    PASSWORD            = data.aws_secretsmanager_secret_version.{{ profile }}_{{ resource_name }}_{{ resource_type }}.secret_string
+  }
+
+  name = "{{ profile }}_{{ resource_name }}_{{ resource_type }}"
+
+  physical_connection_requirements {
+    availability_zone      = data.aws_subnet.private[tolist(data.aws_subnets.private.ids)[0]].availability_zone
+    # security_group_id_list = [module.{{ profile }}_{{ resource_name }}_{{ resource_type }}.sg_id]
+    subnet_id              = tolist(data.aws_subnets.private.ids)[0]
+  }
+}

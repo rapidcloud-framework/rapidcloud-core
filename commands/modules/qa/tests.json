@@ -1,0 +1,10 @@
+{
+  "qa": {
+    "run_cli_tests": {
+      "enabled": false,
+      "example": "kc qa run_cli_tests --no-prompt --qa_env_suffix env_suffix",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

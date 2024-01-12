@@ -1,0 +1,49 @@
+resource "aws_glue_job" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    name     = "{{ profile }}_{{ resource_name }}"
+
+    {% if params['role_name'] is defined and params['role_name'] != "" %}
+    role_arn = module.{{ profile }}_theia_roles.{{ params['role_name'] }}_glue_role_arn
+    {% else %}
+    role_arn = module.{{ profile }}_glue_base.arn
+    {% endif %}
+
+    glue_version = "1.0"
+    command {
+    {% if params['command'] is defined %}
+    {% for c,v in params['command'].items() %}
+        {{ c }} = "{{ v }}"
+    {% endfor %}
+    {% else %}
+        script_location = "main.py"
+    {% endif %}
+    }
+
+
+
+    max_retries = 0
+    default_arguments = {
+    {% if params['default_arguments'] is defined %}
+    {% for p,v  in params['default_arguments'].items() %}
+        "{{ p }}" = "{{ v }}"
+    {% endfor %}
+    {% endif %}
+    }
+
+  # lifecycle { ignore_changes = [command, default_arguments] }
+  tags = {
+      "Name" = "{{ profile }}_{{ resource_name }}"
+      "env" = "{{ env }}"
+      "profile" = "{{ name }}"
+      "workload" = "{{ workload }}"
+      "client" = "{{ client }}"
+      "author" = "rapid-cloud"
+   }
+
+ {% if params['max_capacity'] is defined %}
+  max_capacity = {{ params['max_capacity'] }}
+ {% endif %}
+
+ {% if params['connection'] is defined %}
+  connections = [aws_glue_connection.{{ params['connection']}}_conn.name]
+ {% endif %}
+}

@@ -1,0 +1,78 @@
+{
+  "efs": {
+    "create": {
+      "enabled": true,
+      "help": "Create Elastic File Service",
+      "template_section": "storage",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "fs_name",
+      "args": {
+        "fs_name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "encrypted": {
+          "name": "encrypted",
+          "prompt": "Encrypted (true|false)",
+          "required": true,
+          "default": "true"
+        },
+        "enable_backups": {
+          "name": "enable_backups",
+          "prompt": "Enable Backups ? (true|fale)",
+          "required": false,
+          "default": "true"
+        },
+        "performance_mode": {
+          "name": "performance_mode",
+          "prompt": "The file system performance mode. Valid values: generalPurpose or maxIO",
+          "required": false,
+          "default": "generalPurpose"
+        },
+        "throughput_mode": {
+          "name": "throughput_mode",
+          "prompt": "Throughput mode for the file system. Valid values: bursting, provisioned, or elastic.",
+          "required": false,
+          "default": "bursting"
+        },
+        "provisioned_throughput_in_mibps": {
+          "name": "provisioned_throughput_in_mibps",
+          "prompt": "The throughput, measured in MiB/s, that you want to provision for the file system. Only applicable with throughput_mode set to provisioned.",
+          "required": false,
+          "default": "0"
+        },
+        "transition_to_ia": {
+          "name": "transition_to_ia",
+          "prompt": "Set policy to files to the IA storage class. Valid values: AFTER_1_DAY, AFTER_7_DAYS, AFTER_14_DAYS, AFTER_30_DAYS, AFTER_60_DAYS, or AFTER_90_DAYS",
+          "required": false,
+          "default": ""
+        },
+        "transition_to_primary": {
+          "name": "transition_to_primary",
+          "prompt": "Set policy to transition a file from IA storage to primary storage. Valid values: AFTER_1_ACCESS.",
+          "required": false,
+          "default": ""
+        },
+        "vpc_id": {
+          "name": "vpc_id",
+          "prompt": "The VPC you'd like to create this Mount Target in.",
+          "required": true,
+          "default": ""
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Enter a comma seperated list of RapidCloud Subnet names ( 1 per Availability Zone)",
+          "required": true,
+          "default": ""
+        }
+      },
+      "cloud": "aws",
+      "timestamp": "2023-05-10 19:08:38.841019",
+      "cmd_id": "20230510190827620625"
+    }
+  }
+}

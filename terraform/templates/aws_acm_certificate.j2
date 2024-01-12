@@ -1,0 +1,15 @@
+module "{{ profile }}_{{ resource_name | replace(".", "-") }}_{{ resource_type }}" {
+  source                        = "../modules/aws_acm_certificate"
+  acm_cert_domain_name          = "{{ params['cert_domain_name'] }}"
+  acm_cert_validation_method    = "{{ params['cert_validation_method'] }}"
+  r53_zone_name                 = "{{ params['r53_zone_name'] }}"
+  
+  tags = {
+    Name        = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}

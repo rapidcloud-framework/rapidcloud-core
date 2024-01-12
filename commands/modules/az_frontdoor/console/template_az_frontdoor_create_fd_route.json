@@ -1,0 +1,265 @@
+{
+  "type": "Theia::Action",
+  "label": "Azure Front Door Route",
+  "id": "az_frontdoor_create_fd_route",
+  "module": "az_frontdoor",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_frontdoor_create_fd_route",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_fd_route",
+      "env_param_required": true,
+      "columns": ["name","az_frontdoor_patterns_to_match","timestamp"],
+      "title": "Front Door Route",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_frontdoor_create_fd_route",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create Route",
+          "command": {
+            "phase": "az_frontdoor",
+            "command": "create_fd_route",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Route Name",
+          "help": "The Front Door Route Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_endpoint_id",
+          "label": "Endpoint",
+          "help": "",
+          "datasource": "formdata_from_azure_infra?type=create_fd_endpoint",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Endpoint is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_frontdoor_domains",
+          "label": "Domains",
+          "help": "Choose domains to associate with the route",
+          "datasource": "formdata_from_azure_infra?type=create_fd_domain"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_origin_group_id",
+          "label": "Origin Group",
+          "help": "",
+          "datasource": "formdata_from_azure_infra?type=create_origingroup",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "The origin group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_frontdoor_origins",
+          "label": "Origins",
+          "help": "",
+          "datasource": "formdata_from_azure_infra?type=create_origin",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "At least one origin is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_frontdoor_patterns_to_match",
+          "label": "Patterns to Match",
+          "help": "Comma-separated list of patterns to match",
+          "inputType": "text",
+          "default": "/*"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_frontdoor_supported_protocols",
+          "label": "Supported Protocols",
+          "help": "The protocols used for the frontdoor route",
+          "inputType": "text",
+          "default": "Http, Https",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Http",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Http"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Https",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Https"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_frontdoor_redirect_https",
+          "label": "Redirect HTTPS?",
+          "help": "Specify whether HTTP request should be redirected to HTTPS",
+          "inputType": "text",
+          "default": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_enable_caching",
+          "label": "Enable Caching?",
+          "help": "Specify whether the caching should be enabled",
+          "inputType": "text",
+          "default": "false",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "True",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "true",
+                "enableControls": ["az_frontdoor_query_string_cache_behavior"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "False",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "false",
+                "disableControls": ["az_frontdoor_query_string_cache_behavior"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_query_string_cache_behavior",
+          "label": "Query String Caching Behavior",
+          "help": "Specify how the Front Door Route should cache requests that include query strings",
+          "inputType": "text",
+          "default": "IgnoreQueryString",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Ignore Query String",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "IgnoreQueryString"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Ignore Specified Query Strings",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "IgnoreSpecifiedQueryStrings"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Include Specified Query Strings",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "IncludeSpecifiedQueryStrings"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Use Query String",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "UseQueryString"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_forwarding_protocol",
+          "label": "Forwarding Protocol",
+          "help": "The protocol that will be use when forwarding traffic to backends",
+          "inputType": "text",
+          "default": "HttpOnly",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Http Only",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "HttpOnly"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Https Only",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "HttpsOnly"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Match Request",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "MatchRequest"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "az_frontdoor_tags",
+          "label": "Tags",
+          "help": "Tags you wish to apply to the frontdoor route",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=az_frontdoor,${name}&result=params,az_frontdoor_tags",
+          "add_value_label": "Tags for your resource"
+        }
+      ]
+    }
+  ]
+}

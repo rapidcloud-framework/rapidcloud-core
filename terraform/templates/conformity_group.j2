@@ -1,0 +1,5 @@
+module "{{ profile }}_{{ resource_name|replace(" ","_") }}_{{ resource_type }}" {
+  source = "../modules/{{ resource_type }}"
+  name   = "{{ resource_name }}"
+  tags   = {{ params['conformity_tags']|replace("'","\"") }}
+}

@@ -1,0 +1,188 @@
+{
+  "az_storage": {
+    "create_storage_account": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_storage",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "prompt": "Enter name of the resource group",
+          "required": true
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location",
+          "required": true,
+          "default": "eastus"
+        },
+        "access_tier": {
+          "name": "access_tier",
+          "prompt": "Specify the access tier (Standard or Premium)",
+          "required": true,
+          "default": "Standard"
+        },
+        "account_replication_type": {
+          "name": "account_replication_type",
+          "prompt": "Specify the replication type - (LRS, GRS, RAGRS, ZRS, GZRS, RAGRS)",
+          "required": true,
+          "default": "LRS"
+        },
+        "ip_addresses": {
+          "name": "ip_addresses",
+          "prompt": "Comma-separated list of public IPs in CIDR format to allow access. The CIDR prefix must be less than or equal to 30",
+          "required": false
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Comma-separated list of subnet resource IDs to allow access",
+          "required": false
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the storage account, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": {}
+        }
+      }
+    },
+    "create_blob_container": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_storage",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "storage_account_name": {
+          "name": "storage_account_name",
+          "prompt": "Enter name of the storage account",
+          "required": true
+        },
+        "container_access_type": {
+          "name": "container_access_type",
+          "prompt": "Enter the access level configured for the container (blob, container or private)",
+          "required": false,
+          "default": "private"
+        }
+      }
+    },
+    "create_file_share": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_storage",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "storage_account_name": {
+          "name": "storage_account_name",
+          "prompt": "Enter name of the storage account",
+          "required": true
+        },
+        "quota": {
+          "name": "quota",
+          "prompt": "Enter the maximum size of the share, in gigabytes",
+          "required": false,
+          "default": 1
+        }
+      }
+    },
+    "create_redis_cache": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_storage",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "prompt": "Enter name of the resource group",
+          "required": true
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location",
+          "required": true,
+          "default": "eastus"
+        },
+        "capacity": {
+          "name": "capacity",
+          "prompt": "Enter the size of redis cache to deploy",
+          "required": true
+        },
+        "family": {
+          "name": "family",
+          "prompt": "Enter the SKU family (C or P)",
+          "required": true,
+          "default": "C"
+        },
+        "sku_name": {
+          "name": "sku_name",
+          "prompt": "Enter the SKU of Redis to use (Basic, Standard and Premium)",
+          "required": true,
+          "default": "Standard"
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Enter the ID of the Subnet within which the Redis Cache should be deployed (Only available with Premium SKU)",
+          "required": true
+        },
+        "identity_type": {
+          "name": "identity_type",
+          "prompt": "Enter the type of Managed Service Identity that should be configured on this Redis Cluster (SystemAssigned, UserAssigned)",
+          "required": true,
+          "default": "SystemAssigned"
+        },
+        "managed_ids": {
+          "name": "managed_ids",
+          "prompt": "Enter the comma-separated list of User Assigned Managed Identity IDs to be assigned to this Redis Cluster",
+          "required": true
+        },
+        "zones": {
+          "name": "zones",
+          "prompt": "Enter the list of Availability Zones in which this Redis Cache should be located (1, 2, 3)",
+          "required": true
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the redis cache, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": {}
+        }
+      }
+    }
+  }
+}

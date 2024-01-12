@@ -1,0 +1,81 @@
+{
+  "type": "Theia::Action",
+  "label": "REST APIs",
+  "id": "api_create",
+  "module": "api",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "api_create",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=api,create",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "api_disable_execute_api_endpoint",
+        "api_endpoint_type",
+        "timestamp"
+      ],
+      "title": "REST APIs",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "api_create",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "api",
+            "command": "create",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "api_disable_execute_api_endpoint",
+          "cli_id": "disable_execute_api_endpoint",
+          "label": "Disable Default Endpoint?",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "api_endpoint_type",
+          "cli_id": "endpoint_type",
+          "label": "Endpoint Type",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "EDGE",
+              "value": "EDGE"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "REGIONAL",
+              "value": "REGIONAL"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "PRIVATE",
+              "value": "PRIVATE"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

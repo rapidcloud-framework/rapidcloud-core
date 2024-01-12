@@ -1,0 +1,21 @@
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+    source = "../modules/{{ resource_type }}"
+    name = "{{ profile }}_{{ resource_name }}"
+    account_id         = "{{ account }}"
+    destination_bucket_arn = module.{{  params['destination_bucket_name'] | replace("-", "_") }}_s3_bucket.bucket_arn
+    {% if params['kinesis_stream_name'] is defined %}
+    kinesis_stream_arn = aws_kinesis_stream.{{  params['kinesis_stream_name'] }}_kinesis_stream.arn
+    {% endif %}
+    {% if params['buffer_size'] is defined %}
+    buffer_size =  {{ params['buffer_size'] }}
+    {% endif %}
+    {% if params['buffer_interval'] is defined %}
+    buffer_interval =  {{ params['buffer_interval'] }}
+    {% endif %}
+    {% if params['compression_format'] is defined %}
+    compression_format =  "{{ params['compression_format'] }}"
+    {% endif %}
+    region = "{{ region }}"
+    s3_error_event_prefix  = "{{ params['s3_error_event_prefix'] | default(errors) }}"
+    s3_prefix  = "{{ params['s3_prefix'] | default("") }}"
+}

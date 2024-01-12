@@ -1,0 +1,25 @@
+{
+  "type": "Theia::Action",
+  "label": "Infrastructure Resources",
+  "id": "infra_resources",
+  "module": "status",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "infra_resources",
+      "datasource": "status?test=test",
+      "env_param_required": true,
+      "columns": ["created","resource_type","resource_name","phase","command","timestamp","cmd_id"],
+      "title": "Infrastructure Resources",
+      "description": "",
+      "allowMarkdown": true,
+      "hide_add": true
+    },
+    {
+      "type": "Theia::Step::Json",
+      "id": "history",
+      "title": "",
+      "description": ""
+    }
+  ]
+}

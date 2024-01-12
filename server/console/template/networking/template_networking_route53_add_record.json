@@ -1,0 +1,210 @@
+{
+  "type": "Theia::Action",
+  "label": "Route 53 Records",
+  "id": "route53_add_record",
+  "module": "route53",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "route53",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=route53,add_record",
+      "env_param_required": true,
+      "columns": [
+        "route53_record_name",
+        "timestamp",
+        "route53_record_type",
+        "route53_zone_id",
+        "route53_ttl",
+        "route53_record_list"
+      ],
+      "title": "Route 53 records",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "route53",
+      "title": "Add record",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Add Record",
+          "command": {
+            "phase": "route53",
+            "command": "add_record",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "route53_record_name",
+          "cli_id": "record_name",
+          "label": "Record Name",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "route53_record_type",
+          "cli_id": "record_type",
+          "label": "Record Type",
+          "help": "Valid values are: A",
+          "default": "A",
+          "inputType": "text",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "A (non-alias)",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "A",
+                "disableControls": [
+                  "alias_name",
+                  "alias_zone_id",
+                  "evaluate_target_health",
+                  ""
+                ],
+                "enableControls": [
+                  "route53_record_list"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "A (alias)",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "a-alias",
+                "enableControls": [
+                  "alias_name",
+                  "alias_zone_id",
+                  "evaluate_target_health",
+                  "alias_name"
+                ],
+                "disableControls": [
+                  "route53_record_list"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "NS",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "NS",
+                "disableControls": [
+                  "alias_name",
+                  "alias_zone_id",
+                  "evaluate_target_health"
+                ],
+                "enableControls": [
+                  "route53_record_list"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "CNAME",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "CNAME",
+                "disableControls": [
+                  "alias_name",
+                  "alias_zone_id",
+                  "evaluate_target_health"
+                ],
+                "enableControls": [
+                  "route53_record_list"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "CNAME (alias)",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "cname-alias",
+                "enableControls": [
+                  "alias_name",
+                  "alias_zone_id",
+                  "evaluate_target_health",
+                  "alias_name"
+                ],
+                "disableControls": [
+                  "route53_record_list"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "TXT",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "TXT",
+                "disableControls": [
+                  "alias_name",
+                  "alias_zone_id",
+                  "evaluate_target_health"
+                ],
+                "enableControls": [
+                  "route53_record_list"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "route53_zone_id",
+          "cli_id": "zone_id",
+          "label": "Hosted zone name",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=route53,create_hosted_zone&field=name&module_name_arg=route53",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "route53_ttl",
+          "cli_id": "ttl",
+          "label": "Record TTL (seconds)",
+          "inputType": "text",
+          "help": "TTL defaults to 300"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "route53_record_list",
+          "cli_id": "record_list",
+          "label": "Record List",
+          "inputType": "text",
+          "help": "Comma-separated list of records"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "alias_name",
+          "cli_id": "alias_name",
+          "label": "Alias record name",
+          "inputType": "text",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "alias_zone_id",
+          "cli_id": "alias_zone_id",
+          "label": "Alias Zone ID",
+          "inputType": "text",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "evaluate_target_health",
+          "cli_id": "evaluate_target_health",
+          "label": "Evaluate targets health",
+          "inputType": "text",
+          "help": ""
+        }
+      ]
+    }
+  ]
+}

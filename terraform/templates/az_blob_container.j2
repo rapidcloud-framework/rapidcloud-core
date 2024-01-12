@@ -1,0 +1,13 @@
+module "{{ fqn }}" {
+  source                  = "{{ module_source }}"
+  profile                 = "{{ profile }}"
+  env                     = "{{ env }}"
+  workload                = "{{ workload }}"
+  cmd_id                  = "{{ cmd_id }}"
+  name                    = "{{ resource_name }}"
+  storage_account_name    = "{{ params["storage_account_name"] }}"
+  container_access_type   = "{{ params['container_access_type'] }}"
+  depends_on = [
+    module.{{ profile }}_az_storage_account_{{ params["storage_account_name"] }} 
+  ]
+}

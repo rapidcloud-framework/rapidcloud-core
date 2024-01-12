@@ -1,0 +1,78 @@
+{
+  "type": "Theia::Action",
+  "label": "RDS/Aurora Tables",
+  "id": "target_database_tables",
+  "module": "rds",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "target_database_tables",
+      "datasource": "data?type=publishing&filter_name=db_type&filter_value=aurora,rds",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "db_type",
+        "db_engine",
+        "db_name",
+        "primary_key"
+      ],
+      "title": "Target Database Tables",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "target_database_tables",
+      "title": "",
+      "description": "",
+      "readonly": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Submit",
+          "command": {
+            "phase": "rds",
+            "command": "add_table",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "fqn",
+          "hidden": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "db_name",
+          "label": "Database Name",
+          "help": "Select an already registered database name",
+          "datasource": "formdata?type=target_database&field=name&module_name_arg=rds"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Table Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "primary_key",
+          "label": "Primary Key",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

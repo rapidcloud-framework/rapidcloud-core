@@ -1,0 +1,10 @@
+{
+  "transform": {
+    "create": {
+      "enabled": false,
+      "example": "kc transform create --no-prompt --transform_name name --transform_base_datasets base_datasets --transform_job_type job_type --transform_refresh_spice refresh_spice",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

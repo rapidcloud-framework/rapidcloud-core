@@ -1,0 +1,70 @@
+module "{{ profile }}_{{ resource_name }}_ec2_instance" {
+  source                   = "../modules/aws_instance"
+  ami_id                   = "{{ params['ami_id'] }}"
+  instance_type            = "{{ params['instance_type'] }}"
+  availability_zone        = "{{ params['availability_zone'] }}"
+  vpc_security_group_ids   = {{ params['vpc_security_group_ids'] | replace("'","\"") }}
+  subnet_id                = "{{ params['subnet_id'] }}"
+
+  {% if params['role_name'] is defined %}
+  iam_instance_profile     = aws_iam_instance_profile.{{ resource_name }}.name
+  {% endif %}
+  
+  {% if params['key_name'] is defined and params['key_name'] != '' %}
+  key_name     = "{{ params['key_name'] }}"
+  {% endif %}
+
+  {% if params['public_key'] is defined and params['public_key'] != '' %}
+  key_name     = module.{{ profile }}_{{ resource_name }}_key_pair.key_name
+  {% endif %}
+
+  user_data                = <<EOF
+  {{params['user_data']}}
+  echo done
+  EOF
+}
+
+{% if params['role_name'] is defined %}
+resource "aws_iam_instance_profile" "{{ resource_name }}" {
+  name = "{{ profile }}_{{ resource_name }}_instance_profile"
+  role = "{{ params['role_name'] }}"
+}
+{% endif %}
+
+{% if params['public_key'] is defined  and params['public_key'] != '' %}
+module "{{ profile }}_{{ resource_name }}_key_pair" {
+  source     = "../modules/aws_key_pair"
+  key_name   = "{{ profile }}_{{ resource_name }}_key_name"
+  public_key = "{{ params['public_key']}}"
+  tags = {
+    "Name"      = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}
+{% endif %}
+
+{% if params['volume_size'] | int > 0 %}
+module "{{ profile }}_{{ resource_name }}_attached_ebs_volume" {
+  source            = "../modules/aws_ebs_volume"
+  disk_size         = "{{ params['volume_size']}}"
+  availability_zone = "{{ params['availability_zone']}}"
+  tags = {
+    "Name"      = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+}
+
+resource "aws_volume_attachment" "{{ profile }}_{{ resource_name }}_attachment" {
+  device_name = "{{ params['device_name'] }}"
+  volume_id   = module.{{ profile }}_{{resource_name}}_attached_ebs_volume.volume_id
+  instance_id = module.{{ profile }}_{{resource_name}}_ec2_instance.instance_id
+}
+{% endif %}

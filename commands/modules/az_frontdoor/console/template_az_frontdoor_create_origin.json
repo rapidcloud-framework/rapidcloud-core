@@ -1,0 +1,80 @@
+{
+  "type": "Theia::Action",
+  "label": "Azure Front Door Origin",
+  "id": "az_frontdoor_create_origin",
+  "module": "az_frontdoor",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_frontdoor_create_origin",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_origin",
+      "env_param_required": true,
+      "columns": ["name","timestamp"],
+      "title": "Front Door Origin",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_frontdoor_create_origin",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create Origin",
+          "command": {
+            "phase": "az_frontdoor",
+            "command": "create_origin",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Origin Name",
+          "help": "The Front Door Origin Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_frontdoor_origin_group_id",
+          "label": "Origin Group",
+          "help": "",
+          "datasource": "formdata_from_azure_infra?type=create_origingroup",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "The Origin Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_frontdoor_hostname",
+          "label": "Hostname",
+          "help": "The IPv4 address, IPv6 address or domain name of the origin",
+          "inputType": "text",
+          "default": "domain.com"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_frontdoor_certificate_check_enabled",
+          "label": "Enable Certificate Check?",
+          "help": "Specify whether certificate name checks should be enabled for this origin",
+          "inputType": "text",
+          "default": false
+        }
+      ]
+    }
+  ]
+}

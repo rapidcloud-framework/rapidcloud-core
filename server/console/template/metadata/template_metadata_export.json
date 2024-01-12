@@ -1,0 +1,26 @@
+{
+  "type": "Theia::Action",
+  "label": "Export",
+  "id": "export",
+  "module": "metadata",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "export",
+      "title": "Export Current Environment",
+      "description": "Create snapshot for current environment metadata. Snapshot will be saved as json file in ~/kc-rapidcloud/config/environments directory",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Export",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to create snapshot for this environment's metadata?",
+          "command": {
+            "phase": "metadata",
+            "command": "export"    
+          }
+        }
+      ]
+    }
+  ]
+}

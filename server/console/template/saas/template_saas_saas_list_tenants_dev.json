@@ -1,0 +1,21 @@
+{
+  "type": "Theia::Action",
+  "label": "View Tenants (dev)",
+  "id": "saas_list_tenants_dev",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "saas_list_tenants_dev",
+      "datasource": "saas?action=list_tenants&include_log=true&aws_profile=default",
+      "env_param_required": true,
+      "columns": ["domain","status","acct_id","ec2_instance_id","public_ip_address","timestamp"],
+      "title": "Tenants",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Json",
+      "id": "report_log"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "type": "Theia::Action",
+  "label": "Redis Users",
+  "id": "elasticache_create_user",
+  "module": "elasticache",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "elasticache_create_user",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=elasticache,create_user",
+      "env_param_required": true,
+      "columns": [
+        "elasticache_user_id",
+        "elasticache_user_name",
+        "elasticache_access_string",
+        "timestamp"
+      ],
+      "title": "Redis Users",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "elasticache_create_user",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "elasticache",
+            "command": "create_user",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_user_id",
+          "label": "User ID",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_user_name",
+          "label": "Username",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "elasticache_access_string",
+          "label": "Access String",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

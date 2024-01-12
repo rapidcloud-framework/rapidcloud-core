@@ -1,0 +1,130 @@
+{
+  "home": {},
+  "modeling": {
+    "wizard": 1000,
+    "lzwizard": 1000,
+    "azure_lzwizard": 1000,
+    "azure_lz_wizard": 1000,
+    "azure_net_wizard": 1000,
+    "azure_solution_wizard": 1000,
+    "azure_container_wizard": 1000
+  },
+  "modules": {
+    "module_create": 1000,
+    "module_add_command": 1000,
+    "module_create_template": 1000
+  },
+  "setup": {
+    "activate": 1000,
+    "access_create_role": 1000,
+    "access_assign_role": 1000,
+    "environments": 1000,
+    "azure_environments": 1000
+  },
+  "az_lz": {},
+  "az_net": {},
+  "deploy": {
+    "terraform": 1000
+  },
+  "metadata": {
+    "module_show": 10,
+    "infra_resources": 20,
+    "properties": 1000,
+    "clean": 30,
+    "export": 1000,
+    "import": 1000
+  },
+  "Landing Zone": {
+    "az_lz_create_management_group": 1000,
+    "az_lz_create_policy_definition": 1000,
+    "az_lz_create_policy_initiate_defintion": 1000,
+    "az_lz_create_role_assignment_subscription": 1000,
+    "az_lz_create_resource_group": 1000,
+    "az_lz_create_loganalytics": 1000,
+    "az_lz_create_key_vault": 1000,
+    "az_lz_create_key_vault_access_policy": 1000,
+    "az_lz_create_log_analytics_workspace": 1000
+  },
+  "network": {
+    "az_net_create_nsg": 1000,
+    "az_net_create_vnet": 1000,
+    "az_net_create_firewall": 1000,
+    "az_net_create_public_ip": 1000,
+    "az_net_create_ddos_plan": 1000,
+    "az_net_create_dns_zone": 1000,
+    "az_net_create_private_dns_zone": 1000,
+    "az_net_create_route_table": 1000,
+    "az_net_create_route": 1000,
+    "az_net_create_subnet": 1000,
+    "az_net_create_network_watcher": 1000,
+    "az_net_create_vnet_peering": 1000,
+    "az_net_create_net_flow_log": 1000
+  },
+  "storage": {
+    "efs_create": 1000,
+    "s3_create_bucket": 1000,
+    "fsx": 1000
+  },
+  "database": {
+    "az_db_create_sql_server": 1000,
+    "az_db_create_sql_db": 1000,
+    "az_db_create_cosmosdb_nosql": 1000
+  },
+  "containers": {
+    "ecr": 1000,
+    "ecs": 1000
+  },
+  "Load Balancer": {
+    "az_lb_create_lb": 1000,
+    "az_lb_create_lb_rule": 1000
+  },
+  "az_landingzone": {
+    "az_lz_create_management_group": 1000,
+    "az_lz_create_policy_definition": 1000,
+    "az_lz_create_policy_initiate_defintion": 1000,
+    "az_lz_create_role_assignment_subscription": 1000,
+    "az_lz_create_resource_group": 1000,
+    "az_lz_create_loganalytics": 1000,
+    "az_lz_create_key_vault": 1000,
+    "az_lz_create_key_vault_access_policy": 1000,
+    "az_lz_create_log_analytics_workspace": 1000
+  },
+  "az_network": {
+    "az_net_create_nsg": 1000,
+    "az_net_create_vnet": 1000,
+    "az_net_create_firewall": 1000,
+    "az_net_create_public_ip": 1000,
+    "az_net_create_ddos_plan": 1000,
+    "az_net_create_dns_zone": 1000,
+    "az_net_create_private_dns_zone": 1000,
+    "az_net_create_route_table": 1000,
+    "az_net_create_route": 1000,
+    "az_net_create_subnet": 1000,
+    "az_net_create_network_watcher": 1000,
+    "az_net_create_vnet_peering": 1000,
+    "az_net_create_net_flow_log": 1000
+  },
+  "az_storage": {
+    "az_storage_create_storage_account": 1000,
+    "az_storage_create_blob_container": 1000,
+    "az_storage_create_file_share": 1000,
+    "az_storage_create_redis_cache": 1000
+  },
+  "az_database": {
+    "az_db_create_sql_server": 1000,
+    "az_db_create_sql_db": 1000,
+    "az_db_create_cosmosdb_nosql": 1000
+  },
+  "az_containers": {
+    "az_container_create_aks": 1000,
+    "az_container_create_node_pool": 1000,
+    "az_container_create_app_environment": 1000,
+    "az_container_create_app_environment_cert": 1000,
+    "az_container_create_app": 1000,
+    "az_container_create_registry": 1000
+  },
+  "az_loadbalancer": {
+    "az_lb_create_lb": 1000,
+    "az_lb_create_lb_rule": 1000
+  }
+}

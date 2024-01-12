@@ -1,0 +1,422 @@
+#!/usr/bin/env python3
+
+__author__ = "Igor Royzis"
+__copyright__ = "Copyright 2022, Kinect Consulting"
+__license__ = "Commercial"
+__email__ = "iroyzis@kinect-consulting.com"
+
+import copy
+import json
+import sys
+from datetime import datetime
+
+import pyfiglet
+
+from commands import config_utils
+from commands.cli_worker.provider import Provider
+from commands.colors import colors
+
+
+def print_rapidcloud_text_image():
+    text = pyfiglet.figlet_format("RapidCloud")
+    print(f"{colors.OKBLUE}{text}{colors.ENDC}")
+    print(f"{colors.OKBLUE}RapidCloud v{version}{colors.ENDC}")
+
+
+kc_config = config_utils.get_config("kc_config")
+version = config_utils.get_config("version")['version']
+cloud_context = config_utils.get_config("cloud_context")
+if "cloud" not in cloud_context:
+    cloud_context["cloud"] = "aws"
+
+# switch or show cloud context
+if len(sys.argv) > 1:
+    if sys.argv[1] == "set-cloud":
+        cloud_context["cloud"] = sys.argv[2]
+        cloud_context["timestamp"] = str(datetime.now())
+        config_utils.save_config("cloud_context", cloud_context)
+        print(pyfiglet.figlet_format(cloud_context['cloud']))
+        sys.exit(0)
+    elif sys.argv[1] == "show-cloud":
+        print(pyfiglet.figlet_format(cloud_context['cloud']))
+        sys.exit(0)
+
+from commands import general_utils
+
+activation_info = general_utils.load_json_file("config/activation.json")
+
+import argparse
+import logging
+import os
+import subprocess
+import time
+import traceback
+import webbrowser
+from threading import Thread
+
+import yaml
+
+import commands.help
+from commands import access_utils
+from commands.cli_worker import CliWorker
+from commands.cli_worker.activation_worker import ActivationWorker
+from commands.cli_worker.analytics_worker import AnalyticsWorker
+from commands.cli_worker.app_worker import AppWorker
+from commands.cli_worker.architecture_worker import ArchitectureWorker
+from commands.cli_worker.aws_init_worker import AwsInitWorker
+from commands.cli_worker.azure_init_worker import AzureInitWorker
+from commands.cli_worker.custom_resource_worker import CustomResourceWorker
+from commands.cli_worker.deploy_worker import DeployWorker
+from commands.cli_worker.gcp_init_worker import GcpInitWorker
+from commands.cli_worker.ingest_worker import IngestWorker
+from commands.cli_worker.license_worker import LicenseWorker
+from commands.cli_worker.metadata_worker import MetadataWorker
+from commands.cli_worker.pricing_worker import PricingWorker
+from commands.cli_worker.secure_worker import SecureWorker
+from commands.cli_worker.tf_worker import TfWorker
+from commands.cli_worker.transform_worker import TransformWorker
+from commands.kc_metadata_manager.aws_infra import AwsInfra
+from commands.kc_metadata_manager.command_history import CommandHistory
+from commands.kc_metadata_manager.deployment import Deployment
+from commands.kc_metadata_manager.test import Test
+from commands.modules import exec_module, load_modules
+from server import server
+from server.utils.ssl_utils import check_certbot_renewal
+
+logging.root.handlers=[]
+logging.basicConfig(level=kc_config['logger_level'], format=f'%(asctime)s %(levelname)-7s %(name)-43s: %(message)s')
+logging.getLogger("botocore.credentials").setLevel(logging.CRITICAL)
+logger = logging.getLogger('kc')
+
+parser = argparse.ArgumentParser(description='RapidCloud by Kinect', add_help=False)
+
+STORE_TRUE = [
+    'help', 'verbose', 'dry-run', 'no-prompt', 'no-history', 'diagram', 'version', 'v','override', 'quiet', 'pause', 'no-browser'
+]
+
+VALUE_ARGUMENTS = [
+    'cloud','account','action','activation-code','attr','attr-name','attr_type','auto-trigger','aws_profile','base-datasets','category','cdc-type','client','config','consumer','count','create_quicksight_dataset','database-name','datalake-area','dataset','dataset-name','dataset-type','db','db_name','email','enable-enrich','enable-transform','enabled','endpoint','engine','enrich-name','env','env_info','env-suffix','env-vars','event_source','event_source_arn','format','fqn','from-format','git-repo','id','include-tables','insert-timestamp','ip-addr','job-type','location','memory-size','mode','multi-az','multi-az-dms','name','normalize','normalize-config','notes','partitioned_by','partitions','password','path-to-data','phase','pipeline-phase','port','prefix','primary-key','profile','rate-of-change','refresh_spice','region','replace-key','resource_type','runtime','schedule','schema','separator-char','server','service','sheet_name','sid','size','skip-tables','sort-keys','source-database','source-env','source-location','source-schema','source-table','source-tables','sql','ssh-pub-key','step','suffix','table-name','tags','target','target-env','target-path','task','timeout','timestamp','timestamp-after','to-format','token','type','update-timestamp','use-dms','use-first-row-as-cols','use-quotes-around-strings','user','use_ctas','value','vpc','vpn-only','wizard','workload','tier','requested_tier','default_value','refresh_status','resource_name','phone','cmd_id','cols','remote_addr','filter_name','filter_value','dist_key','dist_style','result','module','commands','module_filter','code','db_user','domain','key','secret','ips_for_ssh', 'console','module_command','naming','stack','product','bucket','trend_app_security_group','lambda_runtime','trend_workload_group','ignored','start','end','auto-renew','trend_workload_policy','launch_template_name','verification','dyn_args','result_path','shared','shared_with','current_session_email','diagram_type','subscription','vnet'
+]
+
+def add_arg(arg, action=None):
+    try:
+        parser.add_argument(f"--{arg}", action=action)
+        if '-' in arg:
+            parser.add_argument(f"--{arg.replace('-','_')}", action=action)
+        if '_' in arg:
+            parser.add_argument(f"--{arg.replace('_','-')}", action=action)
+    except:
+        pass
+
+
+def parse_args():
+    logger.debug("parsing args ...")
+    parser.add_argument('feature', nargs='?')
+    parser.add_argument('command', nargs='?')
+
+    for arg in STORE_TRUE:
+        add_arg(arg, action='store_true')
+
+    for arg in VALUE_ARGUMENTS:
+        add_arg(arg)
+
+
+def upgrade():
+    print(os.getcwd())
+    if general_utils.get_app_mode() == "live":
+        proceed = input(f"{colors.OKBLUE}Do you want to upgrade your RapidCloud Instance to the latest version? (yes|no):{colors.ENDC} ")
+        if proceed == "yes":
+            subprocess.call(f". upgrade-rapidcloud.sh", shell=True)
+            os.chdir('..')
+    else:
+        print("upgrade command is only available in live environment")
+    sys.exit()
+
+
+def open_console(protocol, port):
+    time.sleep(1)
+    webbrowser.open(f"{protocol}://localhost:{port}", new=0, autoraise=True)
+
+
+def exec(dyn_args=None):
+    results = {
+        "start": str(datetime.now())
+    }
+
+    file_handler = None
+    if dyn_args:
+        results["args"] = dyn_args
+        if 'log_file' in dyn_args:
+            logger.addHandler(logging.FileHandler(dyn_args['log_file']))
+
+    start_time = time.time()
+    parse_args()
+
+    modules_by_cloud, modules_dirs, add_args_list = load_modules()
+    modules = modules_by_cloud[cloud_context['cloud']]
+    for arg in add_args_list:
+        add_arg(arg)
+
+    args, unknown = parser.parse_known_args()
+
+    if args.feature == 'set-cloud':
+        return
+
+    if args.version or args.feature == 'version':
+        print_rapidcloud_text_image()
+        return
+
+    # cloud
+    if dyn_args and "cloud" in dyn_args:
+        setattr(args, "cloud", dyn_args["cloud"])
+    elif args.cloud is None:
+        setattr(args, "cloud", cloud_context["cloud"])
+
+    # modules
+    add_arg("modules_by_cloud")
+    setattr(args, "modules_by_cloud", modules_by_cloud)
+    add_arg("modules_dirs")
+    setattr(args, "modules_dirs", modules_dirs)
+
+    # dynamic args passed from console (server.py)
+    if dyn_args:
+        # logger.info(dyn_args["current_session_email"])
+        setattr(args, "dyn_args", dyn_args)
+        setattr(args, "current_session_email", dyn_args["current_session_email"])
+        setattr(args, "feature", dyn_args['feature'])
+        setattr(args, "mode", dyn_args['mode'])
+        if 'command' in dyn_args and dyn_args['command'] is not None:
+            setattr(args, "command", dyn_args['command'])
+        for arg, value in dyn_args['args'].items():
+            setattr(args, arg, value)
+    elif activation_info.get("email") is not None:
+        setattr(args, "current_session_email", activation_info["email"])
+
+    # no feature
+    if not args.feature:
+        setattr(args, "feature", "console")
+
+    # request coming from the console
+    if args.mode == 'console':
+        logger.addHandler(logging.StreamHandler(sys.stdout))
+
+    if not dyn_args:
+        if args.feature:
+            results["module"] = args.feature
+        if args.command:
+            results["command"] = args.command
+
+    # console requested
+    if args.feature == "console":
+        setattr(args, "console", True)
+        verification = LicenseWorker(args).verify_lic()
+        # if verification["exit"]:
+        #    return
+        setattr(args, "verification", verification)
+
+        logger.addHandler(logging.StreamHandler(sys.stdout))
+        port = args.port if args.port else 5000
+        print("")
+        print("Starting RapidCloud Console ...")
+        print(" - Default port is 5000. To use a different port on your local worstation, pass `--port value`. Do not change port if RapidCloud is running on Amazon Linux EC2 Instance.")
+        print(' - Console will open automatically in your default browser on your local workstation.')
+        print(' - Pass `--no-browser` argument to not open a new browser tab')
+        print(" - Example: `kc --no-browser`")
+        print("")
+        server.kc_exec = exec
+        server.kc_args = args
+        if not args.no_browser:
+            Thread(target=open_console, args=("http",port,)).start()
+        server.app.run(host='0.0.0.0', port=port) #, ssl_context='adhoc')
+        return
+
+    # default mode is `cli`
+    if args.mode is None:
+        setattr(args, 'mode', 'cli')
+
+    # exit for dry run (this is for testing console without actually running commands)
+    if args.dry_run:
+        print("Dry run. Exiting.")
+        return
+
+    try:
+        profile = None
+        # for Amazon Linux only - check for SSL cert renewal
+        if "linux" in sys.platform:
+            check_certbot_renewal(activation_info)
+
+        # verify license
+        if args.feature and args.feature != 'activate':
+            verification = LicenseWorker(args).verify_lic()
+            if verification["exit"]:
+              return
+
+            setattr(args, "verification", verification)
+
+            # print("cloud", args.cloud)
+            if args.cloud == "aws":
+                init_worker = AwsInitWorker(args)
+            elif args.cloud == "azure":
+                init_worker = AzureInitWorker(args)
+            elif args.cloud == "gcp":
+                init_worker = GcpInitWorker(args)
+
+            # make sure `env` specific config file exists
+            if args.command and args.command not in ['create-env', 'set-env'] and args.feature not in ['module', 'help']:
+                logger.info("KC calling init_worker.verify_env()")
+                profile = init_worker.verify_env()
+                if profile is None:
+                    return
+
+            # verify user level permission
+            if "permissions" in verification:
+                if not access_utils.allow_command(args.feature, args.command, verification["permissions"]):
+                    return
+
+        # show CLI help
+        # if args.feature == "help":
+        #     if not args.command:
+        #         commands.help.gen_help_terminal(args)
+        #     elif args.command == "json":
+        #         commands.help.gen_help_json(args)
+        #     return
+
+        # Execute RapidCloud module
+        if args.feature in modules and args.command in modules[args.feature]:
+            if args.module in modules:
+                setattr(args, 'module_filter', args.module)
+            setattr(args, 'module', args.feature)
+            try:
+                exec_module(args)
+                pass # Placeholder to allow a potential debugger breakpoint
+            except Exception as module_exception:
+                logger.error(module_exception, exc_info=True)
+                results["message"] = str(module_exception)
+
+        elif args.feature == 'history':
+            CommandHistory(args).get_commands_for_current_env()
+
+        elif args.feature == 'activate':
+            setattr(args, 'version', version)
+            if not args.tier:
+                setattr(args, 'tier', "1")
+            ActivationWorker(args).activate()
+
+        elif args.feature == 'uninstall':
+            ActivationWorker(args).uninstall()
+
+        elif args.feature == 'confirm':
+            LicenseWorker(args).confirm()
+
+        elif args.feature == 'subscribe':
+            LicenseWorker(args).subscribe()
+
+        elif args.feature == 'account':
+            LicenseWorker(args).account_details()
+
+        elif args.feature == 'status':
+            Provider(args).get_infra().show_status()
+
+        elif args.feature == 'update':
+            ActivationWorker(args).update()
+
+        elif args.feature in ['env', 'init']:
+            init_worker.init(profile)
+
+        elif args.feature == 'ingest':
+            IngestWorker(args).ingest()
+
+        elif args.feature == 'transform':
+            TransformWorker(args).transform()
+
+        elif args.feature == 'analytics':
+            AnalyticsWorker(args).analytics()
+
+        elif args.feature == 'app':
+            AppWorker(args).app()
+
+        elif args.feature == 'secure':
+            SecureWorker(args).secure()
+
+        elif args.feature == 'tf':
+            TfWorker(args).tf()
+
+        elif args.feature == 'deploy':
+            DeployWorker(args).deploy()
+
+        elif args.feature == 'pricing':
+            PricingWorker(args).pricing()
+
+        elif args.feature == 'undo-command':
+            AwsInfra(args).undo_command()
+
+        elif args.feature == 'show-command':
+            AwsInfra(args).get_aws_infra_for_command()
+
+        elif args.feature == 'architecture':
+            ArchitectureWorker(args).architecture()
+
+        elif args.feature == 'aws':
+            CustomResourceWorker(args).run()
+
+        elif args.feature == 'metadata':
+            MetadataWorker(args).run()
+
+        elif args.feature == 'test':
+            Test(args).run()
+
+        else:
+            print_rapidcloud_text_image()
+            CliWorker(args).show_kc_status()
+
+        if "message" not in results:
+            results["message"] = "Command completed successfully"
+
+    except Exception as e:
+
+        traceback.print_exc()
+        logger.error(e)
+        results["error"] = str(e)
+        if dyn_args:
+            args_copy = copy.deepcopy(dyn_args)
+            if "wizard" in args_copy["args"]: args_copy["args"]["wizard"] = "..."
+            logger.error(json.dumps(args_copy, indent=2, default=str))
+        logger.error("Command failed!")
+
+    finally:
+        if file_handler:
+            logger.removeHandler(file_handler)
+
+        results["end"] = str(datetime.now())
+        results["duration"] = f"{round(time.time() - start_time, 1)}s"
+        results["log"] = get_log(args)
+        if hasattr(args, "response") and args.response is not None:
+            results["response"] = args.response
+        if hasattr(args, "cmd_result_notes") and args.cmd_result_notes is not None:
+            results["notes"] = args.cmd_result_notes
+
+        if args.result_path and args.result_path != "":
+            with open(f"{args.result_path}", 'w') as f:
+                json.dump(results, f, indent=2)
+
+        # print(json.dumps(results, indent=2))
+        return results
+
+
+def pause(args):
+    if args.pause:
+        input(f"\n{colors.OKBLUE}Execution is paused. Click enter to continue, ctrl-c to exit{colors.ENDC}\n")
+
+def get_log(args):
+    log = None
+    if args.feature == 'tf':
+        if args.command == "init" and os.path.exists("./terraform/{args.env}/init.log"):
+            with open(f"./terraform/{args.env}/init.log", "r") as log_file:
+                log = log_file.read()
+        elif args.command == "plan" and os.path.exists("./terraform/{args.env}/plan.log"):
+            with open(f"./terraform/{args.env}/plan.log", "r+") as log_file:
+                log = log_file.read()
+    return log
+
+if __name__ == "__main__":
+    exec()

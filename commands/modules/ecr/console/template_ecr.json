@@ -1,0 +1,121 @@
+{
+  "type": "Theia::Action",
+  "label": "Elastic Container Registry",
+  "id": "ecr",
+  "module": "ecr",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "ecr",
+      "datasource": "data?type=metadata&filter_name=module&filter_value=ecr",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "ecr_image_tag_mutability",
+        "ecr_scan_on_push",
+        "ecr_encryption_type",
+        "ecr_kms_key",
+        "timestamp"
+      ],
+      "title": "Elastic Container Registry",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "ecr",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "ecr",
+            "command": "create",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "ecr_image_tag_mutability",
+          "cli_id": "image_tag_mutability",
+          "label": "Image Tag Mutability",
+          "help": "Prevent image tags from being overwritten",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "MUTABLE",
+              "value": "MUTABLE"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "IMMUTABLE",
+              "value": "IMMUTABLE"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "ecr_scan_on_push",
+          "cli_id": "scan_on_push",
+          "label": "Scan Images on Push"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "ecr_encryption_type",
+          "cli_id": "encryption_type",
+          "label": "Encryption Type",
+          "default": "AES256",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "AES256",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "AES256",
+                "disableControls": ["ecr_kms_key"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "KMS",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "KMS",
+                "enableControls": ["ecr_kms_key"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ecr_kms_key",
+          "cli_id": "kms_key",
+          "label": "KMS Key",
+          "help": "KMS Key ARN. If not specified, uses the default AWS managed key for ECR.",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

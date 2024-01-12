@@ -1,0 +1,111 @@
+{
+  "api": {
+    "create": {
+      "enabled": true,
+      "enable_pause": false,
+      "help": "",
+      "template_section": "networking",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "disable_execute_api_endpoint": {
+          "name": "disable_execute_api_endpoint",
+          "prompt": "Disable the default API Gateway endpoint? (Y / N)",
+          "required": true,
+          "default": "N"
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "prompt": "Endpoint Type (EDGE|REGIONAL|PRIVATE)",
+          "required": true,
+          "default": "EDGE"
+        }
+      }
+    },
+    "add_lambda_integration": {
+      "enabled": true,
+      "enable_pause": false,
+      "help": "",
+      "template_section": "networking",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "name",
+      "fqn": "name,http_method,parent_resource_name,rest_api_name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Name of resource",
+          "required": true,
+          "default": ""
+        },
+        "parent_resource_name": {
+          "name": "parent_resource_name",
+          "prompt": "Parent resource name",
+          "required": true,
+          "default": "root"
+        },
+        "http_method": {
+          "name": "http_method",
+          "prompt": "HTTP method for integration",
+          "required": true,
+          "default": "GET"
+        },
+        "lambda_name": {
+          "name": "lambda_name",
+          "prompt": "URI of the lambda to use for this integration",
+          "required": true,
+          "default": ""
+        },
+        "rest_api_name": {
+          "name": "rest_api_name",
+          "prompt": "REST API to attach this integration",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "remove_lambda_integration": {
+      "enabled": true,
+      "enable_pause": false,
+      "help": "",
+      "template_section": "networking",
+      "template_enabled": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Name of resource",
+          "required": true,
+          "default": ""
+        },
+        "parent_resource_name": {
+          "name": "parent_resource_name",
+          "prompt": "Parent resource name",
+          "required": true,
+          "default": "root"
+        },
+        "http_method": {
+          "name": "http_method",
+          "prompt": "HTTP method of the integration to remove",
+          "required": true,
+          "default": "GET"
+        },
+        "rest_api_name": {
+          "name": "rest_api_name",
+          "prompt": "REST API of the integration to remove",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  }
+}

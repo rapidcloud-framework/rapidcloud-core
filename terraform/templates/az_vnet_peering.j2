@@ -1,0 +1,10 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source        = "{{ module_source }}"
+  name          = "{{ resource_name }}"
+  resource_group = "{{ params['resource_group'] }}"
+  virtual_network_name = "{{params['virtual_network_name']}}"
+  remote_virtual_network_id = "{{params['remote_virtual_network_id']}}"
+  allow_forwarded_traffic = "{{params['allow_forwarded_traffic']}}"
+  allow_virtual_network_access = "{{params['allow_virtual_network_access']}}"
+
+}

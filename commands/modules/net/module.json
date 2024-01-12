@@ -1,0 +1,262 @@
+{
+  "net": {
+    "create_vpc": {
+      "enabled": true,
+      "help": "",
+      "template_section": "VPC",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": false,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter A VPC Name with no spaces.",
+          "required": true,
+          "default": ""
+        },
+        "cidr": {
+          "name": "cidr",
+          "prompt": "Enter A CIDR for the VPC.",
+          "required": true,
+          "default": ""
+        },
+        "enable_dns_support": {
+          "name": "enable_dns_support",
+          "prompt": "Enable DNS support? [true/false]:",
+          "required": true,
+          "default": "false"
+        },
+        "enable_dns_hostnames": {
+          "name": "enable_dns_hostnames",
+          "prompt": "Enable DNS hostnames support? [true/false]:",
+          "required": true,
+          "default": "false"
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the VPC, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_subnet": {
+      "enabled": true,
+      "help": "",
+      "template_section": "VPC",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": false,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter a name for this Subnet.",
+          "required": true,
+          "default": ""
+        },
+        "vpc_module_id": {
+          "name": "vpc_module_id",
+          "prompt": "Enter the RapidCloud VPC Name to create the Subnet in a non existing/new vpc.",
+          "required": true,
+          "default": ""
+        },
+        "az": {
+          "name": "az",
+          "prompt": "Provide the Availability Zone to create this Subnet in",
+          "required": true,
+          "default": ""
+        },
+        "cidr": {
+          "name": "cidr",
+          "prompt": "Provide a network CIDR for this Subnet.",
+          "required": true,
+          "default": ""
+        },
+        "create_route_table": {
+          "name": "create_route_table",
+          "prompt": "Create a route table and associate with this Subnet? [true/false]:",
+          "required": false,
+          "default": "true"
+        },
+        "associate_route_table": {
+          "name": "associate_route_table",
+          "prompt": "Enter the RapidCloud Route Table Name to associate this Subnet with. (If you answered false above).",
+          "required": false,
+          "default": ""
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the VPC, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_igw": {
+      "enabled": true,
+      "help": "",
+      "template_section": "VPC",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": false,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter a name for this Gateway\n",
+          "required": false,
+          "default": ""
+        },
+        "vpc_module_id": {
+          "name": "vpc_module_id",
+          "prompt": "Enter the RapidCloud VPC Name (from metadata) to create this Gateway in.",
+          "required": true,
+          "default": ""
+        },
+        "route_tables": {
+          "name": "route_tables",
+          "prompt": "Enter a comma seperated list of RapidCloud Route Table names (from metadata) to which to add an internet route via this Gateway.",
+          "required": true,
+          "default": ""
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the Gateway, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_natgw": {
+      "enabled": true,
+      "help": "",
+      "template_section": "VPC",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": false,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter a name for this gateways\n",
+          "required": false,
+          "default": ""
+        },
+        "subnet_module_id": {
+          "name": "subnet_module_id",
+          "prompt": "Enter a module name of the subnet you wish to create the NAT Gateway in",
+          "required": true,
+          "default": ""
+        },
+        "route_tables": {
+          "name": "route_tables",
+          "prompt": "Enter a comma seperated list of RapidCloud Route Table names (from metadata) to which to add an internet route via this Gateway.",
+          "required": true,
+          "default": ""
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the NAT Gateway, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_route": {
+      "enabled": true,
+      "help": "",
+      "template_section": "VPC",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": false,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter a name for this route entry\n",
+          "required": false,
+          "default": ""
+        },
+        "route_tables": {
+          "name": "route_tables",
+          "prompt": "Enter a comma seperated list of RapidCloud Route Table names (from metadata) to which to add an internet route via this Gateway.",
+          "required": true,
+          "default": ""
+        },
+        "destination_cidr_block": {
+          "name": "destination_cidr_block",
+          "prompt": "Enter the destination CIDR block to route.\n",
+          "required": true,
+          "default": ""
+        },
+        "transit_gateway_id": {
+          "name": "transit_gateway_id",
+          "prompt": "Enter the transit gateway id route to.\n",
+          "required": true,
+          "default": ""
+        },
+        "vpc_peering_connection_id": {
+          "name": "vpc_peering_connection_id",
+          "prompt": "Enter the vpc peering connection id to route to.\n",
+          "required": true,
+          "default": ""
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the Route Table, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "create_endpoint": {
+      "enabled": true,
+      "help": "",
+      "template_section": "VPC",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": false,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter a name for this endpoint entry\n",
+          "required": false,
+          "default": ""
+        },
+        "service": {
+          "name": "service",
+          "prompt": "Enter the AWS service, currently we support [s3,dynamodb,autoscaling,ec2,ecr_api,ecr_dkr,sqs,sns].\n",
+          "required": true,
+          "default": ""
+        },
+        "vpc_id": {
+          "name": "vpc_id",
+          "prompt": "Enter the RapidCloud VPC Name (from metadata) to create the endpoint in",
+          "required": true,
+          "default": ""
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Enter a comma seperated list of 1 RapidCloud Subnet names per Availability Zone to create the endpoint service in (for autoscaling,ec2,ecr_api,ecr_dkr,sqs,sns only)",
+          "required": false,
+          "default": ""
+        },
+        "route_tables": {
+          "name": "route_tables",
+          "prompt": "Enter a comma seperated list of RapidCloud Route Table names (from metadata) to which to add a route to this endpoint (for s3 & dynamodb only)",
+          "required": false,
+          "default": ""
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the Endpoint, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    }
+  }
+}

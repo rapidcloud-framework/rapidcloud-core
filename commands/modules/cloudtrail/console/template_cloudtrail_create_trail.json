@@ -1,0 +1,101 @@
+{
+  "type": "Theia::Action",
+  "label": "Trail",
+  "id": "cloudtrail_create_trail",
+  "module": "cloudtrail",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "cloudtrail_create_trail",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=cloudtrail,create_trail",
+      "env_param_required": true,
+      "columns": [
+        "cloudtrail_trail_name",
+        "cloudtrail_s3_bucket_name",
+        "cloudtrail_kms_key_id",
+        "cloudtrail_include_global_service_events",
+        "cloudtrail_enable_log_file_validation",
+        "cloudtrail_is_organization_trail",
+        "cloudtrail_is_multi_region_trail",
+        "timestamp"
+      ],
+      "title": "Trail",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "cloudtrail_create_trail",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "cloudtrail",
+            "command": "create_trail",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "cloudtrail_trail_name",
+          "label": "Trail Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "cloudtrail_s3_bucket_name",
+          "label": "S3 Bucket Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "cloudtrail_kms_key_id",
+          "label": "KMS Key ARN",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "cloudtrail_include_global_service_events",
+          "label": "Include global service events?",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "cloudtrail_enable_log_file_validation",
+          "label": "Enable log file validation?",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "cloudtrail_is_organization_trail",
+          "label": "Is this an organization trail?",
+          "help": ""
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "cloudtrail_is_multi_region_trail",
+          "label": "Is this a multiregion trail?",
+          "help": ""
+        }
+      ]
+    }
+  ]
+}

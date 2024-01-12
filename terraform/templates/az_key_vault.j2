@@ -1,0 +1,10 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source              = "{{ module_source }}"
+  name                = "{{ resource_name }}"
+  location            = "{{ params['location'] }}"
+  sku_name            = "{{ params['sku_name'] }}"
+  resource_group_name = "{{ params['rg_name'] }}"
+  {% if params['tags'] is defined %}
+  tags                = "{{ params['tags'] }}"
+  {% endif %}
+}

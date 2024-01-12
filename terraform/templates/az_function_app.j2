@@ -1,0 +1,17 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source              = "{{ module_source }}"
+  name                = "{{ resource_name }}"
+  location            = "{{ params['location'] }}"
+  resource_group      = "{{params['resource_group']}}"
+  os_type            = "{{params['os_type']}}"
+  service_plan_id    = "{{params['service_plan_id']}}"
+  storage_account_name    = "{{params['storage_account_id']}}"
+  storage_access_type    = "{{params['storage_access_type']}}"
+  public_access = "{{params['public_access']}}"
+  https_only = "{{params['https_only']}}"
+  functions_extension_version = "{{params['version']}}"
+  subnet_id = "{{params['subnet_id']}}"
+  {% if params['managed_identity'] is not none and params['managed_identity']|length > 0%}
+  identity_ids = split(",","{{ params["managed_identity"] }}")
+  {% endif %}
+}

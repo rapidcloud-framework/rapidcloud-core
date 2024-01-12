@@ -1,0 +1,16 @@
+module "{{fqn}}" {
+    source                              = "{{module_source}}"
+    env                                 = "{{ env }}"
+    workload                            = "{{ workload }}"
+    cmd_id                              = "{{ cmd_id }}"
+    profile                             = "{{ profile }}"
+    name                                = "{{ resource_name }}"
+    profile_id                          = module.{{ profile }}_frontdoor_profile_{{ params["profile_id"] }}.id
+    dns_zone_id                         = module.{{ profile }}_{{ params["dns_zone"] }}.id
+    host_name                           = format("%s.%s", "{{resource_name}}", module.{{ profile }}_{{ params["dns_zone"] }}.name)
+    
+    depends_on = [
+      module.{{ profile }}_frontdoor_profile_{{ params["profile_id"] }},
+      module.{{ profile }}_{{ params["dns_zone"] }}
+    ]
+}

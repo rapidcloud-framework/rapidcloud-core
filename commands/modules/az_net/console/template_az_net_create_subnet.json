@@ -1,0 +1,95 @@
+{
+    "type": "Theia::Action",
+    "label": "Subnet",
+    "id": "create_subnet",
+    "module": "az_net",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "create_subnet",
+        "datasource": "data?type=metadata&filter_name=command&filter_value=create_subnet",
+        "env_param_required": true,
+        "columns": [
+          "name",
+          "az_net_resource_group",
+          "az_net_address_prefix",
+          "az_net_vnet_name"
+        ],
+        "title": "Subnets",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "create_subnet",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create",
+            "command": {
+              "phase": "az_net",
+              "command": "create_subnet",
+              "refresh_status": true
+            }
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Input",
+            "id": "name",
+            "cli_id": "name",
+            "label": "Name",
+            "help": "",
+            "inputType": "text"
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_net_resource_group",
+            "label": "Resource Group Name",
+            "help": "",
+            "inputType": "text",
+            "datasource": "formdata_from_azure?type=resource_groups",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Resource Group is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_net_vnet_name",
+            "label": "Virtual Network Name",
+            "help": "",
+            "inputType": "text",            
+            "datasource": "custom/vnets?module_name_arg=az_net",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A VNET is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Input",
+            "id": "az_net_address_prefix",
+            "label": "Address Prefix",
+            "help": "",
+            "inputType": "text"
+          },
+          {
+            "type": "Theia::Control::MultiSelect",
+            "id": "az_net_service_endpoints",
+            "label": "Service Endpoint",
+            "help": "",
+            "inputType": "text",            
+            "datasource": "custom/service_endpoints?module_name_arg=az_net&location=westus"
+          }
+        ]
+      }
+    ]
+  }
+  

@@ -1,0 +1,209 @@
+{
+  "type": "Theia::Action",
+  "label": "Container Registry",
+  "id": "az_container_create_registry",
+  "module": "az_container",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "az_container_create_registry",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_registry",
+      "env_param_required": true,
+      "columns": ["name","az_container_sku","timestamp"],
+      "title": "Container Registry",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "az_container_create_registry",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create Registry",
+          "command": {
+            "phase": "az_container",
+            "command": "create_registry",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Registry Name",
+          "help": "The Container Registry Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_container_sku",
+          "label": "SKU",
+          "help": "The SKU for the container registry",
+          "inputType": "text",
+          "default": "Standard",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Basic",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Basic",
+                "disableControls": ["az_container_geolocations"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Standard",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Standard",
+                "disableControls": ["az_container_geolocations"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Premium",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "Premium",
+                "enableControls": ["az_container_geolocations"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_container_enable_public_access",
+          "label": "Enable Public Access",
+          "help": "Enable public access for the container registry",
+          "inputType": "text",
+          "default": true
+        },
+        {
+          "type": "Theia::Control::CompositeModule",
+          "id": "composite_module",
+          "modules": [
+            {
+              "type": "Theia::Control::Toggle",
+              "id": "az_container_enable_encryption",
+              "label": "Enable Encryption?",
+              "help": "Enable encryption for the container registry",
+              "controls": [
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "az_container_encryption_client_id",
+                  "label": "Managed Identity",
+                  "help": "",
+                  "inputType": "text",
+                  "datasource": "custom/managedidentities_clientid?extra=true&module_name_arg=az_container"
+                },
+                {
+                  "type": "Theia::Control::Select",
+                  "id": "az_container_encryption_key_id",
+                  "label": "Encryption Key",
+                  "help": "",
+                  "inputType": "text",
+                  "datasource": "formdata_from_azure?type=kv_keys"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_container_identity_type",
+          "label": "Managed Identity Type",
+          "help": "The type of managed identity to assign",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "SystemAssigned",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "SystemAssigned",
+                "disableControls": ["az_container_identity_ids"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "UserAssigned",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "UserAssigned",
+                "enableControls": ["az_container_identity_ids"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_container_identity_ids",
+          "label": "User-Assigned Managed Identities",
+          "help": "A list of one or more User Assigned Managed identities to assign",
+          "datasource": "formdata_from_azure?type=managedidentities"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_container_enable_admin",
+          "label": "Enable Admin User",
+          "help": "Enable admin user on the container registry",
+          "inputType": "text",
+          "default": false
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "az_container_geolocations",
+          "label": "Geo-Replication",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "az_container_tags",
+          "label": "Tags",
+          "help": "Tags you wish to apply to the container app",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=az_container,${name}&result=params,az_container_tags",
+          "add_value_label": "Tags for your resource"
+        }
+      ]
+    }
+  ]
+}

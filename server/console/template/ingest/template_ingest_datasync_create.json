@@ -1,0 +1,154 @@
+{
+  "type": "Theia::Action",
+  "label": "Datasync",
+  "id": "datasync",
+  "module": "datasync",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "datasync",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=datasync,create",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "timestamp"
+      ],
+      "title": "Datasync service",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "datasync",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "datasync",
+            "command": "create",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "Enter RC resource name here.",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "agent_name",
+          "cli_id": "datasync_agent_name",
+          "label": "Datasync agent name",
+          "help": "Name of the DataSync Agent.",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "ip_address",
+          "cli_id": "datasync_ip_address",
+          "label": "IP address",
+          "help": "DataSync Agent IP address to retrieve activation key during resource creation. Conflicts with activation_key. DataSync Agent must be accessible on port 80 from where Terraform is running.",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "nfs_location_name",
+          "cli_id": "datasync_nfs_location_name",
+          "label": "(Source) NFS location name",
+          "help": "Specify a name for this nfs location",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "server_hostname",
+          "cli_id": "datasync_server_hostname",
+          "label": "(Source) NFS server hostname",
+          "help": "Specifies the IP address or DNS name of the NFS server.",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "nfs_subdirectory",
+          "cli_id": "datasync_nfs_subdirectory",
+          "label": "(Source) NFS server subdirectory",
+          "help": "(Source) Subdirectory within the NFS server to perform actions as source. Should be exported by the NFS server.",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "s3_bucket_name",
+          "cli_id": "datasync_s3_bucket_name",
+          "label": "(Destination) S3 bucket Name",
+          "help": "S3 Bucket name for the destination.",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=s3,create_bucket&field=name&module_name_arg=datasync"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "s3_object_prefix",
+          "cli_id": "datasync_s3_object_prefix",
+          "label": "(Destination) S3 bucket object prefix",
+          "help": "(Destination) Prefix to perform actions within the S3 bucket.",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "endpoint_vpc_id",
+          "cli_id": "datasync_endpoint_vpc_id",
+          "label": "VPC ID",
+          "help": "The ID of the VPC in which the vpc endpoint will be used.",
+          "datasource": "formdata_from_aws?type=vpcs&module_name_arg=datasync"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "endpoint_security_group_ids",
+          "cli_id": "datasync_endpoint_security_group_idss",
+          "label": "Security groups ids to assign to the vpc endpoint",
+          "help": "The ID of one or more security groups to associate with the network interface for the vpc endpoint.",
+          "datasource": "formdata_from_aws?type=vpc_security_groups&module_name_arg=datasync"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "endpoint_subnet_ids",
+          "cli_id": "datasync_endpoint_subnet_ids",
+          "label": "Subnets Ids to assing to the vpc endpoint.",
+          "help": "The ID of one or more subnets in which to create a network interface for the vpc endpoint.",
+          "datasource": "formdata_from_aws?type=subnets&module_name_arg=datasync"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "agent_security_groups_ids",
+          "cli_id": "datasync_agent_security_groups_ids",
+          "label": "Security group id to assing to the datasync agent.",
+          "help": "The ID of the security group used to protect your data transfer task subnets.",
+          "datasource": "formdata_from_aws?type=vpc_security_groups&module_name_arg=datasync"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "agent_subnet_ids",
+          "cli_id": "datasync_agent_subnet_ids",
+          "label": "Subnet id for the datasync agent.",
+          "help": "The subnet id in which DataSync will create elastic network interfaces for each data transfer task.",
+          "datasource": "formdata_from_aws?type=subnets&module_name_arg=datasync"
+        }
+      ]
+    }
+  ]
+}

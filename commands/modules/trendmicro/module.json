@@ -1,0 +1,288 @@
+{
+  "trendmicro": {
+    "setup": {
+      "enabled": true,
+      "help": "",
+      "template_section": "trendmicro",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": false,
+      "id": "api_id",
+      "args": {
+        "api_id": {
+          "name": "api_id",
+          "prompt": "Trend Micro Cloud One API ID",
+          "required": true,
+          "default": ""
+        },
+        "api_key": {
+          "name": "api_key",
+          "type": "secret",
+          "ignore_env_prefix": true,
+          "prompt": "Trend Micro Cloud One API Key (saved in Secretes Manager)",
+          "required": true,
+          "default": ""
+        },
+        "use_for_all_environments": {
+          "name": "use_for_all_environments",
+          "prompt": "Use this API Key/Secret for all my RapidCloud Environments [yes|no]",
+          "required": true,
+          "default": "yes"
+        },
+        "conformity_region": {
+          "name": "conformity_region",
+          "prompt": "Trendmicro Region",
+          "required": true,
+          "default": "us-1"
+        },
+        "enable_filestorage_security": {
+          "name": "enable_filestorage_security",
+          "prompt": "Enable File Storage Security [yes|no]",
+          "required": true,
+          "default": "yes"
+        },
+        "enable_workload_security": {
+          "name": "enable_workload_security",
+          "prompt": "Enable Workload Security for EC2 [yes|no]",
+          "required": true,
+          "default": "yes"
+        },
+        "enable_application_security": {
+          "name": "enable_application_security",
+          "prompt": "Enable Application Security for Lambda [yes|no]",
+          "required": true,
+          "default": "yes"
+        }
+      }
+    },
+    "filestorage_create_stack": {
+      "enabled": true,
+      "help": "",
+      "template_section": "trendmicro",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": false,
+      "id": "bucket",
+      "fqn": "stack_type,bucket",
+      "immutable": false,
+      "args": {
+        "stack_type": {
+          "name": "stack_type",
+          "prompt": "Trend Micro Cloud One File Storage Security Stack Type [all-in-one|scanner|storage]",
+          "required": true,
+          "default": "storage"
+        },
+        "bucket": {
+          "name": "bucket",
+          "prompt": "Bucket Name (leave blank for Scanner Stack)",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "filestorage_list_stacks": {
+      "enabled": true,
+      "help": ""
+    },
+    "filestorage_delete_stack": {
+      "enabled": true,
+      "help": "",
+      "args": {
+        "fqn": {
+          "name": "fqn",
+          "prompt": "RapidCloud Stack FQN (fully-qualified-name)",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "application_create_group": {
+      "enabled": true,
+      "help": "",
+      "template_section": "trendmicro",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": false,
+      "id": "name",
+      "fqn": "'as_group',name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Group Name will be prefixed with Environment Name (e.g. if you enter `GROUP1`, it will be saved as `{ENV}_GROUP1`",
+          "required": true,
+          "default": ""
+        },
+        "credential_stuffing": {
+          "name": "credential_stuffing",
+          "prompt": "Credential Stuffing Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "file_access": {
+          "name": "file_access",
+          "prompt": "Illegal File Access Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "ip_protection": {
+          "name": "ip_protection",
+          "prompt": "IP Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "malicious_file_upload": {
+          "name": "malicious_file_upload",
+          "prompt": "Malicious File Upload Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "malicious_payload": {
+          "name": "malicious_payload",
+          "prompt": "Malicious Payload Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "rce": {
+          "name": "rce",
+          "prompt": "Remote Command Execution Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "redirect": {
+          "name": "redirect",
+          "prompt": "Redirect Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        },
+        "sqli": {
+          "name": "sqli",
+          "prompt": "SQL Injection Protection Policy [disable|report|mitigate]",
+          "required": true,
+          "default": "disable"
+        }
+      }
+    },
+    "workload_create_group": {
+      "enabled": true,
+      "help": "",
+      "template_section": "trendmicro",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": false,
+      "id": "name",
+      "fqn": "'workload_group',name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Workload Group Name will be prefixed with Environment Name (e.g. if you enter `GROUP1`, it will be saved as `{ENV}_GROUP1`",
+          "required": true,
+          "default": ""
+        },
+        "description": {
+          "name": "name",
+          "prompt": "Workload Group Description",
+          "required": false,
+          "default": ""
+        },
+        "policy": {
+          "name": "policy",
+          "prompt": "Workload Security Policy (RapidCloud currently only supports Linux EC2 Instances)",
+          "required": true,
+          "default": "2"
+        }
+      }
+    },
+    "workload_generate_deployment_script": {
+      "enabled": true,
+      "help": "",
+      "template_section": "trendmicro",
+      "template_enabled": false,
+      "args": {
+        "platform": {
+          "name": "platform",
+          "prompt": "Workload Agent Deployment Script Platform [linux|windows]",
+          "required": true,
+          "default": "linux"
+        },
+        "workload_policy": {
+          "name": "workload_policy",
+          "prompt": "Workload Agent Security Policy ID [Enter 2 for linux]",
+          "required": true,
+          "default": "2"
+        },
+        "workload_group": {
+          "name": "workload_group",
+          "prompt": "Workload Computer Group Name (existing group, leave empty for default group)",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "workload_group_sync": {
+      "enabled": true,
+      "help": ""
+    },
+    "workload_list_policies": {
+      "enabled": false,
+      "help": "List Workload Policies"
+    },
+    "conformity_enable": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "trendmicro",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "timestamp": "2023-03-03 13:58:36.169110",
+      "cmd_id": "20230303135800390160",
+      "id": "account_name",
+      "args": {
+        "account_name": {
+          "name": "account_name",
+          "prompt": "Account Name",
+          "required": true,
+          "default": ""
+        },
+        "conformity_environment": {
+          "name": "conformity_environment",
+          "prompt": "Trendmicro Account Environment",
+          "required": true,
+          "default": ""
+        },
+        "conformity_tags": {
+          "name": "conformity_tags",
+          "prompt": "Comma-separated List of Tags to Add",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "conformity_create_group": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "trendmicro",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "timestamp": "2023-03-03 13:58:36.169110",
+      "cmd_id": "20230303135800390160",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Group Name",
+          "required": true,
+          "default": ""
+        },
+        "conformity_tags": {
+          "name": "conformity_tags",
+          "prompt": "Tags",
+          "required": true,
+          "default": "Comma-separated List of Tags to Include in Group"
+        }
+      }
+    }
+  }
+}

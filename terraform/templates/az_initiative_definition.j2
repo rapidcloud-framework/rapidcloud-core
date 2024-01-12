@@ -1,0 +1,11 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source        = "{{ module_source }}"
+  initiative_name   = "{{ resource_name }}"
+  policy_definition_id   = "{{ params['policy_definition_id'] }}"
+  {% if params['metadata_json'] is defined %}
+  metadata = jsonencode({{ params['metadata_json'] }})
+  {% endif %}
+  {% if params['parameters_json'] is defined %}
+  parameters = jsonencode({{ params['parameters_json'] }})
+  {% endif %}
+}

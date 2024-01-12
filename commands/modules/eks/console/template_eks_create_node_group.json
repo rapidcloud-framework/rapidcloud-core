@@ -1,0 +1,197 @@
+{ "type": "Theia::Action",
+  "label": "Managed Node Group",
+  "id": "eks_create_node_group",
+  "module": "eks",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "eks_create_node_group",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=eks,create_node_group",
+      "env_param_required": true,
+      "columns": ["eks_node_group_name","eks_cluster_name","eks_instance_types", "eks_capacity_type", "eks_desired_size", "eks_min_size", "eks_max_size", "timestamp"],
+      "title": "Managed Node Group",
+      "description": "Create and attached a Managed Node Group to an EKS Cluster",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "eks_create_node_group",
+      "title": "EKS Node Group",
+      "description": "Create an EKS Node Group",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "eks",
+            "command": "remove_node_group",
+            "refresh_status": true
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "eks",
+            "command": "create_node_group",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_node_group_name",
+          "label": "Node Group Name",
+          "help": "Node Group Name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_cluster_name",
+          "label": "Cluster Name",
+          "help": "Select the Cluster name you wish to attach this Node Group to",
+          "datasource": "custom/module_eks_clusters?extra=true&module_name_arg=eks",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "eks_subnet_ids",
+          "label": "Subnets",
+          "help": "Select at least two subnets to place your EKS nodes in",
+          "datasource": "custom/module_eks_subnets?extra=true&module_name_arg=eks"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_instance_types",
+          "label": "Instance Types",
+          "help": "Node Group instance types, seperated by comma",
+          "inputType": "text",
+          "default": "t3.medium,t3a.medium"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_desired_size",
+          "label": "Desired Size",
+          "help": "The Node Group desired size",
+          "inputType": "text",
+          "default": "2"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_max_size",
+          "label": "Max Size",
+          "help": "The Node Group max size",
+          "inputType": "text",
+          "default": "5"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_min_size",
+          "label": "Min Size",
+          "help": "The Node Group minimum size",
+          "inputType": "text",
+          "default": "0"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_capacity_type",
+          "label": "Capacity Type",
+          "help": "The Node Group instance capacity type",
+          "inputType": "text",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "SPOT",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "SPOT",
+                "disableControls": [""]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "On Demand",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "ON_DEMAND"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_volume_size",
+          "label": "Volume Size",
+          "help": "The size of the EBS volume attached to nodes in this Node Group",
+          "inputType": "text",
+          "default": "10"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_volume_type",
+          "label": "Volume Type",
+          "help": "The type of the EBS volume attached to nodes in this Node Group",
+          "inputType": "text",
+          "options":[
+            {
+              "type": "Theia::Option",
+              "label": "GP3",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "gp3",
+                "disableControls": [""]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "GP2",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "gp2"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "eks_force_update_version",
+          "label": "Force node version updates",
+          "help": "Force version update if existing pods are unable to be drained due to a pod disruption budget issue",
+          "inputType": "text",
+          "default": "false"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "eks_labels",
+          "label": "Labels",
+          "help": "Labels you wish to apply to the nodes in this Node Group",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=eks,${name}&result=params,eks_labels",
+          "add_value_label": "Labels for your resource"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "eks_tags",
+          "label": "Tags",
+          "help": "Labels you wish to apply to the nodes in this Node Group",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=eks,${name}&result=params,eks_tags",
+          "add_value_label": "Tags for your resource"
+        }
+      ]
+    }
+  ]
+}

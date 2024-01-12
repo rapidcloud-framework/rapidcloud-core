@@ -1,0 +1,205 @@
+{
+  "type": "Theia::Action",
+  "label": "Configure Documents",
+  "id": "documents",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "documents",
+      "datasource": "data?type=dataset_unstructured",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "enable_textract"
+      ],
+      "title": "Documents",
+      "description": "Configure ingestion of documents (e.g. invoices, bills, etc)",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "data",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "ingest",
+            "command": "register-unstructured"
+          }
+        },
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Document Name (no spaces allowed)",
+          "help": "e.g. fpl_bills, sales_exec_resumes, scanned_employee_medical_forms",
+          "inputType": "text",
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "category",
+          "label": "Document Category (optional)",
+          "help": "e.g. invoices, bills, etc",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "enable_textract",
+          "label": "Enable AWS Textract for this data?",
+          "default": true
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "textract_fields",
+          "key_label": "Field Name",
+          "value_label": "Minimum Confidence Score",
+          "label": "Fields to be retrieved from the documents by Amazon Textract. Add field name  as it appears on the document and corresponding confidence score threshold.",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,command,name&filter_value=ingest,register-unstructured,${name}&result=textract_fields",
+          "add_value_label": "Add Field"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "multiple_sections",
+          "help": "Select `Yes` if a single document may contain multiple independent sections, e.g. multiple meter readings, multiple receipts, etc",
+          "label": "Multiple Sections",
+          "default": "no",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Yes",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "yes",
+                "enableControls":["section_id_name"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "No",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "no",
+                "disableControls":["section_id_name"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "section_id_name",
+          "help": "Name of the field to uniquely identify sections within the document. If this field needs to be derived via a rule, then make sure to define that rule below.",
+          "inputType": "text",
+          "label": "Section Identifer Name"
+        },
+        {
+          "type": "Theia::Control::CompositeGroup",
+          "id": "rules",
+          "label": "Document Parsing Rules",
+          "help": "",
+          "controls": [
+            {
+              "type": "Theia::Control::Input",
+              "id": "name",
+              "help": "Name of the field produced by this rule",
+              "inputType": "text",
+              "label": "Result Name"
+            },
+            {
+              "type": "Theia::Control::Select",
+              "id": "rule_type",
+              "help": "",
+              "label": "Rule Type",
+              "options": [
+                {
+                  "type": "Theia::Option",
+                  "label": "Resolve Section Identifer",
+                  "value": "rule_resolve_primary"
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Default Value",
+                  "value": {
+                    "type": "Theia::DataOption",
+                    "value": "rule_default_value",
+                    "hideControls": ["table_title","row_name","column_name"],
+                    "showControls": ["name","rule_value"]
+                  }
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Assume Value",
+                  "value": "rule_assume_value"
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Grid Location",
+                  "value": "rule_grid_location_structured"
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Resolve Month",
+                  "value": "rule_resolve_month"
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Labels or Keywords",
+                  "value": "rule_labels"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Input",
+              "id": "table_title",
+              "help": "Enter Grid Title exactly how it appears in the document",
+              "inputType": "text",
+              "label": "Grid Title"
+            },
+            {
+              "type": "Theia::Control::Input",
+              "id": "row_name",
+              "help": "Enter Grid Row Name",
+              "inputType": "text",
+              "label": "Grid Row Name"
+            },
+            {
+              "type": "Theia::Control::Input",
+              "id": "column_name",
+              "help": "Enter Grid Column Name",
+              "inputType": "text",
+              "label": "Grid Column Name"
+            },
+            {
+              "type": "Theia::Control::Input",
+              "id": "rule_value",
+              "help": "See help section on the right by clicking `i` icon",
+              "inputType": "text",
+              "label": "Rule Value or Expression"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "filler",
+          "label": "",
+          "help": "",
+          "inputType": "hidden"
+        }
+      ]
+    }
+  ]
+}

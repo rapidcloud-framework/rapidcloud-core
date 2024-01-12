@@ -1,0 +1,36 @@
+{% if params['aws_os_service_role_exists'] is defined and not params['aws_os_service_role_exists'] %}
+resource "aws_iam_service_linked_role" "os_linked_role" {
+  aws_service_name = "opensearchservice.amazonaws.com"
+}
+{% endif %}
+
+module "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  source                          = "../modules/aws_opensearch"
+  name                            = "{{ params['name'] }}"
+  autotune                        = "{{ params['autotune'] }}"
+  high_availability               = "{{ params['high_availability'] }}"
+  nodes                           = "{{ params['nodes'] }}"
+  ebs_storage_size                = "{{ params['ebs_storage_size'] }}"
+  storage_capacity                = "{{ params['storage_capacity'] }}"
+  iops                            = "{{ params['iops'] }}"
+  throughput                      = "{{ params['throughput'] }}"
+  {% if params['subnet_ids'] is defined %}
+  subnet_ids                      = {{ params['subnet_ids'] | replace("'","\"") }}
+  {% endif %}
+  {% if params['security_group_ids'] is defined %}
+  security_group_ids                 = {{ params['security_group_ids'] | replace("'","\"") }}
+  {% endif %}
+
+  tags = {
+    "Name"      = "{{ profile }}_{{ resource_name }}"
+    "env"       = "{{ env }}"
+    "profile"   = "{{ name }}"
+    "workload"  = "{{ workload }}"
+    "client"    = "{{ client }}"
+    "author"    = "rapid-cloud"
+  }
+
+  {% if params['aws_os_service_role_exists'] is defined and not params['aws_os_service_role_exists'] %}
+  depends_on = [aws_iam_service_linked_role.os_linked_role]
+  {% endif %}
+}

@@ -1,0 +1,16 @@
+module "{{ profile }}_{{ params['rest_api_name'] }}_{{ params['parent_resource_name'] }}_{{ resource_name }}_{{ resource_type }}" {
+  region              = "{{ region }}"
+  source              = "../modules/aws_api_gateway/{{ resource_type }}"
+  path_part           = "{{ params['name'] }}"
+  rest_api_id         = module.{{ profile }}_{{ params['rest_api_name'] }}_aws_api_gateway_rest_api.id
+  {% if params['parent_resource_name'] == 'root' %}
+  parent_resource_id  = module.{{ profile }}_{{ params['rest_api_name'] }}_aws_api_gateway_rest_api.root_resource_id
+  {% else %}
+  parent_resource_id  = module.{{ profile }}_{{ params['parent_resource_name'] }}_{{ resource_type }}.resource_id
+  {% endif %}
+  lambda_integrations = [
+  {% for integration in params['lambda_integrations'] %}
+  { http_method = "{{ integration['http_method'] }}", lambda_name = "{{ profile }}_{{ integration['lambda_name'] }}" },
+    {% endfor %}
+  ]
+}

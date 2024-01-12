@@ -1,0 +1,34 @@
+resource "aws_lambda_event_source_mapping" "{{ profile }}_{{ resource_name }}_{{ resource_type }}" {
+  event_source_arn = "{{ params['event_source_arn'] }}"
+  function_name = "{{ profile}}_{{ params['function_name'] }}"
+  {% if params['starting_position'] is defined %}
+    starting_position = {{ params['starting_position'] }}
+  {% else %}
+    starting_position = "LATEST"
+  {% endif %}
+  {% if params['topics'] is defined %}
+    topics  =  ["{{ params['topics'] }}"]
+  {% endif %}
+  {% if params['batch_size'] is defined %}
+    batch_size  =  "{{ params['batch_size'] }}"
+  {% endif %}
+  {% if params['maximum_batching_window_in_seconds'] is defined %}
+    maximum_batching_window_in_seconds  =  {{ params['maximum_batching_window_in_seconds'] }}
+  {% endif %}
+  {% if params['starting_position_timestamp'] is defined %}
+    starting_position_timestamp  =  "{{ params['starting_position_timestamp'] }}"
+  {% endif %}
+  {% if params['parallelization_factor'] is defined %}
+    parallelization_factor  =  {{ params['parallelization_factor'] }}
+  {% endif %}
+  {% if params['maximum_retry_attempts'] is defined %}
+    maximum_retry_attempts  =  {{ params['maximum_retry_attempts'] }}
+  {% endif %}
+  {% if params['maximum_record_age_in_seconds'] is defined %}
+    maximum_record_age_in_seconds  =  {{ params['maximum_record_age_in_seconds'] }}
+  {% endif %}
+  {% if params['bisect_batch_on_function_error'] is defined %}
+    bisect_batch_on_function_error  =  "{{ params['bisect_batch_on_function_error'] }}"
+  {% endif %}
+}
+

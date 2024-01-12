@@ -1,0 +1,269 @@
+{
+  "type": "Theia::Action",
+  "label": "Network Security Group",
+  "id": "create_nsg",
+  "module": "az_net",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_nsg",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_nsg",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_net_location",
+        "az_net_resource_group"
+      ],
+      "title": "Network Security Groups",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_nsg",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_net",
+            "command": "create_nsg",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_net_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::CompositeGroup",
+          "id": "az_net_security_rule",
+          "label": "Rules",
+          "help": "",
+          "controls": [
+            {
+              "type": "Theia::Control::Input",
+              "id": "name",
+              "inputType": "text",
+              "label": "Name",
+              "validations": [
+                {
+                  "type": "Theia::Validation::Required",
+                  "message": "A Name is required"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Input",
+              "id": "description",
+              "help": "",
+              "inputType": "text",
+              "label": "Rule Description",
+              "validations": [
+                {
+                  "type": "Theia::Validation::Required",
+                  "message": "A Description is required"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Select",
+              "id": "protocol",
+              "help": "",
+              "label": "Protocol",
+              "validations": [
+                {
+                  "type": "Theia::Validation::Required",
+                  "message": "A Protocol is required"
+                }
+              ],
+              "options": [
+                {
+                  "type": "Theia::Option",
+                  "label": "Tcp",
+                  "value": "Tcp"
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Udp",
+                  "value": "Udp"
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Icmp",
+                  "value": "Icmp"
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Esp",
+                  "value": "Esp"
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Ah",
+                  "value": "Ah"
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "*",
+                  "value": "*"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Input",
+              "id": "source_port_range",
+              "help": "",
+              "inputType": "text",
+              "label": "Source Port Range",
+              "validations": [
+                {
+                  "type": "Theia::Validation::Required",
+                  "message": "A Source Port is required"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Input",
+              "id": "destination_port_range",
+              "help": "",
+              "inputType": "text",
+              "label": "Destination Port Range",
+              "validations": [
+                {
+                  "type": "Theia::Validation::Required",
+                  "message": "A Destination Port is required"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Input",
+              "id": "source_address_prefix",
+              "help": "",
+              "inputType": "text",
+              "label": "Source Address Prefix",
+              "validations": [
+                {
+                  "type": "Theia::Validation::Required",
+                  "message": "A Source Address is required"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Input",
+              "id": "destination_address_prefix",
+              "help": "",
+              "inputType": "text",
+              "label": "Destination Address Prefix",
+              "validations": [
+                {
+                  "type": "Theia::Validation::Required",
+                  "message": "A Destination Address is required"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Select",
+              "id": "access",
+              "help": "",
+              "label": "Access",
+              "options": [
+                {
+                  "type": "Theia::Option",
+                  "label": "Allow",
+                  "value": "Allow"
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Deny",
+                  "value": "Deny"
+                }
+              ],
+              "validations": [
+                {
+                  "type": "Theia::Validation::Required",
+                  "message": "A Access is required"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Input",
+              "id": "priority",
+              "help": "",
+              "inputType": "text",
+              "label": "Priority",
+              "validations": [
+                {
+                  "type": "Theia::Validation::Required",
+                  "message": "A Priority is required"
+                }
+              ]
+            },
+            {
+              "type": "Theia::Control::Select",
+              "id": "direction",
+              "help": "",
+              "inputType": "text",
+              "label": "Direction",
+              "options": [
+                {
+                  "type": "Theia::Option",
+                  "label": "Inbound",
+                  "value": "Inbound"
+                },
+                {
+                  "type": "Theia::Option",
+                  "label": "Outbound",
+                  "value": "Outbound"
+                }
+              ],
+              "validations": [
+                {
+                  "type": "Theia::Validation::Required",
+                  "message": "A Direction is required"
+                }
+              ]
+            }
+            
+          ]
+        }
+      ]
+    }
+  ]
+}

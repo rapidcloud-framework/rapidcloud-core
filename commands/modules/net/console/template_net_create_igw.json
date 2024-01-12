@@ -1,0 +1,87 @@
+{
+  "type": "Theia::Action",
+  "label": "Internet Gateways",
+  "id": "net_create_igw",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "net_create_igw",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=net,create_igw",
+      "env_param_required": true,
+      "columns": ["name","net_vpc_module_id","net_timestamp"],
+      "title": "Internet Gateways",
+      "description": "Create an Internet Gateway and configure routing for direct internet connectivity",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "net_create_igw",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command",
+            "refresh_status": true
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "net",
+            "command": "create_igw",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Name",
+          "help": "The Internet Gateway name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "net_vpc_module_id",
+          "label": "VPC module id",
+          "help": "A New or RapidCloud deployed VPC to create this Subnet in",
+          "datasource": "custom/module_net_vpcs?extra=true&module_name_arg=net",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A VPC is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "net_route_tables",
+          "label": "Add Route to Route Tables",
+          "help": "A route to this Internet Gateway will be added to the route tables selected here",
+          "datasource": "custom/module_net_route_tables?extra=true&module_name_arg=net"
+        },
+        {
+         "type": "Theia::Control::KeyValue",
+          "id": "net_tags",
+          "label": "Tags",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=net,${name}&result=params,net_tags",
+          "add_value_label": "Tags for your Internet Gateway resource"
+        }
+      ]
+    }
+  ]
+}

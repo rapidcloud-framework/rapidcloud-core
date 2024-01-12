@@ -1,0 +1,421 @@
+{
+ "version": "1.3.0",
+ "cellSize": 20,
+ "rows": 25,
+ "columns": 38,
+ "icons": [
+  {
+   "id": 70,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10064-icon-service-DNS-Zones.svg",
+   "name": "account::*::*",
+   "text": "Azure DNS",
+   "x": 5,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 72,
+   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Cloud_light-bg@4x.png",
+   "name": "",
+   "text": "Azure",
+   "x": 2,
+   "y": 3,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 73,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10084-icon-service-Firewalls.svg",
+   "name": "",
+   "text": "Azure Firewall",
+   "x": 23,
+   "y": 14,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 75,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10076-icon-service-Application-Gateways.svg",
+   "name": "",
+   "text": "Application Gateway",
+   "x": 10,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 78,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10362-icon-service-Web-Application-Firewall-Policies(WAF).svg",
+   "name": "",
+   "text": "WAF Rules",
+   "x": 10,
+   "y": 14,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 80,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10067-icon-service-Network-Security-Groups.svg",
+   "name": "",
+   "text": "NSG",
+   "x": 23,
+   "y": 6,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 81,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/containers/10023-icon-service-Kubernetes-Services.svg",
+   "name": "",
+   "text": "Azure Kubernetes Service",
+   "x": 15,
+   "y": 7,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 86,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10310-icon-service-NAT.svg",
+   "name": "",
+   "text": "NAT Gateway",
+   "x": 26,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 89,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10062-icon-service-Load-Balancers.svg",
+   "name": "",
+   "text": "Internal Load Balancer",
+   "x": 13,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 90,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/02422-icon-service-Bastions.svg",
+   "name": "",
+   "text": "Bastion",
+   "x": 23,
+   "y": 8,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 101,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/10061-icon-service-Virtual-Networks.svg",
+   "name": "",
+   "text": "Virtual Network",
+   "x": 8,
+   "y": 5,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 104,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/networking/00427-icon-service-Private-Link.svg",
+   "name": "",
+   "text": "Private Link",
+   "x": 23,
+   "y": 16,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 105,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/security/10245-icon-service-Key-Vaults.svg",
+   "name": "",
+   "text": "Key Vault",
+   "x": 15,
+   "y": 19,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 106,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/containers/10105-icon-service-Container-Registries.svg",
+   "name": "",
+   "text": "Container Registry",
+   "x": 19,
+   "y": 19,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 107,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/aks/ingress.jpg",
+   "name": "",
+   "text": "Ingress",
+   "x": 16,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 108,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/aks/nmi.jpg",
+   "name": "",
+   "text": "Node Managed Identity",
+   "x": 20,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 109,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/aks/sstore.jpg",
+   "name": "",
+   "text": "Secret Store CSI",
+   "x": 17,
+   "y": 15,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 110,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/aks/agic.jpg",
+   "name": "",
+   "text": "AGIC",
+   "x": 20,
+   "y": 13,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 111,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/aks/pod.jpg",
+   "name": "",
+   "text": "Workload",
+   "x": 19,
+   "y": 10,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 112,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/databases/10121-icon-service-Azure-Cosmos-DB.svg",
+   "name": "",
+   "text": "Cosmos DB",
+   "x": 29,
+   "y": 8,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 113,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/integration/10836-icon-service-Azure-Service-Bus.svg",
+   "name": "",
+   "text": "Service Bus",
+   "x": 29,
+   "y": 11,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 114,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/databases/10130-icon-service-SQL-Database.svg",
+   "name": "",
+   "text": "SQL Database",
+   "x": 29,
+   "y": 14,
+   "active": null,
+   "display": null
+  },
+  {
+   "id": 115,
+   "url": "https://rapidcloud-icons.s3.amazonaws.com/azure/azure_icons/databases/10137-icon-service-Cache-Redis.svg",
+   "name": "",
+   "text": "Redis Cache",
+   "x": 29,
+   "y": 17,
+   "active": null,
+   "display": null
+  }
+ ],
+ "links": [
+  {
+   "from": 72,
+   "to": 72,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "cw_event_to_lambda",
+   "path": [
+    {
+     "x": 2,
+     "y": 3,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 2,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 21,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 31,
+     "y": 3,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 2,
+     "y": 3,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 70,
+   "to": 77,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 5,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 8,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 75,
+   "to": 78,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 10,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 10,
+     "y": 14,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 101,
+   "to": 101,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 8,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 26,
+     "y": 18,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 8,
+     "y": 18,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 8,
+     "y": 5,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 75,
+   "to": 89,
+   "markerEnd": true,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 10,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 13,
+     "y": 11,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  },
+  {
+   "from": 81,
+   "to": 81,
+   "markerEnd": false,
+   "markerStart": null,
+   "name": "",
+   "path": [
+    {
+     "x": 15,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 15,
+     "y": 17,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 17,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 21,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    },
+    {
+     "x": 15,
+     "y": 7,
+     "offsetX": 0,
+     "offsetY": 0
+    }
+   ]
+  }
+ ],
+ "grid": false
+}

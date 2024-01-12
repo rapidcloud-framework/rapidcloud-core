@@ -1,0 +1,39 @@
+{
+  "type": "Theia::Action",
+  "label": "Run Report",
+  "id": "sample_report",
+  "module": "report",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "sample_report",
+      "title": "Run Report",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Run Report",
+          "command": {
+            "phase": "report",
+            "command": "run"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Select",
+          "id": "name",
+          "label": "Choose Report",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Sample Report (Generate CSV File from Ingested PDF Documents)",
+              "value": "sample_report"
+            }
+          ]
+        }        
+      ]
+    }
+  ]
+}

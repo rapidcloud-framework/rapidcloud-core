@@ -1,0 +1,28 @@
+module "{{ fqn }}" {
+  source = "{{ module_source }}"
+
+  env  = "{{ env }}"
+  profile = "{{ profile }}"
+  fqn = "{{ fqn }}"
+  workload = "{{ workload }}"
+  cmd_id = "{{ cmd_id }}"
+  name = "{{ params["name"] }}"
+
+  cidr = "{{ params["cidr"] }}"
+  enable_dns_hostnames  = "{{ params["enable_dns_hostnames"] }}"
+  enable_dns_support  = "{{ params["enable_dns_support"] }}"
+
+  
+  {% if params['tags'] is defined %}
+  tags = {
+  {% for k, v in  params['tags'].items() -%}
+      "{{ k }}" = "{{ v }}"
+  {% endfor %}
+  }
+  {% endif %}
+}
+
+#### this is a test 
+{% for k, v in params.items() %}
+# {{k}} -> {{ v }}
+{% endfor %}

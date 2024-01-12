@@ -1,0 +1,214 @@
+{
+  "type": "Theia::Action",
+  "label": "Azure Function App",
+  "id": "create_function_app",
+  "module": "az_app",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_function_app",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_function_app",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_app_location",
+        "az_app_resource_group"
+      ],
+      "title": "Azure Function App",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_function_app",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "az_app",
+            "command": "create_function_app",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_location",
+          "label": "Location",
+          "help": "",
+          "datasource": "formdata_from_azure?type=locations",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Location is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_resource_group",
+          "label": "Resource Group Name",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=resource_groups",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Resource Group is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_os_type",
+          "label": "Operative System",
+          "default": "",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Windows",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "Windows"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Linux",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "Linux"
+              }
+            }
+          ],
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Operative System is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_service_plan_id",
+          "label": "Service Plan",
+          "help": "",
+          "inputType": "text",
+          "datasource": "custom/service_plans?module_name_arg=az_app",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Service plan is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_version",
+          "label": "Stack Version (Runtime)",
+          "default": "",
+          "help": "Version 3 or 4 is required for Linux function Apps",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "3",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "~3"
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "4",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "~4"
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_storage_account_id",
+          "label": "Storage Account",
+          "help": "",
+          "datasource": "custom/storage_accounts?extra=true&module_name_arg=az_app",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Storage Account is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_storage_access_type",
+          "label": "Storage Account Access Type",
+          "default": "",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Access Key",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "accesskey",
+                "disableControls": ["az_app_managed_identity"]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Managed Identity",
+              "value":{
+                "type": "Theia::DataOption",
+                "value": "managedidentity",
+                "enableControls": ["az_app_managed_identity"]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_managed_identity",
+          "label": "Managed Identity",
+          "help": "A list of User Managed identities to assign",
+          "datasource": "custom/managedidentities?extra=true&module_name_arg=az_app"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_app_public_access",
+          "cli_id": "az_app_public_access",
+          "label": "Enable Public Access?"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "az_app_https_only",
+          "cli_id": "az_app_https_only",
+          "label": "Https Only?"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_app_subnet_id",
+          "label": "Subnet",
+          "help": "",
+          "inputType": "text",
+          "datasource": "formdata_from_azure?type=subnets&bastion=true"
+        }
+      ]
+    }
+  ]
+}

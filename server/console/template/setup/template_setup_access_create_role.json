@@ -1,0 +1,85 @@
+{
+  "type": "Theia::Action",
+  "label": "Roles",
+  "id": "access_create_role",
+  "module": "access",
+  "app_roles": "admin",
+  "env_not_required": true,
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "access_create_role",
+      "datasource": "roles?extra=true",
+      "columns": [
+        "name",
+        "access_all",
+        "access_description"
+      ],
+      "title": "Roles",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "access_create_role",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "access",
+            "command": "create_role"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Role Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "access_description",
+          "label": "Role Description",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "access_all",
+          "label": "Access to All RapidCloud Features",
+          "default": "granular",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "granular",
+              "value": "granular"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "read-only",
+              "value": "read-only"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "read-write",
+              "value": "read-write"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "none",
+              "value": "none"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

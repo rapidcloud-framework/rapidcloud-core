@@ -1,0 +1,63 @@
+{
+  "type": "Theia::Action",
+  "label": "AWS Service Control Policies",
+  "id": "org_create_scp",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "org_create_scp",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=org,create_scp",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "org_description",
+        "timestamp"
+      ],
+      "title": "AWS SCPs",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "org_create_scp",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "org",
+            "command": "create_scp",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "org_description",
+          "label": "Description",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::TextArea",
+          "id": "org_policy_text",
+          "label": "Policy Definition",
+          "help": "",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

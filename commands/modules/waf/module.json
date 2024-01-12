@@ -1,0 +1,45 @@
+{
+    "waf": {
+        "create": {
+            "enabled": true,
+            "help": "",
+            "template_section": "compliance",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": true,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "Name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },           
+                "allow_requests_by_default": {
+                    "name": "allow_requests_by_default", 
+                    "prompt": "Would you like requests to be allowed by default? Yes/No", 
+                    "required": true,
+                    "default": ""
+                },           
+                "cf_associated": {
+                    "name": "cf_associated", 
+                    "prompt": "Will this WAF will be associated to a Cloudfront Distribution? Yes/No", 
+                    "required": true,
+                    "default": ""
+                },           
+                "associated_apigw_list": {
+                    "name": "associated_apigw_list", 
+                    "prompt": "Enter a comma separated list of arns to associate this waf to. (Leave empty when associating waf to a Cf distro)", 
+                    "required": false,
+                    "default": ""
+                },          
+                "associated_alb_list": {
+                    "name": "associated_alb_list", 
+                    "prompt": "Enter a comma separated list of arns to associate this waf to. (Leave empty when associating waf to a Cf distro)", 
+                    "required": false,
+                    "default": ""
+                }           
+            }
+        }
+    }
+}

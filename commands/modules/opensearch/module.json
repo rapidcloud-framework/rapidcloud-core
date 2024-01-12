@@ -1,0 +1,127 @@
+{
+  "opensearch": {
+    "create": {
+      "enabled": true,
+      "help": "Create an OpenSearch cluster",
+      "template_section": "search",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "instance_type": {
+          "name": "instance_type",
+          "prompt": "Set the instance type (r5.large.search, etc.)",
+          "required": true,
+          "default": "r5.large.search"
+        },
+        "autotune": {
+          "name": "autotune",
+          "prompt": "Enable auto-tune [ENABLED|DISABLED]",
+          "required": false,
+          "default": "ENABLED"
+        },
+        "high_availability": {
+          "name": "high_availability",
+          "prompt": "Enable high-availability [yes|no]",
+          "required": false,
+          "default": "yes",
+          "type": "boolean"
+        },
+        "nodes": {
+          "name": "nodes",
+          "prompt": "Total number of nodes (if high-availability is disabled, must be a multiple of 2)",
+          "required": false,
+          "default": 2
+        },
+        "ebs_storage_size": {
+          "name": "ebs_storage_size",
+          "prompt": "Storage capacity (GiB) per node, minimum of 10 and maximum of 2048",
+          "required": false,
+          "default": 10
+        },
+        "ultra_warm": {
+          "name": "ultra_warm",
+          "prompt": "Enable UltraWarm [yes|no]",
+          "required": false,
+          "default": "no",
+          "type": "boolean"
+        },
+        "ultra_warm_instance_type": {
+          "name": "ultra_warm_instance_type",
+          "prompt": "Enter Ultrawarm instance type [medium|large]",
+          "required": false,
+          "default": "ultrawarm1.large.search"
+        },
+        "ultra_warm_data_nodes": {
+          "name": "ultra_warm_data_nodes",
+          "prompt": "Enter number of UltraWarm warm data nodes, minimum of 2 and maximum of 150",
+          "required": false,
+          "default": 2
+        },
+        "ultra_warm_cold_storage": {
+          "name": "ultra_warm_cold_storage",
+          "prompt": "Enable UltraWarm cold storage [yes|no]",
+          "required": false,
+          "default": "no",
+          "type": "boolean"
+        },
+        "storage_capacity": {
+          "name": "storage_capacity",
+          "prompt": "Storage capacity (GiB), minimum of 32 and maximum of 65536",
+          "required": true,
+          "default": 32
+        },
+        "iops": {
+          "name": "iops",
+          "prompt": "Total provisioned IOPs (MiB/s), minimum of 3000 and maximum of 16000",
+          "required": false,
+          "default": 3000
+        },
+        "throughput": {
+          "name": "throughput",
+          "prompt": "Total provisioned throughput (MiB/s), minimum of 8 and maximum of 2048; Throughput to IOPS ratio should not exceded 1:4",
+          "required": false,
+          "default": 125
+        },
+        "dedicated_master_nodes_enabled": {
+          "name": "dedicated_master_nodes_enabled",
+          "prompt": "Enable the use of dedicated master nodes [yes|no]",
+          "required": false,
+          "default": "no",
+          "type": "boolean"
+        },
+        "dedicated_master_nodes": {
+          "name": "dedicated_master_nodes",
+          "prompt": "Enter number of dedicated master nodes (3 or 5)",
+          "required": false,
+          "default": 3
+        },
+        "dedicated_master_node_type": {
+          "name": "dedicated_master_node_type",
+          "prompt": "Enter dedicated master node instance type [medium|large]",
+          "required": false,
+          "default": "r5.large.search"
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "A comma-separated list of subnet IDs for the group",
+          "required": false,
+          "default": ""
+        },
+        "security_group_ids": {
+          "name": "security_group_ids",
+          "prompt": "Comma-Separated list of security groups to associate",
+          "required": false,
+          "default": ""
+        }
+      }
+    }
+  }
+}

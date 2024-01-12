@@ -1,0 +1,81 @@
+{
+    "asg": {
+        "create": {
+            "enabled": true,
+            "help": "Create Auto-Scaling Group",
+            "template_section": "compute",
+            "template_enabled": true,
+            "metadata_table": "metadata",
+            "create_aws_infra": false,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "Name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },
+                "launch_template_name": {
+                    "name": "launch_template_name",
+                    "prompt": "Launch Template Name",
+                    "required": true,
+                    "default": ""
+                },
+                "instance_type": {
+                    "name": "instance_type",
+                    "prompt": "EC2 Instance Type", 
+                    "required": true,
+                    "default": "t2.micro"
+                },
+                "ami_id": {
+                    "name": "ami_id",
+                    "prompt": "AMI ID",
+                    "required": true,
+                    "default": "ami-0022f774911c1d690"        
+                },
+                "launch_template_version": {
+                    "name": "launch_template_version",
+                    "prompt": "Launch Template Version",
+                    "required": true,
+                    "default": "$Latest"
+                },
+                "placement_group_name": {
+                    "name": "placement_group_name",
+                    "prompt": "Placement Group Name",
+                    "required": true,
+                    "default": ""
+                },
+                "placement_group_strategy": {
+                    "name": "placement_group_strategy",
+                    "prompt": "Placement Group Strategy (cluster | partition | spread)",
+                    "required": true,
+                    "default": "cluster"
+                },
+                "vpc_zone_identifier": {
+                    "name": "vpc_zone_identifier",
+                    "prompt": "A comma-separated list of subnet IDs for the group",
+                    "required": true,
+                    "default": ""
+                },
+                "desired_capacity": {
+                    "name": "desired_capacity",
+                    "prompt": "The number of Amazon EC2 instances that should be running in the group",
+                    "required": true,
+                    "default": 1
+                },
+                "max_size": {
+                    "name": "max_size",
+                    "prompt": "The maximum size of the Auto Scaling Group",
+                    "required": true,
+                    "default": 2
+                },
+                "min_size": {
+                    "name": "min_size",
+                    "prompt": "The minimum size of the Auto Scaling Group",
+                    "required": true,
+                    "default": 1
+                }
+            }
+        }
+    }
+}

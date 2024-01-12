@@ -1,0 +1,113 @@
+
+{
+  "type": "Theia::Action",
+  "label": "Environments",
+  "id": "environments",
+  "module": "init",
+  "env_not_required": true,
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "environments",
+      "datasource": "data?type=profile",
+      "columns": ["name","created_by","shared","subscription","region","vnet","timestamp"],
+      "title": "Environments",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "environments",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Submit",
+          "command": {
+            "phase": "init",
+            "command": "create-env"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Environment Name",
+          "help": "Environment name is comprised of {org}_{workload}_{environment}. For example: myorg_bitools_dev or abccorp_orders_test. Use three fields below.",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "client",
+          "label": "Company or organization name",
+          "help": "Enter your company or organization name (no spaces or special characters allowed)",
+          "inputType": "text",
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "workload",
+          "label": "Workload/Application",
+          "help": "Workload or Application Name (no spaces or special characters allowed)",
+          "inputType": "text",
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "env",
+          "cli_arg": "env_suffix",
+          "label": "Environment",
+          "help": "Enter Environment (e.g. dev|qa|uat|stg|prod)",
+          "inputType": "text",
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "shared",
+          "label": "Is this environment shared with other engineers?"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "shared_with",
+          "label": "Shared With",
+          "help": "",
+          "datasource": "users_for_select?extra=true",
+          "env_not_required": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "subscription",
+          "label": "Azure Subscription",
+          "help": "Select AWS Profile name to allow RapidCloud access your AWS Account",
+          "datasource": "cloud_profiles?cloud_arg=azure",
+          "env_not_required": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "vnet",
+          "label": "VNet",
+          "help": "Azure VNet",
+          "inputType": "text",
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "region",
+          "label": "Region",
+          "help": "e.g eastus, eastus2",
+          "datasource": "custom/locations?extra=true&module_name_arg=az_net",
+          "readonly_edit": true,
+          "env_not_required": true 		
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "vpn_only",
+          "label": "Using VPN to connect to AWS"
+        }
+      ]
+    }
+  ]
+}

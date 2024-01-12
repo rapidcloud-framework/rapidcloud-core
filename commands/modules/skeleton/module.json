@@ -1,0 +1,21 @@
+{
+    "MODULE_NAME_PLACEHOLDER": {
+        "COMMAND_NAME_PLACEHOLDER": {
+            "cloud": "",
+            "enabled": false,
+            "help": "",
+            "template_section": "",
+            "template_enabled": false,
+            "metadata_table": "metadata",
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "Name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                }           
+            }
+        }
+    }
+}

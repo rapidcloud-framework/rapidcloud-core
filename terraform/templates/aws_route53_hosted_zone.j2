@@ -1,0 +1,24 @@
+module "{{ profile }}_{{ resource_name | replace(".", "-") }}_{{ resource_type }}" {
+    source                 = "{{ module_source }}"
+    
+    zone_name              = "{{ params['name'] }}"
+    zone_comment           = "{{ params['zone_comment'] }}"
+    zone_force_destroy     = {{ params['zone_force_destroy'] | lower }}   
+    add_delegation_set     = {{ params['add_delegation_set'] | lower  }}  
+    zone_delegation_set_id = "{{ params['zone_delegation_set_id'] }}"
+    private_zone           = {{ params['private_zone'] | lower }}
+    {% if params['private_zone'] | lower == "true"  %}
+    vpc_conf = {
+        vpc_id = module.{{ profile }}_aws_vpc_{{ params['zone_vpc_id'] }}.id
+        vpc_region = "{{ region }}"
+    }
+    {% endif %}
+    tags = {
+        "Name"      = "{{ profile }}_{{ resource_name }}"
+        "env"       = "{{ env }}"
+        "profile"   = "{{ name }}"
+        "workload"  = "{{ workload }}"
+        "client"    = "{{ client }}"
+        "author"    = "rapid-cloud"
+    }
+}

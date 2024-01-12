@@ -1,0 +1,96 @@
+{
+  "type": "Theia::Action",
+  "label": "VPCs",
+  "id": "net_create_vpc",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "net_create_vpc",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=net,create_vpc",
+      "env_param_required": true,
+      "columns": ["command","name","net_cidr","net_enable_dns_support","net_enable_dns_hostnames","timestamp"],
+      "title": "VPCs",
+      "description": "Create VPCs.",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "net_create_vpc",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command",
+            "refresh_status": true
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "net",
+            "command": "create_vpc",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Name",
+          "help": "The VPC name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "net_cidr",
+          "label": "Cidr",
+          "help": "The CIDR used for this VPC",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "CIDR is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "net_enable_dns_support",
+          "label": "DNS Support",
+          "help": "Enable or disable DNS support in this VPC",
+          "inputType": "text",
+          "default": "true"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "net_enable_dns_hostnames",
+          "label": "DNS Hostname Support",
+          "help": "Enable or disable DNS hostname support in this VPC",
+          "inputType": "text",
+          "default": "true"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "net_tags",
+          "label": "Tags",
+          "dynamic_datasource": "data?type=metadata&filter_name=module,name&filter_value=net,${name}&result=params,net_tags",
+          "add_value_label": "Tags for your VPC resource"
+        }
+      ]
+    }
+  ]
+}

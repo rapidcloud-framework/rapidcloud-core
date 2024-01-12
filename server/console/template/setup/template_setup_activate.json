@@ -1,0 +1,74 @@
+{
+  "type": "Theia::Action",
+  "label": "Activation Information",
+  "id": "activate",
+  "module": "activate",
+  "env_not_required": true,
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "activate",
+      "title": "Activation Information",
+      "stripe_enabled": true,
+      "description_upgrade_dev": "<b>Upgrade to RapidCloud Premium:</b>&nbsp;&nbsp;<a href='https://buy.stripe.com/test_eVa6rBfaY1r33aE6op' target='_blank'>Annual Subscription</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://buy.stripe.com/test_9AQbLV8MAfhTh1u3cc' target='_blank'>Monthly Subscription</a>",
+      "description_upgrade_live": "<b>Upgrade to RapidCloud Premium:</b>&nbsp;&nbsp;<a href='https://buy.stripe.com/28oeWw9n15au9EI3cc' target='_blank'>Annual Subscription</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://buy.stripe.com/aEU4hS0QvbyS7wA289' target='_blank'>Monthly Subscription</a>",
+      "description": "",
+      "datasource": "account_info?extra=true",
+      "submit": "Activate",
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "activate",
+            "command": ""
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "email",
+          "label": "Email",
+          "help": "Enter your work email address",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Email is required"
+            },
+            {
+              "type": "Theia::Validation::Email",
+              "message": "Invalid email"
+            }
+          ],
+          "readonly_edit": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "tier",
+          "label": "Subscription Tier",
+          "help": "",
+          "readonly": "true",
+          "default": "1",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Basic (FREE)",
+              "value": "1"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Premium",
+              "value": "2"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Kinect Consulting Team",
+              "value": "3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

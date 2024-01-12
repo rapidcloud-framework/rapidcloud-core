@@ -1,0 +1,145 @@
+{
+  "type": "Theia::Action",
+  "label": "EKS Extras",
+  "id": "eks_manage_extras",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "eks_manage_extras",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=eks,manage_extras",
+      "env_param_required": true,
+      "columns": ["eks_cluster_name", 
+        "eks_install_efs_csi",
+        "eks_fs_name",
+        "eks_install_cluster_autoscaler",
+        "eks_install_cluster_autoscaler",
+        "eks_install_fluentbit_cloudwatch",
+        "eks_install_ingress_alb",
+        "eks_install_metrics_server",
+        "timestamp"],
+      "title": "EKS Extras",
+      "description": "Installs several kubernetes extras",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "manage_extras",
+      "title": "Install EKS Extras",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command",
+            "refresh_status": true
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Create",
+          "command": {
+            "phase": "eks",
+            "command": "manage_extras",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_cluster_name",
+          "label": "Cluster Name",
+          "help": "Select the Cluster name you wish to attach this Node Group to",
+          "datasource": "custom/module_eks_clusters?extra=true&module_name_arg=eks",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_vpc_id",
+          "label": "VPC ID",
+          "help": "The VPC the cluster is deployed to",
+          "datasource": "custom/module_eks_vpcs?extra=true&module_name_arg=eks",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "VPC ID is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "eks_install_efs_csi",
+          "label": "Install the EFS CSI integration",
+          "help": "Allows you to map EFS file systems to kubernetes PVCs",
+          "inputType": "text",
+          "default": "false",
+          "disableControls": [
+            "eks_fs_name"
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "eks_fs_name",
+          "label": "EFS Name",
+          "help": "Select the EFS file system you wish to use with this cluster",
+          "datasource": "custom/module_eks_efs_filesystems?extra=true&module_name_arg=eks",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "FS Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "eks_install_cluster_autoscaler",
+          "label": "Cluster Autoscaler",
+          "help": "Install Cluster Autoscaler's latest helm chart",
+          "inputType": "text",
+          "default": "false"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "eks_install_ingress_alb",
+          "label": "ALB Ingress Controller",
+          "help": "Install the latest ALB Ingress Controller helm chart",
+          "inputType": "text",
+          "default": "false"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "eks_install_metrics_server",
+          "label": "Metrics Server",
+          "help": "Install the latest Metrics Server helm chart",
+          "inputType": "text",
+          "default": "false"
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "eks_install_fluentbit_cloudwatch",
+          "label": "Fluent-Bit log shipping to Cloudwatch",
+          "help": "Forward container logs to Cloudwatch via Fluent-bit",
+          "inputType": "text",
+          "default": "false"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "eks_fluentbit_log_retention_in_days",
+          "label": "Fluent-Bit Cloudwatch Group Log Retention in Days",
+          "help": "How long to keep application logs in Cloudwatch",
+          "inputType": "text",
+          "default": 7
+        }
+      ]
+    }
+  ]
+}

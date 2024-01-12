@@ -1,0 +1,132 @@
+{
+  "type": "Theia::Action",
+  "label": "API Lambda Integrations",
+  "id": "api_add_lambda_integration",
+  "module": "api",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "api_add_lambda_integration",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=add_lambda_integration",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "api_http_method",
+        "api_rest_api_name",
+        "api_parent_resource_name",
+        "timestamp"
+      ],
+      "title": "API Lambda Integrations",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "api_add_lambda_integration",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "api",
+            "command": "remove_lambda_integration"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Save",
+          "command": {
+            "phase": "api",
+            "command": "add_lambda_integration",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Resource Name",
+          "help": "creates new API resource if it does not exist",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "api_parent_resource_name",
+          "cli_id": "parent_resource_name",
+          "label": "Parent Resource Name",
+          "default": "root",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "api_rest_api_name",
+          "cli_id": "rest_api_name",
+          "label": "REST API",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=api,create&field=name&module_name_arg=api"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "api_http_method",
+          "cli_id": "http_method",
+          "label": "HTTP Method",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "GET",
+              "value": "GET"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "POST",
+              "value": "POST"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "PUT",
+              "value": "PUT"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "PATCH",
+              "value": "PATCH"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "DELETE",
+              "value": "DELETE"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "HEAD",
+              "value": "HEAD"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "OPTIONS",
+              "value": "OPTIONS"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "ANY",
+              "value": "ANY"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "api_lambda_name",
+          "cli_id": "lambda_name",
+          "label": "Lambda Integration",
+          "datasource": "formdata?type=metadata&filter_name=module&filter_value=lambda&field=name&module_name_arg=api"
+        }
+      ]
+    }
+  ]
+}

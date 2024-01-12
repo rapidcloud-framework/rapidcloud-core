@@ -1,0 +1,129 @@
+{
+  "type": "Theia::Action",
+  "label": "SSO Account Assignments",
+  "id": "sso_create_account_assignment",
+  "module": "sso",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "sso_create_account_assignment",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=sso,create_account_assignment",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "sso_permission_set_name",
+        "sso_principal_type",
+        "sso_account_name",
+        "timestamp"
+      ],
+      "title": "SSO Account Assignments",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "sso_create_account_assignment",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Assign",
+          "command": {
+            "phase": "sso",
+            "command": "create_account_assignment",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Select",
+          "id": "sso_permission_set_name",
+          "cli_id": "permission_set_name",
+          "label": "Permission Set",
+          "help": "",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=sso,create_permission_set&field=name&module_name_arg=sso"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "sso_account_name",
+          "cli_id": "account_name",
+          "label": "Account",
+          "help": "",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=org,create_account&field=name&module_name_arg=sso"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "sso_principal_type",
+          "label": "Principal Type",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "USER",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "user",
+                "enableControls": [
+                  "sso_principal_users"
+                ],
+                "disableControls": [
+                  "sso_principal_groups"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "GROUP",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "group",
+                "enableControls": [
+                  "sso_principal_groups"
+                ],
+                "disableControls": [
+                  "sso_principal_users"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "sso_principal_users",
+          "cli_id": "principal_users",
+          "label": "Users",
+          "help": "",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=sso,create_user&field=name&module_name_arg=sso"
+        },
+        {
+          "type": "Theia::Control::MultiSelect",
+          "id": "sso_principal_groups",
+          "cli_id": "principal_groups",
+          "label": "Groups",
+          "help": "",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=sso,create_group&field=name&module_name_arg=sso"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "sso_principal_ids",
+          "cli_id": "principal_ids",
+          "label": "Principal IDs",
+          "help": "comma-separated list",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

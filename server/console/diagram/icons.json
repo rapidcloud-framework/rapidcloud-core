@@ -1,0 +1,398 @@
+{
+  "*_kafka_stream_consumer": {
+    "name": "*_kafka_stream_consumer",
+    "text": "Managed Kafka",
+    "name_": ".*_kafka_stream_consumer",
+    "new_name": ""
+  },
+  "*_kinesis_stream_consumer": {
+    "name": "*_kinesis_stream_consumer",
+    "text": "Kinesis Streams",
+    "name_": ".*_kinesis_stream_consumer",
+    "new_name": ""
+  },
+  "account::*::*": {
+    "name": "account::*::*",
+    "text": "Accounts",
+    "name_": "account::.*::.*",
+    "new_name": ""
+  },
+  "angularapp": {
+    "name": "angularapp",
+    "text": "Web App",
+    "name_": "angularapp",
+    "new_name": ""
+  },
+  "api_gateway::*::*": {
+    "name": "api_gateway::*::*",
+    "text": "API Gwy",
+    "name_": "api_gateway::.*::.*",
+    "new_name": ""
+  },
+  "athena::*::*": {
+    "name": "athena::*::*",
+    "text": "Athena",
+    "name_": "athena::.*::.*",
+    "new_name": ""
+  },
+  "aurora_*::*::*": {
+    "name": "aurora_*::*::*",
+    "text": "Aurora",
+    "name_": "aurora_.*::.*::.*",
+    "new_name": ""
+  },
+  "aws_autoscaling_group::*::*": {
+    "name": "aws_autoscaling_group::*::*",
+    "text": "ASG",
+    "name_": "aws_autoscaling_group::.*::.*",
+    "new_name": ""
+  },
+  "aws_cloudfront_distribution::*::*": {
+    "name": "aws_cloudfront_distribution::*::*",
+    "text": "Cloudfront",
+    "name_": "aws_cloudfront_distribution::.*::.*",
+    "new_name": ""
+  },
+  "aws_ebs_volume::*::*": {
+    "name": "aws_ebs_volume::*::*",
+    "text": "EBS",
+    "name_": "aws_ebs_volume::.*::.*",
+    "new_name": ""
+  },
+  "aws_ecr_repository::*::*": {
+    "name": "aws_ecr_repository::*::*",
+    "text": "ECR",
+    "name_": "aws_ecr_repository::.*::.*",
+    "new_name": ""
+  },
+  "aws_ecs::*::*": {
+    "name": "aws_ecs::*::*",
+    "text": "ECS",
+    "name_": "aws_ecs::.*::.*",
+    "new_name": ""
+  },
+  "aws_efs_file_system::*::*": {
+    "name": "aws_efs_file_system::*::*",
+    "text": "EFS",
+    "name_": "aws_efs_file_system::.*::.*",
+    "new_name": ""
+  },
+  "aws_fsx_windows_file_system::*::*": {
+    "name": "aws_fsx_windows_file_system::*::*",
+    "text": "FSx",
+    "name_": "aws_fsx_windows_file_system::.*::.*",
+    "new_name": ""
+  },
+  "aws_instance::*::*": {
+    "name": "aws_instance::*::*",
+    "text": "EC2",
+    "name_": "aws_instance::.*::.*",
+    "new_name": ""
+  },
+  "aws_lb::*::*": {
+    "name": "aws_lb::*::*",
+    "text": "ALB",
+    "name_": "aws_lb::.*::.*",
+    "new_name": ""
+  },
+  "aws_route53_record::*::*": {
+    "name": "aws_route53_record::*::*",
+    "text": "Route53",
+    "name_": "aws_route53_record::.*::.*",
+    "new_name": ""
+  },
+  "cert_mgr::*::*": {
+    "name": "cert_mgr::*::*",
+    "text": "Cert Mgr",
+    "name_": "cert_mgr::.*::.*",
+    "new_name": ""
+  },
+  "cloudwatch_event_rule::*::*": {
+    "name": "cloudwatch_event_rule::*::*",
+    "text": "Schedule",
+    "name_": "cloudwatch_event_rule::.*::.*",
+    "new_name": ""
+  },
+  "cloudwatch_event_rule::ingest::*": {
+    "name": "cloudwatch_event_rule::ingest::*",
+    "text": "Schedule",
+    "name_": "cloudwatch_event_rule::ingest::.*",
+    "new_name": ""
+  },
+  "dms_replication_instance::*::*": {
+    "name": "dms_replication_instance::*::*",
+    "text": "DMS",
+    "name_": "dms_replication_instance::.*::.*",
+    "new_name": ""
+  },
+  "dynamodb::*::*": {
+    "name": "dynamodb::*::*",
+    "text": "DynamoDB",
+    "name_": "dynamodb::.*::.*",
+    "new_name": ""
+  },
+  "eks::*::*": {
+    "name": "eks::*::*",
+    "text": "EKS",
+    "name_": "eks::.*::.*",
+    "new_name": ""
+  },
+  "emr_cluster::*::*": {
+    "name": "emr_cluster::*::*",
+    "text": "EMR",
+    "name_": "emr_cluster::.*::.*",
+    "new_name": ""
+  },
+  "endpoints::*::*": {
+    "name": "endpoints::*::*",
+    "text": "Endpoints",
+    "name_": "endpoints::.*::.*",
+    "new_name": ""
+  },
+  "files": {
+    "name": "files",
+    "text": "Files",
+    "name_": "files",
+    "new_name": ""
+  },
+  "glue_catalog_database::*::*": {
+    "name": "glue_catalog_database::*::*",
+    "text": "GLue Catalog",
+    "name_": "glue_catalog_database::.*::.*",
+    "new_name": ""
+  },
+  "glue_crawler::*::*": {
+    "name": "glue_crawler::*::*",
+    "text": "Glue Crawlers",
+    "name_": "glue_crawler::.*::.*",
+    "new_name": ""
+  },
+  "glue_job::*::*": {
+    "name": "glue_job::*::*",
+    "text": "Custom Glue Job",
+    "name_": "glue_job::.*::.*",
+    "new_name": ""
+  },
+  "glue_job::ingest::*_stream_consumer": {
+    "name": "glue_job::ingest::*_stream_consumer",
+    "text": "Glue Streaming",
+    "name_": "glue_job::ingest::.*_stream_consumer",
+    "new_name": ""
+  },
+  "glue_job::rds::*": {
+    "name": "glue_job::rds::*",
+    "text": "Glue Job",
+    "name_": "glue_job::rds::.*",
+    "new_name": ""
+  },
+  "glue_job::transform::*": {
+    "name": "glue_job::transform::*",
+    "text": "Glue Job",
+    "name_": "glue_job::transform::.*",
+    "new_name": ""
+  },
+  "inetgwy::*::*": {
+    "name": "inetgwy::*::*",
+    "text": "Internet Gwy",
+    "name_": "inetgwy::.*::.*",
+    "new_name": ""
+  },
+  "kinesis_*": {
+    "name": "kinesis_*",
+    "text": "Kinesis Client",
+    "name_": "kinesis_.*",
+    "new_name": ""
+  },
+  "kinesis_firehose_s3_delivery_stream::*::*": {
+    "name": "kinesis_firehose_s3_delivery_stream::*::*",
+    "text": "Kinesis Firehose",
+    "name_": "kinesis_firehose_s3_delivery_stream::.*::.*",
+    "new_name": ""
+  },
+  "kinesis_stream::*::*": {
+    "name": "kinesis_stream::*::*",
+    "text": "Kinesis Streams",
+    "name_": "kinesis_stream::.*::.*",
+    "new_name": ""
+  },
+  "kms_key::*::*": {
+    "name": "kms_key::*::*",
+    "text": "KMS",
+    "name_": "kms_key::.*::.*",
+    "new_name": ""
+  },
+  "lambda_function::*::*": {
+    "name": "lambda_function::*::*",
+    "text": "Lambda",
+    "name_": "lambda_function::.*::.*",
+    "new_name": ""
+  },
+  "lambda_function::*::*_cdc_*": {
+    "name": "lambda_function::*::*_cdc_*",
+    "text": "Lambda",
+    "name_": "lambda_function::.*::.*_cdc_.*",
+    "new_name": ""
+  },
+  "lambda_function::ingest::*": {
+    "name": "lambda_function::ingest::*",
+    "text": "Lambda",
+    "name_": "lambda_function::ingest::.*",
+    "new_name": ""
+  },
+  "lambda_function::ingest::*_dms_task": {
+    "name": "lambda_function::ingest::*_dms_task",
+    "text": "Lambda",
+    "name_": "lambda_function::ingest::.*_dms_task",
+    "new_name": ""
+  },
+  "lambda_function::rds::handle_s3_event_raw": {
+    "name": "lambda_function::rds::handle_s3_event_raw",
+    "text": "Lambda",
+    "name_": "lambda_function::rds::handle_s3_event_raw",
+    "new_name": ""
+  },
+  "lambda_function::rds::run_publishing": {
+    "name": "lambda_function::rds::run_publishing",
+    "text": "Lambda",
+    "name_": "lambda_function::rds::run_publishing",
+    "new_name": ""
+  },
+  "lambda_function::trendmicro::*": {
+    "name": "lambda_function::trendmicro::*",
+    "text": "Post Scan Lambda",
+    "name_": "lambda_function::trendmicro::.*",
+    "new_name": ""
+  },
+  "lambda_layer::*::*": {
+    "name": "lambda_layer::*::*",
+    "text": "Lambda Layers",
+    "name_": "lambda_layer::.*::.*",
+    "new_name": ""
+  },
+  "mobileapp": {
+    "name": "mobileapp",
+    "text": "Mobile App",
+    "name_": "mobileapp",
+    "new_name": ""
+  },
+  "natgwy::*::*": {
+    "name": "natgwy::*::*",
+    "text": "NAT Gwy",
+    "name_": "natgwy::.*::.*",
+    "new_name": ""
+  },
+  "opensearch::*::*": {
+    "name": "opensearch::*::*",
+    "text": "OpenSearch",
+    "name_": "opensearch::.*::.*",
+    "new_name": ""
+  },
+  "org::*::*": {
+    "name": "org::*::*",
+    "text": "Org",
+    "name_": "org::.*::.*",
+    "new_name": ""
+  },
+  "org_unit::*::*": {
+    "name": "org_unit::*::*",
+    "text": "Org Units",
+    "name_": "org_unit::.*::.*",
+    "new_name": ""
+  },
+  "quicksight::*::*": {
+    "name": "quicksight::*::*",
+    "text": "SPICE/QuickSight",
+    "name_": "quicksight::.*::.*",
+    "new_name": ""
+  },
+  "rdbms": {
+    "name": "rdbms",
+    "text": "RDBMS",
+    "name_": "rdbms",
+    "new_name": ""
+  },
+  "rds*::rds::*": {
+    "name": "rds*::rds::*",
+    "text": "RDS",
+    "name_": "rds.*::rds::.*",
+    "new_name": ""
+  },
+  "redshift_cluster::*::*": {
+    "name": "redshift_cluster::*::*",
+    "text": "Redshift",
+    "name_": "redshift_cluster::.*::.*",
+    "new_name": ""
+  },
+  "s3_bucket::*::*": {
+    "name": "s3_bucket::*::*",
+    "text": "S3 (custom)",
+    "name_": "s3_bucket::.*::.*",
+    "new_name": ""
+  },
+  "s3_bucket::*::analysis": {
+    "name": "s3_bucket::*::analysis",
+    "text": "S3 (analysis)",
+    "name_": "s3_bucket::.*::analysis",
+    "new_name": ""
+  },
+  "s3_bucket::*::ingestion": {
+    "name": "s3_bucket::*::ingestion",
+    "text": "S3 (ingestion)",
+    "name_": "s3_bucket::.*::ingestion",
+    "new_name": ""
+  },
+  "s3_bucket::*::quarantine": {
+    "name": "s3_bucket::*::quarantine",
+    "text": "S3 (quarantine)",
+    "name_": "s3_bucket::.*::quarantine",
+    "new_name": ""
+  },
+  "s3_bucket::*::raw": {
+    "name": "s3_bucket::*::raw",
+    "text": "S3 (organized)",
+    "name_": "s3_bucket::.*::raw",
+    "new_name": ""
+  },
+  "s3_bucket::*::scan": {
+    "name": "s3_bucket::*::scan",
+    "text": "S3 (scan)",
+    "name_": "s3_bucket::.*::scan",
+    "new_name": ""
+  },
+  "s3_bucket::*::utils": {
+    "name": "s3_bucket::*::utils",
+    "text": "S3 (utils)",
+    "name_": "s3_bucket::.*::utils",
+    "new_name": ""
+  },
+  "s3_bucket::*::web": {
+    "name": "s3_bucket::*::web",
+    "text": "S3 (web)",
+    "name_": "s3_bucket::.*::web",
+    "new_name": ""
+  },
+  "secretsmanager::*::*": {
+    "name": "secretsmanager::*::*",
+    "text": "Secrets Manager",
+    "name_": "secretsmanager::.*::.*",
+    "new_name": ""
+  },
+  "step_function::*::*": {
+    "name": "step_function::*::*",
+    "text": "Step Func",
+    "name_": "step_function::.*::.*",
+    "new_name": ""
+  },
+  "vpc::*::*": {
+    "name": "vpc::*::*",
+    "text": "VPC",
+    "name_": "vpc::.*::.*",
+    "new_name": ""
+  },
+  "waf::*::*": {
+    "name": "waf::*::*",
+    "text": "WAF",
+    "name_": "waf::.*::.*",
+    "new_name": ""
+  }
+}

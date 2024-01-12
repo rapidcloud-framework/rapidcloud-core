@@ -1,0 +1,145 @@
+{
+  "type": "Theia::Action",
+  "label": "PII Rules",
+  "id": "rules_semi",
+  "module": "rules",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "rules_semi",
+      "datasource": "data?type=rule",
+      "env_param_required": true,
+      "columns": ["dataset","attr","attr_type","action"],
+      "title": "PII Rules",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "rule",
+      "title": "",
+      "description": "",
+      "readonly": false,
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Submit",
+          "command": {
+            "phase": "secure",
+            "command": "add-rule"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "fqn",
+          "hidden": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "dataset",
+          "label": "Dataset Name",
+          "help": "",
+          "datasource": "formdata?type=dataset_semi_structured&field=name"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "attr",
+          "label": "Attribute Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "attr_type",
+          "label": "Attribute Type", 
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "SSN",
+              "value": "ssn"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Full Name",
+              "value": "fullname"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "First Name",
+              "value": "firstname"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Last Name",
+              "value": "lastname"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Date of birth",
+              "value": "dob"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "ID",
+              "value": "id"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Float (e.g, amount)",
+              "value": "float"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Integer",
+              "value": "int"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "String",
+              "value": "string"
+            }
+          ]        
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "action",
+          "label": "Action",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Deidentify",
+              "value": "deidentify"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Omit",
+              "value": "omit"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Mask",
+              "value": "mask"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Encrypt",
+              "value": "encrypt"
+            }
+          ]        
+        }
+      ]
+    }
+  ]
+}

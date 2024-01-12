@@ -1,0 +1,25 @@
+{
+  "type": "Theia::Action",
+  "label": "Start Subscription",
+  "id": "subscribe",
+  "module": "subscribe",
+  "env_not_required": true,
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "subscribe",
+      "title": "Start Subscription",
+      "description": "",
+      "submit": "Subscribe",
+      "commands": [
+        {
+          "label": "Subscribe",
+          "command": {
+            "phase": "subscribe",
+            "command": ""
+          }
+        }
+      ]
+    }
+  ]
+}

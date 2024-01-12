@@ -1,0 +1,10 @@
+{
+  "datalake": {
+    "create": {
+      "enabled": false,
+      "example": "kc datalake create --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

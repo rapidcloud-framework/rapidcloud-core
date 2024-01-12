@@ -1,0 +1,33 @@
+{#
+  The template vars mostly (although not necessarily all) come from this GCP Firestore JSON doc's fields:
+    - /rapid_cloud_metadata/rc_metadata_collections/profile/RAPID_CLOUD_ENVIRONMENT_NAME
+      (GCP console URL like this:
+        https://console.cloud.google.com/firestore/databases/-default-/data/panel/rapid_cloud_metadata/rc_metadata_collections/profile/=......?project=......
+      )
+  whose data are inserted by:
+    - https://bitbucket.org/kinect-consulting/kinect-theia-main/src/615c75a627bcc8af7ce9b4b811c94d22d5cffaa4/commands/kc_metadata_manager/gcp_profile.py#lines-34:52
+
+
+  The Jinja template merge is described here:
+    - https://bitbucket.org/kinect-consulting/rc-gcp-storage/src/4dace3071f33d46cef24d73b206419a5e500b64e/terraform/custom_templates/google_storage_bucket.j2#lines-1:8
+#}
+
+provider "google" {
+  project = "{{ env_project_id }}" # The Rapid Cloud target environment's GCP Project ID.
+  region  = "{{ region }}"         # The Rapid Cloud target environment's region.
+  {# impersonate_service_account = local.service_account_email #}
+}
+
+provider "google-beta" {
+  project = "{{ env_project_id }}"
+  region  = "{{ region }}"
+  {# impersonate_service_account = local.service_account_email #}
+}
+
+terraform {
+  backend "gcs" {
+    bucket = "{{ state_bucket }}"
+    prefix = "/{{ name }}"
+    {# impersonate_service_account = "...@xyz.com" #}
+  }
+}

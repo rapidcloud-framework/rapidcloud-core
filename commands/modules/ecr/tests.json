@@ -1,0 +1,10 @@
+{
+  "ecr": {
+    "create": {
+      "enabled": false,
+      "example": "kc ecr create --no-prompt --ecr_name name --ecr_image_tag_mutability image_tag_mutability --ecr_scan_on_push scan_on_push --ecr_encryption_type encryption_type --ecr_kms_key kms_key",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

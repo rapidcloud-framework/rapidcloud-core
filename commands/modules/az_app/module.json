@@ -1,0 +1,252 @@
+{
+  "az_app": {
+    "create_app_env": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_app",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "pricing_tier": {
+          "name": "pricing_tier",
+          "prompt": "Enter the name of the pricing tier.",
+          "required": false,
+          "default": ""
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Enter the subnet_id",
+          "required": true,
+          "default": ""
+        },
+        "internal_load_balancing_mode": {
+          "name": "internal_load_balancing_mode",
+          "prompt": "Enter the internal_load_balancing_mode",
+          "required": false,
+          "default": ""
+        },
+        "allowed_user_ip_cidrs": {
+          "name": "allowed_user_ip_cidrs",
+          "prompt": "Enter the allowed_user_ip_cidrs",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "create_service_plan": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_app",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the azure firewall.",
+          "required": true,
+          "default": "eastus"
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "os_type": {
+          "name": "os_type",
+          "prompt": "Enter the name of os type",
+          "required": true,
+          "default": ""
+        },
+        "sku_name": {
+          "name": "sku_name",
+          "prompt": "Enter the sku name",
+          "required": true,
+          "default": ""
+        },
+        "app_service_environment_id": {
+          "name": "app_service_environment_id",
+          "prompt": "Enter the name of the env id",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "create_web_app": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_app",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the azure firewall.",
+          "required": true,
+          "default": "eastus"
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "service_plan_id": {
+          "name": "service_plan_id",
+          "prompt": "Enter the name of service plan id",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_logic_app": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_app",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the azure firewall.",
+          "required": true,
+          "default": "eastus"
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        }
+      }
+    },
+    "create_function_app": {
+      "cloud": "azure",
+      "enabled": true,
+      "help": "",
+      "template_section": "az_app",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_azure_infra": true,
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "location": {
+          "name": "location",
+          "prompt": "Enter the location of the azure firewall.",
+          "required": true,
+          "default": "eastus"
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "prompt": "Enter the name of the resource group.",
+          "required": true,
+          "default": ""
+        },
+        "os_type": {
+          "name": "os_type",
+          "prompt": "Enter the name of os type",
+          "required": true,
+          "default": "Linux"
+        },
+        "service_plan_id": {
+          "name": "service_plan_id",
+          "prompt": "Enter the Service Plan",
+          "required": false,
+          "default": ""
+        },
+        "version": {
+          "name": "version",
+          "prompt": "Enter the version",
+          "required": false,
+          "default": "~4"
+        },
+        "storage_account_id": {
+          "name": "storage_account_id",
+          "prompt": "Enter storage_account_id",
+          "required": false,
+          "default": ""
+        },
+        "storage_access_type": {
+          "name": "storage_access_type",
+          "prompt": "Enter storage_access_type",
+          "required": false,
+          "default": ""
+        },
+        "managed_identity": {
+          "name": "managed_identity",
+          "prompt": "Enter storage_managed_identity",
+          "required": false,
+          "default": ""
+        },
+        "public_access": {
+          "name": "public_access",
+          "prompt": "Enter public access yes or no",
+          "type": "boolean",
+          "required": false,
+          "default": ""
+        },
+        "https_only": {
+          "name": "https_only",
+          "prompt": "Enter https only yes or no",
+          "required": false,
+          "type": "boolean",
+          "default": ""
+        },
+        "subnet_id": {
+          "name": "subnet_id",
+          "prompt": "Enter the subnet id",
+          "required": false,
+          "default": ""
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+    "type": "Theia::Action",
+    "label": "Log Analytics Monitoring Solution",
+    "id": "create_loganalytics",
+    "module": "az_lz",
+    "steps": [
+      {
+        "type": "Theia::Step::Grid",
+        "id": "create_loganalytics",
+        "datasource": "data?type=metadata&filter_name=command&filter_value=create_loganalytics",
+        "env_param_required": true,
+        "columns": [
+          "name",
+          "az_lz_location",
+          "az_lz_workspace_name",
+          "az_lz_rg_name"
+        ],
+        "title": "Log Analytics Monitoring Solution",
+        "description": "",
+        "submit": "Continue"
+      },
+      {
+        "type": "Theia::Step::Form",
+        "id": "create_loganalytics",
+        "title": "",
+        "description": "",
+        "submit": "Submit",
+        "not_editable": true,
+        "commands": [
+          {
+            "label": "Create",
+            "command": {
+              "phase": "az_lz",
+              "command": "create_loganalytics",
+              "refresh_status": true
+            }
+          }
+        ],
+        "controls": [
+          {
+            "type": "Theia::Control::Input",
+            "id": "name",
+            "cli_id": "name",
+            "label": "Name",
+            "help": "",
+            "inputType": "text",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Name is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_lz_location",
+            "label": "Location",
+            "help": "",
+            "datasource": "formdata_from_azure?type=locations",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Location is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_lz_workspace_name",
+            "label": "Workspace Name",
+            "help": "",
+            "datasource": "custom/log_workspaces?extra=true&module_name_arg=az_lz",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Workspace Name is required"
+              }
+            ]
+          },
+          {
+            "type": "Theia::Control::Select",
+            "id": "az_lz_rg_name",
+            "label": "Resource Group Name",
+            "help": "",
+            "datasource": "formdata_from_azure?type=resource_groups",
+            "validations": [
+              {
+                "type": "Theia::Validation::Required",
+                "message": "A Resource Group is required"
+              }
+            ]
+          } 
+        ]
+      }
+    ]
+  }

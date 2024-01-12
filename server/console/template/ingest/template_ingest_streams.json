@@ -1,0 +1,106 @@
+{
+  "type": "Theia::Action",
+  "label": "Streaming (Kinesis or Kafka)",
+  "id": "streams",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "streams",
+      "datasource": "data?type=stream",
+      "env_param_required": true,
+      "columns": ["name","type","consumer","enabled"],
+      "title": "Streams",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "data",
+      "title": "",
+      "description": "Kinesis or Managed Kafka streams are consumed by Lambda function or Glue streaming job in realtime",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Save Event Source",
+          "command": {
+            "phase": "ingest",
+            "command": "register-stream",
+            "refresh_status": true             
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Stream Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "type",
+          "label": "Stream Type",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Kinesis Data Streams",
+              "value": "kinesis"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Managed Kafka",
+              "value": "kafka"
+            }         
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "event_source_arn",
+          "label": "Event Source ARN",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "consumer",
+          "label": "Consumer Type",
+          "help": "",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Lambda Function",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "lambda_function",
+                "enableControls": [
+                  "memory_size"
+                ]
+              }
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Glue Spark Streaming Job",
+              "value": {
+                "type": "Theia::DataOption",
+                "value": "glue_streaming",
+                "disableControls": [
+                  "memory_size"
+                ]
+              }
+            }         
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "memory_size",
+          "label": "Memory Size",
+          "help": "For Lambda function only",
+          "inputType": "text"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+    "transform": {
+        "create": {
+            "enabled": true,
+            "help": "Add Transformation Glue Job for existing Datasets",
+            "template_section": "transform",
+            "template_enabled": false,
+            "metadata_table": "metadata",
+            "create_aws_infra": false,
+            "id": "name",
+            "args": {
+                "name": {
+                    "name": "Name", 
+                    "prompt": "Enter Name with no spaces", 
+                    "required": true,
+                    "default": ""
+                },
+                "base_datasets": {
+                    "name": "Base Datasets", 
+                    "prompt": "Base datasets for this transformation (comma separated)", 
+                    "required": false,
+                    "default": ""
+                },
+                "job_type": {
+                    "name": "Glue Job Type", 
+                    "prompt": "Glue Job Type (pythonshell|glueetl)", 
+                    "required": true,
+                    "default": "pythonshell"
+                },
+                "refresh_spice": {
+                    "name": "Refresh QuickSight SPICE", 
+                    "prompt": "Refresh QuickSight SPICE with Results of this Transform (yes|no)", 
+                    "required": true,
+                    "default": "no"
+                }
+            }
+        }
+    }
+}

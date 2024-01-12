@@ -1,0 +1,23 @@
+{
+  "route53": {
+    "add_record": {
+      "enabled": false,
+      "example": "kc route53 add_record --no-prompt --route53_record_name record_name --route53_record_type record_type --route53_zone_id zone_id --route53_ttl ttl --route53_record_list record_list",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": [
+        "kc route53 add_record --record_name betorctest001 --route53_record_name betorctest001 --route53_record_type A --route53_zone_id Z010645816VG46M18F9DE --route53_ttl 300 --route53_record_list 172.27.29.16  --no-prompt"
+      ]
+    },
+    "create_hosted_zone": {
+      "enabled": false,
+      "example": "kc route53 create_hosted_zone --name example.rc.io --route53_name example.rc.io --route53_zone_comment  test comment --route53_zone_force_destroy true --route53_add_delegation_set false --route53_zone_vpc_id vpc-id --route53_zone_vpc_region us-east-1 --route53_zone_delegation_set_id '' --route53_private_zone true  --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": [
+        "kc route53 create_hosted_zone --name betoprive.rc.io --route53_name betoprive.rc.io --route53_zone_comment beto rc test --route53_zone_force_destroy true --route53_add_delegation_set false --route53_zone_vpc_id vpc-05b3ddb6314da834c --route53_zone_vpc_region us-east-1 --route53_zone_delegation_set_id '' --route53_private_zone true  --no-prompt",
+        "kc route53 create_hosted_zone --name betopubdel.rc.io --route53_name betopubdel.rc.io --route53_zone_comment beto rc test --route53_zone_force_destroy true --route53_add_delegation_set true --route53_zone_vpc_id '' --route53_zone_vpc_region '' --route53_zone_delegation_set_id '' --route53_private_zone false  --no-prompt",
+        "kc route53 create_hosted_zone --name betopubedel.rc.io --route53_name betopubedel.rc.io --route53_zone_comment beto rc test --route53_zone_force_destroy true --route53_add_delegation_set true --route53_zone_vpc_id '' --route53_zone_vpc_region '' --route53_zone_delegation_set_id N08040743RSWJL9R7PZGW --route53_private_zone false  --no-prompt",
+        "kc route53 create_hosted_zone --name betopubnodel.rc.io --route53_name betopubnodel.rc.io --route53_zone_comment beto rc test --route53_zone_force_destroy true --route53_add_delegation_set false --route53_zone_vpc_id '' --route53_zone_vpc_region '' --route53_zone_delegation_set_id '' --route53_private_zone false  --no-prompt" 
+      ]
+    }
+  }
+}

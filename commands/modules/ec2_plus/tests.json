@@ -1,0 +1,10 @@
+{
+  "ec2_plus": {
+    "create": {
+      "enabled": false,
+      "example": "kc ec2_plus create --no-prompt --ec2_plus_name name",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

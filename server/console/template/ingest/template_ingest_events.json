@@ -1,0 +1,54 @@
+{
+  "type": "Theia::Action",
+  "label": "RDBMS: Events",
+  "id": "events",
+  "module": "ingest",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "events",
+      "datasource": "data?type=event",
+      "env_param_required": true,
+      "columns": ["name","source_database","source_table","partitions"],
+      "title": "Events",
+      "description": "Each event must correspond to your source database tables (RapidCloud `dataset`). This use case is appropriate when you need to process source database changes in near-realtime. Events are consumed via Kinesis Firehose and saved in S3",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "data",
+      "title": "",
+      "description": "Events are processed in near-realtime via Kinesis Firehose",
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Remove",
+          "require_confirmation": true,
+          "confirmation_message": "Are you sure you want to remove this item?",
+          "command": {
+            "phase": "undo-command"
+          },
+          "new_hide": true
+        },
+        {
+          "label": "Add Event",
+          "command": {
+            "phase": "ingest",
+            "command": "add-event",
+            "refresh_status": true             
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Select",
+          "id": "name",
+          "cli_arg": "dataset_name",
+          "label": "Dataset Name",
+          "help": "",
+          "datasource": "formdata?type=dataset&field=name"
+        }
+      ]
+    }
+  ]
+}

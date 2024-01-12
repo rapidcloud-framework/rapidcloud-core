@@ -1,0 +1,256 @@
+{
+  "type": "Theia::Action",
+  "label": "Application Security Groups",
+  "id": "trendmicro_application_create_group",
+  "module": "trendmicro",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "trendmicro_file_storage",
+      "datasource": "trendmicro/as/groups?test=test",
+      "env_param_required": true,
+      "columns": [
+        "tm_as_name",
+        "tm_as_group_id",
+        "tm_as_activated_on"
+      ],
+      "title": "Application Security Groups",
+      "allowMarkdown": true,
+      "description": ""
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "trendmicro_application_create_group",
+      "title": "",
+      "description": "",
+      "env_param_required": true,
+      "submit": "Submit",
+      "commands": [
+        {
+          "label": "Save Group Settings",
+          "command": {
+            "phase": "trendmicro",
+            "command": "application_create_group"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "label": "Group Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "tm_as_group_id",
+          "label": "Group ID",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "tm_as_activated_on",
+          "label": "Activated On",
+          "help": "",
+          "inputType": "text",
+          "readonly": true
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "trendmicro_credential_stuffing",
+          "label": "Credential Stuffing Protection Policy",
+          "default": "disable",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Disable",
+              "value": "disable"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Mitigate",
+              "value": "mitigate"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Report",
+              "value": "report"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "trendmicro_file_access",
+          "label": "Illegal File Access Protection Policy",
+          "default": "disable",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Disable",
+              "value": "disable"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Mitigate",
+              "value": "mitigate"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Report",
+              "value": "report"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "trendmicro_ip_protection",
+          "label": "IP Protection Policy",
+          "default": "disable",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Disable",
+              "value": "disable"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Mitigate",
+              "value": "mitigate"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Report",
+              "value": "report"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "trendmicro_malicious_file_upload",
+          "label": "Malicious File Upload Protection Policy",
+          "default": "disable",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Disable",
+              "value": "disable"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Mitigate",
+              "value": "mitigate"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Report",
+              "value": "report"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "trendmicro_malicious_payload",
+          "label": "Malicious Payload Protection Policy",
+          "default": "disable",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Disable",
+              "value": "disable"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Mitigate",
+              "value": "mitigate"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Report",
+              "value": "report"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "trendmicro_rce",
+          "label": "Remote Command Execution Protection Policy",
+          "default": "disable",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Disable",
+              "value": "disable"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Mitigate",
+              "value": "mitigate"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Report",
+              "value": "report"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "trendmicro_redirect",
+          "label": "Redirect Protection Policy",
+          "default": "disable",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Disable",
+              "value": "disable"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Mitigate",
+              "value": "mitigate"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Report",
+              "value": "report"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "trendmicro_sqli",
+          "label": "SQL Injection Protection Policy",
+          "default": "disable",
+          "options": [
+            {
+              "type": "Theia::Option",
+              "label": "Disable",
+              "value": "disable"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Mitigate",
+              "value": "mitigate"
+            },
+            {
+              "type": "Theia::Option",
+              "label": "Report",
+              "value": "report"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "trendmicro_group_secret",
+          "label": "Group Secret (this is Secrets Manager Secret name, not actual secret)",
+          "help": "Group Secret is encrypted and saved in Secretes Manager",
+          "inputType": "text",
+          "readonly": true
+        }
+      ]
+    }
+  ]
+}

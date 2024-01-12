@@ -1,0 +1,24 @@
+{
+  "id": "aws_solution_wizard",
+  "label": "Solution Architecture",
+  "order": 1000,
+  "dynamic": true,
+  "component": {
+    "file": "architecture-wizard",
+    "className": "ArchitectureWizardComponent",
+    "data": {
+      "id": "aws_solution_wizard",
+      "endpoint": "diagram/solution",
+      "info": "",
+      "command": {
+        "label": "Save",
+        "command": {
+          "phase": "architecture",
+          "command": "save-wizard",
+          "diagram_type": "solution"
+        }
+      }
+    }
+  },
+  "type": "Theia::Action"
+}

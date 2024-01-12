@@ -1,0 +1,58 @@
+{
+  "trendmicro": {
+    "setup": {
+      "enabled": false,
+      "example": "kc trendmicro setup --no-prompt --trendmicro_api_id api_id --trendmicro_api_key api_key --trendmicro_use_for_all_environments use_for_all_environments --trendmicro_enable_filestorage_security enable_filestorage_security --trendmicro_enable_workload_security enable_workload_security --trendmicro_enable_application_security enable_application_security",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "filestorage_create_stack": {
+      "enabled": false,
+      "example": "kc trendmicro filestorage_create_stack --no-prompt --trendmicro_stack_type stack_type --trendmicro_bucket bucket",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "filestorage_list_stacks": {
+      "enabled": false,
+      "example": "kc trendmicro filestorage_list_stacks --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "filestorage_delete_stack": {
+      "enabled": false,
+      "example": "kc trendmicro filestorage_delete_stack --no-prompt --trendmicro_fqn fqn",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "application_create_group": {
+      "enabled": false,
+      "example": "kc trendmicro application_create_group --no-prompt --trendmicro_name name --trendmicro_credential_stuffing credential_stuffing --trendmicro_file_access file_access --trendmicro_ip_protection ip_protection --trendmicro_malicious_file_upload malicious_file_upload --trendmicro_malicious_payload malicious_payload --trendmicro_rce rce --trendmicro_redirect redirect --trendmicro_sqli sqli",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "workload_create_group": {
+      "enabled": false,
+      "example": "kc trendmicro workload_create_group --no-prompt --trendmicro_name name --trendmicro_description description --trendmicro_policy policy",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "workload_generate_deployment_script": {
+      "enabled": false,
+      "example": "kc trendmicro workload_generate_deployment_script --no-prompt --trendmicro_platform platform --trendmicro_workload_policy workload_policy --trendmicro_workload_group workload_group",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "workload_group_sync": {
+      "enabled": false,
+      "example": "kc trendmicro workload_group_sync --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    },
+    "workload_list_policies": {
+      "enabled": false,
+      "example": "kc trendmicro workload_list_policies --no-prompt",
+      "note": "Add tests in the `tests` list below. Each test must be a valid RaidCloud command. Don't forget to add `--no-prompt`",
+      "tests": []
+    }
+  }
+}

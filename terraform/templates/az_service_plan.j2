@@ -1,0 +1,11 @@
+module "{{ profile }}_{{ resource_name }}" {
+  source              = "{{ module_source }}"
+  name                = "{{ resource_name }}"
+  location            = "{{ params['location'] }}"
+  resource_group      = "{{params['resource_group']}}"
+  sku_name            = "{{params['sku_name']}}"
+  os_type            = "{{params['os_type']}}"
+  {% if params['app_service_environment_id'] is defined and params['app_service_environment_id']|length %}
+  app_service_environment_id = "{{ params['app_service_environment_id'] }}
+  {% endif %}
+}

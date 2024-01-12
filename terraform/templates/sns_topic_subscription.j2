@@ -1,0 +1,13 @@
+resource "aws_lambda_permission" "{{ profile }}-{{ resource_type }}-{{ resource_name }}" {
+  action        = "lambda:InvokeFunction"
+  function_name  = module.{{ profile }}_{{ params['function_name'] }}_lambda_function.name
+  principal     = "sns.amazonaws.com"
+  statement_id  = "AllowSubscriptionToSNS"
+  source_arn    = aws_sns_topic.{{ profile }}-sns_topic-{{ params['topic_name'] }}.arn
+}
+
+resource "aws_sns_topic_subscription" "{{ profile }}-{{ resource_type }}-{{ resource_name }}" {
+  endpoint  = module.{{ profile }}_{{ params['function_name'] }}_lambda_function.arn
+  protocol  = "lambda"
+  topic_arn = aws_sns_topic.{{ profile }}-sns_topic-{{ params['topic_name'] }}.arn
+}

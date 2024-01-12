@@ -1,0 +1,15 @@
+{
+  "type": "Theia::Action",
+  "label": "Integration Features",
+  "id": "trendmicro_features",
+  "module": "trendmicro",
+  "steps": [
+    {
+      "type": "Theia::Step::Form",
+      "id": "trendmicro_features",
+      "env_param_required": true,
+      "title": "RapidCloud / Trend Micro Cloud One Integration",
+      "description": "<img src='https://kinect-rapid-cloud.s3.amazonaws.com/docs/img/TrendMicro - File Storage.png' alt='File Storage Security Flow' width='820'/><img src='https://kinect-rapid-cloud.s3.amazonaws.com/docs/img/TrendMicro - FSS Compare.png' alt='RapidCloud Trend Micro Integration - File Storage Security' width='820'/><br/><br/><br/><br/><img src='https://kinect-rapid-cloud.s3.amazonaws.com/docs/img/TrendMicro - Application Compare.png' alt='RapidCloud Trend Micro Integration - Application Security' width='820'/><br/><br/><img src='https://kinect-rapid-cloud.s3.amazonaws.com/docs/img/TrendMicro - Workload Compare.png' alt='RapidCloud Trend Micro Integration - Workload Security' width='820'/>"
+    }
+  ]
+}

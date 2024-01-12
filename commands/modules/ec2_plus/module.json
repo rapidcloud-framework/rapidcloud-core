@@ -1,0 +1,22 @@
+{
+  "ec2_plus": {
+    "create": {
+      "enabled": true,
+      "help": "Quickstart for EC2 backend and supporting services",
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "name",
+      "template_section": "compute",
+      "template_enabled": true,
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        }
+      },
+      "import_modules": "ec2.create,asg.create,fsx.create,lb.create"
+    }
+  }
+}

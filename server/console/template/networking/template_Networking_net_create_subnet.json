@@ -1,0 +1,116 @@
+{
+  "type": "Theia::Action",
+  "label": "Subnets",
+  "id": "net_create_subnet",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "net_create_subnet",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=net,create_subnet",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az",
+        "cidr",
+        "vpc_module_id",
+        "create_route_table",
+        "associate_route_table",
+        "timestamp"
+      ],
+      "title": "Subnets",
+      "description": "Create a Subnet in a VPC",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "net_create_subnet",
+      "title": "Create subnets and route tables/associations",
+      "description": "This section creates a subnet and route table/association",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "net",
+            "command": "create_subnet",
+            "refresh_status": true
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "The Subnet name",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "Name is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "vpc_module_id",
+          "label": "VPC module id",
+          "cli_id": "vpc_module_id",
+          "help": "A New or RapidCloud deployed VPC to create this Subnet in",
+          "datasource": "custom/module_net_vpcs?extra=true&module_name_arg=net",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A VPC is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "cidr",
+          "cli_id": "cidr",
+          "label": "CIDR",
+          "help": "The CIDR this Subnet will use",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Subnet CIDR is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az",
+          "cli_id": "az",
+          "label": "Availability Zones",
+          "help": "The Availability Zone to create this Subnet in",
+          "datasource": "formdata_from_aws?type=availability_zones&module_name_arg=net",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "An Availability Zone is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Toggle",
+          "id": "create_route_table",
+          "label": "Create route table",
+          "help": "Create and associate a Route Table with this Subnet",
+          "inputType": "text",
+          "default": "true"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "associate_route_table",
+          "label": "Use Existing Route Table",
+          "help": "Associate an exising Route Table with this Subnet",
+          "datasource": "custom/module_net_route_tables?extra=true&module_name_arg=net"
+        }
+      ]
+    }
+  ]
+}

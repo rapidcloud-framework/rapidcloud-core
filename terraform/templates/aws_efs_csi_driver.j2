@@ -1,0 +1,29 @@
+module "{{fqn}}" {
+    source = "{{ module_source }}"
+    env  = "{{ env }}"
+    profile = "{{ profile }}"
+    region    = "{{ region }}"
+    account   = "{{ account }}"
+    fqn = "{{ fqn }}"
+    workload = "{{ workload }}"
+    cmd_id = "{{ cmd_id }}"
+    cluster_name  = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_cluster_info.id
+    eks_oidc_provider  = module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }}.eks_oidc_provider
+    file_system_id  = module.{{ profile }}_aws_efs_file_system_{{ params["fs_name"] }}.id
+
+
+    {% if params['tags'] is defined %}
+    tags = {
+    {% for k, v in  params['tags'].items() -%}
+        "{{ k }}" = "{{ v }}"
+    {% endfor -%}
+    }
+    {% endif %}
+    depends_on = [
+      module.{{ profile }}_aws_eks_cluster_{{ params["cluster_name"] }} 
+    ]
+}
+
+{% for k, v in params.items() %}
+# {{k}} -> {{ v }}
+{% endfor %}

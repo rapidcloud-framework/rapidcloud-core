@@ -1,0 +1,93 @@
+{
+  "type": "Theia::Action",
+  "label": "MSSQL Server Database",
+  "id": "create_sql_db",
+  "module": "az_db",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "create_sql_db",
+      "datasource": "data?type=metadata&filter_name=command&filter_value=create_sql_db",
+      "env_param_required": true,
+      "columns": [
+        "name",
+        "az_db_max_size_gb"
+      ],
+      "title": "MSSQL Server Database",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "create_sql_db",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Create",
+          "command": {
+            "phase": "az_db",
+            "command": "create_sql_db",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Input",
+          "id": "name",
+          "cli_id": "name",
+          "label": "Name",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "az_db_server_id",
+          "label": "Server",
+          "help": "",
+          "datasource": "custom/mssql_servers?extra=true&module_name_arg=az_db",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A MSSQL Server is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_db_max_size_gb",
+          "cli_id": "max_size_gb",
+          "label": "Max Size Gb",
+          "help": "",
+          "inputType": "text",
+          "validations": [
+            {
+              "type": "Theia::Validation::Required",
+              "message": "A Size in GB is required"
+            }
+          ]
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_db_start_ip_address",
+          "cli_id": "start_ip_address",
+          "label": "Start IP Address",
+          "help": "",
+          "inputType": "text"
+        },
+        {
+          "type": "Theia::Control::Input",
+          "id": "az_db_end_ip_address",
+          "cli_id": "end_ip_address",
+          "label": "End IP Address",
+          "help": "",
+          "inputType": "text"
+    
+        }
+      ]
+    }
+  ]
+}

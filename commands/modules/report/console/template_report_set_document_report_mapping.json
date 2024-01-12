@@ -1,0 +1,61 @@
+{
+  "type": "Theia::Action",
+  "label": "Document/Report Mapping",
+  "id": "report_set_document_report_mapping",
+  "module": "report",
+  "steps": [
+    {
+      "type": "Theia::Step::Grid",
+      "id": "report_set_document_report_mapping",
+      "datasource": "data?type=metadata&filter_name=module,command&filter_value=report,set_document_report_mapping",
+      "env_param_required": true,
+      "columns": ["report_report_name","report_dataset_name"],
+      "title": "Document/Report Mapping",
+      "description": "",
+      "submit": "Continue"
+    },
+    {
+      "type": "Theia::Step::Form",
+      "id": "report_set_document_report_mapping",
+      "title": "",
+      "description": "",
+      "submit": "Submit",
+      "not_editable": true,
+      "commands": [
+        {
+          "label": "Save",
+          "command": {
+            "phase": "report",
+            "command": "set_document_report_mapping",
+            "refresh_status": true                 
+          }
+        }
+      ],
+      "controls": [
+        {
+          "type": "Theia::Control::Select",
+          "id": "report_report_name",
+          "label": "Report",
+          "help": "",
+          "datasource": "formdata?type=metadata&filter_name=module,command&filter_value=report,define_report&field=name"
+        },
+        {
+          "type": "Theia::Control::Select",
+          "id": "report_dataset_name",
+          "label": "Document Type",
+          "help": "",
+          "datasource": "formdata?type=dataset_unstructured&filter_name=enable_textract&filter_value=True&field=name"
+        },
+        {
+          "type": "Theia::Control::KeyValue",
+          "id": "report_mappings",
+          "label": "Report Column Mappings",
+          "key_label": "CSV Column Name",
+          "value_label": "Document Field Name",
+          "dynamic_datasource": "custom/report_document_mapping?module_name_arg=report&report_name=${report_report_name}&dataset_name=${report_dataset_name}",
+          "add_value_label": "Add Column Mapping"
+        }
+      ]
+    }
+  ]
+}

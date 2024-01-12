@@ -1,0 +1,34 @@
+
+module "{{ profile }}_{{ resource_name | replace(".", "-") }}_{{ resource_type }}" {
+  source          = "{{ module_source }}"
+  zone_id         = module.{{ profile }}_{{ params['zone_id'] | replace(".", "-") }}_aws_route53_hosted_zone.zone_id 
+  record_name     = "{{ params['record_name'] }}"
+  
+  {% if "alias" in params['record_type'] %}
+    {% set tipo_de_registro = params['record_type'].split('-') %}
+    record_type     = "{{ tipo_de_registro[0] | upper }}"
+  {% else %}
+    record_type     = "{{ params['record_type'] }}"
+  {% endif %}
+
+  {% if not "alias" in params['record_type']  %}
+    ttl             = "{{ params['ttl'] }}"
+  {% endif %}
+
+  {% if "alias" in params['record_type'] %}
+    alias_conf = local.alias_configuration_{{ resource_name | replace(".", "_") }}
+  {% else %}
+    record_list       = split( "," , "{{ params['record_list'] }}" )
+  {% endif %}
+  
+}
+
+{% if "alias" in params['record_type'] %}
+locals {
+  alias_configuration_{{ resource_name | replace(".", "_") }} = {
+      name                   = "{{ params['alias_name'] }}"
+      zone_id                = "{{ params['alias_zone_id'] }}" 
+      evaluate_target_health = "{{ params['evaluate_target_health'] | lower }}" 
+  }
+}
+{% endif %}

@@ -1,0 +1,74 @@
+{
+  "report": {
+    "run": {
+      "cloud": "aws",
+      "enabled": false,
+      "help": "",
+      "template_section": "report",
+      "template_enabled": true
+    },
+    "define_report": {
+      "cloud": "aws",
+      "enabled": false,
+      "help": "",
+      "template_section": "report",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "id": "name",
+      "args": {
+        "name": {
+          "name": "name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "definition": {
+          "name": "definition",
+          "prompt": "Comma Separated list of CSV columns",
+          "required": true,
+          "default": "",
+          "type": "json"
+        },
+        "sort_by": {
+          "name": "sort_by",
+          "prompt": "Sort By (comma separated list of CSV Columns to sort by)",
+          "required": false,
+          "default": ""
+        }
+      },
+      "timestamp": "2023-07-06 16:39:34.962657",
+      "cmd_id": "20230706163934785376"
+    },
+    "set_document_report_mapping": {
+      "cloud": "aws",
+      "enabled": false,
+      "help": "",
+      "template_section": "report",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "fqn": "report_name,dataset_name",
+      "args": {
+        "report_name": {
+          "name": "report_name",
+          "prompt": "Report Name",
+          "required": true,
+          "default": ""
+        },
+        "dataset_name": {
+          "name": "dataset_name",
+          "prompt": "Document Name",
+          "required": true,
+          "default": ""
+        },
+        "mappings": {
+          "name": "mappings",
+          "prompt": "Enter document to report mappings as Json string or skip it here and modify in the console", 
+          "required": false,
+          "default": ""
+        }
+      },
+      "timestamp": "2023-07-07 13:13:37.272768",
+      "cmd_id": "20230707131337072155"
+    }
+  }
+}

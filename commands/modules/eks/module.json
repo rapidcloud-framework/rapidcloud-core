@@ -1,0 +1,517 @@
+{
+  "eks": {
+    "create_cluster": {
+      "enabled": true,
+      "help": "Create an EKS cluster",
+      "template_section": "EKS",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "cluster_name",
+      "args": {
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Enter a cluster name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "eks_version": {
+          "name": "eks_version",
+          "prompt": "Enter an eks cluster version",
+          "required": false,
+          "default": "1.25"
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Provide at least two RapidCloud subnet names, seperated by comma in different availabilty zones to deploy the control plane api endpoint to",
+          "required": true,
+          "default": ""
+        },
+        "endpoint_public_access": {
+          "name": "endpoint_public_access",
+          "prompt": "Set this to true to all public access to your eks api (THIS IS NOT RECOMENDED!)",
+          "required": false,
+          "default": "false"
+        },
+        "endpoint_public_access_cidrs": {
+          "name": "endpoint_public_access_cidr",
+          "prompt": "Provide a comma seperated list in CIDR format of IP addresses with access to your public endpoint",
+          "required": false,
+          "default": ""
+        },
+        "cluster_log_types": {
+          "name": "cluster_log_types",
+          "prompt": "Provide comma seperated list of cluster log types you wish to export to cloudwatch",
+          "required": false,
+          "default": "api,audit,authenticator,controllerManager,scheduler"
+        },
+        "cluster_log_retention_period": {
+          "name": "cluster_log_retention_period",
+          "prompt": "Cluster logs retention period in days",
+          "required": false,
+          "default": "7"
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the EKS Cluster, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      },
+      "cloud": "aws",
+      "timestamp": "2023-03-14 23:58:18.827475",
+      "cmd_id": "20230314235810793048"
+    },
+    "create_node_group": {
+      "enabled": true,
+      "help": "Create an EKS Node Group",
+      "template_section": "EKS",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "node_group_name",
+      "args": {
+        "node_group_name": {
+          "name": "node_group_name",
+          "prompt": "Enter a Node Group name with no spaces, the cluster name you provided will be used as a prefix to all Node Group resource names",
+          "required": true,
+          "default": ""
+        },
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Provide the Cluster name you wish to attach this Node Group to",
+          "required": true,
+          "default": ""
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Provide at least two RapidCloud subnet names, seperated by comma in different availabilty zones to deploy cluster nodes to",
+          "required": true,
+          "default": ""
+        },
+        "instance_types": {
+          "name": "instance_types",
+          "prompt": "Provide a set of EC2 instance types seperate by comma to be used by this Node Group",
+          "required": false,
+          "default": "t3.medium,t3a.medium"
+        },
+        "desired_size": {
+          "name": "desired_size",
+          "prompt": "Desired amount of instances to run in this Node Group",
+          "required": false,
+          "default": "2"
+        },
+        "max_size": {
+          "name": "max_size",
+          "prompt": "Maximum amount of instances to run in this Node Group",
+          "required": false,
+          "default": "5"
+        },
+        "min_size": {
+          "name": "min_size",
+          "prompt": "Minimum amount of instances to run in this Node Group",
+          "required": false,
+          "default": "0"
+        },
+        "capacity_type": {
+          "name": "capacity_type",
+          "prompt": "Choose the instance capacity type [SPOT|ON_DEMAND]",
+          "required": false,
+          "default": "ON_DEMAND"
+        },
+        "volume_size": {
+          "name": "volume_size",
+          "prompt": "Provide an EBS volume size, if provided an EBS volume will attach to the Node Group instances",
+          "required": false,
+          "default": "10"
+        },
+        "volume_type": {
+          "name": "volume_type",
+          "prompt": "Provide an EBS volume type",
+          "required": false,
+          "default": "gp3"
+        },
+        "force_update_version": {
+          "name": "force_update_version",
+          "prompt": "Set to true to Force version update if existing pods are unable to be drained due to a pod disruption budget issue",
+          "required": false,
+          "default": "false"
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the EKS Node Group, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        },
+        "labels": {
+          "name": "labels",
+          "prompt": "Provide a json string with labels you wish to apply to the EKS Cluster, for example \"{'label1':'value1','label2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      },
+      "cloud": "aws"
+    },
+    "create_fargate_profile": {
+      "cloud": "aws",
+      "timestamp": "2023-03-29 17:06:36.086205",
+      "cmd_id": "20230329170614165242",
+      "enabled": true,
+      "help": "Create an EKS cluster fargate profile",
+      "template_section": "EKS",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "profile_name",
+      "args": {
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Enter the EKS cluster name to attach this profile to",
+          "required": true,
+          "default": ""
+        },
+        "profile_name": {
+          "name": "profile_name",
+          "prompt": "Enter a Fargate profile name",
+          "required": true,
+          "default": ""
+        },
+        "namespace_1": {
+          "name": "namespace_1",
+          "prompt": "Enter a kubernetes namespace to use with this profile (1 of 5)",
+          "required": true,
+          "default": ""
+        },
+        "namespace_1_labels": {
+          "name": "namespace_1_labels",
+          "prompt": "Provide a json string with labels for this namespace, for example \"{'app':'app1','version':'v1'}\"",
+          "required": false,
+          "default": {}
+        },
+        "namespace_2": {
+          "name": "namespace_2",
+          "prompt": "Enter a kubernetes namespace to use with this profile (2 of 5)",
+          "required": false,
+          "default": ""
+        },
+        "namespace_2_labels": {
+          "name": "namespace_2_labels",
+          "prompt": "Provide a json string with labels for this namespace, for example \"{'app':'app2','version':'v2'}\"",
+          "required": false,
+          "default": {}
+        },
+        "namespace_3": {
+          "name": "namespace_3",
+          "prompt": "Enter a kubernetes namespace to use with this profile (3 of 5)",
+          "required": false,
+          "default": ""
+        },
+        "namespace_3_labels": {
+          "name": "namespace_3_labels",
+          "prompt": "Provide a json string with labels for this namespace, for example \"{'app':'app3','version':'v3'}\"",
+          "required": false,
+          "default": {}
+        },
+        "namespace_4": {
+          "name": "namespace_4",
+          "prompt": "Enter a kubernetes namespace to use with this profile (4 of 5)",
+          "required": false,
+          "default": ""
+        },
+        "namespace_4_labels": {
+          "name": "namespace_4_labels",
+          "prompt": "Provide a json string with labels for this namespace, for example \"{'app':'app4','version':'v4'}\"",
+          "required": false,
+          "default": {}
+        },
+        "namespace_5": {
+          "name": "namespace_5",
+          "prompt": "Enter a kubernetes namespace to use with this profile (5 of 5), if you plan on using CORE DNS addon, leave this empty!",
+          "required": false,
+          "default": ""
+        },
+        "namespace_5_labels": {
+          "name": "namespace_5_labels",
+          "prompt": "Provide a json string with labels for this namespace, for example \"{'app':'app5','version':'v5'}\"",
+          "required": false,
+          "default": {}
+        },
+        "eks_version": {
+          "name": "eks_version",
+          "prompt": "Enter an eks cluster version",
+          "required": false,
+          "default": "1.25"
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "Provide at least two RapidCloud subnet names, seperated by comma in different availabilty zones to deploy the fargate profile to",
+          "required": true,
+          "default": ""
+        },
+        "tags": {
+          "name": "tags",
+          "prompt": "Provide a json string with tags you wish to apply to the EKS Cluster, for example \"{'tag1':'value1','tag2':'value2'}\"",
+          "required": false,
+          "default": "{}"
+        }
+      }
+    },
+    "manage_addons": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "Create an EKS cluster",
+      "template_section": "EKS",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "cluster_name",
+      "args": {
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Enter a cluster name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "compute_type": {
+          "name": "compute_type",
+          "prompt": "Specify the compute type of your cluster nodes [ec2|fargate]",
+          "required": true,
+          "default": ""
+        },
+        "eks_version": {
+          "name": "eks_version",
+          "prompt": "Enter an eks cluster version",
+          "required": false,
+          "default": "1.25"
+        },
+        "subnet_ids": {
+          "name": "subnet_ids",
+          "prompt": "For fargate coredns, provide at least two RapidCloud subnet names, seperated by comma in different availabilty zones to create a profile in",
+          "required": false,
+          "default": ""
+        },
+        "enable_aws_coredns": {
+          "name": "enable_aws_coredns",
+          "prompt": "Enable COREDNS addon",
+          "required": false,
+          "default": "false"
+        },
+        "aws_coredns_version": {
+          "name": "aws_coredns_version",
+          "prompt": "COREDNS addon version",
+          "required": false,
+          "default": "latest"
+        },
+        "aws_coredns_replica_count": {
+          "name": "aws_coredns_replica_count",
+          "prompt": "COREDNS pods replica count",
+          "required": false,
+          "default": "2"
+        },
+        "enable_aws_kube_proxy": {
+          "name": "enable_aws_kube_proxy",
+          "prompt": "Enable KUBE PROXY addon (ec2 only)",
+          "required": false,
+          "default": "false"
+        },
+        "aws_kube_proxy_version": {
+          "name": "aws_kube_proxy_version",
+          "prompt": "KUBE PROXY addon version (ec2 only)",
+          "required": false,
+          "default": "latest"
+        },
+        "enable_aws_vpc_cni": {
+          "name": "enable_aws_vpc_cni",
+          "prompt": "Enable VPC CNI addon (ec2 only)",
+          "required": false,
+          "default": "false"
+        },
+        "aws_vpc_cni_version": {
+          "name": "aws_vpc_cni_version",
+          "prompt": "VPC CNI addon version (ec2 only)",
+          "required": false,
+          "default": "latest"
+        },
+        "enable_aws_ebs_csi": {
+          "name": "enable_aws_ebs_csi",
+          "prompt": "Enable EBS CSI addon (ec2 only)",
+          "required": false,
+          "default": "false"
+        },
+        "aws_ebs_csi_version": {
+          "name": "aws_ebs_csi_version",
+          "prompt": "EBS CSI addon version (ec2 only)",
+          "required": false,
+          "default": "latest"
+        }
+      }
+    },
+    "manage_extras": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "Manage extra packages and tools for EKS",
+      "template_section": "EKS",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "cluster_name",
+      "args": {
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Enter a cluster name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "vpc_id": {
+          "name": "vpc_id",
+          "prompt": "Enter the name of the VPC the cluster is deployed to",
+          "required": false,
+          "default": ""
+        },
+        "install_efs_csi": {
+          "name": "install_efs_csi",
+          "prompt": "Install the EFS CSI integration (true|false)?",
+          "required": false,
+          "default": "false"
+        },
+        "fs_name": {
+          "name": "fs_name",
+          "prompt": "The RapidCloud name of the EFS file system to enable the EFS CSI driver for, if you selected to install EFS CSI integration",
+          "required": false,
+          "default": ""
+        },
+        "install_metrics_server": {
+          "name": "install_metrics_server",
+          "prompt": "Install the latest Metrics Server helm chart  (true|false)?",
+          "required": false,
+          "default": "false"
+        },
+        "install_cluster_autoscaler": {
+          "name": "install_cluster_autoscaler",
+          "prompt": "Install the latest Cluster Autoscaler helm chart (true|false)?",
+          "required": false,
+          "default": "false"
+        },
+        "install_ingress_alb": {
+          "name": "install_ingress_alb",
+          "prompt": "Install the latest ALB Ingress Controller helm chart (true|false)?",
+          "required": false,
+          "default": "false"
+        },
+        "install_fluentbit_cloudwatch": {
+          "name": "install_fluentbit_cloudwatc",
+          "prompt": "Forward container logs to Cloudwatch via Fluent-bit (true|false)?",
+          "required": false,
+          "default": "false"
+        },
+        "fluentbit_log_retention_in_days": {
+          "name": "eks_fluentbit_log_retention_in_days",
+          "prompt": "How logn to keep container logs to Cloudwatch (in days)",
+          "required": false,
+          "default": "7"
+        }
+      }
+    },
+    "manage_aws_auth": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "Manage aws_auth config map",
+      "template_section": "EKS",
+      "template_enabled": true,
+      "metadata_table": "metadata",
+      "create_aws_infra": true,
+      "id": "cluster_name",
+      "args": {
+        "cluster_name": {
+          "name": "cluster_name",
+          "prompt": "Enter a cluster name with no spaces",
+          "required": true,
+          "default": ""
+        },
+        "map_users": {
+          "name": "map_users",
+          "prompt": "Provide path to a file containing a YAML list of users with the following fields: \"arn\",\"username\",\"groups\".\nFor example:\n\n\n- userarn: \"arn:aws:iam:<acct>:user/user1\n  username:\"user.name\"\n  groups:\n    - \"some:group\"\n    - \"some:other-group\"\n\n",
+          "required": true,
+          "default": ""
+        },
+        "map_roles": {
+          "name": "map_roles",
+          "prompt": "Provide path to a file containing a YAML list of roles with the following fields: \"rolearn\",\"username\",\"groups\".\nFor example:\n\n\n- rolearn: \"arn:aws:iam:<acct>:role/role1\n  username:\"user.name\"\n  groups:\n    - \"some:group\"\n    - \"some:other-group\"\n\n",
+          "required": true,
+          "default": ""
+        },
+        "map_users_values": {
+          "name": "map_users_values",
+          "prompt": "This value is auto populated in CLI mode and should be ignored, press ENTER to continue",
+          "required": false,
+          "default": ""
+        },
+        "map_roles_values": {
+          "name": "map_roles_values",
+          "prompt": "This value is auto populated in CLI mode and should be ignored, press ENTER to continue",
+          "required": false,
+          "default": ""
+        },
+        "node_groups": {
+          "name": "node_groups",
+          "prompt": "This value is auto populated and should be ignored, press ENTER to continue",
+          "required": false,
+          "default": ""
+        },
+        "fargate_profiles": {
+          "name": "fargate_profiles",
+          "prompt": "This value is auto populated and should be ignored, press ENTER to continue",
+          "required": false,
+          "default": ""
+        }
+      }
+    },
+    "create_eks_cluster": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "Meta command to create eks cluster and Node Group",
+      "metadata_table": "metadata",
+      "id": "name",
+      "template_section": "EKS",
+      "template_enabled": true,
+      "args": {
+        "name": {
+          "name": "Name",
+          "prompt": "Enter Name with no spaces",
+          "required": true,
+          "default": ""
+        }
+      },
+      "import_modules": "eks.create_cluster,eks.create_node_group",
+      "timestamp": "2023-03-14 23:53:59.033824",
+      "cmd_id": "20230314235350917252"
+    },
+    "remove_fargate_profile": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "",
+      "template_enabled": true,
+      "timestamp": "2023-05-11 10:54:53.425240",
+      "cmd_id": "20230511105453099714"
+    },
+    "remove_node_group": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "",
+      "template_enabled": true,
+      "timestamp": "2023-05-11 10:54:53.425240",
+      "cmd_id": "20230511105453099714"
+    },
+    "remove_eks_cluster": {
+      "cloud": "aws",
+      "enabled": true,
+      "help": "",
+      "template_section": "",
+      "template_enabled": false,
+      "timestamp": "2023-05-24 14:16:45.986103",
+      "cmd_id": "20230524141645736200"
+    }
+  }
+}
