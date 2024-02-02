@@ -1,4 +1,4 @@
-__author__ = "iroyzis@kinect-consulting.com"
+__author__ = "Igor Royzis"
 
 import datetime
 import json

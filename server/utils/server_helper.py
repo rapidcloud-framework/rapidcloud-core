@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2023, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import logging
 

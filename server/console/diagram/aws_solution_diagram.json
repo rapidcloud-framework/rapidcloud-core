@@ -6,7 +6,7 @@
  "icons": [
   {
    "id": 1,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Key-Management-Service_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Key-Management-Service_light-bg@4x.png",
    "name": "kms_key::*::*",
    "text": "KMS",
    "x": 34,
@@ -16,7 +16,7 @@
   },
   {
    "id": 2,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
    "name": "lambda_layer::*::*",
    "text": "Lambda Layers",
    "x": 27,
@@ -26,7 +26,7 @@
   },
   {
    "id": 4,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Generic-database_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Generic-database_light-bg@4x.png",
    "name": "rdbms",
    "text": "RDBMS",
    "x": 1,
@@ -36,7 +36,7 @@
   },
   {
    "id": 5,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Systems-Manager_Documents_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Systems-Manager_Documents_light-bg@4x.png",
    "name": "files",
    "text": "Files",
    "x": 1,
@@ -46,7 +46,7 @@
   },
   {
    "id": 11,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-EventBridge_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-EventBridge_light-bg@4x.png",
    "name": "cloudwatch_event_rule::ingest::*",
    "text": "Schedule",
    "x": 4,
@@ -56,7 +56,7 @@
   },
   {
    "id": 12,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
    "name": "lambda_function::ingest::*_dms_task",
    "text": "Lambda",
    "x": 4,
@@ -66,7 +66,7 @@
   },
   {
    "id": 13,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Database-Migration-Service_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Database-Migration-Service_light-bg@4x.png",
    "name": "dms_replication_instance::*::*",
    "text": "DMS",
    "x": 7,
@@ -76,7 +76,7 @@
   },
   {
    "id": 14,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Kinesis-Data-Streams_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Kinesis-Data-Streams_light-bg@4x.png",
    "name": "kinesis_stream::*::*",
    "text": "Kinesis Streams",
    "x": 7,
@@ -86,7 +86,7 @@
   },
   {
    "id": 15,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Kinesis-Data-Firehose_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Kinesis-Data-Firehose_light-bg@4x.png",
    "name": "kinesis_firehose_s3_delivery_stream::*::*",
    "text": "Kinesis Firehose",
    "x": 7,
@@ -96,7 +96,7 @@
   },
   {
    "id": 19,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
    "name": "s3_bucket::*::ingestion",
    "text": "S3 (ingestion)",
    "x": 10,
@@ -106,7 +106,7 @@
   },
   {
    "id": 21,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Glue_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Glue_light-bg@4x.png",
    "name": "glue_job::ingest::*_stream_consumer",
    "text": "Glue Streaming",
    "x": 14,
@@ -116,7 +116,7 @@
   },
   {
    "id": 22,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-EMR_Cluster_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-EMR_Cluster_light-bg@4x.png",
    "name": "emr_cluster::*::*",
    "text": "EMR",
    "x": 14,
@@ -126,7 +126,7 @@
   },
   {
    "name": "lambda_function::*::*_cdc_*",
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
    "text": "Lambda",
    "x": 14,
    "y": 7,
@@ -135,7 +135,7 @@
   },
   {
    "id": 24,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
    "name": "lambda_function::ingest::*",
    "text": "Lambda",
    "x": 14,
@@ -145,7 +145,7 @@
   },
   {
    "id": 27,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
    "name": "s3_bucket::*::raw",
    "text": "S3 (organized)",
    "x": 18,
@@ -155,7 +155,7 @@
   },
   {
    "id": 29,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Glue_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Glue_light-bg@4x.png",
    "name": "glue_job::transform::*",
    "text": "Glue Job",
    "x": 21,
@@ -165,7 +165,7 @@
   },
   {
    "id": 30,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
    "name": "lambda_function::rds::handle_s3_event_raw",
    "text": "Lambda",
    "x": 21,
@@ -175,7 +175,7 @@
   },
   {
    "id": 31,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
    "name": "s3_bucket::*::analysis",
    "text": "S3 (analysis)",
    "x": 23,
@@ -185,7 +185,7 @@
   },
   {
    "id": 32,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
    "name": "lambda_function::rds::run_publishing",
    "text": "Lambda",
    "x": 26,
@@ -195,7 +195,7 @@
   },
   {
    "id": 34,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Glue_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Glue_light-bg@4x.png",
    "name": "glue_job::rds::*",
    "text": "Glue Job",
    "x": 26,
@@ -205,7 +205,7 @@
   },
   {
    "id": 35,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-RDS_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-RDS_light-bg@4x.png",
    "name": "rds_*::rds::*",
    "text": "RDS",
    "x": 29,
@@ -215,7 +215,7 @@
   },
   {
    "id": 36,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Aurora_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Aurora_light-bg@4x.png",
    "name": "aurora_*::rds::*",
    "text": "Aurora",
    "x": 29,
@@ -225,7 +225,7 @@
   },
   {
    "id": 37,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Redshift_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Redshift_light-bg@4x.png",
    "name": "redshift_cluster::*::*",
    "text": "Redshift",
    "x": 29,
@@ -235,7 +235,7 @@
   },
   {
    "id": 38,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
    "name": "lambda_function::lambda::*",
    "text": "Lambda",
    "x": 27,
@@ -245,7 +245,7 @@
   },
   {
    "id": 39,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-API-Gateway_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-API-Gateway_light-bg@4x.png",
    "name": "api_gateway::*::*",
    "text": "API Gwy",
    "x": 20,
@@ -255,7 +255,7 @@
   },
   {
    "id": 40,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Glue_Data-catalog_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Glue_Data-catalog_light-bg@4x.png",
    "name": "glue_catalog_database::*::*",
    "text": "GLue Catalog",
    "x": 14,
@@ -265,7 +265,7 @@
   },
   {
    "id": 41,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Glue_Crawlers_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Glue_Crawlers_light-bg@4x.png",
    "name": "glue_crawler::*::*",
    "text": "Glue Crawlers",
    "x": 14,
@@ -275,7 +275,7 @@
   },
   {
    "id": 46,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Glue_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Glue_light-bg@4x.png",
    "name": "glue_job::aws::*",
    "text": "Custom Glue Job",
    "x": 21,
@@ -285,7 +285,7 @@
   },
   {
    "id": 47,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Kinesis-Data-Streams_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Kinesis-Data-Streams_light-bg@4x.png",
    "name": "src_kinesis",
    "text": "Kinesis Streams",
    "x": 1,
@@ -295,7 +295,7 @@
   },
   {
    "id": 48,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-DynamoDB_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-DynamoDB_light-bg@4x.png",
    "name": "dynamodb::*::*",
    "text": "DynamoDB",
    "x": 29,
@@ -305,7 +305,7 @@
   },
   {
    "id": 49,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Managed-Streaming-for-Kafka_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Managed-Streaming-for-Kafka_light-bg@4x.png",
    "name": "src_kafka",
    "text": "Managed Kafka",
    "x": 1,
@@ -315,7 +315,7 @@
   },
   {
    "id": 50,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-EventBridge_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-EventBridge_light-bg@4x.png",
    "name": "cloudwatch_event_rule::lambda::*",
    "text": "Schedule",
    "x": 25,
@@ -325,7 +325,7 @@
   },
   {
    "id": 52,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-CloudFront_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-CloudFront_light-bg@4x.png",
    "name": "aws_cloudfront_distribution::*::*",
    "text": "Cloudfront",
    "x": 11,
@@ -335,7 +335,7 @@
   },
   {
    "id": 53,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Route-53_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Route-53_light-bg@4x.png",
    "name": "aws_route53_record::*::*",
    "text": "Route53",
    "x": 5,
@@ -345,7 +345,7 @@
   },
   {
    "id": 54,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
    "name": "s3_bucket::*::web",
    "text": "S3 (web)",
    "x": 14,
@@ -355,7 +355,7 @@
   },
   {
    "id": 55,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Elastic-Container-Service_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Elastic-Container-Service_light-bg@4x.png",
    "name": "aws_ecs::*::*",
    "text": "ECS",
    "x": 27,
@@ -365,7 +365,7 @@
   },
   {
    "id": 56,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Elastic-Kubernetes-Service_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Elastic-Kubernetes-Service_light-bg@4x.png",
    "name": "eks::*::*",
    "text": "EKS",
    "x": 27,
@@ -375,7 +375,7 @@
   },
   {
    "id": 57,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-EC2-Container-Registry_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-EC2-Container-Registry_light-bg@4x.png",
    "name": "aws_ecr_repository::*::*",
    "text": "ECR",
    "x": 25,
@@ -385,7 +385,7 @@
   },
   {
    "id": 58,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/End-User-Computing_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/End-User-Computing_light-bg@4x.png",
    "name": "angularapp",
    "text": "Web App",
    "x": 1,
@@ -395,7 +395,7 @@
   },
   {
    "id": 59,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Mobile_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Mobile_light-bg@4x.png",
    "name": "mobileapp",
    "text": "Mobile App",
    "x": 1,
@@ -405,7 +405,7 @@
   },
   {
    "id": 60,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Elastic-Load-Balancing-ELB_Application-load-balancer_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Elastic-Load-Balancing-ELB_Application-load-balancer_light-bg@4x.png",
    "name": "aws_lb::*::*",
    "text": "ALB",
    "x": 23,
@@ -415,7 +415,7 @@
   },
   {
    "id": 61,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Elasticsearch-Service_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Elasticsearch-Service_light-bg@4x.png",
    "name": "opensearch::*::*",
    "text": "OpenSearch",
    "x": 29,
@@ -425,7 +425,7 @@
   },
   {
    "id": 62,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-WAF_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-WAF_light-bg@4x.png",
    "name": "waf::*::*",
    "text": "WAF",
    "x": 8,
@@ -435,7 +435,7 @@
   },
   {
    "id": 63,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Quicksight_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Quicksight_light-bg@4x.png",
    "name": "spice",
    "text": "SPICE/QuickSight",
    "x": 29,
@@ -445,7 +445,7 @@
   },
   {
    "id": 64,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Certificate-Manager_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Certificate-Manager_light-bg@4x.png",
    "name": "cert_mgr::*::*",
    "text": "Cert Mgr",
    "x": 11,
@@ -455,7 +455,7 @@
   },
   {
    "id": 65,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Athena_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Athena_light-bg@4x.png",
    "name": "athena",
    "text": "Athena",
    "x": 26,
@@ -465,7 +465,7 @@
   },
   {
    "id": 66,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Secrets-Manager_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Secrets-Manager_light-bg@4x.png",
    "name": "secrets",
    "text": "Secrets Manager",
    "x": 34,
@@ -475,7 +475,7 @@
   },
   {
    "id": 68,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_light-bg@4x.png",
    "name": "org::*::*",
    "text": "Org",
    "x": 34,
@@ -485,7 +485,7 @@
   },
   {
    "id": 69,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
    "name": "org_unit::*::*",
    "text": "Org Units",
    "x": 34,
@@ -495,7 +495,7 @@
   },
   {
    "id": 70,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "account::*::*",
    "text": "Accounts",
    "x": 34,
@@ -505,7 +505,7 @@
   },
   {
    "id": 72,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-EC2_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-EC2_light-bg@4x.png",
    "name": "aws_instance::*::*",
    "text": "EC2",
    "x": 27,
@@ -515,7 +515,7 @@
   },
   {
    "id": 73,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-FSx_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-FSx_light-bg@4x.png",
    "name": "aws_fsx_windows_file_system::*::*",
    "text": "FSx",
    "x": 25,
@@ -525,7 +525,7 @@
   },
   {
    "id": 74,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Elastic-Block-Store-EBS_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Elastic-Block-Store-EBS_light-bg@4x.png",
    "name": "aws_ebs_volume::*::*",
    "text": "EBS",
    "x": 27,
@@ -535,7 +535,7 @@
   },
   {
    "id": 75,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Elastic-File-System_EFS_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Elastic-File-System_EFS_light-bg@4x.png",
    "name": "aws_efs_file_system::*::*",
    "text": "EFS",
    "x": 29,
@@ -545,7 +545,7 @@
   },
   {
    "id": 76,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Auto-Scaling_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Auto-Scaling_light-bg@4x.png",
    "name": "aws_autoscaling_group::*::*",
    "text": "ASG",
    "x": 25,
@@ -555,7 +555,7 @@
   },
   {
    "id": 77,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
    "name": "vpc::*::*",
    "text": "VPC",
    "x": 34,
@@ -565,7 +565,7 @@
   },
   {
    "id": 79,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_Endpoints_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_Endpoints_light-bg@4x.png",
    "name": "endpoints::*::*",
    "text": "Endpoints",
    "x": 34,
@@ -575,7 +575,7 @@
   },
   {
    "id": 81,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_Internet-Gateway_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_Internet-Gateway_light-bg@4x.png",
    "name": "inetgwy::*::*",
    "text": "Internet Gwy",
    "x": 34,
@@ -585,7 +585,7 @@
   },
   {
    "id": 83,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_NAT-Gateway_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_NAT-Gateway_light-bg@4x.png",
    "name": "natgwy::*::*",
    "text": "NAT Gwy",
    "x": 34,
@@ -595,7 +595,7 @@
   },
   {
    "id": 84,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
    "name": "s3_bucket::*::scan",
    "text": "S3 (scan)",
    "x": 5,
@@ -605,7 +605,7 @@
   },
   {
    "id": 85,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
    "name": "s3_bucket::*::quarantine",
    "text": "S3 (quarantine)",
    "x": 8,
@@ -615,7 +615,7 @@
   },
   {
    "id": 86,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
    "name": "lambda_function::trendmicro::*",
    "text": "Post Scan Lambda",
    "x": 5,
@@ -625,7 +625,7 @@
   },
   {
    "id": 87,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
    "name": "s3_bucket::*::*",
    "text": "S3 (custom)",
    "x": 14,
@@ -635,7 +635,7 @@
   },
   {
    "id": 88,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Simple-Storage-Service-S3_light-bg@4x.png",
    "name": "s3_bucket::*::utils",
    "text": "S3 (utils)",
    "x": 20,
@@ -645,7 +645,7 @@
   },
   {
    "id": 89,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Lambda_light-bg@4x.png",
    "name": "lambda_function::*::generic_event_handler",
    "text": "Event Handler",
    "x": 16,
@@ -655,7 +655,7 @@
   },
   {
    "id": 90,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-EventBridge_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-EventBridge_light-bg@4x.png",
    "name": "cloudwatch_event_rule::*::*",
    "text": "EventBridge",
    "x": 13,
@@ -665,7 +665,7 @@
   },
   {
    "id": 91,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-DataSync_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-DataSync_light-bg@4x.png",
    "name": "datasync::*::*",
    "text": "DataSync",
    "x": 5,
@@ -675,7 +675,7 @@
   },
   {
    "id": 92,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Textract_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-Textract_light-bg@4x.png",
    "name": "",
    "text": "Textract",
    "x": 15,
@@ -685,7 +685,7 @@
   },
   {
    "id": 93,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-ElastiCache_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-ElastiCache_light-bg@4x.png",
    "name": "",
    "text": "Elasticache",
    "x": 29,

@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2020, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import datetime
 import json
@@ -142,7 +141,7 @@ class LicenseWorker(AwsWorker):
             if not verification['agreed_terms']:
                 print("")
                 print("")
-                print(f"{colors.OKBLUE}Please review RapidCloud Terms at{colors.ENDC}: https://kinect-rapid-cloud.s3.amazonaws.com/docs/README.html#terms")
+                print(f"{colors.OKBLUE}Please review RapidCloud Terms at{colors.ENDC}: https://rapid-cloud.s3.amazonaws.com/docs/README.html#terms")
                 print("")
                 agreed = input(f"{colors.OKBLUE}I agree to RapidCloud terms (yes|no):{colors.ENDC} ")
                 if agreed == "yes":
@@ -234,8 +233,6 @@ class LicenseWorker(AwsWorker):
             activations.append(activation)
         print(f"{colors.OKGREEN}Activations:{colors.ENDC}")
         cols = ['email','role','status','hostname','agreed_terms','timestamp']
-        if "kinect-consulting.com" in account_details['email']:
-            cols.append('code')
         print_utils.print_grid_from_json(activations, cols)
         return activations
 

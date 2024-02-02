@@ -1,5 +1,4 @@
-__copyright__ = "Copyright 2023, Kinect Consulting"
-__license__ = "Commercial"
+__license__ = "MIT"
 
 import json
 import os

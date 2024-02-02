@@ -70,7 +70,7 @@ try:
 
     default_args = {
         "job_name": sys.argv[1],
-        "env": "pinellas_biw_poc",
+        "env": "test_biw_poc",
         "dataset": sys.argv[2],
         "db_type": sys.argv[3],
         "db_engine": sys.argv[4],
@@ -78,7 +78,7 @@ try:
         "db_schema": sys.argv[6],
         "table": sys.argv[7],
         "target_replace_key": sys.argv[8],
-        "source_bucket": "pinellas-biw-poc-analysis"
+        "source_bucket": "test-biw-poc-analysis"
     }
 
     logger.info(default_args.keys())

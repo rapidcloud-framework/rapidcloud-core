@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2023, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import json
 import logging
@@ -67,8 +66,8 @@ class GcpInitWorker(InitWorker):
             setattr(self.args, key, value)
             env_config[key] = value
 
-        enable_gcp_service_apis(["storage.googleapis.com",   ## https://bitbucket.org/kinect-consulting/kinect-theia-main/src/19e42b9439da54d2fd8e7cca563be6139a3dfac7/commands/kc_metadata_manager/gcp_infra.py#lines-99
-                                 "compute.googleapis.com",   ## https://bitbucket.org/kinect-consulting/kinect-theia-main/src/b97d32244b50deee8543e4c8dffb5884074d9488/server/utils/gcp_metadata_utils.py#lines-88
+        enable_gcp_service_apis(["storage.googleapis.com",   ## https://bitbucket.org/kinect-consulting/rapidcloud-core/src/19e42b9439da54d2fd8e7cca563be6139a3dfac7/commands/kc_metadata_manager/gcp_infra.py#lines-99
+                                 "compute.googleapis.com",   ## https://bitbucket.org/kinect-consulting/rapidcloud-core/src/b97d32244b50deee8543e4c8dffb5884074d9488/server/utils/gcp_metadata_utils.py#lines-88
                                  "firestore.googleapis.com", ## NoSQL tables for RC metadata
                                 ])
 

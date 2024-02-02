@@ -2,9 +2,8 @@ from setuptools import setup, find_packages
 setup(
     name="kinect-theia",
     description="RapidCloud - Cloud Automation & Acceleration Framework",
-    author="Kinect Consulting",
-    author_email="iroyzis@kinect-consulting.com",
-    license="Commercial",
+    author="Igor Royzis",
+    license="MIT",
     packages=["commands","modules"],
     include_package_data=True,
     install_requires=[

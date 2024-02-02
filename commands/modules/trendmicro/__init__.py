@@ -1,7 +1,6 @@
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2022, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 from commands.kc_metadata_manager.aws_metadata import Metadata
 from commands.modules.trendmicro.trend_application_worker import TrendApplicationSecurityWorker

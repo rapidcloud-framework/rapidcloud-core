@@ -1,7 +1,6 @@
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2020, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import copy
 import json
@@ -50,7 +49,7 @@ def get_imported_controls(command, module_json, module_json_files):
             i_feature = i_module.split(".")[0]
             i_command = i_module.split(".")[1]
 
-            # "rds": "/Users/iroyzis/Workspace/kinect/kinect-frameworks/kinect-theia-main/commands/modules/rds/module.json"
+            # "rds": "/Users/iroyzis/Workspace/kinect/kinect-frameworks/rapidcloud-core/commands/modules/rds/module.json"
             module_dir = module_json_files[i_feature].replace("/module.json", "")
             # print(f"{i_feature} dir: {module_dir}")
             i_module_template_file = f'{module_dir}/console/template_{i_feature}.json'

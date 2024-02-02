@@ -5,9 +5,9 @@ python3 build.py --action build --os win --skip_disabled_templates --build_stage
 
 # bring in modules from other repos
 # This section must be updated based on version.json
-cd /d/rapid-cloud-custom-modules/rc-aws-net; git fetch --all; git reset --hard v1.0.2
-cd /d/rapid-cloud-custom-modules/rc-aws-eks; git fetch --all; git reset --hard v0.0.1
-cd /d/kinect-theia-main
+cd /d/rapidcloud-modules/rc-aws-net; git fetch --all; git reset --hard v1.0.2
+cd /d/rapidcloud-modules/rc-aws-eks; git fetch --all; git reset --hard v0.0.1
+cd /d/rapidcloud-core
 
 python3 build.py --action build --os win --skip_disabled_templates --build_stage add_external_modules
 

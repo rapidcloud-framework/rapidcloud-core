@@ -1,4 +1,4 @@
-__author__ = "mbartoli@kinect-consulting.com"
+__author__ = "mbartoli"
 
 import boto3
 import logging

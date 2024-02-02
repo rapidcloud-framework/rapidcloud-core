@@ -1,7 +1,6 @@
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2021, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import json
 import boto3
@@ -12,7 +11,7 @@ from jose import jwt
 from six.moves.urllib.request import urlopen, Request
 
 
-DEFAULT_WIZARD_EMAIL = "theia_wizard@kinect-consulting.com"
+DEFAULT_WIZARD_EMAIL = "theia_wizard@xxxxxxxxxxxx.com"
 AUTH0_DOMAIN = "theia-architecture-dev.us.auth0.com"
 API_AUDIENCE = "https://architecture.kinect-theia.com/"
 ALGORITHMS = ["RS256"]

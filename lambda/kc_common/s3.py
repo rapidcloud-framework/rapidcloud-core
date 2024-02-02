@@ -1,7 +1,6 @@
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2020, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import sys
 import json
@@ -185,20 +184,6 @@ def delete_folder(bucket, prefix):
 
 
 if __name__ == "__main__":
-    # import s3fs
-    # import fsspec
-    # print(s3fs.__version__)
-    # print(fsspec.__version__)
-    # sys.exit()
-
-    
-    # python3 ./lambda/kc_common/s3.py csv pinellas-biw-poc semi-test/FY19Baycare_Amb_ER_Rollup/test1.csv no
-    
-    # python3 ./lambda/kc_common/s3.py csv pinellas-biw-poc semi-test/E_App_Elig_Rev_Assessment/test2.csv yes
-
-    # python3 ./lambda/kc_common/s3.py json psycharmor-bi-dev semistructured/courses/courses.json no
-
-
     arg = sys.argv[1]
     bucket = f"{sys.argv[2]}-ingestion"
     raw = f"{sys.argv[2]}-raw"
@@ -234,32 +219,7 @@ if __name__ == "__main__":
     elif arg == 'xml2':
         df = read_xml2(bucket, key)
 
-    # elif arg == 'xml_original':
-    #     df = read_xml_simple(bucket, key)
-    #     df.to_csv('./testing/semi-structured-testing/note1.csv', index=False) 
-    # elif arg == 'xml':
-    #     df = read_xml(bucket, key,["notes","note"])
-    #     df.to_csv('./testing/semi-structured-testing/note2.csv', index=False) 
-    # elif arg == 'xml_to_json':
-    #     flatten = True
-    #     jsondata = xml_to_json(bucket, key,["RUNREPORTS","RUNREPORT"],flatten)
-    #     flat = "FLAT" if flatten else "NESTED"
-    #     with open(f"./testing/semi-structured-testing/polk/DEMO HEMS DataXport-{flat}.json", 'w') as f:
-    #         json.dump(jsondata, f, indent=2)
-    # elif arg == 'xml_nested':
-    #     df = read_xml(bucket, key,["RUNREPORTS","RUNREPORT"])
-    # elif arg == 'xml_flatten':
-    #     df = read_xml_and_flatten(bucket, key,["RUNREPORTS","RUNREPORT"])
-    # elif arg == 'delete_folder':
-    #     df = delete_folder(raw, key)
-    #     sys.exit()
-    # elif arg == 'to_parquet':
-    #     df = read_json(bucket, key)
-    #     to_parquet(df, f"s3://nationwide-nr-1092591-ingestion/test/test.parquet")
-    #     sys.exit()
-
     df.info(verbose=True)
-    # print(df.dtypes)
     print(df.size)
     print(df.head(10))
 

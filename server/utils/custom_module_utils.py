@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2023, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 from collections import OrderedDict
 import importlib
@@ -165,8 +164,8 @@ def custom_endpoint(action, args, cloud_session, user_session_vars, cloud):
 
     # custom module outside the bundle or dev mode
     # module_dir:
-    #   /kinect-theia-main/./commands/modules/lambda
-    #   /rapid-cloud-custom-modules/rc-aws-net/./commands/modules/net
+    #   /rapidcloud-core/./commands/modules/lambda
+    #   /rapidcloud-modules/rc-aws-net/./commands/modules/net
     try:
         modules_by_cloud, modules_dirs, add_args_list = load_modules(skip_bundled=False)
         module_dir = modules_dirs.get(cloud, {}).get(module_name, None)

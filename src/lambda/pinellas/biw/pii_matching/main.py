@@ -1,7 +1,5 @@
 __author__ = 'Ivan Mendez'
-__copyright__ = 'Copyright 2020, Kinect Consulting'
-__license__ = 'Commercial'
-__email__ = 'imendez@kinect-consulting.com'
+__license__ = 'MIT'
 
 import datetime
 import hashlib

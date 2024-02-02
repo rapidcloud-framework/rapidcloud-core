@@ -1,7 +1,6 @@
 __author__ = "Jeffrey Planes"
-__copyright__ = "Copyright 2021, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import os
 import sys

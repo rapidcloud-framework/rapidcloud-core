@@ -97,7 +97,7 @@ pipelines:
           - ls -la
           - ./kc --version         
           - ./kc help
-          - ./kc activate --email jomartinez@kinect-consulting.com --no-prompt 
+          - ./kc activate --email jomartinez@xxxxxxxxxxxxxx.com --no-prompt 
           - ./kc init list-env         
     - step:
         image:

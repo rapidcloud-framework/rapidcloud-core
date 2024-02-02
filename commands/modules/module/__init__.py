@@ -1,7 +1,6 @@
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2020, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import copy
 from datetime import datetime
@@ -197,7 +196,7 @@ class ModuleMetadata(CloudMetadata):
         but you can always add your own custom Terraform scripts here: {colors.OKBLUE}./terraform/modules{colors.ENDC}
 
         See Complete Custom Modules Documentation here:
-        {colors.OKBLUE}https://kinect-rapid-cloud.s3.amazonaws.com/docs/RapidCloud-Custom-Modules.html{colors.ENDC}
+        {colors.OKBLUE}https://rapid-cloud.s3.amazonaws.com/docs/RapidCloud-Custom-Modules.html{colors.ENDC}
 
         """)
 

@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2023, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import copy
 import json
@@ -35,15 +34,6 @@ def get_metadata_manager(session):
 
 def get_data(kc_args, session, request, filters, params, dev_or_live, email=None, args=None):
     logger.info("in azure_metadata_utils.get_data")
-    # mock = copy.deepcopy(MOCK_ENV)
-    # if params["table_name"] == "profile":
-    #     for diagram_type in ["lz", "net", "solution", "container"]:
-    #         file_name = f'./server/console/diagram/azure_{diagram_type}_wizard.json'
-    #         if os.path.exists(file_name):
-    #             with open(file_name) as f:
-    #                 mock[f"azure_{diagram_type}_wizard"] = json.load(f)
-    #     return [mock]
-    # return []
 
     env = params.get("env")
     table_name = params.get("table_name")
@@ -131,27 +121,3 @@ def get_environment_info(session):
 def get_environment(env, session):
     logger.info("in azure_metadata_utils.get_environment")
     return get_metadata_manager(session).search_items("azure_infra", {"profile": env})
-
-MOCK_ENV = {
-    "name": "rapidcloud_azure_mock",
-    "account": "247654790127",
-    "aws_profile": "default",
-    "client": "rapidcloud",
-    "cmd_id": "20230119210621336397",
-    "created_by": "iroyzis@kinect-consulting.com",
-    "created_timestamp": "2023-01-19 21:06:22.914357",
-    "datalake": "rapidcloud_dev",
-    "enabled": True,
-    "env": "mock",
-    "env_id": "326506",
-    "infra_enabled": True,
-    "ips_for_ssh": "",
-    "region": "eastus",
-    "shared": True,
-    "ssh_pub_key": "",
-    "timestamp": "2023-01-19 21:06:22.914372",
-    "updated_by": "iroyzis@kinect-consulting.com",
-    "vpc": "vpc-05b3ddb6314da834c",
-    "vpn_only": False,
-    "workload": "azure",
-}

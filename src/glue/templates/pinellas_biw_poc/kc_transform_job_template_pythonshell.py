@@ -33,13 +33,13 @@ try:
 
     args = {
         "job_name": "test",
-        "env": "pinellas_biw_poc",
+        "env": "test_biw_poc",
         "region": "us-gov-west-1",
         "dataset": "alife",
-        "source_bucket": "pinellas-biw-poc-raw",
-        "target_bucket": "pinellas-biw-poc-analysis",
-        "source_glue_database": "pinellas_biw_poc_rawdb",
-        "target_glue_database": "pinellas_biw_poc_analysisdb",
+        "source_bucket": "test-biw-poc-raw",
+        "target_bucket": "test-biw-poc-analysis",
+        "source_glue_database": "test_biw_poc_rawdb",
+        "target_glue_database": "test_biw_poc_analysisdb",
         "base_datasets": "alife"
     }
 

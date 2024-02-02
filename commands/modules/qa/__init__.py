@@ -1,4 +1,4 @@
-__author__ = "iroyzis@kinect-consulting.com"
+__author__ = "Igor Royzis"
 
 from commands.modules.qa.integration_tests import IntegrationTests
 from commands.kc_metadata_manager.aws_metadata import Metadata

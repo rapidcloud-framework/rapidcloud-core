@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2022, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__copyright__ = ""
+__license__ = "MIT"
+
 
 import copy
 import json
@@ -20,11 +20,12 @@ from commands.colors import colors
 def print_rapidcloud_text_image():
     text = pyfiglet.figlet_format("RapidCloud")
     print(f"{colors.OKBLUE}{text}{colors.ENDC}")
-    print(f"{colors.OKBLUE}RapidCloud v{version}{colors.ENDC}")
+    print(f"{colors.OKBLUE}v{version} - {lic}{colors.ENDC}\n")
 
 
 kc_config = config_utils.get_config("kc_config")
 version = config_utils.get_config("version")['version']
+lic = config_utils.get_config("version")['lic']
 cloud_context = config_utils.get_config("cloud_context")
 if "cloud" not in cloud_context:
     cloud_context["cloud"] = "aws"
@@ -88,7 +89,7 @@ logging.basicConfig(level=kc_config['logger_level'], format=f'%(asctime)s %(leve
 logging.getLogger("botocore.credentials").setLevel(logging.CRITICAL)
 logger = logging.getLogger('kc')
 
-parser = argparse.ArgumentParser(description='RapidCloud by Kinect', add_help=False)
+parser = argparse.ArgumentParser(description='RapidCloud ', add_help=False)
 
 STORE_TRUE = [
     'help', 'verbose', 'dry-run', 'no-prompt', 'no-history', 'diagram', 'version', 'v','override', 'quiet', 'pause', 'no-browser'

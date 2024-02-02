@@ -1,7 +1,6 @@
 __author__ = "Abe Garcia"
-__copyright__ = "Copyright 2022, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "agarciaortiz@kinect-consulting.com"
+__license__ = "MIT"
+__email__ = "agarciaortiz"
 
 import json
 import os
@@ -135,7 +134,7 @@ class ModuleMetadata(Metadata):
                 name, env, tm_workload_enabled, trend_workload_group, trend_workload_policy = "", "", False, "", ""
                 managed = False
                 for tag in i['Tags']:
-                    if tag['Key'] == 'author' and tag['Value'] in ['rapid-cloud', 'rapid-cloud-by-kinect']:
+                    if tag['Key'] == 'author' and tag['Value'] in ['rapid-cloud', 'rapidcloud']:
                         managed = True
                         break
                     elif tag['Key'] == 'Name':

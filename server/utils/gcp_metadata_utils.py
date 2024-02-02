@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2023, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import copy
 import json
@@ -147,7 +146,7 @@ def get_gcp_service_api_state(api_name: str, project_id: str=None) -> str:
     api_name = ensure_google_api_suffix(api_name)
 
     # https://stackoverflow.com/questions/57526808/how-do-you-enable-gcp-apis-through-the-python-client-library/76047799#76047799
-    # https://bitbucket.org/kinect-consulting/kinect-theia-main/annotate/f45ad8de688846c36947754ca6a28482b73cd448/README.md?at=master#README.md-47
+    # https://bitbucket.org/kinect-consulting/rapidcloud-core/annotate/f45ad8de688846c36947754ca6a28482b73cd448/README.md?at=master#README.md-47
     #
     # The 'service' object is of datatype 'googleapiclient.discovery.Resource':
     #   - docs: https://googleapis.github.io/google-api-python-client/docs/epy/googleapiclient.discovery.Resource-class.html

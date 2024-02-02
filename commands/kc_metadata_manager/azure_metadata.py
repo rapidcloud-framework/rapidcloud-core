@@ -1,7 +1,6 @@
 __author__ = "Sridhar K"
-__copyright__ = "Copyright 2023, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "skammadanam@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import json
 import logging

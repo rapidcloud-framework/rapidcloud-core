@@ -1,4 +1,4 @@
-__author__ = "iroyzis@kinect-consulting.com"
+__author__ = "Igor Royzis"
 
 import argparse
 import json

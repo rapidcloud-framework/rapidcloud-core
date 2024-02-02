@@ -1,4 +1,4 @@
-__author__ = "mlevy@kinect-consulting.com"
+__author__ = "mlevy"
 import json
 # import pathlib
 import pprint

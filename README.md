@@ -65,7 +65,7 @@ For each Rapid Cloud's **target environment project**, enable the following APIs
 Either via the `gcloud` CLI:
 ```console
   ## This is necessary in order for Python to enable any other GCP APIs.
-  ##    - https://bitbucket.org/kinect-consulting/kinect-theia-main/src/f45ad8de688846c36947754ca6a28482b73cd448/server/utils/gcp_metadata_utils.py#lines-141
+  ##    - https://bitbucket.org/kinect-consulting/rapidcloud-core/src/f45ad8de688846c36947754ca6a28482b73cd448/server/utils/gcp_metadata_utils.py#lines-141
   ##    - https://stackoverflow.com/questions/57526808/how-do-you-enable-gcp-apis-through-the-python-client-library/76047799#76047799
 $ gcloud services enable serviceusage.googleapis.com  --project=YOUR-RAPID-CLOUD-TARGET-ENVIRONMENT-PROJECT-ID
 ```

@@ -6,7 +6,7 @@
  "icons": [
   {
    "id": 2,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
    "name": "vpc_shared",
    "text": "EXAMPLE VPC",
    "x": 7,
@@ -16,7 +16,7 @@
   },
   {
    "id": 4,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
    "name": "vpc_security",
    "text": "SECURITY VPC",
    "x": 23,
@@ -26,7 +26,7 @@
   },
   {
    "id": 3,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
    "name": "vpc_hybrid",
    "text": "HYBRID VPC",
    "x": 13,
@@ -36,7 +36,7 @@
   },
   {
    "id": 7,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
    "name": "",
    "text": "EGRESS VPC",
    "x": 23,
@@ -46,7 +46,7 @@
   },
   {
    "id": 6,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
    "name": "",
    "text": "INGRESS VPC",
    "x": 13,
@@ -56,7 +56,7 @@
   },
   {
    "id": 5,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
    "name": "",
    "text": "WORKLOAD VPC",
    "x": 3,
@@ -66,7 +66,7 @@
   },
   {
    "id": 8,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "NETWORK ACCOUNT",
    "x": 3,
@@ -76,7 +76,7 @@
   },
   {
    "id": 21,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
    "name": "",
    "text": "PRIVATE SUBNET (EPT)",
    "x": 12,
@@ -86,7 +86,7 @@
   },
   {
    "id": 22,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
    "name": "",
    "text": "PRIVATE SUBNET (EPT)",
    "x": 19,
@@ -96,7 +96,7 @@
   },
   {
    "id": 23,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
    "name": "",
    "text": "PRIVATE SUBNET (ADNP)",
    "x": 12,
@@ -106,7 +106,7 @@
   },
   {
    "id": 24,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
    "name": "",
    "text": "PRIVATE SUBNET (ADNP)",
    "x": 19,
@@ -116,7 +116,7 @@
   },
   {
    "id": 25,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
    "name": "",
    "text": "PRIVATE SUBNET (TGW)",
    "x": 12,
@@ -126,7 +126,7 @@
   },
   {
    "id": 26,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-private_light-bg@4x.png",
    "name": "",
    "text": "PRIVATE SUBNET (TGW)",
    "x": 19,
@@ -136,7 +136,7 @@
   },
   {
    "id": 27,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Cloud-alt_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Cloud-alt_light-bg@4x.png",
    "name": "AWS",
    "text": "",
    "x": 0,
@@ -146,7 +146,7 @@
   },
   {
    "id": 28,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Networking-and-Content-Delivery_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Networking-and-Content-Delivery_light-bg@4x.png",
    "name": "",
    "text": "AZ-1",
    "x": 9,
@@ -156,7 +156,7 @@
   },
   {
    "id": 29,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Networking-and-Content-Delivery_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Networking-and-Content-Delivery_light-bg@4x.png",
    "name": "",
    "text": "AZ-2",
    "x": 16,
@@ -166,7 +166,7 @@
   },
   {
    "id": 30,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-public_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-public_light-bg@4x.png",
    "name": "",
    "text": "PUBLIC SUBNET",
    "x": 12,
@@ -176,7 +176,7 @@
   },
   {
    "id": 31,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-public_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/VPC-subnet-public_light-bg@4x.png",
    "name": "",
    "text": "PUBLIC SUBNET",
    "x": 19,
@@ -186,7 +186,7 @@
   },
   {
    "id": 32,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_Internet-Gateway_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_Internet-Gateway_light-bg@4x.png",
    "name": "",
    "text": "INTERNET GWY",
    "x": 13,
@@ -196,7 +196,7 @@
   },
   {
    "id": 33,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_NAT-Gateway_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_NAT-Gateway_light-bg@4x.png",
    "name": "",
    "text": "NAT GWY",
    "x": 17,
@@ -206,7 +206,7 @@
   },
   {
    "id": 34,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_Endpoints_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_Endpoints_light-bg@4x.png",
    "name": "",
    "text": "VPC ENDPOINTS",
    "x": 24,
@@ -216,7 +216,7 @@
   },
   {
    "id": 35,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/Amazon-VPC_light-bg@4x.png",
    "name": "",
    "text": "SHARED SERVICES VPC",
    "x": 3,

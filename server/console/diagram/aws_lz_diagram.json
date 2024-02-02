@@ -6,7 +6,7 @@
  "icons": [
   {
    "id": 69,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
    "name": "org_unit::*::*",
    "text": "Root OU",
    "x": 20,
@@ -16,7 +16,7 @@
   },
   {
    "id": 70,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "account::*::*",
    "text": "Mgmt Acct",
    "x": 22,
@@ -26,7 +26,7 @@
   },
   {
    "id": 72,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Cloud-alt_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Cloud-alt_light-bg@4x.png",
    "name": "",
    "text": "",
    "x": 0,
@@ -36,7 +36,7 @@
   },
   {
    "id": 73,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
    "name": "",
    "text": "Security OU",
    "x": 2,
@@ -46,7 +46,7 @@
   },
   {
    "id": 75,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
    "name": "",
    "text": "Legacy OU",
    "x": 38,
@@ -56,7 +56,7 @@
   },
   {
    "id": 76,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
    "name": "",
    "text": "Sandbox OU",
    "x": 32,
@@ -66,7 +66,7 @@
   },
   {
    "id": 77,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
    "name": "",
    "text": "App 1 OU",
    "x": 20,
@@ -76,7 +76,7 @@
   },
   {
    "id": 78,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
    "name": "",
    "text": "DevOps OU",
    "x": 14,
@@ -86,7 +86,7 @@
   },
   {
    "id": 79,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
    "name": "",
    "text": "Network OU",
    "x": 8,
@@ -96,7 +96,7 @@
   },
   {
    "id": 80,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
    "name": "",
    "text": "Audit SCP",
    "x": 4,
@@ -106,7 +106,7 @@
   },
   {
    "id": 81,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Audit Account",
    "x": 4,
@@ -116,7 +116,7 @@
   },
   {
    "id": 82,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
    "name": "",
    "text": "Log Archive SCP",
    "x": 4,
@@ -126,7 +126,7 @@
   },
   {
    "id": 83,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
    "name": "",
    "text": "Incident Response SCP",
    "x": 4,
@@ -136,7 +136,7 @@
   },
   {
    "id": 84,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Log Archive Account",
    "x": 4,
@@ -146,7 +146,7 @@
   },
   {
    "id": 85,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Incident Response Acct",
    "x": 4,
@@ -156,7 +156,7 @@
   },
   {
    "id": 86,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
    "name": "",
    "text": "Network SCP",
    "x": 10,
@@ -166,7 +166,7 @@
   },
   {
    "id": 87,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
    "name": "",
    "text": "Legacy SCP",
    "x": 40,
@@ -176,7 +176,7 @@
   },
   {
    "id": 88,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
    "name": "",
    "text": "Sandbox SCP",
    "x": 34,
@@ -186,7 +186,7 @@
   },
   {
    "id": 89,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
    "name": "",
    "text": "App 1 Lower SCP",
    "x": 22,
@@ -196,7 +196,7 @@
   },
   {
    "id": 90,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
    "name": "",
    "text": "DevOps SCP",
    "x": 16,
@@ -206,7 +206,7 @@
   },
   {
    "id": 91,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Network Account",
    "x": 10,
@@ -216,7 +216,7 @@
   },
   {
    "id": 95,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Sandbox N Account",
    "x": 34,
@@ -226,7 +226,7 @@
   },
   {
    "id": 96,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Sandbox 2 Account",
    "x": 34,
@@ -236,7 +236,7 @@
   },
   {
    "id": 97,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Test Account",
    "x": 22,
@@ -246,7 +246,7 @@
   },
   {
    "id": 98,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "App N CI/CD Account",
    "x": 16,
@@ -256,7 +256,7 @@
   },
   {
    "id": 99,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Prod Account",
    "x": 22,
@@ -266,7 +266,7 @@
   },
   {
    "id": 100,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "App 1 CI/CD Account",
    "x": 16,
@@ -276,7 +276,7 @@
   },
   {
    "id": 101,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Legacy Account",
    "x": 40,
@@ -286,7 +286,7 @@
   },
   {
    "id": 102,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Sandbox 1 Account",
    "x": 34,
@@ -296,7 +296,7 @@
   },
   {
    "id": 103,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Dev Account",
    "x": 22,
@@ -306,7 +306,7 @@
   },
   {
    "id": 104,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "DevOps Account",
    "x": 16,
@@ -316,7 +316,7 @@
   },
   {
    "id": 105,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
    "name": "",
    "text": "App 1 SCP",
    "x": 16,
@@ -326,7 +326,7 @@
   },
   {
    "id": 106,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
    "name": "",
    "text": "App 1 Prod SCP",
    "x": 22,
@@ -336,7 +336,7 @@
   },
   {
    "id": 107,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
    "name": "",
    "text": "App N SCP",
    "x": 16,
@@ -346,7 +346,7 @@
   },
   {
    "id": 108,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Organizational-unit_light-bg@4x.png",
    "name": "",
    "text": "App N OU",
    "x": 26,
@@ -356,7 +356,7 @@
   },
   {
    "id": 109,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
    "name": "",
    "text": "App N Prod SCP",
    "x": 28,
@@ -366,7 +366,7 @@
   },
   {
    "id": 110,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg@4x.png",
    "name": "",
    "text": "App N Lower SCP",
    "x": 28,
@@ -376,7 +376,7 @@
   },
   {
    "id": 111,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Prod Account",
    "x": 28,
@@ -386,7 +386,7 @@
   },
   {
    "id": 112,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Dev Account",
    "x": 28,
@@ -396,7 +396,7 @@
   },
   {
    "id": 113,
-   "url": "https://kinect-theia-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
+   "url": "https://rapidcloud-aws-icons.s3.amazonaws.com/aws_icons/AWS-Organizations_Account_light-bg@4x.png",
    "name": "",
    "text": "Test Account",
    "x": 28,

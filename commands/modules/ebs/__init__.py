@@ -1,7 +1,6 @@
 __author__ = "Abe Garcia"
-__copyright__ = "Copyright 2022, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "agarciaortiz@kinect-consulting.com"
+__license__ = "MIT"
+__email__ = "agarciaortiz"
 
 from commands.kc_metadata_manager.aws_metadata import Metadata
 from commands.kc_metadata_manager.aws_infra import AwsInfra

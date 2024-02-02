@@ -1,4 +1,4 @@
-__author__ = "iroyzis@kinect-consulting.com"
+__author__ = "Igor Royzis"
 
 from commands.kc_metadata_manager.aws_metadata import Metadata
 from commands.kc_metadata_manager.aws_infra import AwsInfra

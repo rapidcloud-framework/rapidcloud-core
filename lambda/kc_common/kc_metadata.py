@@ -1,7 +1,6 @@
 __author__ = "Jeffrey Planes"
-__copyright__ = "Copyright 2020, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "jplanes@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import sys
 import json

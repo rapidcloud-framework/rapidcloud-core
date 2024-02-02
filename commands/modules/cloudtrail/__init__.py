@@ -1,4 +1,4 @@
-__author__ = "roperez@kinect-consulting.com"
+__author__ = "roperez"
 
 from commands.kc_metadata_manager.aws_metadata import Metadata
 import traceback

@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2020, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import argparse
 import copy
@@ -96,8 +95,7 @@ def get_confirm_html(email, code):
     href= f"{url}/license/activate?action=confirm_activation&email={email}&code={code}"
     logger.info(href)
     return f'''
-        <img src="https://media.kinect-consulting.com/wp-content/uploads/2022/12/09221636/logo-transparent-no-kinect-2.png" width="150">
-        <br/><br/>
+        <br/>
         &nbsp;&nbsp;<a href={href}>Confirm your RapidCloud Activation</a>
         <br/><br/>
         &nbsp;&nbsp;Sincerely,
@@ -207,9 +205,9 @@ def verify(body):
 
 
 def send_confirm_email(body):
-    SENDER = "RapidCloud by Kinect <iroyzis@kinect-consulting.com>"
+    SENDER = "RapidCloud  <iroyzis@gmail.com>"
     RECIPIENT = body['email']
-    BCC_RECIPIENT = "iroyzis@kinect-consulting.com"
+    BCC_RECIPIENT = "iroyzis@gmail.com"
     SUBJECT = "RapidCloud Activation - Please Confirm"
     BODY_HTML = get_confirm_html(RECIPIENT, body['activation']['code'])
     CHARSET = "UTF-8"
@@ -256,9 +254,9 @@ def agree_terms(body):
 
 def send_subscription_limit_email(account):
     try:
-        SENDER = "iroyzis@kinect-consulting.com"
+        SENDER = "iroyzis@gmail.com"
         RECIPIENT = "support@rapid-cloud.io"
-        BCC_RECIPIENT = "iroyzis@kinect-consulting.com"
+        BCC_RECIPIENT = "iroyzis@gmail.com"
         SUBJECT = f"Maximum allowed activations reached"
         CHARSET = "UTF-8"
         BODY_HTML = f"""
@@ -290,9 +288,9 @@ def send_subscription_limit_email(account):
 
 
 def download(body):
-    SENDER = "iroyzis@kinect-consulting.com"
+    SENDER = "iroyzis@gmail.com"
     RECIPIENT = "support@rapid-cloud.io"
-    BCC_RECIPIENT = "iroyzis@kinect-consulting.com"
+    BCC_RECIPIENT = "iroyzis@gmail.com"
     SUBJECT = f"RapidCloud Download for {body['os']}, {body['email']}"
     CHARSET = "UTF-8"
     BODY_HTML = f"{body['email']}: {body['os']}"
@@ -317,7 +315,7 @@ def download(body):
         logger.info(response['MessageId'])
         traceback.print_exc()
 
-    return f"https://kinect-rapid-cloud.s3.amazonaws.com/downloads/kinect-rapid-cloud-LATEST-{body['os'].lower()}.zip"
+    return f"https://rapid-cloud.s3.amazonaws.com/downloads/rapid-cloud-LATEST-{body['os'].lower()}.zip"
 
 
 def auth0_callback(body):
@@ -737,7 +735,7 @@ def save_event(body):
     try:
         logger.info(f"Licensing Event:")
         logger.info(json.dumps(body, indent=2))
-        events_bucket = f"kinect-rapid-cloud-{body['env']}"
+        events_bucket = f"rapid-cloud-{body['env']}"
 
         email, domain, env, feature, command = 'none', 'none', 'none', 'none', 'none'
         if "email" in body and body["email"] is not None and body["email"] != "":

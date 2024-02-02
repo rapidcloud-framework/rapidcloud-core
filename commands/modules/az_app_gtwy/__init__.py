@@ -1,4 +1,4 @@
-__author__ = "skammadanam@kinect-consulting.com"
+__author__ = "skammadanam"
 
 import base64
 import json

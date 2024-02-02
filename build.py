@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 __author__ = "Igor Royzis"
-__copyright__ = "Copyright 2023, Kinect Consulting"
-__license__ = "Commercial"
-__email__ = "iroyzis@kinect-consulting.com"
+__license__ = "MIT"
+
 
 import argparse
 import glob
@@ -86,7 +85,7 @@ def get_external_modules(args, OS, refresh=False):
     external_modules["timestamp"] = str(datetime.now())
 
     if args.pipeline:
-        exec_cmd("mkdir ../rapid-cloud-custom-modules")
+        exec_cmd("mkdir ../rapidcloud-modules")
     for repo, v in version["module_repos"].items():
         print(repo, v)
         if repo not in external_modules["repos"]:
@@ -354,9 +353,9 @@ def copy_files(args, OS, SKIP_DISABLED_TEMPLATES):
 
 def zip_sign_and_upload(args, OS, VERSION, UPLOAD_LATEST):
     try:
-        ZIP_FILE = f"kinect-rapid-cloud-{VERSION}-{OS}.zip"
-        LATEST_ZIP_FILE = f"kinect-rapid-cloud-LATEST-{OS}.zip"
-        DEV_ZIP_FILE = f"kinect-rapid-cloud-DEV-{OS}.zip"
+        ZIP_FILE = f"rapid-cloud-{VERSION}-{OS}.zip"
+        LATEST_ZIP_FILE = f"rapid-cloud-LATEST-{OS}.zip"
+        DEV_ZIP_FILE = f"rapid-cloud-DEV-{OS}.zip"
         for zip_file in [ZIP_FILE, LATEST_ZIP_FILE, DEV_ZIP_FILE]:
             try:
                 print(f"removing {zip_file}")
@@ -385,10 +384,10 @@ def zip_sign_and_upload(args, OS, VERSION, UPLOAD_LATEST):
 
             s3_client = boto3.client('s3')
             s3_resource = boto3.resource('s3')
-            bucket = "kinect-rapid-cloud"
+            bucket = "rapid-cloud"
             extra_args={'ACL': 'public-read'}
 
-            s3_client.upload_file(ZIP_FILE, "kinect-rapid-cloud", f"downloads/{ZIP_FILE}", ExtraArgs=extra_args)
+            s3_client.upload_file(ZIP_FILE, "rapid-cloud", f"downloads/{ZIP_FILE}", ExtraArgs=extra_args)
 
             if UPLOAD_LATEST:
                 target_file = LATEST_ZIP_FILE

@@ -1,6 +1,5 @@
-__author__ = "jzelada@kinect-consulting.com"
-__copyright__ = "Copyright 2022, Kinect Consulting"
-__license__ = "Commercial"
+__author__ = "jzelada"
+__license__ = "MIT"
 
 import json
 from commands.kc_metadata_manager.azure_metadata import Metadata

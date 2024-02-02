@@ -1,4 +1,4 @@
-__author__ = "jzelada@kinect-consulting.com"
+__author__ = "jzelada"
 
 import json
 from commands.kc_metadata_manager.azure_metadata import Metadata
